@@ -46,6 +46,7 @@ typedef enum {
     
     //发现
     WXT_UrlFeed_Type_New_FindData,
+    WXT_UrlFeed_Type_New_ShareInfo,
     //红包
     WXT_UrlFeed_Type_New_UserBonus,
     WXT_UrlFeed_Type_New_GainBonus,

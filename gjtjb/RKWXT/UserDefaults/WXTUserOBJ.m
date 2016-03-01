@@ -66,6 +66,11 @@
     [userDefault setObject:shopName forKey:WXT_Userdefault_ShopName];
 }
 
+-(void)setShareInfo:(NSString *)shareInfo{
+    WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
+    [userDefault setObject:shareInfo forKey:WXT_Userdefault_ShareInfo];
+}
+
 -(void)setPwd:(NSString *)pwd{
     WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
     [userDefault setObject:pwd forKey:WXT_Userdefault_Pwd];
@@ -138,6 +143,11 @@
 -(NSString*)shopName{
     WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
     return [userDefault textValueForKey:WXT_Userdefault_ShopName];
+}
+
+-(NSString*)shareInfo{
+    WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
+    return [userDefault textValueForKey:WXT_Userdefault_ShareInfo];
 }
 
 - (void)removeAllUserInfo{

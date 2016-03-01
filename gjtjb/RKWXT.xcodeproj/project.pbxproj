@@ -648,6 +648,7 @@
 		12F963611C857397000972E6 /* OrderEvaluteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F963601C857397000972E6 /* OrderEvaluteVC.m */; };
 		12F963641C8575AD000972E6 /* EvaluteEmptyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F963621C8575AD000972E6 /* EvaluteEmptyImg@2x.png */; };
 		12F963651C8575AD000972E6 /* EvaluteFullImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F963631C8575AD000972E6 /* EvaluteFullImg@2x.png */; };
+		12F963691C857B17000972E6 /* ShareInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F963681C857B17000972E6 /* ShareInfoModel.m */; };
 		1F036786D135E645F286F56B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 373B14107C952AC77813F98A /* libPods.a */; };
 		2563B3EA1AAAD74000C04227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563B3E91AAAD74000C04227 /* main.m */; };
 		2563B3ED1AAAD74000C04227 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563B3EC1AAAD74000C04227 /* AppDelegate.m */; };
@@ -2009,6 +2010,8 @@
 		12F963601C857397000972E6 /* OrderEvaluteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderEvaluteVC.m; sourceTree = "<group>"; };
 		12F963621C8575AD000972E6 /* EvaluteEmptyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EvaluteEmptyImg@2x.png"; sourceTree = "<group>"; };
 		12F963631C8575AD000972E6 /* EvaluteFullImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EvaluteFullImg@2x.png"; sourceTree = "<group>"; };
+		12F963671C857B17000972E6 /* ShareInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareInfoModel.h; sourceTree = "<group>"; };
+		12F963681C857B17000972E6 /* ShareInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareInfoModel.m; sourceTree = "<group>"; };
 		2563B3E41AAAD74000C04227 /* RKWXT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RKWXT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2563B3E81AAAD74000C04227 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2563B3E91AAAD74000C04227 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -4435,18 +4438,11 @@
 		128241341B60C4E3001EE0BD /* ShareInterface */ = {
 			isa = PBXGroup;
 			children = (
+				12F963661C857AFA000972E6 /* Share */,
 				1282413F1B60D062001EE0BD /* Classes */,
-				128241351B60C506001EE0BD /* qq */,
 				128241361B60C506001EE0BD /* weixin */,
 			);
 			path = ShareInterface;
-			sourceTree = "<group>";
-		};
-		128241351B60C506001EE0BD /* qq */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = qq;
 			sourceTree = "<group>";
 		};
 		128241361B60C506001EE0BD /* weixin */ = {
@@ -5333,6 +5329,15 @@
 				12F963591C85733B000972E6 /* EvaluteUserHandleCell.m */,
 			);
 			path = Evaluate;
+			sourceTree = "<group>";
+		};
+		12F963661C857AFA000972E6 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				12F963671C857B17000972E6 /* ShareInfoModel.h */,
+				12F963681C857B17000972E6 /* ShareInfoModel.m */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		2563B3DB1AAAD74000C04227 = {
@@ -7197,6 +7202,7 @@
 				775843361AB95A300039B129 /* WXUITextView.m in Sources */,
 				128221C91B184C3B004613BB /* ASINetworkQueue.m in Sources */,
 				12D0C87C1AB6B2970039A197 /* VersionModel.m in Sources */,
+				12F963691C857B17000972E6 /* ShareInfoModel.m in Sources */,
 				120A2C121AB17038006A28B1 /* RechargeModel.m in Sources */,
 				122D63C81C3F8E460086AAB8 /* AllAreaDataModel.m in Sources */,
 				12F422891B1D5D8100643DD7 /* ManagerAddressVC.m in Sources */,

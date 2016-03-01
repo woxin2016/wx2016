@@ -124,6 +124,9 @@
         case WXT_UrlFeed_Type_New_FindData:
             url = @"/discover.php";
             break;
+        case WXT_UrlFeed_Type_New_ShareInfo:
+            url = @"/app_share_info.php";
+            break;
         case WXT_UrlFeed_Type_Home_OrderList:
             url = @"/order_list.php";
             break;
