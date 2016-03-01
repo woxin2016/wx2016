@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>FA62679DA691371CB4E9362EB77F3DE1E7094C67</key>
-		<string>https://github.com/wx-new-v1/wx-new.git</string>
+		<string>https://github.com/woxin2016/wx2016.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>gjtjb/RKWXT.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/wx-new-v1/wx-new.git</string>
+	<string>https://github.com/woxin2016/wx2016.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
