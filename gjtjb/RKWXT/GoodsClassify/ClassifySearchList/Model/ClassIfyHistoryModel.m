@@ -7,6 +7,7 @@
 //
 
 #import "ClassIfyHistoryModel.h"
+#import "SearchResultEntity.h"
 
 @interface ClassIfyHistoryModel ()
 @end
@@ -49,5 +50,13 @@
     return [ClassIfyHistoryModel classIfyhistoryModelClass].entityArr;
 }
 
+- (void)deleteClassifyRecordWith:(NSInteger)goodID{
+    NSArray *entityArr = [NSArray arrayWithArray:self.entityArr];
+    for (SearchResultEntity *entity in entityArr) {
+        if (entity.goodsID == goodID) {
+            [self.entityArr removeObject:entity];
+        }
+    }
+}
 
 @end

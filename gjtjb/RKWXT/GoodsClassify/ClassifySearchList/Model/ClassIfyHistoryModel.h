@@ -13,4 +13,5 @@
 + (instancetype)classIfyhistoryModelClass;
 - (void)classifyHistoryModelWithSaveEntity:(SearchResultEntity*)entity;
 + (NSArray*)classifyHistoryModelWithReadEntityArray;
+- (void)deleteClassifyRecordWith:(NSInteger)goodID;
 @end

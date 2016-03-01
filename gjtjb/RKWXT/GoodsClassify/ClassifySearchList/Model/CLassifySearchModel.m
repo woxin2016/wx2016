@@ -21,7 +21,7 @@
     return _searchResultArr;
 }
 
-- (NSArray*)historyArr{
+- (NSMutableArray*)historyArr{
     if (!_historyArr) {
         NSArray *oldArr = [ClassIfyHistoryModel classifyHistoryModelWithReadEntityArray];
         NSMutableArray *arr = [NSMutableArray array];
@@ -89,6 +89,7 @@
     
     
 }
+
 
 
 

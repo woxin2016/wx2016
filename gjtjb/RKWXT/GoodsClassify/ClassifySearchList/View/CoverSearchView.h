@@ -11,7 +11,7 @@ typedef void(^MYBlock) (NSString *str);
 
 @interface CoverSearchView : UIView
 @property (nonatomic,copy)MYBlock block;
-- (instancetype)initWithFrame:(CGRect)frame  sourceArr:(NSArray *)sourceArr dropListFrame:(CGRect)dropListFrame;
-- (void)unshow:(BOOL)animated;
-//- (void)coverSearch
+@property (nonatomic,strong)NSArray *array;
+- (instancetype)initWithFrame:(CGRect)frame dropListFrame:(CGRect)dropListFrame;
+- (void)clickCellBlock:(MYBlock)block;
 @end
