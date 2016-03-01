@@ -49,6 +49,9 @@
 }
 
 -(void)userHandleBtnState{
+    [rightBtn setEnabled:YES];
+    [rightBtn setBackgroundColor:WXColorWithInteger(0xff9c00)];
+    
     AllOrderListEntity *entity = self.cellInfo;
     if(entity.orderState == Order_State_Cancel){
         [leftBtn setHidden:YES];
@@ -58,10 +61,16 @@
     if(entity.orderState == Order_State_Complete){
         [leftBtn setHidden:YES];
         [rightBtn setHidden:YES];
-//        if(entity.evaluate == Order_Evaluate_None){
-//            [rightBtn setTitle:@"评价" forState:UIControlStateNormal];
-//            [rightBtn setHidden:NO];
-//        }
+        if(entity.evaluate == Order_Evaluate_None){
+            [rightBtn setTitle:@"评价" forState:UIControlStateNormal];
+            [rightBtn setHidden:NO];
+        }
+        if(entity.evaluate == Order_Evaluate_Done){
+            [rightBtn setTitle:@"已评价" forState:UIControlStateNormal];
+            [rightBtn setHidden:NO];
+            [rightBtn setEnabled:NO];
+            [rightBtn setBackgroundColor:WXColorWithInteger(0xbababa)];
+        }
         return;
     }
     if(entity.orderState == Order_State_None){

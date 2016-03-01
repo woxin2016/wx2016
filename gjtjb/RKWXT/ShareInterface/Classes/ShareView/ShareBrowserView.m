@@ -8,6 +8,7 @@
 
 #import "ShareBrowserView.h"
 #import "QRCodeGenerator.h"
+#import "ShareInfoModel.h"
 
 #define kAnimateDefaultDuration (0.3)
 #define kMaskShellDefaultAlpha (0.6)
@@ -123,6 +124,10 @@ static NSString *shareNameArr[]={
 }
 
 -(void)showShareThumbView:(UIView *)thumbView toDestview:(UIView *)destView withImage:(UIImage *)image{
+    //获取分享信息
+    ShareInfoModel *shareInfo = [[ShareInfoModel alloc] init];
+    [shareInfo loadUserShareInfo];
+    
     self.hidden = NO;
     self.alpha = 0.0;
     

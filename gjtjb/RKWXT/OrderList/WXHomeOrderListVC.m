@@ -57,6 +57,7 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(jumpToPayVC:) name:K_Notification_Name_JumpToPay object:nil];
     [notificationCenter addObserver:self selector:@selector(jumpToOrderInfoVC:) name:K_Notification_Name_JumpToOrderInfo object:nil];
+    [notificationCenter addObserver:self selector:@selector(jumpToEvaluate:) name:K_Notification_Name_JumpToEvaluate object:nil];
 }
 
 -(NSInteger)numberOfTabsInDLTabedSlideView:(DLTabedSlideView *)sender{
@@ -117,6 +118,14 @@
     OrderInfoVC *orderInfo = [[OrderInfoVC alloc] init];
     orderInfo.orderEntity = entity;
     [self.wxNavigationController pushViewController:orderInfo];
+}
+
+#pragma mark evaluate
+-(void)jumpToEvaluate:(NSNotification*)notification{
+    AllOrderListEntity *entity = notification.object;
+    OrderEvaluteVC *evaluateVC = [[OrderEvaluteVC alloc] init];
+    evaluateVC.orderEntity = entity;
+    [self.wxNavigationController pushViewController:evaluateVC];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

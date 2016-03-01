@@ -24,6 +24,7 @@
 -(void)setSellerName:(NSString*)sellerName;//商家name
 -(void)setShopID:(NSString*)shopID; //店铺ID
 -(void)setShopName:(NSString*)shopName; //店铺name
+-(void)setShareInfo:(NSString*)shareInfo; //分享内容
 
 -(NSString*)wxtID;
 -(NSString*)user;
@@ -36,6 +37,7 @@
 -(NSString*)sellerName;
 -(NSString*)shopID;
 -(NSString*)shopName;
+-(NSString*)shareInfo;
 
 -(void)removeAllUserInfo;
 

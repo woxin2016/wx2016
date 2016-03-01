@@ -46,6 +46,7 @@ typedef enum {
     
     //发现
     WXT_UrlFeed_Type_New_FindData,
+    WXT_UrlFeed_Type_New_ShareInfo,
     //红包
     WXT_UrlFeed_Type_New_UserBonus,
     WXT_UrlFeed_Type_New_GainBonus,
@@ -54,6 +55,7 @@ typedef enum {
     WXT_UrlFeed_Type_New_MakeOrder,
     WXT_UrlFeed_Type_New_CancelOrder,
     WXT_UrlFeed_Type_New_CompleteOrder,
+    WXT_UrlFeed_Type_Home_OrderEvaluate,
     //首页,
     WXT_UrlFeed_Type_NewMall_TopImg,
     WXT_UrlFeed_Type_NewMall_Recommond,
