@@ -71,8 +71,8 @@ enum{
 }
 
 -(void)addOBS{
-//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-//        [notificationCenter addObserver:self selector:@selector(userEvaluateOrderSucceed:) name:K_Notification_Name_UserEvaluateOrderSucceed object:nil];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(userEvaluateOrderSucceed:) name:K_Notification_Name_UserEvaluateOrderSucceed object:nil];
 }
 
 //集成刷新控件
@@ -315,7 +315,7 @@ enum{
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self name:K_Notification_Name_UserEvaluateOrderSucceed object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:K_Notification_Name_UserEvaluateOrderSucceed object:nil];
 }
 
 @end

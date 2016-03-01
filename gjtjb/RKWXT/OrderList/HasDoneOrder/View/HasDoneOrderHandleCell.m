@@ -39,12 +39,21 @@
 }
 
 -(void)userHandleBtnState{
-//    AllOrderListEntity *entity = self.cellInfo;
-//    if(entity.orderState == Order_State_Complete && entity.evaluate == Order_Evaluate_None){
-//        [rightBtn setTitle:@"评价" forState:UIControlStateNormal];
-//        [rightBtn setHidden:NO];
-//        return;
-//    }
+    AllOrderListEntity *entity = self.cellInfo;
+    if(entity.orderState == Order_State_Complete && entity.evaluate == Order_Evaluate_None){
+        [rightBtn setTitle:@"评价" forState:UIControlStateNormal];
+        [rightBtn setHidden:NO];
+        [rightBtn setEnabled:YES];
+        [rightBtn setBackgroundColor:WXColorWithInteger(0xff9c00)];
+        return;
+    }
+    if(entity.orderState == Order_State_Complete && entity.evaluate == Order_Evaluate_Done){
+        [rightBtn setTitle:@"已评价" forState:UIControlStateNormal];
+        [rightBtn setHidden:NO];
+        [rightBtn setEnabled:NO];
+        [rightBtn setBackgroundColor:WXColorWithInteger(0xbababa)];
+        return;
+    }
 }
 
 -(void)rightBtnClicked{

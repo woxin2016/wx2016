@@ -30,6 +30,7 @@ enum{
 #import "WaitSendOrderVC.h"
 #import "WaitReceiveOrderVC.h"
 #import "OrderHasDoneVC.h"
+#import "OrderEvaluteVC.h"
 
 #import "AllOrderListEntity.h"
 

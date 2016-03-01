@@ -248,7 +248,7 @@ enum{
 -(NSInteger)indexPathOfOptCellWithOrder:(AllOrderListEntity*)orderEntity{
     [orderListArr removeAllObjects];
     for(AllOrderListEntity *entity in _model.orderList){
-        if(entity.payType == Order_PayType_HasPay && entity.sendType == Order_SendType_HasSend){
+        if(entity.payType == Order_PayType_HasPay && entity.sendType == Order_SendType_HasSend && entity.orderState == Order_State_Normal){
             [orderListArr addObject:entity];
         }
     }

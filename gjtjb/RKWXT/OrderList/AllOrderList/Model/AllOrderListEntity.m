@@ -41,8 +41,8 @@
         NSInteger sendType = [[dic objectForKey:@"is_shipments"] integerValue];
         [self setSendType:sendType];
         
-//        NSInteger evaluate = [[dic objectForKey:@"is_evaluate"] integerValue];
-//        [self setEvaluate:evaluate];
+        NSInteger evaluate = [[dic objectForKey:@"is_evaluate"] integerValue];
+        [self setEvaluate:evaluate];
         
         NSInteger orderID = [[dic objectForKey:@"order_id"] integerValue];
         [self setOrderId:orderID];
