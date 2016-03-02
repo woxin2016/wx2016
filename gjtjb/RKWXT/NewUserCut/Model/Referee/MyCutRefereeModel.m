@@ -28,7 +28,23 @@
 
 -(void)loadMyCutRefereeInfo{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userObj.sellerID, @"seller_user_id", [NSNumber numberWithInt:(int)kMerchantID], @"sid", [NSNumber numberWithInt:(int)kSubShopID], @"shop_id", nil];
+    NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
+    baseDic[@"pid"]= @"ios";
+    baseDic[@"ver"]= [UtilTool currentVersion];
+    baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    baseDic[@"woxin_id"]= userObj.wxtID;
+    baseDic[@"phone"]= userObj.user;
+    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"pid"]= @"ios";
+    dic[@"ver"]= [UtilTool currentVersion];
+    dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    dic[@"woxin_id"]= userObj.wxtID;
+    dic[@"phone"]= userObj.user;
+    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
+    
     __block MyCutRefereeModel *blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LoadMyCutInfo httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if(retData.code != 0){

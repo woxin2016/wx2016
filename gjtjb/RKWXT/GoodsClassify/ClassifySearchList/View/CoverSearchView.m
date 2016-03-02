@@ -22,7 +22,7 @@
         self.bjView = [[UIButton alloc]initWithFrame:frame];
         self.bjView.backgroundColor = [UIColor blackColor];
         self.bjView.alpha = 0.5;
-        [self.bjView addTarget:self action:@selector(clickSelfTap) forControlEvents:UIControlStateNormal];
+        [self.bjView addTarget:self action:@selector(clickSelfTap) forControlEvents:UIControlEventTouchDown];
         [self addSubview:self.bjView];
         
         self.originListRect = dropListFrame;

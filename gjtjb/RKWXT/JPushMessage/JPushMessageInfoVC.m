@@ -50,8 +50,8 @@ enum{
     [self addSubview:_webView];
     
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSString *urlStr = [NSString stringWithFormat:@"http://wx3.67call.com/%@?phone=%@&msg_id=%ld",NormaleMessageUrl,userObj.user,(long)_messageID];
-    
+
+     NSString *urlStr = [NSString stringWithFormat:@"http://oldyun.67call.com/wx_union/index.php/Public/messages?phone=%@&woxin_id=%@&msg_id=%ld",userObj.user,userObj.wxtID,(long)_messageID];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:request];

@@ -72,7 +72,8 @@
 
 -(void)load{
     UserCutSourceEntity *entity = self.cellInfo;
-    [timeLabel setText:entity.grade];
+//    [timeLabel setText:entity.grade];
+    [timeLabel setText:[self timeTransformationWithTime:entity.registerTime]];
     
     UIImage *iconImg = [UIImage imageNamed:@"PersonalInfo.png"];
     [imgView setImage:iconImg];
@@ -89,6 +90,13 @@
         name = entity.nickName;
     }
     [textLabel setText:[NSString stringWithFormat:@"来自%@的分成",name]];
+}
+
+- (NSString*)timeTransformationWithTime:(NSString*)time{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[time doubleValue]];
+    NSDateFormatter *matter = [[NSDateFormatter alloc]init];
+    [matter setDateFormat:@"yyyy-MM-dd"];
+    return [matter stringFromDate:date];
 }
 
 @end
