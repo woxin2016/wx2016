@@ -20,7 +20,7 @@ typedef enum{
 
 @interface CLassifySearchModel : NSObject
 @property (nonatomic,strong) NSMutableArray *searchResultArr;
-@property (nonatomic,strong)NSArray *historyArr;
+@property (nonatomic,strong)NSMutableArray *historyArr;
 @property (nonatomic,assign) Search_Type searchType;
 @property (nonatomic,assign) id<CLassifySearchModelDelegate>delegate;
 -(void)classifySearchWith:(NSString*)searchStr;

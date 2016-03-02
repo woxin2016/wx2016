@@ -56,20 +56,21 @@
     tableView.dataSource = self;
     tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     self.tableView = tableView;
+   
+    self.searchModer = [[CLassifySearchModel alloc]init];
+    self.searchModer.delegate = self;
+    self.searchModer.searchType = Search_Type_Goods;
     
     self.searchLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 66, Size.width, labelH)];
-    self.searchLabel.text = [NSString stringWithFormat:@"历史搜索（%d条）",self.searchModer.historyArr.count];
+    self.searchLabel.text = [NSString stringWithFormat:@"搜索历史（%d条）",self.searchModer.historyArr.count];
     self.searchLabel.textColor = [UIColor grayColor];
     self.searchLabel.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:self.searchLabel];
     
     UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(5,labelH - 0.5, Size.width, 0.5)];
     didView.backgroundColor = [UIColor grayColor];
+    didView.alpha = 0.7;
     [self.searchLabel addSubview:didView];
-    
-    self.searchModer = [[CLassifySearchModel alloc]init];
-    self.searchModer.delegate = self;
-    self.searchModer.searchType = Search_Type_Goods;
 }
 
 -(void)createNavigationBar{
@@ -89,33 +90,58 @@
     [self addSubview:backBtn];
     
     [self createDropListViewBtn:xOffset+img.size.width with:yOffset];
+    
 }
 
 -(void)createDropListViewBtn:(CGFloat)xGap with:(CGFloat)yGap{
-
+    
+    CGFloat xOffset = xGap+20;
+    CGFloat yOffset = yGap;
+    CGFloat btnHeight = 20;
+    WXUILabel *leftLine = [[WXUILabel alloc] init];
+    leftLine.frame = CGRectMake(xOffset, yOffset+btnHeight/2-2, 0.5, 6);
+    [leftLine setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:leftLine];
+    
+    CGFloat rightBtnWidth = 40;
+    WXUILabel *downLine = [[WXUILabel alloc] init];
+    downLine.frame = CGRectMake(xOffset, leftLine.frame.origin.y+leftLine.frame.size.height+1, Size.width-2*10-rightBtnWidth-xOffset, 0.5);
+    [downLine setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:downLine];
+    
+    CGFloat dropListBtnWidth = 50;
+    xOffset += 1;
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:@"商品" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btn.frame = CGRectMake(xGap + 10, yGap, 50, 20);
+    btn.frame = CGRectMake(xOffset, yOffset, dropListBtnWidth, btnHeight);
     [btn setImage:[UIImage imageNamed:@"ClassifySearchBtnImg.png"] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     [btn addTarget:self action:@selector(clickTitleBtn:) forControlEvents:UIControlEventTouchDown];
     [btn setImageEdgeInsets:UIEdgeInsetsMake(0, 45, 0, 0)];
     [self addSubview:btn];
+     self.titleBtn = btn;
     
-    CGFloat offsetX = CGRectGetMaxX(btn.frame);
-    self.textField = [[WXUITextField alloc]initWithFrame:CGRectMake(offsetX + 8, yGap, Size.width-offsetX *2 - 2 * 10, 20)];
-    self.textField.delegate =self;
-    self.textField.placeholder = @"搜索";
-    self.textField.tintColor = [UIColor whiteColor];
-    self.textField.textColor = [UIColor whiteColor];
-    self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [self.textField becomeFirstResponder];
-    [self.textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.textField addTarget:self action:@selector(changeInputTextfield) forControlEvents:UIControlEventEditingChanged];
-    [self addSubview:self.textField];
+    xOffset += dropListBtnWidth+8;
+    _textField = [[WXUITextField alloc] initWithFrame:CGRectMake(xOffset, yOffset-3, Size.width-xOffset-rightBtnWidth-2*10, btnHeight)];
+    [_textField setDelegate:self];
+    [_textField setReturnKeyType:UIReturnKeySearch];
+    [_textField addTarget:self action:@selector(textFieldDone:)  forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_textField addTarget:self action:@selector(changeInputTextfield) forControlEvents:UIControlEventEditingChanged];
+    [_textField setFont:WXFont(13.0)];
+    [_textField becomeFirstResponder];
+    [_textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [_textField setTextColor:[UIColor whiteColor]];
+    [_textField setTintColor:[UIColor whiteColor]];
+    [_textField setPlaceHolder:@"搜索" color:WXColorWithInteger(0xffffff)];
+    [self addSubview:_textField];
     
     [self isBtnTitle:btn];
+    
+    WXUILabel *rightLine = [[WXUILabel alloc] init];
+    rightLine.frame = CGRectMake(_textField.frame.origin.x+_textField.frame.size.width-0.5, yOffset+btnHeight/2-2, 0.5, 6);
+    [rightLine setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:rightLine];
 }
 
 #pragma mark ----------  系统方法
@@ -171,6 +197,17 @@
     [self.wxNavigationController pushViewController:goodsInfoVC];
 }
 
+-(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row = indexPath.row;
+    SearchResultEntity *entity = [self.searchModer.historyArr objectAtIndex:row];
+    [[ClassIfyHistoryModel classIfyhistoryModelClass] deleteClassifyRecordWith:entity.goodsID];
+    [self.tableView reloadData];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     [self.searchModer classifySearchWith:self.textField.text];
 }
@@ -178,16 +215,24 @@
 #pragma mark  ------------  其他
 - (void)clickTitleBtn:(UIButton*)btn{
   
-    [self.view becomeFirstResponder];
+    [self.textField becomeFirstResponder];
     
     CGFloat X = btn.frame.size.width + btn.frame.origin.x;
     CGFloat Y = btn.frame.size.height + btn.frame.origin.y;
-    CGRect rect = CGRectMake(100,100, 120, 60);
-    self.coverView = [[CoverSearchView alloc]initWithFrame:[UIScreen mainScreen].bounds sourceArr:self.titleArr dropListFrame:rect];
+    CGRect rect = CGRectMake(X,Y, 90, 60);
+    self.coverView = [[CoverSearchView alloc]initWithFrame:self.view.bounds dropListFrame:rect];
+    self.coverView.array =self.titleArr;
     [self.view addSubview:self.coverView];
+    __block typeof(self) blockSelf = self;
+    [self.coverView clickCellBlock:^(NSString *str) {
+        [blockSelf.titleBtn setTitle:str forState:UIControlStateNormal];
+        [blockSelf isBtnTitle:btn];
+    }];
+    
+    
    
-    [self isBtnTitle:btn];
 }
+
 - (void)isBtnTitle:(UIButton*)btn{
     if ([btn.titleLabel.text isEqualToString:@"商品"]) {
         self.titSwitch = YES;
@@ -212,8 +257,8 @@
 - (void)setLabelTextWithTextField:(NSString*)textField{
     NSString *str = nil;
     if ([textField isEqualToString:@""]) { // 没有输入字符
-        str =[NSString stringWithFormat:@"历史搜索 共有(%d条)",self.searchModer.historyArr.count];
-        self.switchSource = NO;
+        str =[NSString stringWithFormat:@"搜索历史 共有(%d条)",self.searchModer.historyArr.count];
+       self.switchSource = NO;
     }else{ //输入了
          str = [NSString stringWithFormat:@"搜索结果 共有(%d条)",self.searchModer.searchResultArr.count];
         self.switchSource = YES;
@@ -234,13 +279,13 @@
 
 #pragma mark ------ 其他的代理方法
 - (void)classifySearchResultSucceed{
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [self setLabelTextWithTextField:self.textField.text];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)classifySearchResultClearSource{
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [self setLabelTextWithTextField:self.textField.text];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
