@@ -8,13 +8,15 @@
 
 #import "WXUIViewController.h"
 
-@protocol PersonNickNameDelegate ;
+//@protocol PersonNickNameDelegate ;
 @interface PersonNicknameVC : WXUIViewController
-@property (nonatomic,assign) id<PersonNickNameDelegate>delegate;
+@property (nonatomic,copy) void(^transferNickName)(NSString *msg);
 
-@end
-
-@protocol PersonNickNameDelegate <NSObject>
--(void)didSetPersonNickname:(NSString*)nickName;
+//@property (nonatomic,assign) id<PersonNickNameDelegate>delegate;
+//
+//@end
+//
+//@protocol PersonNickNameDelegate <NSObject>
+//-(void)didSetPersonNickname:(NSString*)nickName;
 
 @end

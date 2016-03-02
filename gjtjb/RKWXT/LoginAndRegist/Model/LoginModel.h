@@ -8,14 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol LoginDelegate;
 @interface LoginModel : NSObject
-@property (nonatomic,assign) id<LoginDelegate>delegate;
--(void)loginWithUser:(NSString*)userStr andPwd:(NSString*)pwdStr;
-@end
-
-@protocol LoginDelegate <NSObject>
--(void)loginSucceed;
--(void)loginFailed:(NSString*)errrorMsg;
-
+-(void)loginWithUser:(NSString*)userStr pwd:(NSString*)pwdStr completion:(void(^)(NSInteger code, NSString *errorMsg))completion;
 @end

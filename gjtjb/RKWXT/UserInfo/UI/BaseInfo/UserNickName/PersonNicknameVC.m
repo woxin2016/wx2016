@@ -14,7 +14,7 @@
 @end
 
 @implementation PersonNicknameVC
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -40,10 +40,12 @@
 }
 
 -(void)personNickname{
-    if(nickName.text.length != 0){
-        if(_delegate && [_delegate respondsToSelector:@selector(didSetPersonNickname:)]){
-            [_delegate didSetPersonNickname:nickName.text];
-        }
+    if(nickName.text.length != 0 && _transferNickName){
+//        if(_delegate && [_delegate respondsToSelector:@selector(didSetPersonNickname:)]){
+//            [_delegate didSetPersonNickname:nickName.text];
+//        }
+        _transferNickName(nickName.text);
+        _transferNickName = nil;
         [self.wxNavigationController popViewControllerAnimated:YES completion:^{
         }];
     }

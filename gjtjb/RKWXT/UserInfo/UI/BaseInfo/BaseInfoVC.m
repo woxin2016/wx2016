@@ -19,7 +19,7 @@
 
 #define Size self.bounds.size
 
-@interface BaseInfoVC ()<UITableViewDataSource,UITableViewDelegate,PersonaSexSelectDelegate,PersonDatePickerDelegate,PersonNickNameDelegate,PersonalInfoModelDelegate,WXImageClipOBJDelegate>{
+@interface BaseInfoVC ()<UITableViewDataSource,UITableViewDelegate,PersonaSexSelectDelegate,PersonDatePickerDelegate,PersonalInfoModelDelegate,WXImageClipOBJDelegate>{
     UITableView *_tableView;
     PersonalInfoModel *_model;
     WXImageClipOBJ *_imageClipOBJ;
@@ -219,7 +219,12 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
             case BaseInfo_Nickname:
             {
                 PersonNicknameVC *nickNameVC = [[PersonNicknameVC alloc] init];
-                [nickNameVC setDelegate:self];
+//                [nickNameVC setDelegate:self];
+                [nickNameVC setTransferNickName:^(NSString *nickName) {
+                    self.nickNameStr = nickName;
+                    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:BaseInfo_Nickname inSection:T_Base_UserInfo];
+                    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                }];
                 [self.wxNavigationController pushViewController:nickNameVC];
             }
                 break;
