@@ -31,12 +31,23 @@ enum{
     Order_Show_Invalid
 };
 
-@interface AllOrderListVC()<UITableViewDataSource,UITableViewDelegate,AllOrderListModelDelegate,AllOrderListHandleCellDelegate>{
+typedef enum{
+    UserHandle_Type_Normal = 0,
+    UserHandle_Type_Cancel,
+    UserHandle_Type_Complete,
+    
+}UserHandle_Type;
+
+@interface AllOrderListVC()<UITableViewDataSource,UITableViewDelegate,AllOrderListModelDelegate,AllOrderListHandleCellDelegate,UIAlertViewDelegate>{
     UITableView *_tableView;
     NSArray *orderListArr;
     AllOrderListModel *_model;
     
     BOOL isRefresh;
+    
+    //提示用户操作
+    UserHandle_Type userHandleType;
+    AllOrderListEntity *userEntity;
 }
 @end
 
@@ -300,16 +311,16 @@ enum{
 #pragma mark userhandle
 //取消订单
 -(void)userCancelOrder:(id)sender{
-    AllOrderListEntity *entity = sender;
-    [[DealOrderModel shareOrderDealModel] cancelUserOrder:entity.orderId];
-    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    userEntity = sender;
+    userHandleType = UserHandle_Type_Cancel;
+    [UtilTool showAlertView:@"温馨提示" message:@"确定要取消订单吗?" delegate:self tag:0 cancelButtonTitle:@"取消" otherButtonTitles:@"确定"];
 }
 
 //确认收货
 -(void)userCompleteOrder:(id)sender{
-    AllOrderListEntity *entity = sender;
-    [[DealOrderModel shareOrderDealModel] completeUserOrder:entity.orderId];
-    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    userEntity = sender;
+    userHandleType = UserHandle_Type_Complete;
+    [UtilTool showAlertView:@"温馨提示" message:@"确定收货完成，货款将会支付给商家!" delegate:self tag:0 cancelButtonTitle:@"取消" otherButtonTitles:@"确定"];
 }
 
 //去支付
@@ -323,6 +334,20 @@ enum{
 -(void)userEvaluateOrder:(id)sender{
     AllOrderListEntity *entity = sender;
     [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_JumpToEvaluate object:entity];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(userHandleType == UserHandle_Type_Cancel && buttonIndex == 1){
+        AllOrderListEntity *entity = userEntity;
+        [[DealOrderModel shareOrderDealModel] cancelUserOrder:entity.orderId];
+        [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    }
+    
+    if(userHandleType == UserHandle_Type_Complete && buttonIndex == 1){
+        AllOrderListEntity *entity = userEntity;
+        [[DealOrderModel shareOrderDealModel] completeUserOrder:entity.orderId];
+        [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    }
 }
 
 #pragma mark notification

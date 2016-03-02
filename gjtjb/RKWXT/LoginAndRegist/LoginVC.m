@@ -26,7 +26,7 @@
 #define kUserExactLength (11)
 #define kFetchPasswordDur (60)
 
-@interface LoginVC ()<LoginDelegate,FetchPwdDelegate>{
+@interface LoginVC ()<FetchPwdDelegate>{
     WXTUITextField *_userTextField;
     WXTUITextField *_pwdTextField;
     UIView *_iconShell;
@@ -40,7 +40,6 @@
     NSInteger _fetchPasswordTime;
     NSTimer *_fetchPWDTimer;
     
-    LoginModel *_model;
     FetchPwdModel *_pwdModel;
 }
 @end
@@ -50,9 +49,6 @@
 -(id)init{
     self = [super init];
     if(self){
-        _model = [[LoginModel alloc] init];
-        [_model setDelegate:self];
-        
         _pwdModel = [[FetchPwdModel alloc] init];
         [_pwdModel setDelegate:self];
     }
@@ -313,10 +309,8 @@
     [self setFetchPasswordButtonTitle];
 }
 
-#pragma mark delegate
+#pragma mark loginSucceed
 - (void)loginSucceed{
-    [self unShowWaitView];
-    
     WXTUserOBJ *userDefault = [WXTUserOBJ sharedUserOBJ];
     WXTUITabbarVC *tabbar = [[WXTUITabbarVC alloc] init];
     WXUINavigationController *nav = [[WXUINavigationController alloc] initWithRootViewController:tabbar];
@@ -332,14 +326,6 @@
 -(void)checkAreaVersion{
     AllAreaDataModel *model = [AllAreaDataModel shareAllAreaData];
     [model checkAllAreaVersion];
-}
-
--(void)loginFailed:(NSString *)errrorMsg{
-    [self unShowWaitView];
-    if(!errrorMsg){
-        errrorMsg = @"登录失败";
-    }
-    [UtilTool showAlertView:errrorMsg];
 }
 
 - (void)fetchPwdFailed:(NSString*)errorMsg{
@@ -361,7 +347,16 @@
 - (void)submit{
     if([self checkUserValide] && [self checkPasswordValide]){
         [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
-        [_model loginWithUser:_userTextField.text andPwd:_pwdTextField.text];
+        
+        LoginModel *_model = [[LoginModel alloc] init];
+        [_model loginWithUser:_userTextField.text pwd:_pwdTextField.text completion:^(NSInteger code, NSString *errorMsg) {
+            [self unShowWaitView];
+            if(code == 0){
+                [self loginSucceed];
+            }else{
+                [UtilTool showAlertView:errorMsg];
+            }
+        }];
     }
     [self textFieldResighFirstResponder];
 }
