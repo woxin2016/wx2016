@@ -319,7 +319,8 @@
         [database createDatabase:userDefault.wxtID];
         [[NewWXTLiDB sharedWXLibDB] loadData];
         [self checkAreaVersion];
-        [APService setTags:[NSSet setWithObject:[NSString stringWithFormat:@"%@",userDefault.user]] alias:nil callbackSelector:nil object:nil];
+        NSSet *set1 = [NSSet setWithObjects:[NSString stringWithFormat:@"%@",userDefault.user], [NSString stringWithFormat:@"seller_%@",userDefault.sellerID], nil];
+        [APService setTags:set1 alias:nil callbackSelector:nil object:nil];
     }];
 }
 
