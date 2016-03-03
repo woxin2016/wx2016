@@ -61,7 +61,7 @@
             url = @"/get_user_address.php";
             break;
         case WXT_UrlFeed_Type_New_LoadUserBonus:
-            url = @"/get_user_red_packet.php";
+            url = @"/user_red_packet.php";
             break;
         case WXT_UrlFeed_Type_New_Code:
             url = @"/get_rcode.php";
@@ -134,10 +134,10 @@
             url = @"/order_evaluate.php";
             break;
         case WXT_UrlFeed_Type_New_UserBonus:
-            url = @"";
+            url = @"/red_packet_list.php";
             break;
         case WXT_UrlFeed_Type_New_GainBonus:
-            url = @"";
+            url = @"/receive_red_packet.php";
             break;
         case WXT_UrlFeed_Type_NewMall_TopImg:
             url = @"/top_images.php";

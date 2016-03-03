@@ -22,6 +22,7 @@ typedef enum{
 @property (nonatomic,assign) NSInteger stockID;
 @property (nonatomic,strong) NSString *stockName;
 @property (nonatomic,assign) CGFloat stockPrice;
+@property (nonatomic,assign) NSInteger redPacket;
 -(void)loadGoodsStockInfo:(NSArray*)stockArr;
 
 @end

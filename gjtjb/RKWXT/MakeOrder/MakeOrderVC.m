@@ -12,7 +12,7 @@
 #import "GoodsInfoEntity.h"
 #import "OrderPayVC.h"
 #import "ManagerAddressVC.h"
-//#import "UserBonusModel.h"
+#import "UserBonusModel.h"
 #import "SearchCarriageMoney.h"
 //地址
 #import "NewUserAddressModel.h"
@@ -96,12 +96,15 @@
 
 //可使用红包
 -(void)censusBonusValue{
-//    for(GoodsInfoEntity *entity in _goodsList){
-//        _bonus += entity.stockBonus*entity.buyNumber;
-//    }
-//    if(_bonus > [UserBonusModel shareUserBonusModel].bonusMoney){
-//        _bonus = [UserBonusModel shareUserBonusModel].bonusMoney;
-//    }
+    for(GoodsInfoEntity *entity in _goodsList){
+        _bonus += entity.redPacket*entity.buyNumber;
+    }
+    if(_bonus > [UserBonusModel shareUserBonusModel].bonusMoney){
+        _bonus = [UserBonusModel shareUserBonusModel].bonusMoney;
+    }
+    if(_bonus > [UserBonusModel shareUserBonusModel].bonusMoney && [_goodsList count] > 1){
+        _bonus = 0;
+    }
 }
 
 //改变cell分割线置顶
@@ -576,13 +579,13 @@
 }
 
 -(void)makeOrderSucceed{
-    [UtilTool showAlertView:@"下单成功"];
+//    [UtilTool showAlertView:@"下单成功"];
     [self unShowWaitView];
     if(allGoodsMoney == 0){
         return;
     }
     if(userBonus){
-//        [UserBonusModel shareUserBonusModel].bonusMoney -= _bonus;
+        [UserBonusModel shareUserBonusModel].bonusMoney -= _bonus;
     }
     
     OrderPayVC *payVC = [[OrderPayVC alloc] init];

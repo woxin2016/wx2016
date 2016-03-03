@@ -62,7 +62,7 @@
     [numberLabel setText:[NSString stringWithFormat:@"共%ld件商品",(long)number]];
     [nameLabel setText:@"实付款:"];
     
-    NSString *priceText = [NSString stringWithFormat:@"￥%.2f",entity.orderMoney+entity.carriageMoney];
+    NSString *priceText = [NSString stringWithFormat:@"￥%.2f",entity.orderMoney+entity.carriageMoney-entity.redpacket];
     [priceLabel setText:priceText];
     
     CGFloat priceWidth = [NSString widthForString:priceText fontSize:14.0 andHeight:16];

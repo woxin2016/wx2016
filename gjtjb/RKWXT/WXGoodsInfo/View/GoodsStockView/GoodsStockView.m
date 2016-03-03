@@ -266,18 +266,21 @@
     NSInteger count = 0;
     NSInteger stockNumber = 0;
     CGFloat stockPrice = 0;
+    NSInteger redPacket = 0;
     for(GoodsInfoEntity *entity in listArr){
         if(!entity.selected){
             count ++;
         }else{
             stockNumber = entity.stockNum;
             stockPrice = entity.stockPrice;
+            redPacket = entity.redPacket;
             
             //外部变量
             _stockID = entity.stockID;
             _stockName = entity.stockName;
             _buyNum = 1;
             _stockPrice = entity.stockPrice;
+            _redPacket = entity.redPacket;
         }
     }
     if(count == [listArr count]){
@@ -285,12 +288,14 @@
             entity.selected = YES;
             stockNumber = entity.stockNum;
             stockPrice = entity.stockPrice;
+            redPacket = entity.redPacket;
             
             //外部变量
             _stockID = entity.stockID;
             _stockName = entity.stockName;
             _buyNum = 1;
             _stockPrice = entity.stockPrice;
+            _redPacket = entity.redPacket;
             break;
         }
     }
@@ -344,6 +349,7 @@
             //外部变量
             _stockID = entity.stockID;
             _stockName = entity.stockName;
+            _redPacket = entity.redPacket;
             if(buyNumber >= entity.stockNum){
                 [UtilTool showAlertView:[NSString stringWithFormat:@"库存已不足%ld件",(long)buyNumber+1]];
                 return;
@@ -367,6 +373,7 @@
             //外部变量
             _stockID = entity.stockID;
             _stockName = entity.stockName;
+            _redPacket = entity.redPacket;
         }
     }
     if(buyNumber <= 1){

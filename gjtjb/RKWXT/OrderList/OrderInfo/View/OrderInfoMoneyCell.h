@@ -8,7 +8,7 @@
 
 #import "WXUITableViewCell.h"
 
-#define OrderInfoMoneyCellHeight (58)
+#define OrderInfoMoneyCellHeight (80)
 
 @interface OrderInfoMoneyCell : WXUITableViewCell
 

@@ -9,6 +9,7 @@
 #import "NewWXTLiDB.h"
 #import "NewUserAddressModel.h"
 #import "UserHeaderModel.h"
+#import "UserBonusModel.h"
 
 @implementation NewWXTLiDB
 
@@ -24,6 +25,7 @@
 -(void)loadData{
     [NewUserAddressModel shareUserAddress].address_type = UserAddress_Type_Search;
     [[NewUserAddressModel shareUserAddress] loadUserAddress];
+    [[UserBonusModel shareUserBonusModel] loadUserBonusMoney];
 //    [[UserHeaderModel shareUserHeaderModel] loadUserHeaderImageWith];
 }
 

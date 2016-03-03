@@ -31,7 +31,7 @@
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setTextColor:WXColorWithInteger(0x9b9b9b)];
         [nameLabel setFont:WXFont(13.0)];
-        [nameLabel setText:@"运费"];
+        [nameLabel setText:@"运费+"];
         [self.contentView addSubview:nameLabel];
         
         carriageLabel = [[WXUILabel alloc] init];
@@ -41,6 +41,25 @@
         [carriageLabel setFont:WXFont(13.0)];
         [carriageLabel setTextColor:WXColorWithInteger(0x000000)];
         [self.contentView addSubview:carriageLabel];
+        
+        yOffset += labelHeight+8;
+        WXUILabel *redLabel = [[WXUILabel alloc] init];
+        redLabel.frame = CGRectMake(xOffset, yOffset, labelWidth, labelHeight);
+        [redLabel setBackgroundColor:[UIColor clearColor]];
+        [redLabel setTextAlignment:NSTextAlignmentLeft];
+        [redLabel setTextColor:WXColorWithInteger(0x9b9b9b)];
+        [redLabel setFont:WXFont(13.0)];
+        [redLabel setText:@"红包-"];
+        [self.contentView addSubview:redLabel];
+        
+        activityLabel = [[WXUILabel alloc] init];
+        activityLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-10-100, yOffset, 100, labelHeight);
+        [activityLabel setBackgroundColor:[UIColor clearColor]];
+        [activityLabel setTextAlignment:NSTextAlignmentRight];
+        [activityLabel setFont:WXFont(13.0)];
+        [activityLabel setTextColor:WXColorWithInteger(0x000000)];
+        [self.contentView addSubview:activityLabel];
+        
         
         yOffset += labelHeight+8;
         WXUILabel *textLabel = [[WXUILabel alloc] init];
@@ -66,6 +85,7 @@
 -(void)load{
     AllOrderListEntity *entity = self.cellInfo;
     [carriageLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.carriageMoney]];
+    [activityLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.redpacket]];
     [moneyLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.payMoney]];
 }
 

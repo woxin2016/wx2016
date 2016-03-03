@@ -573,6 +573,7 @@
     entity.stockName = goodsView.stockName;
     entity.stockPrice = goodsView.stockPrice;
     entity.buyNumber = goodsView.buyNum;      //下单商品个数
+    entity.redPacket = goodsView.redPacket;
     [goodsInfoArr addObject:entity];
     
     return goodsInfoArr;
