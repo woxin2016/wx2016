@@ -10,9 +10,19 @@
 #import "SearchResultEntity.h"
 
 @interface ClassIfyHistoryModel ()
+@property (nonatomic,strong)NSMutableArray *entityArr;
 @end
 
 @implementation ClassIfyHistoryModel
+
+static ClassIfyHistoryModel *model ;
++ (instancetype)classIfyhistoryModelClass{
+    if (model == nil) {
+        model = [[ClassIfyHistoryModel alloc]init];
+    }
+    return model;
+}
+
 
 - (NSMutableArray*)entityArr{
     if (!_entityArr) {
@@ -21,42 +31,37 @@
     return _entityArr;
 }
 
- static ClassIfyHistoryModel *model ;
-+ (instancetype)classIfyhistoryModelClass{
-    if (model == nil) {
-        model = [[ClassIfyHistoryModel alloc]init];
-    }
-    return model;
-}
-
--(void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeObject:_entityArr forKey:@"_entityArr"];
-}
-
 
 - (void)classifyHistoryModelWithSaveEntity:(SearchResultEntity*)entity{
+    self.entityArr = [NSMutableArray arrayWithContentsOfFile:[ClassIfyHistoryModel sourePathFile]];
     [self.entityArr addObject:entity];
+    [self.entityArr writeToFile:[ClassIfyHistoryModel sourePathFile] atomically:YES];
 }
 
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super init]) {
-        _entityArr = [aDecoder decodeObjectForKey:@"_entityArr"];
-    }
-    return self;
-}
 
 + (NSArray*)classifyHistoryModelWithReadEntityArray{
     return [ClassIfyHistoryModel classIfyhistoryModelClass].entityArr;
 }
 
 - (void)deleteClassifyRecordWith:(NSInteger)goodID{
-    NSArray *entityArr = [NSArray arrayWithArray:self.entityArr];
+    NSArray *entityArr = [NSArray arrayWithContentsOfFile:[ClassIfyHistoryModel sourePathFile]];
     for (SearchResultEntity *entity in entityArr) {
         if (entity.goodsID == goodID) {
             [self.entityArr removeObject:entity];
         }
     }
+    [self.entityArr writeToFile:[ClassIfyHistoryModel sourePathFile] atomically:YES];
+}
+
+
+
+
+// 路径
++ (NSString*)sourePathFile{
+    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *docPath = [paths lastObject];
+    NSString *file = [docPath stringByAppendingPathComponent:@"data.plist"];
+    return file;
 }
 
 @end

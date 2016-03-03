@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class SearchResultEntity;
-@interface ClassIfyHistoryModel : NSObject <NSCoding>
-@property (nonatomic,strong)NSMutableArray *entityArr;
+@interface ClassIfyHistoryModel : NSObject 
 + (instancetype)classIfyhistoryModelClass;
 - (void)classifyHistoryModelWithSaveEntity:(SearchResultEntity*)entity;
 + (NSArray*)classifyHistoryModelWithReadEntityArray;

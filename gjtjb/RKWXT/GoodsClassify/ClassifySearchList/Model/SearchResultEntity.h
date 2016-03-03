@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SearchResultEntity : NSObject <NSCoding>
+@interface SearchResultEntity : NSObject 
 @property (nonatomic,assign) NSInteger goodsID;
 @property (nonatomic,strong) NSString *goodsName;
 @property (nonatomic,strong) NSString *img;

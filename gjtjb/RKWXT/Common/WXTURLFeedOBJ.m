@@ -185,22 +185,22 @@
             url = @"/ack_receiving.php";
             break;
         case WXT_UrlFeed_Type_New_LoadMyClientInfo:
-            url = @"";
+            url = @"/divide_single_user.php";
             break;
         case WXT_UrlFeed_Type_New_LoadUserAliAccount:
             url = @"";
             break;
         case WXT_UrlFeed_Type_New_LoadMyClientPerson:
-            url = @"";
+            url = @"/divide_userlist.php";
             break;
         case WXT_UrlFeed_Type_New_LoadMyCutInfo:
-            url = @"";
+            url = @"/divide_home.php";
             break;
         case WXT_UrlFeed_Type_New_JuniorList:
-            url = @"";
+            url = @"/divide_ranking_list.php";
             break;
         case WXT_UrlFeed_Type_New_UserCutSource:
-            url = @"";
+            url = @"/divide_all_source.php";
             break;
         case WXT_UrlFeed_Type_New_ApplyAliMoney:
             url = @"";

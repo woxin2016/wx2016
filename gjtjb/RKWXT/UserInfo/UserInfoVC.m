@@ -14,6 +14,7 @@
 #import "ShareSucceedModel.h"
 #import "UserHeaderModel.h"
 #import "WXRemotionImgBtn.h"
+#import "NewUserCutVC.h"
 
 #define UserBgImageViewHeight (126)
 #define Size self.view.bounds.size
@@ -478,7 +479,8 @@
         case PersonalInfo_CutAndShare:
         {
             if(row == User_Cut){
-                [UtilTool showTipView:@"努力开发中..."];
+                NewUserCutVC *cutVC = [[NewUserCutVC alloc] init];
+                [self.wxNavigationController pushViewController:cutVC];
             }
             if(row == User_Share){
                 WXUITableViewCell *cell = (WXUITableViewCell*)[_tableView cellForRowAtIndexPath:indexPath];

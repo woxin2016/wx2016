@@ -37,23 +37,5 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeObject:_goodsName forKey:@"_goodsName"];
-    [aCoder encodeObject:_img forKey:@"_img"];
-    [aCoder encodeInteger:_goodsID forKey:@"_goodsID"];
-    [aCoder encodeFloat:_market_price forKey:@"_market_price"];
-    [aCoder encodeFloat:_shop_price forKey:@"_shop_price"];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super init]) {
-        _goodsName = [aDecoder decodeObjectForKey:@"_goodsName"];
-        _img = [aDecoder decodeObjectForKey:@"_img"];
-        _goodsID = [aDecoder decodeIntegerForKey:@"_goodsID"];
-        _market_price = [aDecoder decodeFloatForKey:@"_market_price"];
-        _shop_price = [aDecoder decodeFloatForKey:@"_shop_price"];
-    }
-    return self;
-}
 
 @end

@@ -99,9 +99,9 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
     [_model loadMyCutRefereeInfo];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     
-    aliModel = [[SearchUserAliAccountModel alloc] init];
-    [aliModel setDelegate:self];
-    [aliModel searchUserAliPayAccount];
+//    aliModel = [[SearchUserAliAccountModel alloc] init];
+//    [aliModel setDelegate:self];
+//    [aliModel searchUserAliPayAccount];
 }
 
 -(void)createNavRightBtn{
