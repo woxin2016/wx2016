@@ -383,6 +383,12 @@
             [self.wxNavigationController pushViewController:signVC];
         }
             break;
+        case T_BaseFunction_Wallet:
+        {
+            UserBonusVC *boundsVC = [[UserBonusVC alloc] init];
+            [self.wxNavigationController pushViewController:boundsVC];
+        }
+            break;
         case T_BaseFunction_Cut:
         {
             NewUserCutVC *userCutVC = [[NewUserCutVC alloc] init];
