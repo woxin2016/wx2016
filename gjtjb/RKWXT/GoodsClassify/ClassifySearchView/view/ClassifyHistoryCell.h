@@ -10,7 +10,12 @@
 
 #define AlertRecordName @"历史搜索"
 
+@protocol ClassifyHistoryCellDelegate <NSObject>
+- (void)classifyHistoryDeleAll;
+@end
+
 @interface ClassifyHistoryCell : WXUITableViewCell
 @property (nonatomic,assign) NSInteger count;
-
+@property (nonatomic,weak)id<ClassifyHistoryCellDelegate> delegate;
 @end
+

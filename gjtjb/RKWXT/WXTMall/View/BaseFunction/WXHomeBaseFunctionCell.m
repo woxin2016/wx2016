@@ -10,6 +10,7 @@
 #import "NewHomePageCommonDef.h"
 
 #define ImgBtnHeight (T_HomePageBaseFunctionHeight-8)
+#define  margin (10)
 
 @interface WXHomeBaseFunctionCell(){
     WXUIButton *bgImgBtn;
@@ -21,37 +22,48 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        NSArray *textArr = @[@"免费抽奖",@"签到有奖",@"商家红包",@"邀请有奖",@"我信游戏",@"我的身边",@"我的奖励",@"商家联盟"];
-        NSArray *imgArr = @[@"HomePageSharkImg.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageGame.png",@"HomePageSide.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
-        NSInteger count = 0;
-        for(NSInteger k = 0; k < 2; k++){
-            for(NSInteger j = 0; j < 4; j++){
-                WXUIButton *commonBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-                [commonBtn setBackgroundColor:[UIColor whiteColor]];
-                commonBtn.frame = CGRectMake(j*(Size.width/4), k==1?ImgBtnHeight/2:0, Size.width/4, ImgBtnHeight/2);
-                [commonBtn setBorderRadian:0 width:1 color:[UIColor clearColor]];
-                commonBtn.tag = ++count;
-                [commonBtn setImage:[UIImage imageNamed:imgArr[j+(k==1?4:0)]] forState:UIControlStateNormal];
-                [commonBtn setTitle:textArr[j+(k==1?4:0)] forState:UIControlStateNormal];
-                [commonBtn setTitleColor:WXColorWithInteger(0x414141) forState:UIControlStateNormal];
-                [commonBtn.titleLabel setFont:WXFont(11.0)];
-                [commonBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-                [self.contentView addSubview:commonBtn];
-                
-                
-                CGPoint buttonBoundsCenter = CGPointMake(CGRectGetMidX(commonBtn.bounds), CGRectGetMidY(commonBtn.bounds));
-                CGPoint endImageViewCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetMidY(commonBtn.imageView.bounds));
-                CGPoint endTitleLabelCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetHeight(commonBtn.bounds)-CGRectGetMidY(commonBtn.titleLabel.bounds));
-                CGPoint startImageViewCenter = commonBtn.imageView.center;
-                CGPoint startTitleLabelCenter = commonBtn.titleLabel.center;
-                CGFloat imageEdgeInsetsLeft = endImageViewCenter.x - startImageViewCenter.x;
-                CGFloat imageEdgeInsetsRight = -imageEdgeInsetsLeft;
-                commonBtn.imageEdgeInsets = UIEdgeInsetsMake(0, imageEdgeInsetsLeft, 12, imageEdgeInsetsRight);
-                CGFloat titleEdgeInsetsLeft = endTitleLabelCenter.x - startTitleLabelCenter.x;
-                CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
-                commonBtn.titleEdgeInsets = UIEdgeInsetsMake(ImgBtnHeight/2-12, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
-            }
+
+        NSArray *textArr = @[@"免费抽奖",@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟"];
+        NSArray *imgArr = @[@"HomePageSharkImg.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
+        NSInteger rowCount = 4;
+        CGFloat width = self.frame.size.width  / rowCount;
+        CGFloat baseHeight = ImgBtnHeight/2;
+        
+        
+        for (int i  = 0; i < textArr.count; i++) {
+           
+            int row = i / rowCount;
+            int col = i % rowCount;
+            CGFloat  baseX = margin + col * width;
+            CGFloat baseY = row * (baseHeight);
+            WXUIButton *commonBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+            [commonBtn setBackgroundColor:[UIColor whiteColor]];
+            commonBtn.frame = CGRectMake(baseX,baseY, width, baseHeight);
+            [commonBtn setBorderRadian:0 width:1 color:[UIColor clearColor]];
+            commonBtn.tag = i + 1;
+            [commonBtn setImage:[UIImage imageNamed:imgArr[i]] forState:UIControlStateNormal];
+            [commonBtn setTitle:textArr[i] forState:UIControlStateNormal];
+            [commonBtn setTitleColor:WXColorWithInteger(0x414141) forState:UIControlStateNormal];
+            [commonBtn.titleLabel setFont:WXFont(11.0)];
+            [commonBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [self.contentView addSubview:commonBtn];
+            
+            CGPoint buttonBoundsCenter = CGPointMake(CGRectGetMidX(commonBtn.bounds), CGRectGetMidY(commonBtn.bounds));
+            CGPoint endImageViewCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetMidY(commonBtn.imageView.bounds));
+            CGPoint endTitleLabelCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetHeight(commonBtn.bounds)-CGRectGetMidY(commonBtn.titleLabel.bounds));
+            CGPoint startImageViewCenter = commonBtn.imageView.center;
+            CGPoint startTitleLabelCenter = commonBtn.titleLabel.center;
+            CGFloat imageEdgeInsetsLeft = endImageViewCenter.x - startImageViewCenter.x;
+            CGFloat imageEdgeInsetsRight = -imageEdgeInsetsLeft;
+            commonBtn.imageEdgeInsets = UIEdgeInsetsMake(0, imageEdgeInsetsLeft, 12, imageEdgeInsetsRight);
+            CGFloat titleEdgeInsetsLeft = endTitleLabelCenter.x - startTitleLabelCenter.x;
+            CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
+            commonBtn.titleEdgeInsets = UIEdgeInsetsMake(ImgBtnHeight/2-12, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
+            
         }
+
+        
+        
         
         WXUILabel *lineLabel = [[WXUILabel alloc] init];
         lineLabel.frame = CGRectMake(0, T_HomePageBaseFunctionHeight-0.1, Size.width, 0.1);
@@ -96,6 +108,42 @@
     if(_delegate && [_delegate respondsToSelector:@selector(wxHomeBaseFunctionBtnClickedAtIndex:with:)]){
         [_delegate wxHomeBaseFunctionBtnClickedAtIndex:t_baseFunction with:self];
     }
+}
+
+- (void)test{
+    //        NSArray *textArr = @[@"免费抽奖",@"签到有奖",@"商家红包",@"邀请有奖",@"我信游戏",@"我的身边",@"我的奖励",@"商家联盟"];
+    //        NSArray *imgArr = @[@"HomePageSharkImg.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageGame.png",@"HomePageSide.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
+    
+    //        NSInteger count = 0;
+    //        for(NSInteger k = 0; k < 2; k++){
+    //            for(NSInteger j = 0; j < 4; j++){
+    //                WXUIButton *commonBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    //                [commonBtn setBackgroundColor:[UIColor whiteColor]];
+    //                commonBtn.frame = CGRectMake(j*(Size.width/4), k==1?ImgBtnHeight/2:0, Size.width/4, ImgBtnHeight/2);
+    //                [commonBtn setBorderRadian:0 width:1 color:[UIColor clearColor]];
+    //                commonBtn.tag = ++count;
+    //                [commonBtn setImage:[UIImage imageNamed:imgArr[j+(k==1?4:0)]] forState:UIControlStateNormal];
+    //                [commonBtn setTitle:textArr[j+(k==1?4:0)] forState:UIControlStateNormal];
+    //                [commonBtn setTitleColor:WXColorWithInteger(0x414141) forState:UIControlStateNormal];
+    //                [commonBtn.titleLabel setFont:WXFont(11.0)];
+    //                [commonBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    //                [self.contentView addSubview:commonBtn];
+    //
+    //
+    //                CGPoint buttonBoundsCenter = CGPointMake(CGRectGetMidX(commonBtn.bounds), CGRectGetMidY(commonBtn.bounds));
+    //                CGPoint endImageViewCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetMidY(commonBtn.imageView.bounds));
+    //                CGPoint endTitleLabelCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetHeight(commonBtn.bounds)-CGRectGetMidY(commonBtn.titleLabel.bounds));
+    //                CGPoint startImageViewCenter = commonBtn.imageView.center;
+    //                CGPoint startTitleLabelCenter = commonBtn.titleLabel.center;
+    //                CGFloat imageEdgeInsetsLeft = endImageViewCenter.x - startImageViewCenter.x;
+    //                CGFloat imageEdgeInsetsRight = -imageEdgeInsetsLeft;
+    //                commonBtn.imageEdgeInsets = UIEdgeInsetsMake(0, imageEdgeInsetsLeft, 12, imageEdgeInsetsRight);
+    //                CGFloat titleEdgeInsetsLeft = endTitleLabelCenter.x - startTitleLabelCenter.x;
+    //                CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
+    //                commonBtn.titleEdgeInsets = UIEdgeInsetsMake(ImgBtnHeight/2-12, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
+    //            }
+    //        }
+    //
 }
 
 @end

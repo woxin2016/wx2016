@@ -21,7 +21,7 @@
 
 #import "WXGoodsInfoVC.h"
 //#import "NewGoodsInfoVC.h"
-//#import "CLassifySearchListVC.h"
+#import "CLassifySearchListVC.h"
 
 #define Size self.bounds.size
 enum{
@@ -31,7 +31,7 @@ enum{
     CLassify_Search_Invalid,
 };
 
-@interface ClassifySearchVC()<UIAlertViewDelegate,WXDropListViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CLassifySearchModelDelegate>{
+@interface ClassifySearchVC()<UIAlertViewDelegate,WXDropListViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CLassifySearchModelDelegate,ClassifyHistoryCellDelegate>{
     WXUIButton *dropListBtn;
     WXDropListView *_dropListView;
     WXUITextField *_textField;
@@ -168,7 +168,7 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [searchBtn.titleLabel setFont:WXFont(13.0)];
     [searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
     [searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 5, 10)];
-    [searchBtn addTarget:self action:@selector(changeInputTextfield) forControlEvents:UIControlEventTouchDown];
+    [searchBtn addTarget:self action:@selector(clickSearchBtn) forControlEvents:UIControlEventTouchDown];
     [self addSubview:searchBtn];
 }
 
@@ -233,6 +233,7 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 -(WXUITableViewCell *)tableViewForHistoryListCellAt:(NSInteger)row{
     static NSString *identifier = @"historyListCell";
     ClassifyHistoryCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.delegate = self;
     if(!cell){
         cell = [[ClassifyHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
@@ -350,11 +351,20 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     WXUITextField *textField = sender;
     [textField resignFirstResponder];
     
-//    if([searchListArr count] > 0){
-//        CLassifySearchListVC *searchListVC = [[CLassifySearchListVC alloc] init];
-//        searchListVC.searchList = searchListArr;
-//        [self.wxNavigationController pushViewController:searchListVC];
-//    }
+    if([searchListArr count] > 0){
+        CLassifySearchListVC *searchListVC = [[CLassifySearchListVC alloc] init];
+        searchListVC.searchList = searchListArr;
+        [self.wxNavigationController pushViewController:searchListVC];
+    }
+}
+
+- (void)clickSearchBtn{
+    [self.view endEditing:YES];
+    if([searchListArr count] > 0){
+        CLassifySearchListVC *searchListVC = [[CLassifySearchListVC alloc] init];
+        searchListVC.searchList = searchListArr;
+        [self.wxNavigationController pushViewController:searchListVC];
+    }
 }
 
 -(void)insertHistoryData:(NSString*)recordName andRecordID:(NSInteger)recordID{
@@ -374,6 +384,12 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
             [_historyModel loadClassifyHistoryList];
         });
     });
+}
+
+// 删除所有数据   <这里数据库删除表没做到>
+- (void)classifyHistoryDeleAll{
+
+//    [self clearSearchHistoryList];
 }
 
 #pragma mark clearHistory 暂时不用

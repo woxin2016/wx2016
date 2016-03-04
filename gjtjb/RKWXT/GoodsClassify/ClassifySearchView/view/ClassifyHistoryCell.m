@@ -12,6 +12,7 @@
 @interface ClassifyHistoryCell(){
     WXUILabel *nameLabel;
     WXUILabel *_timeLabel;
+    WXUIButton *_deleAllBtn;
 }
 @end
 
@@ -39,6 +40,13 @@
         [_timeLabel setTextColor:[UIColor grayColor]];
         [_timeLabel setFont:WXFont(14.0)];
         [self.contentView addSubview:_timeLabel];
+        
+//        _deleAllBtn = [[WXUIButton alloc]initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-80-xOffset, 0, 80, self.frame.size.height)];
+//        [_deleAllBtn setTitle:@"删除历史记录" forState:UIControlStateNormal];
+//        [_deleAllBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        _deleAllBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//        [_deleAllBtn addTarget:self action:@selector(clickDeleAllBtn) forControlEvents:UIControlEventTouchDown];
+//        [self.contentView addSubview:_deleAllBtn];
     }
     return self;
 }
@@ -50,7 +58,10 @@
         [nameLabel setText:[NSString stringWithFormat:@"%@  (%ld条)",AlertRecordName,(long)_count]];
         [nameLabel setFont:WXFont(12.0)];
         [nameLabel setTextColor:[UIColor grayColor]];
+        [_deleAllBtn setHidden:NO];
     }else{
+        [_deleAllBtn setHidden:YES];
+        
         [nameLabel setText:entity.recordName];
         [nameLabel setTextColor:WXColorWithInteger(0x606062)];
         [nameLabel setFont:WXFont(14.0)];
@@ -75,6 +86,12 @@
     NSString *timeStr = [date1 YMRSFMString];
     
     return timeStr;
+}
+
+- (void)clickDeleAllBtn{
+    if (_delegate && [_delegate respondsToSelector:@selector(classifyHistoryDeleAll)]) {
+        [_delegate classifyHistoryDeleAll];
+    }
 }
 
 @end

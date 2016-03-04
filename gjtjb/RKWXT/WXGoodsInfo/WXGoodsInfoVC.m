@@ -378,7 +378,9 @@
     if([_model.goodsInfoArr count] > 0){
         [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
         [cell setUserCut:userCut];
+        cell.stockEntity = [_model.stockArr objectAtIndex:0];
     }
+    
     [cell load];
     return cell;
 }
@@ -616,6 +618,10 @@
 
 -(void)goodsInfoDesCutBtnClicked{
     [UtilTool showTipView:@"该商品有分成"];
+}
+
+- (void)goodsInfoDesredPacketBtnClicked{
+    [UtilTool showTipView:@"该商品可以使用红包"];
 }
 
 #pragma mark collection

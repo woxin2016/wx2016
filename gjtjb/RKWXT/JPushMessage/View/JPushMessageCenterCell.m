@@ -50,11 +50,12 @@
         [info setFont:WXFont(12.0)];
         [self.contentView addSubview:info];
         
+        // 修改Y
         CGFloat xGap = 10;
         CGFloat timeWidth = IPHONE_SCREEN_WIDTH-xOffset-xGap-10;
-        yOffset -= (titleHeight+10);
+        yOffset = (titleHeight+10);
         time = [[UILabel alloc] init];
-        time.frame = CGRectMake(IPHONE_SCREEN_WIDTH-timeWidth-10, yOffset, timeWidth, titleHeight);
+        time.frame = CGRectMake(IPHONE_SCREEN_WIDTH-timeWidth-10, yOffset-5, timeWidth, titleHeight);
         [time setBackgroundColor:[UIColor clearColor]];
         [time setTextAlignment:NSTextAlignmentRight];
         [time setTextColor:WXColorWithInteger(0xa5a3a3)];
@@ -78,6 +79,8 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[entity.pushTime integerValue]];
     NSString *timeString = [NSString stringWithFormat:@"%@",[date YMDHMString:E_YMDHM]];
     [time setText:timeString];
+   
 }
+
 
 @end

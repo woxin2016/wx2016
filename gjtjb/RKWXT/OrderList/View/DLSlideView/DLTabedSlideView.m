@@ -135,16 +135,21 @@
     return [self.delegate numberOfTabsInDLTabedSlideView:self];
 }
 
+#warning mark   --  跳转控制器
 - (UIViewController *)DLSlideView:(DLSlideView *)sender controllerAt:(NSInteger)index{
     NSString *key = [NSString stringWithFormat:@"%ld", (long)index];
-    if ([ctrlCache_ objectForKey:key]) {
-        return [ctrlCache_ objectForKey:key];
-    }
-    else{
-        UIViewController *ctrl = [self.delegate DLTabedSlideView:self controllerAt:index];
-        [ctrlCache_ setObject:ctrl forKey:key];
-        return ctrl;
-    }
+//    if ([ctrlCache_ objectForKey:key]) {
+//        return [ctrlCache_ objectForKey:key];
+//    }
+//    else{
+//        UIViewController *ctrl = [self.delegate DLTabedSlideView:self controllerAt:index];
+//        [ctrlCache_ setObject:ctrl forKey:key];
+//        return ctrl;
+//    }
+    UIViewController *ctrl = [self.delegate DLTabedSlideView:self controllerAt:index];
+            [ctrlCache_ setObject:ctrl forKey:key];
+            return ctrl;
+    
 }
 
 - (void)DLSlideView:(DLSlideView *)slide switchingFrom:(NSInteger)oldIndex to:(NSInteger)toIndex percent:(float)percent{
