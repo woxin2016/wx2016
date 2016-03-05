@@ -655,7 +655,7 @@
     UIImage *image = [UIImage imageNamed:@"Icon-72.png"];
     if([_model.goodsInfoArr count] > 0){
         GoodsInfoEntity *entity = [_model.goodsInfoArr objectAtIndex:0];
-        NSURL *url = [NSURL URLWithString:entity.goodsImg];
+        NSURL *url = [NSURL URLWithString:entity.homeImg];
         NSData *data = [NSData dataWithContentsOfURL:url];
         if(data){
             image = [UIImage imageWithData:data];
