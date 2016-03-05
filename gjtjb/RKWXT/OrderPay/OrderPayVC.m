@@ -265,7 +265,7 @@ enum{
         }];
     }else{
         [navigationController popToRootViewControllerAnimated:NO Completion:^{
-            [[CoordinateController sharedCoordinateController] toOrderList:navigationController.rootViewController selectedShow:0 animated:YES];
+            [[CoordinateController sharedCoordinateController] toOrderList:navigationController.rootViewController selectedShow:2 animated:YES];
         }];
     }
 }
