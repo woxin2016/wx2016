@@ -34,7 +34,7 @@
            
             int row = i / rowCount;
             int col = i % rowCount;
-            CGFloat  baseX = margin + col * width;
+            CGFloat  baseX = col * width;
             CGFloat baseY = row * (baseHeight);
             WXUIButton *commonBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
             [commonBtn setBackgroundColor:[UIColor whiteColor]];
