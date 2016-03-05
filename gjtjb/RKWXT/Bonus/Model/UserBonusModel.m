@@ -24,9 +24,13 @@
     static dispatch_once_t onceToken;
     static UserBonusModel *sharedInstance = nil;
     dispatch_once(&onceToken,^{
-        sharedInstance = [[UserBonusModel alloc] init];
+        sharedInstance = [[super allocWithZone:NULL] init];
     });
     return sharedInstance;
+}
+
++(instancetype)allocWithZone:(struct _NSZone *)zone{
+    return [self shareUserBonusModel];
 }
 
 -(id)init{
