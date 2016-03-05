@@ -30,21 +30,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        WXUIButton *button = [WXUIButton buttonWithType:UIButtonTypeCustom];
-//        [button setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-//        UIImage *btnImg = [UIImage imageNamed:@"sysPushMessageIcon.png"];
-//        CGSize btnSize = btnImg.size;
-//        [button setImage:btnImg forState:UIControlStateNormal];
-//        [button addTarget:self action:@selector(toUnreadSysMsg) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:button];
         UIImage *btnImg = [UIImage imageNamed:@"sysPushMessageIcon.png"];
         CGSize btnSize = btnImg.size;
         
         WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-//        leftBtn.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        leftBtn.frame = CGRectMake(20, 2, 60, 40);
+        leftBtn.frame = CGRectMake(20, 2, 60, 60);
         [leftBtn setImage:btnImg forState:UIControlStateNormal];
-        [leftBtn setTitle:@"消息" forState:UIControlStateNormal];
+//        [leftBtn setTitle:@"消息" forState:UIControlStateNormal];
         [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [leftBtn.titleLabel setFont:WXFont(10.0)];
         [leftBtn addTarget:self action:@selector(toUnreadSysMsg) forControlEvents:UIControlEventTouchUpInside];
@@ -65,15 +57,17 @@
         UIImage *image = [UIImage imageNamed:@"unreadBg.png"];
         CGSize imgSize = image.size;
         _unreadNumberImgV = [[WXUIImageView alloc] initWithImage:image];
-        CGRect unreadViewRect = CGRectMake(-imgSize.width*0.3 + (frame.size.width-btnSize.width)/2.0, (frame.size.height-btnSize.height)/2.0-imgSize.height*0.3, imgSize.width, imgSize.height);
+        CGRect unreadViewRect = CGRectMake(-imgSize.width*0.3 + (frame.size.width-btnSize.width)/2.0-5, (frame.size.height-btnSize.height)/2.0-imgSize.height*0.3-10, imgSize.width, imgSize.height);
         [_unreadNumberImgV setFrame:unreadViewRect];
         [leftBtn addSubview:_unreadNumberImgV];
         
         _unreadLabel = [[WXUILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
         [_unreadLabel setFont:[UIFont systemFontOfSize:9.0]];
+        [_unreadLabel setTextColor:[UIColor whiteColor]];
         [_unreadNumberImgV addSubview:_unreadLabel];
         
         [self addOBS];
+
     }
     return self;
 }

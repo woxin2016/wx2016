@@ -9,7 +9,7 @@
 #import "WXTMallViewController.h"
 #import "NewHomePageCommonDef.h"
 
-@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate>{
+@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate>{
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
@@ -51,7 +51,7 @@
     [self addSubview:_tableView];
     [self setupRefresh];
     [self createTopBtn];
-    
+   
     [_model loadData];
 }
 
@@ -77,11 +77,36 @@
     CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
     leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
     
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    didView.userInteractionEnabled = YES;
+    [self setRightNavigationItem:didView];
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(0, 0, kDefaultNavigationBarButtonSize.width, kDefaultNavigationBarButtonSize.height)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(44, 0, kDefaultNavigationBarButtonSize.width, kDefaultNavigationBarButtonSize.height)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
-    [self setRightNavigationItem:_unreadView];
+    [didView addSubview:_unreadView];
+    
+    WXUIButton *shopCartBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    shopCartBtn.frame = CGRectMake(30, 10, 44, 44);
+    [shopCartBtn setImage:[UIImage imageNamed:@"Shopping.png"] forState:UIControlStateNormal];
+//    [shopCartBtn setTitle:@"购物车" forState:UIControlStateNormal];
+    [shopCartBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [shopCartBtn.titleLabel setFont:WXFont(10.0)];
+    [shopCartBtn addTarget:self action:@selector(clickShopCartBtn) forControlEvents:UIControlEventTouchUpInside];
+    [didView addSubview:shopCartBtn];
+    
+    CGPoint shopBoundsCenter = CGPointMake(CGRectGetMidX(shopCartBtn.titleLabel.bounds), CGRectGetMidY(shopCartBtn.titleLabel.bounds));
+    CGPoint shopImageViewCenter = CGPointMake(shopBoundsCenter.x, CGRectGetMidY(shopCartBtn.imageView.bounds));
+    CGPoint shopTitleLabelCenter = CGPointMake(shopBoundsCenter.x, CGRectGetHeight(shopCartBtn.bounds)-CGRectGetMidY(shopCartBtn.titleLabel.bounds));
+    CGPoint btnImageViewCenter = shopCartBtn.imageView.center;
+    CGPoint btnTitleLabelCenter = shopCartBtn.titleLabel.center;
+    CGFloat btnEdgeInsetsLeft = shopImageViewCenter.x - btnImageViewCenter.x;
+    CGFloat btnEdgeInsetsRight = -btnEdgeInsetsLeft;
+    shopCartBtn.imageEdgeInsets = UIEdgeInsetsMake(0, btnEdgeInsetsLeft, 40/3, btnEdgeInsetsRight);
+    CGFloat btntitleEdgeInsetsLeft = shopTitleLabelCenter.x - btnTitleLabelCenter.x;
+    CGFloat btntitleEdgeInsetsRight = -btntitleEdgeInsetsLeft;
+    shopCartBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, btntitleEdgeInsetsLeft, 0, btntitleEdgeInsetsRight);
+
 }
 
 //集成刷新控件
@@ -275,16 +300,35 @@
     return cell;
 }
 
+
 -(WXUITableViewCell*)tableViewForGuessInfoCell:(NSInteger)row{
-    static NSString *identifier = @"guessInfoCell";
-    HomeGuessInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+//    static NSString *identifier = @"guessInfoCell";
+//    HomeGuessInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+//    if(!cell){
+//        cell = [[[HomeGuessInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+//    }
+//    if([_model.surprise.data count] > 0){
+//        [cell setCellInfo:[_model.surprise.data objectAtIndex:row]];
+//    }
+//    [cell load];
+//    return cell;
+    static NSString *identifier = @"HomeNewGuessInfoCell";
+    HomeNewGuessInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
-        cell = [[[HomeGuessInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        cell = [[[HomeNewGuessInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
-    if([_model.surprise.data count] > 0){
-        [cell setCellInfo:[_model.surprise.data objectAtIndex:row]];
+    [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
+    NSMutableArray *rowArray = [NSMutableArray array];
+    NSInteger max = (row+1)*2;
+    NSInteger count = [_model.surprise.data count];
+    if(max > count){
+        max = count;
     }
-    [cell load];
+    for(NSInteger i = row*2; i < max; i++){
+        [rowArray addObject:[_model.surprise.data objectAtIndex:i]];
+    }
+    [cell setDelegate:self];
+    [cell loadCpxViewInfos:rowArray];
     return cell;
 }
 
@@ -325,12 +369,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger row = indexPath.row;
-    NSInteger section = indexPath.section;
-    if(section == T_HomePage_GuessInfo){
-        HomePageSurpEntity *entity = [_model.surprise.data objectAtIndex:row];
-        [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.goods_id animated:YES];
-    }
+//    NSInteger row = indexPath.row;
+//    NSInteger section = indexPath.section;
+//    if(section == T_HomePage_GuessInfo){
+//        HomePageSurpEntity *entity = [_model.surprise.data objectAtIndex:row];
+//        [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.goods_id animated:YES];
+//    }
 }
 
 #pragma mark 导航
@@ -389,13 +433,13 @@
             [self.wxNavigationController pushViewController:boundsVC];
         }
             break;
-        case T_BaseFunction_Cut:
+        case T_BaseFunction_Game:
         {
             NewUserCutVC *userCutVC = [[NewUserCutVC alloc] init];
             [self.wxNavigationController pushViewController:userCutVC];
         }
             break;
-        case T_BaseFunction_Union:
+        case T_BaseFunction_Side:
         {
             FindCommonVC *vc = [[FindCommonVC alloc] init];
             vc.webURl = @"http://oldyun.67call.com/wx_union/index.php/Public/alliance_merchant";
@@ -476,6 +520,7 @@
 }
 
 -(void)homePageRecLoadedFailed:(NSString *)errorMsg{
+    
 }
 
 -(void)homeRecommendCellbtnClicked:(id)sender{
@@ -489,6 +534,16 @@
 }
 
 -(void)homePageSurpLoadedFailed:(NSString *)errorMsg{
+}
+
+-(void)changeCellClicked:(id)entity{
+    HomePageSurpEntity *ent = entity;
+    [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:ent.goods_id animated:YES];
+}
+
+#pragma mark  shopping Btn 
+- (void)clickShopCartBtn{
+     [[CoordinateController sharedCoordinateController] toShoppingCartVC:self  animated:YES];
 }
 
 #pragma mark refresh

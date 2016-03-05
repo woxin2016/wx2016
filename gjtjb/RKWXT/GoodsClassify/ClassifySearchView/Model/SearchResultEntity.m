@@ -2,13 +2,14 @@
 //  SearchResultEntity.m
 //  RKWXT
 //
-//  Created by app on 16/2/29.
-//  Copyright (c) 2016年 roderick. All rights reserved.
+//  Created by SHB on 15/10/24.
+//  Copyright © 2015年 roderick. All rights reserved.
 //
 
 #import "SearchResultEntity.h"
 
 @implementation SearchResultEntity
+
 +(SearchResultEntity*)initSearchResultEntityWith:(NSDictionary *)dic{
     if(!dic){
         return nil;
@@ -36,6 +37,5 @@
     }
     return self;
 }
-
 
 @end

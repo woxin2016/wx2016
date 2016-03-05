@@ -51,7 +51,7 @@ enum{
     
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
 
-     NSString *urlStr = [NSString stringWithFormat:@"http://oldyun.67call.com/wx_union/index.php/Public/messages?phone=%@&woxin_id=%@&msg_id=%ld",userObj.user,userObj.wxtID,(long)_messageID];
+     NSString *urlStr = [NSString stringWithFormat:@"http://api.woxinyun.com/wx_union/index.php/Public/messages?phone=%@&woxin_id=%@&msg_id=%ld",userObj.user,userObj.wxtID,(long)_messageID];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:request];

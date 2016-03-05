@@ -329,6 +329,7 @@ enum{
             }
         }
     }
+    [_tableView reloadData];
 }
 
 -(void)completeOrderListFailed:(NSNotification*)notification{

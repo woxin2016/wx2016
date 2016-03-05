@@ -16,6 +16,7 @@
     WXUILabel *lineLabel;
     WXUIButton *usercutBtn;
     WXUIButton *carriageBtn;
+    WXUIButton *redPacketBtn;
 }
 @end
 
@@ -73,9 +74,9 @@
         [usercutBtn setTitleColor:WXColorWithInteger(0x000000) forState:UIControlStateNormal];
         [usercutBtn setHidden:YES];
         [usercutBtn addTarget:self action:@selector(userCutBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-//        [self.contentView addSubview:usercutBtn];
+        [self.contentView addSubview:usercutBtn];
         
-//        xOffset += btnWidth+10;
+        xOffset += btnWidth+10;
         carriageBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
         carriageBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, btnHieght);
         [carriageBtn setBackgroundColor:[UIColor whiteColor]];
@@ -87,6 +88,19 @@
         [carriageBtn setTitleColor:WXColorWithInteger(0x000000) forState:UIControlStateNormal];
         [carriageBtn addTarget:self action:@selector(carriageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:carriageBtn];
+        
+        xOffset += btnWidth+10;
+        redPacketBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+        redPacketBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, btnHieght);
+        [redPacketBtn setBackgroundColor:[UIColor whiteColor]];
+        [redPacketBtn setBorderRadian:0.5 width:0.5 color:WXColorWithInteger(0xdbdbdb)];
+        [redPacketBtn setImage:[UIImage imageNamed:@"LMResPackingImg.png"] forState:UIControlStateNormal];
+        [redPacketBtn setTitle:@" 红包" forState:UIControlStateNormal];
+        [redPacketBtn.titleLabel setFont:WXFont(9.0)];
+        [redPacketBtn setHidden:YES];
+        [redPacketBtn setTitleColor:WXColorWithInteger(0x000000) forState:UIControlStateNormal];
+        [redPacketBtn addTarget:self action:@selector(redPacketBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:redPacketBtn];
     }
     return self;
 }
@@ -130,6 +144,43 @@
 -(void)carriageBtnClicked{
     if(_delegate && [_delegate respondsToSelector:@selector(goodsInfoDesCarriageBtnClicked)]){
         [_delegate goodsInfoDesCarriageBtnClicked];
+    }
+}
+
+- (void)redPacketBtnClicked{
+    if(_delegate && [_delegate respondsToSelector:@selector(goodsInfoDesredPacketBtnClicked)]){
+        [_delegate goodsInfoDesredPacketBtnClicked];
+    }
+}
+
+-(void)setStockEntity:(GoodsInfoEntity *)stockEntity{
+    _stockEntity = stockEntity;
+    CGFloat xOffset = 12;
+    CGFloat yOffset = 86;
+    CGFloat btnWidth = 70;
+    CGFloat btnHieght = 18;
+    if (stockEntity.redPacket) {
+        [redPacketBtn setHidden:NO];
+    }else{
+        [redPacketBtn setHidden:YES];
+    }
+    
+    if (stockEntity.userCut) {
+        [usercutBtn setHidden:NO];
+    }else{
+        [usercutBtn setHidden:YES];
+        [carriageBtn setFrame:CGRectMake(xOffset, yOffset, btnWidth, btnHieght)];
+        xOffset += btnWidth + 10;
+        [redPacketBtn setFrame:CGRectMake(xOffset, yOffset, btnWidth, btnHieght)];
+    }
+    
+    GoodsInfoEntity *entity = self.cellInfo;
+    if(entity.postage == Goods_Postage_None){
+        [carriageBtn setHidden:NO];
+    }else{
+        [carriageBtn setHidden:YES];
+        xOffset += btnWidth + 10;
+        [redPacketBtn setFrame:CGRectMake(xOffset, yOffset, btnWidth, btnHieght)];
     }
 }
 

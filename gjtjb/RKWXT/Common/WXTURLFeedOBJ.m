@@ -21,7 +21,7 @@
 
 - (NSString*)rootURL:(WXT_UrlFeed_Type)type{
     NSString *url = nil;
-    NSString *newRootUrl = [NSString stringWithFormat:@"%@wx10api",WXTBaseUrl];   //商城模块
+    NSString *newRootUrl = [NSString stringWithFormat:@"%@wx10api/V1",WXTBaseUrl];   //商城模块
     NSString *allUrl = nil;
     switch (type) {
         case WXT_UrlFeed_Type_LoadBalance:

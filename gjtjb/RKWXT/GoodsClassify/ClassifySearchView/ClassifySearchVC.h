@@ -2,8 +2,8 @@
 //  ClassifySearchVC.h
 //  RKWXT
 //
-//  Created by app on 16/2/29.
-//  Copyright (c) 2016年 roderick. All rights reserved.
+//  Created by SHB on 15/10/20.
+//  Copyright © 2015年 roderick. All rights reserved.
 //
 
 #import "WXUIViewController.h"

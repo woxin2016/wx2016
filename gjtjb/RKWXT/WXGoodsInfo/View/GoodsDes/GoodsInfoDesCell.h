@@ -9,16 +9,18 @@
 #import "WXUITableViewCell.h"
 
 #define GoodsInfoDesCellHeight (73)
+@class GoodsInfoEntity;
 
 @protocol GoodsInfoDesCellDelegate;
 @interface GoodsInfoDesCell : WXUITableViewCell
 @property (nonatomic,assign) id<GoodsInfoDesCellDelegate>delegate;
 @property (nonatomic,assign) BOOL userCut;
+@property (nonatomic,strong)GoodsInfoEntity *stockEntity;
 
 @end
 
 @protocol GoodsInfoDesCellDelegate <NSObject>
 -(void)goodsInfoDesCutBtnClicked;
 -(void)goodsInfoDesCarriageBtnClicked;
-
+- (void)goodsInfoDesredPacketBtnClicked;
 @end

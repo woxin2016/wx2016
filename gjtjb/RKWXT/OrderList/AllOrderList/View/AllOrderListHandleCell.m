@@ -95,6 +95,7 @@
     }
 }
 
+
 -(void)rightBtnClicked{
     AllOrderListEntity *entity = self.cellInfo;
     if(entity.payType == Order_PayType_WaitPay && entity.orderState == Order_State_Normal){

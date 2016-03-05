@@ -87,7 +87,6 @@
 //        [_loginModel loginWithUser:userDefault.user andPwd:userDefault.pwd];
         
         NSSet *set1 = [NSSet setWithObjects:[NSString stringWithFormat:@"%@",userDefault.user], [NSString stringWithFormat:@"seller_%@",userDefault.sellerID], nil];
-        NSLog(@"%@>>>>>",set1);
         [APService setTags:set1 alias:nil callbackSelector:nil object:nil];
     }else{
         WXUIViewController *vc = [[LoginVC alloc] init];

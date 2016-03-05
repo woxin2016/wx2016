@@ -53,6 +53,12 @@
         
 //        NSString *shopName = [dic objectForKey:@"shop_name"];
 //        [self setGoodsShopName:shopName];
+        
+//        NSInteger cut = [[dic objectForKey:@"divide"] integerValue];
+//        [self setUserCut:cut];
+//        
+//        NSInteger red = [[dic objectForKey:@"is_use_red"] integerValue];
+//        [self setRedPacket:red];
     }
     return self;
 }

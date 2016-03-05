@@ -44,6 +44,7 @@
     
     [[WXUnreadSysMsgOBJ sharedUnreadSysMsgOBJ] clearUnreadNumber];
     [[NSNotificationCenter defaultCenter] postNotificationName:D_NotificationName_UnreadSysMessageNumberChanged object:nil];
+    
 }
 
 -(void)addOBS{
@@ -92,6 +93,7 @@
     JPushMessageInfoVC *infoVC = [[JPushMessageInfoVC alloc] init];
     infoVC.messageID = entity.push_id;
     [self.wxNavigationController pushViewController:infoVC];
+    
 }
 
 #pragma mark delete
@@ -120,6 +122,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    
+    // 页面即将消失时，清空所有未提醒数字
+    [[WXUnreadSysMsgOBJ sharedUnreadSysMsgOBJ] clearUnreadNumber];
+    
     [self removeOBS];
 }
 

@@ -15,7 +15,7 @@
 #define T_HomePageLimitBuyHeight        (125)
 #define T_HomePageTextSectionHeight     (30)
 #define T_HomePageRecommendHeight       (145)
-#define T_HomePageGuessInfoHeight       (100)
+#define T_HomePageGuessInfoHeight       (195)
 
 #define BigTextFont   (13.0)
 #define TextFont      (15.0)
@@ -54,6 +54,7 @@ enum{
 #import "HomeLimitBuyCell.h"
 #import "HomeRecommendInfoCell.h"
 #import "HomeGuessInfoCell.h"
+#import "HomeNewGuessInfoCell.h"
 
 #import "WXWeiXinOBJ.h"
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -69,6 +70,7 @@ enum{
 #import "NewHomePageModel.h"
 #import "HomePageSurpEntity.h"
 #import "HomePageRecEntity.h"
+#import "ShoppingCartVC.h"
 
 #pragma mark 导航跳转
 enum{
