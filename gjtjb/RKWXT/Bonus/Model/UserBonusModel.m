@@ -52,18 +52,15 @@
 
 //获取红包余额
 -(void)loadUserBonusMoney{
-    [self setStatus:E_ModelDataStatus_Loading];
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.user, @"phone", userObj.sellerID, @"sid", userObj.shopID, @"shop_id", userObj.wxtID, @"woxin_id", nil];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.user, @"phone", userObj.sellerID, @"sid", userObj.shopID, @"shop_id", userObj.wxtID, @"woxin_id", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
-    __block UserBonusModel *blockSelf = self;
+//    __block UserBonusModel *blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LoadUserBonus httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
             _bonusMoney = 0;
-            [blockSelf setStatus:E_ModelDataStatus_LoadFailed];
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_UserBonus_UserBonusFailed object:retData.errorDesc];
         }else{
-            [blockSelf setStatus:E_ModelDataStatus_LoadSucceed];
             NSDictionary *dataDic = [retData.data objectForKey:@"data"];
             _bonusMoney = [[dataDic objectForKey:@"red_packet"] integerValue];
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_UserBonus_UserBonusSucceed object:nil];

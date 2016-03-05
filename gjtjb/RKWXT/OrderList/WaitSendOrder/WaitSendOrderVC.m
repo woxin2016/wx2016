@@ -289,6 +289,9 @@ enum{
     }
     [UtilTool showAlertView:errorMsg];
     
+    [orderListArr removeAllObjects];
+    [_tableView reloadData];
+    
     if(isRefresh){
         [_tableView headerEndRefreshing];
     }
