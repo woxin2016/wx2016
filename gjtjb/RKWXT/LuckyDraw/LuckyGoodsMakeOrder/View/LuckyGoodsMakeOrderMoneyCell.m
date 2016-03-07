@@ -7,7 +7,7 @@
 //
 
 #import "LuckyGoodsMakeOrderMoneyCell.h"
-#import "GoodsInfoEntity.h"
+#import "LuckyGoodsInfoEntity.h"
 
 @interface LuckyGoodsMakeOrderMoneyCell(){
     WXUILabel *_moneyLabel;
@@ -65,7 +65,7 @@
 }
 
 -(void)load{
-    GoodsInfoEntity *entity = self.cellInfo;
+    LuckyGoodsInfoEntity *entity = self.cellInfo;
     NSString *money = self.cellInfo;
     [_moneyLabel setText:[NSString stringWithFormat:@"￥%.2f",[money floatValue]]];
 }

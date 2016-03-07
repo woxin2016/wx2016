@@ -7,7 +7,7 @@
 //
 
 #import "LuckyGoodsDesCell.h"
-#import "GoodsInfoEntity.h"
+#import "LuckyGoodsInfoEntity.h"
 
 #define LabelWidth (110)
 
@@ -80,11 +80,11 @@
 }
 
 -(void)load{
-//    GoodsInfoEntity *entity = self.cellInfo;
-//    [_descLabel setText:entity.intro];
-//    [_newPrice setText:[NSString stringWithFormat:@"￥0"]];
-//    [_stockLabel setText:_name];
-//    [_oldPrice setText:[NSString stringWithFormat:@"￥%.2f",entity.market_price]];
+    LuckyGoodsInfoEntity *entity = self.cellInfo;
+    [_descLabel setText:entity.intro];
+    [_newPrice setText:[NSString stringWithFormat:@"￥0"]];
+    [_stockLabel setText:_name];
+    [_oldPrice setText:[NSString stringWithFormat:@"￥%.2f",entity.market_price]];
 }
 
 @end

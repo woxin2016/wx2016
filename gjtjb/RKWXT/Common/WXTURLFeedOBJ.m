@@ -214,6 +214,24 @@
         case WXT_UrlFeed_Type_New_SearchGoodsOrShop:
             url = @"/search.php";
             break;
+        case WXT_UrlFeed_Type_New_SharkNumber:
+            url = @"/award_number.php";
+            break;
+        case WXT_UrlFeed_Type_New_LuckyGoodsList:
+            url = @"/award_goods.php";
+            break;
+        case WXT_UrlFeed_Type_New_LuckyShark:
+            url = @"/lottery_draw.php";
+            break;
+        case WXT_UrlFeed_Type_New_LuckyGoodsInfo:
+            url = @"/single_goods_info.php";
+            break;
+        case WXT_UrlFeed_Type_New_LuckyMakeOrder:
+            url = @"/insert_award_order.php";
+            break;
+        case WXT_UrlFeed_Type_New_LuckyOrderList:
+            url = @"/award_order.php";
+            break;
         default:
             break;
     }

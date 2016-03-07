@@ -11,6 +11,7 @@
 #import "LuckyGoodsModel.h"
 #import "LuckyGoodsInfoVC.h"
 #import "LuckyGoodsEntity.h"
+#import "LuckySharkEntity.h"
 #import "MJRefresh.h"
 
 #define Size self.bounds.size
@@ -152,10 +153,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     LuckyGoodsEntity *entity = [goodsArr objectAtIndex:indexPath.row];
-//    NewGoodsInfoVC *infoVC = [[NewGoodsInfoVC alloc] init];
-//    infoVC.goodsInfo_type = GoodsInfo_LuckyGoods;
-//    infoVC.goodsId = entity.goodsID;
-//    [self.wxNavigationController pushViewController:infoVC];
+    LuckySharkEntity *sharkEntity = [[LuckySharkEntity alloc] init];
+    sharkEntity.goods_id = entity.goodsID;
+    LuckyGoodsInfoVC *infoVC = [[LuckyGoodsInfoVC alloc] init];
+    infoVC.showType = LuckyGoodsInfo_Type_Show;
+    infoVC.luckyEnt = sharkEntity;
+    [self.wxNavigationController pushViewController:infoVC];
 }
 
 -(void)changeListViewShow{

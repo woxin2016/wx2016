@@ -9,7 +9,7 @@
 #import "LuckyGoodsMakeOrderCell.h"
 #import "WXRemotionImgBtn.h"
 #import "MakeOrderDef.h"
-#import "GoodsInfoEntity.h"
+#import "LuckyGoodsInfoEntity.h"
 
 @interface LuckyGoodsMakeOrderCell(){
     WXRemotionImgBtn *_imgView;
@@ -69,13 +69,13 @@
 }
 
 -(void)load{
-//    GoodsInfoEntity *entity = self.cellInfo;
-//    [_imgView setCpxViewInfo:entity.smallImg];
-//    [_imgView load];
-//    [_nameLabel setText:entity.intro];
-//    [_stockName setText:entity.stockName];
-//    CGFloat price = entity.buyNumber*entity.stockPrice;
-//    [_priceLabel setText:[NSString stringWithFormat:@"￥%.2f",price]];
+    LuckyGoodsInfoEntity *entity = self.cellInfo;
+    [_imgView setCpxViewInfo:entity.smallImg];
+    [_imgView load];
+    [_nameLabel setText:entity.intro];
+    [_stockName setText:entity.stockName];
+    CGFloat price = entity.buyNumber*entity.stockPrice;
+    [_priceLabel setText:[NSString stringWithFormat:@"￥%.2f",price]];
 }
 
 -(void)setFrame:(CGRect)frame{

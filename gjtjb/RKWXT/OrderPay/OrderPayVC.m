@@ -29,6 +29,8 @@ enum{
 @interface OrderPayVC()<UITableViewDataSource,UITableViewDelegate,WechatPayModelDelegate>{
     UITableView *_tableView;
     WechatPayModel *_model;
+    
+    BOOL paySucceed;
 }
 @end
 
@@ -169,7 +171,7 @@ enum{
 
 #pragma mark wechat
 -(void)wechatPay{
-    [_model wechatPayWithOrderID:_orderID];
+    [_model wechatPayWithOrderID:_orderID type:(_orderpay_type==OrderPay_Type_Order?@"N":(_orderpay_type==OrderPay_Type_Lucky?@"P":@""))];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -217,6 +219,7 @@ enum{
 }
 
 -(void)paySucceedWith:(Pay_Type)type{
+    paySucceed = YES;
     [[PaySucceedModel sharePaySucceed] updataPayOrder:type withOrderID:[self newChangeOrderID]];
     if(_orderpay_type == OrderPay_Type_Recharge){
         [self.wxNavigationController popViewControllerAnimated:YES completion:^{
@@ -265,7 +268,7 @@ enum{
         }];
     }else{
         [navigationController popToRootViewControllerAnimated:NO Completion:^{
-            [[CoordinateController sharedCoordinateController] toOrderList:navigationController.rootViewController selectedShow:2 animated:YES];
+            [[CoordinateController sharedCoordinateController] toOrderList:navigationController.rootViewController selectedShow:(paySucceed?2:0) animated:YES];
         }];
     }
 }

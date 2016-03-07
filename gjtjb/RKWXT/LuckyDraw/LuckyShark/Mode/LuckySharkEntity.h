@@ -17,7 +17,6 @@
 @property (nonatomic,assign) CGFloat market_price;
 @property (nonatomic,assign) CGFloat shop_price;
 @property (nonatomic,assign) NSInteger stock_id;
-@property (nonatomic,assign) NSInteger shop_id;
 @property (nonatomic,assign) NSInteger lottery_id;
 
 +(LuckySharkEntity*)initWidthLuckySharkEntityWidthDic:(NSDictionary*)dic;

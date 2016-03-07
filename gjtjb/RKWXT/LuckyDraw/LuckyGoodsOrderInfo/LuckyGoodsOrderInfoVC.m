@@ -272,7 +272,7 @@ enum{
 
 #pragma mark cellDelegate
 -(void)luckyOrderCompleteBtnClicked{
-    [_model completeLuckyOrderWith:entity.order_id];
+//    [_model completeLuckyOrderWith:entity.order_id];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 

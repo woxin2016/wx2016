@@ -82,7 +82,14 @@ typedef enum {
     WXT_UrlFeed_Type_New_SubmitUserAliAcount,
     WXT_UrlFeed_Type_New_LoadAliRecordList,
     // 搜索商品或者商店
-   WXT_UrlFeed_Type_New_SearchGoodsOrShop,
+    WXT_UrlFeed_Type_New_SearchGoodsOrShop,
+    //抽奖
+    WXT_UrlFeed_Type_New_SharkNumber,
+    WXT_UrlFeed_Type_New_LuckyGoodsList,
+    WXT_UrlFeed_Type_New_LuckyShark,
+    WXT_UrlFeed_Type_New_LuckyGoodsInfo,
+    WXT_UrlFeed_Type_New_LuckyMakeOrder,
+    WXT_UrlFeed_Type_New_LuckyOrderList,
     
     WXT_UrlFeed_Type_Invalid,
 }WXT_UrlFeed_Type;

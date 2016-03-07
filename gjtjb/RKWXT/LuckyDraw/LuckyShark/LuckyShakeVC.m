@@ -316,10 +316,10 @@
 }
 
 -(void)gotoSharkRuleVC{
-//    WXCommonWebView *vc = [[WXCommonWebView alloc] init];
-//    vc.webUrlString = [NSString stringWithFormat:@"%@wx_html/index.php/Public/rule",WXTWebBaseUrl];
-//    vc.urlType = WebView_Type_SingleUrl;
-//    [self.wxNavigationController pushViewController:vc];
+    WXCommonWebView *vc = [[WXCommonWebView alloc] init];
+    vc.webUrlString = [NSString stringWithFormat:@"%@wx_html/index.php/Public/rule",WXTShareBaseUrl];
+    vc.urlType = WebView_Type_SingleUrl;
+    [self.wxNavigationController pushViewController:vc];
 }
 
 -(void)searchLuckyGoodsListVC{

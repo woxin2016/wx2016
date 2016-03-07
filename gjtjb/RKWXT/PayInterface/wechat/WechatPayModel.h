@@ -14,7 +14,7 @@
 @property (nonatomic,assign) id<WechatPayModelDelegate>delegate;
 @property (nonatomic,strong) NSArray *wechatArr;
 
--(void)wechatPayWithOrderID:(NSString*)orderID;
+-(void)wechatPayWithOrderID:(NSString*)orderID type:(NSString*)type;
 @end
 
 @protocol WechatPayModelDelegate <NSObject>
