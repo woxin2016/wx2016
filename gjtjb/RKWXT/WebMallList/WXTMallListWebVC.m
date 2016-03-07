@@ -8,7 +8,7 @@
 
 #import "WXTMallListWebVC.h"
 
-#define MallCatagaryListUrl @"wx_html/index.php/Public/"
+#define MallCatagaryListUrl @"wx_union/index.php/Public/"
 
 typedef enum{
     Web_Goto_Type_GoodsInfo = 1, //商品详情
@@ -55,7 +55,10 @@ typedef enum{
     if(1/*urlFeedType == WXT_UrlFeed_Type_NewMall_CatagaryList*/){
         typeStr = @"sort_list";
     }
-    NSString *urlString = [NSString stringWithFormat:@"http://wx3.67call.com/%@%@",MallCatagaryListUrl,typeStr];
+    if(urlFeedType == WXT_UrlFeed_Type_NewMall_ImgAndText){
+        typeStr = @"good_info?";
+    }
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",WXTShareBaseUrl,MallCatagaryListUrl,typeStr];
     NSString *boay = nil;
     if(paramDictionary){
         boay = [feedOBJ urlRequestParamFrom:paramDictionary];

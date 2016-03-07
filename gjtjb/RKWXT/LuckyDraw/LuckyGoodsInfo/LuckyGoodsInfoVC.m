@@ -12,8 +12,8 @@
 #import "NewGoodsInfoBDCell.h"
 #import "NewGoodsInfoDownCell.h"
 #import "WXTMallListWebVC.h"
-#import "GoodsInfoModel.h"
-#import "GoodsInfoEntity.h"
+#import "LuckyGoodsInfoModel.h"
+#import "LuckyGoodsInfoEntity.h"
 #import "WXRemotionImgBtn.h"
 #import "GoodsInfoDef.h"
 #import "LuckyGoodsMakeOrderVC.h"
@@ -24,7 +24,6 @@
 
 #define size self.bounds.size
 #define TopNavigationViewHeight (64)
-#define DownViewHeight (40)
 
 enum{
     LuckyGoodsInfo_Section_TopImg = 0,
@@ -35,13 +34,13 @@ enum{
     LuckyGoodsInfo_Section_Invalid,
 };
 
-@interface LuckyGoodsInfoVC ()<UITableViewDataSource,UITableViewDelegate,GoodsInfoModelDelegate>{
+@interface LuckyGoodsInfoVC ()<UITableViewDataSource,UITableViewDelegate,LuckyGoodsInfoModelDelegate,DownSheetDelegate>{
     UITableView *_tableView;
     BOOL _isOpen;
     
     WXUIImageView *topImgView;
     
-    GoodsInfoModel *_model;
+    LuckyGoodsInfoModel *_model;
     
     LuckySharkEntity *luckyEntity;
     
@@ -73,12 +72,12 @@ enum{
     [self initDropList];
     
     luckyEntity = _luckyEnt;
-    _model = [[GoodsInfoModel alloc] init];
+    _model = [[LuckyGoodsInfoModel alloc] init];
     [_model setDelegate:self];
-    [_model loadGoodsInfoData:luckyEntity.goods_id];
+    [_model loadGoodsInfo:luckyEntity.goods_id];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     
-    if(luckyEntity.goods_price > 0){
+    if(_showType == LuckyGoodsInfo_Type_Shark){
         [self createDownView];
     }
 }
@@ -145,7 +144,7 @@ enum{
     [titleLabel setText:@"商品详情"];
     [titleLabel setTextColor:WXColorWithInteger(0x000000)];
     [topView addSubview:titleLabel];
-
+    
     WXUIButton *sharebtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     sharebtn.frame = CGRectMake(size.width-xGap-btnWidth, TopNavigationViewHeight-yGap-btnHeight, btnWidth, btnHeight);
     [sharebtn setBackgroundColor:[UIColor clearColor]];
@@ -207,9 +206,9 @@ enum{
         {
             if(_isOpen){
                 if(_selectedIndexPath.section == section){
-                    if([_model.goodsInfoArr count] > 0){
-//                        GoodsInfoEntity *entity = [_model.goodsInfoArr objectAtIndex:0];
-                        return 1;
+                    if([_model.data count] > 0){
+                        LuckyGoodsInfoEntity *entity = [_model.data objectAtIndex:0];
+                        return [entity.customNameArr count]+1;
                     }else{
                         return 1;
                     }
@@ -261,16 +260,16 @@ enum{
         cell = [[LuckyGoodsInfoTopImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     NSMutableArray *merchantImgViewArray = [[NSMutableArray alloc] init];
-    GoodsInfoEntity *entity = nil;
-    if([_model.goodsInfoArr count] > 0){
-        entity = [_model.goodsInfoArr objectAtIndex:0];
+    LuckyGoodsInfoEntity *entity = nil;
+    if([_model.data count] > 0){
+        entity = [_model.data objectAtIndex:0];
     }
-//    for(int i = 0; i< [entity.imgArr count]; i++){
-//        WXRemotionImgBtn *imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(0, 0, size.width, T_GoodsInfoTopImgHeight)];
-//        [imgView setExclusiveTouch:NO];
-//        [imgView setCpxViewInfo:[entity.imgArr objectAtIndex:i]];
-//        [merchantImgViewArray addObject:imgView];
-//    }
+    for(int i = 0; i< [entity.imgArr count]; i++){
+        WXRemotionImgBtn *imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(0, 0, size.width, size.width)];
+        [imgView setExclusiveTouch:NO];
+        [imgView setCpxViewInfo:[entity.imgArr objectAtIndex:i]];
+        [merchantImgViewArray addObject:imgView];
+    }
     cell = [[LuckyGoodsInfoTopImgCell alloc] initWithLuckyReuseIdentifier:identifier imageArray:merchantImgViewArray];
     [cell load];
     return cell;
@@ -283,10 +282,10 @@ enum{
         cell = [[LuckyGoodsDesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setUserInteractionEnabled:NO];
-    if([_model.goodsInfoArr count] > 0){
-        [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
-//        [cell setNewprice:luckyEntity.goods_price];
-//        [cell setName:luckyEntity.stockName];
+    if([_model.data count] > 0){
+        [cell setCellInfo:[_model.data objectAtIndex:0]];
+        [cell setNewprice:luckyEntity.goods_price];
+        [cell setName:luckyEntity.stockName];
     }
     [cell load];
     return cell;
@@ -327,10 +326,10 @@ enum{
         cell = [[NewGoodsInfoDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    if([_model.goodsInfoArr count] > 0){
-        GoodsInfoEntity *entity = [_model.goodsInfoArr objectAtIndex:0];
-//        [cell setName:[entity.customNameArr objectAtIndex:row-1]];
-//        [cell setInfo:[entity.customInfoArr objectAtIndex:row-1]];
+    if([_model.data count] > 0){
+        LuckyGoodsInfoEntity *entity = [_model.data objectAtIndex:0];
+        [cell setName:[entity.customNameArr objectAtIndex:row-1]];
+        [cell setInfo:[entity.customInfoArr objectAtIndex:row-1]];
     }
     [cell load];
     return cell;
@@ -350,6 +349,7 @@ enum{
             [cell changeArrowWithDown:_isOpen];
             [cell.imageView setImage:[UIImage imageNamed:@"T_GoodsIInfoDetail.png"]];
             [cell.textLabel setText:@"产品参数"];
+            [cell.textLabel setFont:WXFont(13.0)];
         }
         return cell;
     }else{
@@ -371,7 +371,7 @@ enum{
             default:
                 break;
         }
-    return cell;
+        return cell;
     }
 }
 
@@ -418,11 +418,11 @@ enum{
 }
 
 -(void)gotoWebView{
-//    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     WXTMallListWebVC *webViewVC = [[WXTMallListWebVC alloc] init];
-//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:luckyEntity.goods_id], @"goods_id",[NSNumber numberWithInteger:kMerchantID], @"sid", userObj.user, @"phone", [UtilTool newStringWithAddSomeStr:5 withOldStr:userObj.pwd], @"pwd", nil];
-//    id ret = [webViewVC initWithFeedType:WXT_UrlFeed_Type_NewMall_ImgAndText paramDictionary:dic];
-//    NSLog(@"ret = %@",ret);
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:luckyEntity.goods_id], @"goods_id", userObj.wxtID, @"woxin_id", userObj.user, @"phone", nil];
+    id ret = [webViewVC initWithFeedType:WXT_UrlFeed_Type_NewMall_ImgAndText paramDictionary:dic];
+    NSLog(@"ret = %@",ret);
     [self.wxNavigationController pushViewController:webViewVC];
 }
 
@@ -435,13 +435,13 @@ enum{
 
 -(void)didSelectIndex:(NSInteger)index{
     UIImage *image = [UIImage imageNamed:@"Icon-72.png"];
-    if([_model.goodsInfoArr count] > 0){
-//        GoodsInfoEntity *entity = [_model.data objectAtIndex:0];
-//        NSURL *url = [NSURL URLWithString:entity.smallImg];
-//        NSData *data = [NSData dataWithContentsOfURL:url];
-//        if(data){
-//            image = [UIImage imageWithData:data];
-//        }
+    if([_model.data count] > 0){
+        LuckyGoodsInfoEntity *entity = [_model.data objectAtIndex:0];
+        NSURL *url = [NSURL URLWithString:entity.smallImg];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        if(data){
+            image = [UIImage imageWithData:data];
+        }
     }
     if(index == Share_Friends){
         [[WXWeiXinOBJ sharedWeiXinOBJ] sendMode:E_WeiXin_Mode_Friend title:[self sharedGoodsInfoTitle] description:[self sharedGoodsInfoDescription] linkURL:[self sharedGoodsInfoUrlString] thumbImage:image];
@@ -474,10 +474,10 @@ enum{
 
 -(NSString*)sharedGoodsInfoTitle{
     NSString *title = @"";
-//    if([_model.data count] > 0){
-//        GoodsInfoEntity *entity = [_model.data objectAtIndex:0];
-//        title = entity.intro;
-//    }
+    if([_model.data count] > 0){
+        LuckyGoodsInfoEntity *entity = [_model.data objectAtIndex:0];
+        title = entity.intro;
+    }
     return title;
 }
 
@@ -515,8 +515,8 @@ enum{
 
 -(void)payGoods{
     NSMutableArray *goodsArr = [[NSMutableArray alloc] init];
-    GoodsInfoEntity *entity = [self priceForStock:luckyEntity.stock_id];
-//    entity.buyNumber = 1;
+    LuckyGoodsInfoEntity *entity = [self priceForStock:luckyEntity.stock_id];
+    entity.buyNumber = 1;
     [goodsArr addObject:entity];
     LuckyGoodsMakeOrderVC *vc = [[LuckyGoodsMakeOrderVC alloc] init];
     vc.goodsList = goodsArr;
@@ -525,13 +525,13 @@ enum{
     [self.wxNavigationController pushViewController:vc];
 }
 
--(GoodsInfoEntity*)priceForStock:(NSInteger)stockID{
-    GoodsInfoEntity *ent = nil;
-//    for(GoodsInfoEntity *entity in _model.data){
-//        if(entity.stockID == stockID){
-//            ent = entity;
-//        }
-//    }
+-(LuckyGoodsInfoEntity*)priceForStock:(NSInteger)stockID{
+    LuckyGoodsInfoEntity *ent = nil;
+    for(LuckyGoodsInfoEntity *entity in _model.data){
+        if(entity.stockID == stockID){
+            ent = entity;
+        }
+    }
     return ent;
 }
 

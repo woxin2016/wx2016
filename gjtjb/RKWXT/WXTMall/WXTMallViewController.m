@@ -414,6 +414,12 @@
         return;
     }
     switch (index) {
+        case T_BaseFunction_Shark:
+        {
+            LuckyShakeVC *luckyVC = [[LuckyShakeVC alloc] init];
+            [self.wxNavigationController pushViewController:luckyVC];
+        }
+            break;
         case T_BaseFunction_Invate:
         {
             ShareBrowserView *pictureBrowse = [[ShareBrowserView alloc] init];
@@ -447,6 +453,7 @@
             [self.wxNavigationController pushViewController:vc];
         }
             break;
+            
         default:
             [UtilTool showTipView:@"努力开发中..."];
             break;

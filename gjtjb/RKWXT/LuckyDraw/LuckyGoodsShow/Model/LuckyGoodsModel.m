@@ -44,22 +44,23 @@
 }
 
 -(void)loadLuckyGoodsListWith:(NSInteger)startItem with:(NSInteger)length{
-//    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-//    _startItem = startItem;
-//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.sellerID, @"seller_user_id", userObj.wxtID, @"woxin_id", userObj.user, @"phone", [NSNumber numberWithInteger:kMerchantID], @"sid", [NSNumber numberWithInteger:startItem], @"start_item", [NSNumber numberWithInteger:length], @"length", nil];
-//    __block LuckyGoodsModel *blockSelf = self;
-//    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LuckyGoodsList httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
-//        if(retData.code != 0){
-//            if(_delegate && [_delegate respondsToSelector:@selector(loadLuckyGoodsFailed:)]){
-//                [_delegate loadLuckyGoodsFailed:retData.errorDesc];
-//            }
-//        }else{
-//            [blockSelf parseLuckyGoodsWith:[retData.data objectForKey:@"data"]];
-//            if(_delegate && [_delegate respondsToSelector:@selector(loadLuckyGoodsSuceeed)]){
-//                [_delegate loadLuckyGoodsSuceeed];
-//            }
-//        }
-//    }];
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    _startItem = startItem;
+    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.sellerID, @"sid", userObj.wxtID, @"woxin_id", userObj.user, @"phone", [NSNumber numberWithInteger:startItem], @"start_item", [NSNumber numberWithInteger:length], @"length", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.sellerID, @"sid", userObj.wxtID, @"woxin_id", userObj.user, @"phone", [NSNumber numberWithInteger:startItem], @"start_item", [NSNumber numberWithInteger:length], @"length", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
+    __block LuckyGoodsModel *blockSelf = self;
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LuckyGoodsList httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
+        if(retData.code != 0){
+            if(_delegate && [_delegate respondsToSelector:@selector(loadLuckyGoodsFailed:)]){
+                [_delegate loadLuckyGoodsFailed:retData.errorDesc];
+            }
+        }else{
+            [blockSelf parseLuckyGoodsWith:[retData.data objectForKey:@"data"]];
+            if(_delegate && [_delegate respondsToSelector:@selector(loadLuckyGoodsSuceeed)]){
+                [_delegate loadLuckyGoodsSuceeed];
+            }
+        }
+    }];
 }
 
 @end

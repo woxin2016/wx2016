@@ -15,6 +15,7 @@
 #import "UserHeaderModel.h"
 #import "WXRemotionImgBtn.h"
 #import "NewUserCutVC.h"
+#import "LuckyGoodsOrderList.h"
 
 #define UserBgImageViewHeight (126)
 #define Size self.view.bounds.size
@@ -462,6 +463,14 @@
                 WXHomeOrderListVC *homeOrderListVC = [[WXHomeOrderListVC alloc] init];
                 homeOrderListVC.selectedNum = 0;
                 [self.wxNavigationController pushViewController:homeOrderListVC];
+            }
+        }
+            break;
+        case PersonalInfo_SharkOrder:
+        {
+            if(row == Shark_OrderList){
+                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
+                [self.wxNavigationController pushViewController:orderListVC];
             }
         }
             break;

@@ -12,6 +12,7 @@
 #import "LuckyGoodsOrderInfoVC.h"
 #import "AliPayControl.h"
 #import "LuckyOrderEntity.h"
+#import "MJRefresh.h"
 
 #define Size self.bounds.size
 #define EveryTimeLoadDataNumber 5
@@ -20,8 +21,9 @@
     UITableView *_tableView;
     NSArray *orderListArr;
     
-    NSInteger orderlistCount;
     NSInteger orderID;
+    
+    BOOL isRefresh;
 }
 @end
 
@@ -29,11 +31,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self addOBS1];
-    if(_tableView){
-        orderListArr = [LuckyOrderListModel shareLuckyOrderList].luckyOrderListArr;
-        [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    }
+    [self addOBS];
+    [self setupRefresh];
 }
 
 - (void)viewDidLoad {
@@ -47,21 +46,31 @@
     [_tableView setDelegate:self];
     [self addSubview:_tableView];
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+}
+
+//集成刷新控件
+-(void)setupRefresh{
+    //1.下拉刷新(进入刷新状态会调用self的headerRefreshing)
+    [_tableView addHeaderWithTarget:self action:@selector(headerRefreshing)];
+    [_tableView headerBeginRefreshing];
     
-    [self addOBS];
-    [[LuckyOrderListModel shareLuckyOrderList] setType:LuckyOrder_Type_Normal];
-    [[LuckyOrderListModel shareLuckyOrderList] loadLuckyOrderListWithStrat:0 withLength:EveryTimeLoadDataNumber];
-    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+    
+    //设置文字
+    _tableView.headerPullToRefreshText = @"下拉刷新";
+    _tableView.headerReleaseToRefreshText = @"松开刷新";
+    _tableView.headerRefreshingText = @"刷新中";
+    
+    _tableView.footerPullToRefreshText = @"上拉加载";
+    _tableView.footerReleaseToRefreshText = @"松开加载";
+    _tableView.footerRefreshingText = @"加载中";
 }
 
 -(void)addOBS{
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(loadLuckyOrderListSucceed) name:D_Notification_Name_LuckyOrderList_LoadSucceed object:nil];
     [notificationCenter addObserver:self selector:@selector(loadLuckyOrderListFailed:) name:D_Notification_Name_LuckyOrderList_LoadFailed object:nil];
-}
-
--(void)addOBS1{
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(paySucceed) name:D_Notification_Name_AliPaySucceed object:nil];
 }
 
@@ -133,15 +142,38 @@
 }
 
 #pragma mark luckyModelDelegate
+-(void)headerRefreshing{
+    isRefresh = YES;
+    if([orderListArr count] == 0){
+        [[LuckyOrderListModel shareLuckyOrderList] loadLuckyOrderListWithStrat:0 withLength:EveryTimeLoadDataNumber];
+    }else{
+        [[LuckyOrderListModel shareLuckyOrderList] loadLuckyOrderListWithStrat:0 withLength:[orderListArr count]];
+    }
+}
+
+-(void)footerRefreshing{
+    isRefresh = NO;
+    [[LuckyOrderListModel shareLuckyOrderList] loadLuckyOrderListWithStrat:[orderListArr count] withLength:EveryTimeLoadDataNumber];
+}
+
 -(void)loadLuckyOrderListSucceed{
-    [self unShowWaitView];
+    if(isRefresh){
+        [_tableView headerEndRefreshing];
+    }else{
+        [_tableView footerEndRefreshing];
+    }
+    
     orderListArr = [LuckyOrderListModel shareLuckyOrderList].luckyOrderListArr;
-    orderlistCount = [orderListArr count];
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void)loadLuckyOrderListFailed:(NSNotification*)notification{
-    [self unShowWaitView];
+    if(isRefresh){
+        [_tableView headerEndRefreshing];
+    }else{
+        [_tableView footerEndRefreshing];
+    }
+    
     NSString *errorMsg = notification.object;
     if(!errorMsg){
         errorMsg = @"获取订单列表失败";
@@ -173,7 +205,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self removeOBS];
-    [self addOBS1];
 }
 
 @end

@@ -218,7 +218,6 @@
 		1236673E1C44AA04000FAF70 /* LuckyGoodsMakeOrderMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666ED1C44AA04000FAF70 /* LuckyGoodsMakeOrderMoneyCell.m */; };
 		1236673F1C44AA04000FAF70 /* LuckyMakeOrderCompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666EF1C44AA04000FAF70 /* LuckyMakeOrderCompanyCell.m */; };
 		123667401C44AA04000FAF70 /* LuckyGoodsOrderInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666F21C44AA04000FAF70 /* LuckyGoodsOrderInfoVC.m */; };
-		123667411C44AA04000FAF70 /* LuckyGoodsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666F51C44AA04000FAF70 /* LuckyGoodsInfoModel.m */; };
 		123667421C44AA04000FAF70 /* LuckyOrderCompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666F81C44AA04000FAF70 /* LuckyOrderCompanyCell.m */; };
 		123667431C44AA04000FAF70 /* LuckyOrderContactSellerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666FA1C44AA04000FAF70 /* LuckyOrderContactSellerCell.m */; };
 		123667441C44AA04000FAF70 /* LuckyOrderGoodsInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 123666FC1C44AA04000FAF70 /* LuckyOrderGoodsInfoCell.m */; };
@@ -359,6 +358,9 @@
 		124607D51C4E2DC1001C703D /* ClassifyDownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 124607CF1C4E2DC1001C703D /* ClassifyDownCell.m */; };
 		124607D61C4E2DC1001C703D /* ClassifyRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 124607D11C4E2DC1001C703D /* ClassifyRightCell.m */; };
 		124607D71C4E2DC1001C703D /* ClassifyRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 124607D41C4E2DC1001C703D /* ClassifyRightView.m */; };
+		1249F1111C8D1BD900A318AC /* LuckyGoodsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1249F1101C8D1BD900A318AC /* LuckyGoodsInfoModel.m */; };
+		1249F1171C8D22E000A318AC /* LuckyGoodsInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1249F1161C8D22E000A318AC /* LuckyGoodsInfoEntity.m */; };
+		1249F11A1C8D23F600A318AC /* LuckyGoodsOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1249F1191C8D23F600A318AC /* LuckyGoodsOrderInfoModel.m */; };
 		124C10611C4CB45600740561 /* HomeLimitBuyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 124C10601C4CB45600740561 /* HomeLimitBuyCell.m */; };
 		124C10631C4CD69B00740561 /* SharedImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124C10621C4CD69B00740561 /* SharedImg@2x.png */; };
 		125A76AD1B5673E100959AD8 /* JPushMessageInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 125A76AC1B5673E100959AD8 /* JPushMessageInfoVC.m */; };
@@ -1366,8 +1368,6 @@
 		123666EF1C44AA04000FAF70 /* LuckyMakeOrderCompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyMakeOrderCompanyCell.m; sourceTree = "<group>"; };
 		123666F11C44AA04000FAF70 /* LuckyGoodsOrderInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyGoodsOrderInfoVC.h; sourceTree = "<group>"; };
 		123666F21C44AA04000FAF70 /* LuckyGoodsOrderInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyGoodsOrderInfoVC.m; sourceTree = "<group>"; };
-		123666F41C44AA04000FAF70 /* LuckyGoodsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyGoodsInfoModel.h; sourceTree = "<group>"; };
-		123666F51C44AA04000FAF70 /* LuckyGoodsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyGoodsInfoModel.m; sourceTree = "<group>"; };
 		123666F71C44AA04000FAF70 /* LuckyOrderCompanyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyOrderCompanyCell.h; sourceTree = "<group>"; };
 		123666F81C44AA04000FAF70 /* LuckyOrderCompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyOrderCompanyCell.m; sourceTree = "<group>"; };
 		123666F91C44AA04000FAF70 /* LuckyOrderContactSellerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyOrderContactSellerCell.h; sourceTree = "<group>"; };
@@ -1551,6 +1551,12 @@
 		124607D21C4E2DC1001C703D /* ClassifyRightDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyRightDef.h; sourceTree = "<group>"; };
 		124607D31C4E2DC1001C703D /* ClassifyRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyRightView.h; sourceTree = "<group>"; };
 		124607D41C4E2DC1001C703D /* ClassifyRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyRightView.m; sourceTree = "<group>"; };
+		1249F10F1C8D1BD900A318AC /* LuckyGoodsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyGoodsInfoModel.h; sourceTree = "<group>"; };
+		1249F1101C8D1BD900A318AC /* LuckyGoodsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyGoodsInfoModel.m; sourceTree = "<group>"; };
+		1249F1151C8D22E000A318AC /* LuckyGoodsInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyGoodsInfoEntity.h; sourceTree = "<group>"; };
+		1249F1161C8D22E000A318AC /* LuckyGoodsInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyGoodsInfoEntity.m; sourceTree = "<group>"; };
+		1249F1181C8D23F600A318AC /* LuckyGoodsOrderInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyGoodsOrderInfoModel.h; sourceTree = "<group>"; };
+		1249F1191C8D23F600A318AC /* LuckyGoodsOrderInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyGoodsOrderInfoModel.m; sourceTree = "<group>"; };
 		124C105F1C4CB45600740561 /* HomeLimitBuyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLimitBuyCell.h; sourceTree = "<group>"; };
 		124C10601C4CB45600740561 /* HomeLimitBuyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLimitBuyCell.m; sourceTree = "<group>"; };
 		124C10621C4CD69B00740561 /* SharedImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SharedImg@2x.png"; sourceTree = "<group>"; };
@@ -3754,6 +3760,7 @@
 			children = (
 				123666DA1C44AA04000FAF70 /* LuckyGoodsInfoVC.h */,
 				123666DB1C44AA04000FAF70 /* LuckyGoodsInfoVC.m */,
+				1249F10E1C8D1BC600A318AC /* Model */,
 				123666DC1C44AA04000FAF70 /* view */,
 			);
 			path = LuckyGoodsInfo;
@@ -3823,8 +3830,8 @@
 		123666F31C44AA04000FAF70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				123666F41C44AA04000FAF70 /* LuckyGoodsInfoModel.h */,
-				123666F51C44AA04000FAF70 /* LuckyGoodsInfoModel.m */,
+				1249F1181C8D23F600A318AC /* LuckyGoodsOrderInfoModel.h */,
+				1249F1191C8D23F600A318AC /* LuckyGoodsOrderInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4245,6 +4252,17 @@
 				124607D41C4E2DC1001C703D /* ClassifyRightView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1249F10E1C8D1BC600A318AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1249F10F1C8D1BD900A318AC /* LuckyGoodsInfoModel.h */,
+				1249F1101C8D1BD900A318AC /* LuckyGoodsInfoModel.m */,
+				1249F1151C8D22E000A318AC /* LuckyGoodsInfoEntity.h */,
+				1249F1161C8D22E000A318AC /* LuckyGoodsInfoEntity.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1261F0101AE6591400693710 /* CallModel */ = {
@@ -7034,6 +7052,7 @@
 				7758432D1AB95A300039B129 /* WXUISearchDisplayController.m in Sources */,
 				DDB58F491AD3C6A2006248E9 /* ContactBaseEntity.m in Sources */,
 				122AB8881C3E6CA600AC9DF5 /* NLSubTableViewController.m in Sources */,
+				1249F1111C8D1BD900A318AC /* LuckyGoodsInfoModel.m in Sources */,
 				126CA40F1AB2DB1200E08A0B /* FetchPwdModel.m in Sources */,
 				12CE120F1C50B0A400FF85FA /* WaitReceiveOrderHandleCell.m in Sources */,
 				12BC72571C78531700FC6A1C /* MyClientEntity.m in Sources */,
@@ -7066,6 +7085,7 @@
 				775843C11AB971CF0039B129 /* UIImage+Render.m in Sources */,
 				122D64241C3F99C80086AAB8 /* MakeOrderAllGoodsMoneyCell.m in Sources */,
 				775842DC1AB95A300039B129 /* UIImage+Extend.m in Sources */,
+				1249F11A1C8D23F600A318AC /* LuckyGoodsOrderInfoModel.m in Sources */,
 				1243CCBC1AE7D89A003E0943 /* YRSideViewController.m in Sources */,
 				123667481C44AA04000FAF70 /* LuckyOrderUserInfoCell.m in Sources */,
 				122858451C4F771C0089A369 /* DealOrderModel.m in Sources */,
@@ -7318,7 +7338,6 @@
 				128083DA1B62147E00260B9F /* ShareBrowserView.m in Sources */,
 				775C58D01ABA7B75005B6B40 /* WXContacterEntity+Detail.m in Sources */,
 				12BC72741C78531700FC6A1C /* WithdrawalsRecordEntity.m in Sources */,
-				123667411C44AA04000FAF70 /* LuckyGoodsInfoModel.m in Sources */,
 				12CE12011C50AF2600FF85FA /* WaitSendOrderHandleCell.m in Sources */,
 				122841F41C48D37200D76A6B /* HomePageTopEntity.m in Sources */,
 				122D63E71C3F95F30086AAB8 /* NewUserAddressPhoneCell.m in Sources */,
@@ -7448,6 +7467,7 @@
 				122AB86F1C3E6B4200AC9DF5 /* GoodsSellerCell.m in Sources */,
 				7758431E1AB95A300039B129 /* WXUIActivityIndicatorView.m in Sources */,
 				128221C51B184C3B004613BB /* ASIDataDecompressor.m in Sources */,
+				1249F1171C8D22E000A318AC /* LuckyGoodsInfoEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

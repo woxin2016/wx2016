@@ -41,12 +41,6 @@
         NSInteger stockID = [[dic objectForKey:@"goods_stock_id"] integerValue];
         [self setStock_id:stockID];
         
-        NSInteger shopID = [[dic objectForKey:@"shop_id"] integerValue];
-        [self setShop_id:shopID];
-        
-        NSInteger lott = [[dic objectForKey:@"lottery_id"] integerValue];
-        [self setLottery_id:lott];
-        
         NSString *stockName = [dic objectForKey:@"goods_stock_name"];
         [self setStockName:stockName];
     }

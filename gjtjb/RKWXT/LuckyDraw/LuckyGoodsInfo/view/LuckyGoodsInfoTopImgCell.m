@@ -24,7 +24,7 @@
 -(id)initWithLuckyReuseIdentifier:(NSString *)reuseIdentifier imageArray:(NSArray *)imageArray{
     if(self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]){
         CGRect rect = [self bounds];
-//        rect.size.height = T_GoodsInfoTopImgHeight;
+        rect.size.height = self.bounds.size.width;
         _browser = [[CSTScrollBrowser alloc] initWithFrame:rect];
         [_browser setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight];
         [_browser setScrollDelegate:self];
