@@ -7690,7 +7690,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "100f6ccb-8dc5-465c-a637-f9c6adbc4610";
+				PROVISIONING_PROFILE = "095dbf56-dc2a-4291-83d9-c350d206f1e2";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
