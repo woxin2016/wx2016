@@ -40,9 +40,40 @@
     }
 }
 
+/*
+ 接口名称：获取提现账号
+ 接口地址：https://oldyun.67call.com/wx10api/V1/withdraw_account.php
+ 请求方式：POST
+ 输入参数：
+ pid:平台类型(android,ios,web),
+ ver:版本号,
+ ts:时间戳,
+ sid : 商家ID
+ woxin_id : 我信ID
+ phone:登录的手机号
+ sign: 签名
+ */
+
 -(void)searchUserAliPayAccount{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", nil];
+    
+    NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
+    baseDic[@"pid"]= @"ios";
+    baseDic[@"ver"]= [UtilTool currentVersion];
+    baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    baseDic[@"woxin_id"]= userObj.wxtID;
+    baseDic[@"phone"]= userObj.user;
+    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"pid"]= @"ios";
+    dic[@"ver"]= [UtilTool currentVersion];
+    dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    dic[@"woxin_id"]= userObj.wxtID;
+    dic[@"phone"]= userObj.user;
+    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
+    
     __block SearchUserAliAccountModel *blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LoadUserAliAccount httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if(retData.code != 0){

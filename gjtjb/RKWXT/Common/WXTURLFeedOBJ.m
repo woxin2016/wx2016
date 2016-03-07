@@ -188,7 +188,7 @@
             url = @"/divide_single_user.php";
             break;
         case WXT_UrlFeed_Type_New_LoadUserAliAccount:
-            url = @"";
+            url = @"/withdraw_account.php";
             break;
         case WXT_UrlFeed_Type_New_LoadMyClientPerson:
             url = @"/divide_userlist.php";
@@ -203,13 +203,13 @@
             url = @"/divide_all_source.php";
             break;
         case WXT_UrlFeed_Type_New_ApplyAliMoney:
-            url = @"";
+            url = @"/user_withdraw.php";
             break;
         case WXT_UrlFeed_Type_New_SubmitUserAliAcount:
-            url = @"";
+            url = @"/set_withdraw_account.php";
             break;
         case WXT_UrlFeed_Type_New_LoadAliRecordList:
-            url = @"";
+            url = @"/user_withdraw_list.php";
             break;
         case WXT_UrlFeed_Type_New_SearchGoodsOrShop:
             url = @"/search.php";

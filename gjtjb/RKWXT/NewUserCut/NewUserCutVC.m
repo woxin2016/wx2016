@@ -92,16 +92,16 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
     [self addSubview:_tableView];
     [_tableView setTableHeaderView:[self tableviewForHeadView]];
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-//    [self createNavRightBtn];
+    [self createNavRightBtn];
     
     _model = [[MyCutRefereeModel alloc] init];
     [_model setDelegate:self];
     [_model loadMyCutRefereeInfo];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     
-//    aliModel = [[SearchUserAliAccountModel alloc] init];
-//    [aliModel setDelegate:self];
-//    [aliModel searchUserAliPayAccount];
+    aliModel = [[SearchUserAliAccountModel alloc] init];
+    [aliModel setDelegate:self];
+    [aliModel searchUserAliPayAccount];
 }
 
 -(void)createNavRightBtn{

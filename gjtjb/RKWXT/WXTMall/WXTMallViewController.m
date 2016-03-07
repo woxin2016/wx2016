@@ -448,7 +448,7 @@
         case T_BaseFunction_Side:
         {
             FindCommonVC *vc = [[FindCommonVC alloc] init];
-            vc.webURl = @"http://oldyun.67call.com/wx_union/index.php/Public/alliance_merchant";
+            vc.webURl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
             vc.name = @"商家联盟";
             [self.wxNavigationController pushViewController:vc];
         }
