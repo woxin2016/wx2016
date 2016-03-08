@@ -17,13 +17,14 @@
 #define GoodsOtherHeaderViewHeight (36)
 #define LMGoodsBaseInfoCellHeight (33)
 #define GoodsSellerInfoCellHeight (53)
-
+#define T_GoodsInfoOldBDCellHeight (44)
 enum{
     GoodsInfo_Section_TopImg = 0,
     GoodsInfo_Section_GoodsDesc,
     GoodsInfo_Section_GoodsInfo,
-    GoodsInfo_Section_SellerInfo,
-    GoodsInfo_Section_OtherShop,
+    GoodsInfo_Section_GoodsBaseData,
+//    GoodsInfo_Section_SellerInfo,
+//    GoodsInfo_Section_OtherShop,
 //    GoodsInfo_Section_Evaluate,
     
     GoodsInfo_Section_Invalid,
@@ -35,6 +36,8 @@ enum{
 #import "GoodsSellerCell.h"
 #import "GoodsOtherSellerCell.h"
 #import "GoodsEvaluateCell.h"
+#import "NewGoodsInfoBDCell.h"
+#import "NewGoodsInfoDownCell.h"
 
 #import "GoodsStockView.h"
 #import "NewImageZoomView.h"
@@ -48,9 +51,12 @@ enum{
 #import "GoodsInfoModel.h"
 #import "GoodsInfoEntity.h"
 #import "ShoppingCartModel.h"
+#import "GoodsLineTool.h"
 
 #import "MakeOrderVC.h"
 #import "ShoppingCartVC.h"
+
+#import "WXTMallListWebVC.h"
 
 enum{
     Share_Qq,

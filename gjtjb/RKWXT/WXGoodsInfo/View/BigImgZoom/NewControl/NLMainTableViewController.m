@@ -51,7 +51,7 @@
     [self addRefreshView];
     [self addSubPage];
     
-    self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 100.f);
+    self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 150.f);
 }
 
 - (void)addRefreshView {
