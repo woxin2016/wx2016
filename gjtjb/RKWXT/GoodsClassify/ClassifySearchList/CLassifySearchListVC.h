@@ -8,7 +8,12 @@
 
 #import "WXUIViewController.h"
 
+@protocol CLassifySearchListVCDelelgae <NSObject>
+- (void)searchListVCWithGoodsName:(NSString*)goodsName;
+@end
+
 @interface CLassifySearchListVC : WXUIViewController
 @property (nonatomic,strong) NSArray *searchList;
-
+@property (nonatomic,weak)id <CLassifySearchListVCDelelgae> delegate;
+- (void)searchText:(NSString *)text;
 @end

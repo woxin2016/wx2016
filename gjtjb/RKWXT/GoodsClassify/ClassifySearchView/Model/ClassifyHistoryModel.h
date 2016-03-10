@@ -17,4 +17,10 @@
 -(void)deleteClassifyRecordWith:(NSString*)recordName;
 -(void)deleteAll;
 
+@property (nonatomic,strong)NSMutableArray *listNewArr;
++ (instancetype)HistoryModel;
+- (void)loadClassifyHistoryNewList;
+- (void)addSearchText:(NSString *)text;
+- (void)delerteAllText;
+
 @end

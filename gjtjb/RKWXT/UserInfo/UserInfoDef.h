@@ -23,11 +23,11 @@
 #import "WXUserQuestionVC.h"
 #import "WXHomeOrderListVC.h"
 #import "ShoppingCartVC.h"
+#import "ManagerAddressVC.h"
 
 enum{
     PersonalInfo_Order = 0,
     PersonalInfo_SharkOrder,
-    PersonalInfo_Call,
     PersonalInfo_CutAndShare,
     PersonalInfo_System,
     
@@ -41,13 +41,13 @@ enum{
     
     Order_Invalid
 };
-//抽奖
+
+//收获地址
 enum{
-    Shark_OrderList = 0,
-    Shark_Collection,
-    
-    Shark_Invalid,
+   Address_userShopping = 0,
+   Address_Invalid,
 };
+
 //钱包
 enum{
     Money_listAll = 0,

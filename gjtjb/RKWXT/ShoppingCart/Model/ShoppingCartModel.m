@@ -96,7 +96,7 @@
         if (retData.code != 0){
             [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_AddGoodsShoppingCart_Failed object:retData.errorDesc];
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_AddGoodsShoppingCart_Succeed object:retData.errorDesc];
+            [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_AddGoodsShoppingCart_Succeed object:retData.data];
         }
     }];
 }

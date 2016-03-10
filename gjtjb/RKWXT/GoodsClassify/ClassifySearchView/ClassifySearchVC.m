@@ -31,7 +31,7 @@ enum{
     CLassify_Search_Invalid,
 };
 
-@interface ClassifySearchVC()<UIAlertViewDelegate,WXDropListViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CLassifySearchModelDelegate,ClassifyHistoryCellDelegate>{
+@interface ClassifySearchVC()<UIAlertViewDelegate,WXDropListViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CLassifySearchModelDelegate,ClassifyHistoryCellDelegate,CLassifySearchListVCDelelgae>{
     WXUIButton *dropListBtn;
     WXDropListView *_dropListView;
     WXUITextField *_textField;
@@ -75,10 +75,11 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [_tableView setDataSource:self];
     [self addSubview:_tableView];
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-
+    
     [self addOBS];
     _historyModel = [[ClassifyHistoryModel alloc] init];
-    [_historyModel loadClassifyHistoryList];
+    //    [_historyModel loadClassifyHistoryList];
+    [_historyModel loadClassifyHistoryNewList];
     
     _searchModel = [[CLassifySearchModel alloc] init];
     [_searchModel setDelegate:self];
@@ -139,7 +140,7 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     
     _dropListView = [self createDropListViewWith:dropListBtn];
     [_dropListView unshow:NO];
-//    [self.view addSubview:_dropListView];
+    //    [self.view addSubview:_dropListView];
     
     xOffset += dropListBtnWidth+8;
     _textField = [[WXUITextField alloc] initWithFrame:CGRectMake(xOffset, yOffset-3, Size.width-xOffset-rightBtnWidth-2*10, btnHeight)];
@@ -238,14 +239,20 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
         cell = [[ClassifyHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     if(row == 0){
-        [cell setCellInfo:AlertRecordName];
-        [cell setCount:[historyListArr count]];
+        //        [cell setCellInfo:AlertRecordName];
+        //        [cell setCount:[historyListArr count]];
+        NSLog(@"%@",historyListArr);
+        cell.textLabel.text  = [NSString stringWithFormat: @"历史搜索:(%d）条",[historyListArr count]];
+        [cell._deleAllBtn setHidden:NO];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }else{
-        ClassifySqlEntity *entity = historyListArr[row-1];
-        [cell setCellInfo:entity];
+        //        ClassifySqlEntity *entity = historyListArr[row-1];
+        //        [cell setCellInfo:entity];
+        NSString *str  = historyListArr[row - 1];
+        cell.textLabel.text = str;
+        [cell._deleAllBtn setHidden:YES];
     }
-    [cell load];
+    //    [cell load];
     return cell;
 }
 
@@ -271,17 +278,28 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
         SearchResultEntity *entity = [searchListArr objectAtIndex:indexPath.row-1];
         goodsID = entity.goodsID;
         name = entity.goodsName;
+        
+        //去详情页面
+        WXGoodsInfoVC *goodsInfoVC = [[WXGoodsInfoVC alloc] init];
+        [goodsInfoVC setGoodsId:goodsID];
+        [self.wxNavigationController pushViewController:goodsInfoVC];
+        
+        [_historyModel addSearchText:name];
     }else{
-        ClassifySqlEntity *entity = historyListArr[indexPath.row-1];
-        goodsID = [entity.recordID integerValue];
-        name = entity.recordName;
+        //        ClassifySqlEntity *entity = historyListArr[indexPath.row-1];
+        //        goodsID = [entity.recordID integerValue];
+        //        name = entity.recordName;
+        NSString *str = historyListArr[indexPath.row - 1];
+        CLassifySearchListVC *searchListVC = [[CLassifySearchListVC alloc] init];
+        searchListVC.delegate = self;
+        [self.wxNavigationController pushViewController:searchListVC];
+        [searchListVC searchText:str];
+        
     }
-    [self insertHistoryData:name andRecordID:goodsID];  //加入本地数据库
     
-    //去详情页面
-    WXGoodsInfoVC *goodsInfoVC = [[WXGoodsInfoVC alloc] init];
-    [goodsInfoVC setGoodsId:goodsID];
-    [self.wxNavigationController pushViewController:goodsInfoVC];
+    
+    //    [self insertHistoryData:name andRecordID:goodsID];  //加入本地数据库
+    
 }
 
 #pragma mark delete
@@ -320,13 +338,14 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 -(void)changeInputTextfield{
     if(_textField.text.length == 0){
         showHistory = YES;
+        historyListArr = _historyModel.listNewArr;
         [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }else{
         showHistory = NO;
         if ([dropListBtn.titleLabel.text isEqualToString:@"商品"]) {
-             _searchModel.searchType = Search_Type_Goods;
+            _searchModel.searchType = Search_Type_Goods;
         }else{
-           _searchModel.searchType = Search_Type_Shop;  // 这里做了改动
+            _searchModel.searchType = Search_Type_Shop;  // 这里做了改动
         }
         [_searchModel classifySearchWith:_textField.text];
     }
@@ -339,7 +358,8 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 
 #pragma mark sql
 -(void)loadClassifyHistoryListSucceed{
-    historyListArr = _historyModel.listArr;
+    //    historyListArr = _historyModel.listArr;
+    historyListArr = _historyModel.listNewArr;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -356,16 +376,25 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
         searchListVC.searchList = searchListArr;
         [self.wxNavigationController pushViewController:searchListVC];
     }
+    
 }
 
 - (void)clickSearchBtn{
     [self.view endEditing:YES];
-    if([searchListArr count] > 0){
+    
+    if (_textField.text.length != 0) {
+        // 保存搜索记录
+        [_historyModel addSearchText:_textField.text];
+        
         CLassifySearchListVC *searchListVC = [[CLassifySearchListVC alloc] init];
-        searchListVC.searchList = searchListArr;
         [self.wxNavigationController pushViewController:searchListVC];
+        [searchListVC searchText:_textField.text];
     }
+    
+    
 }
+
+
 
 -(void)insertHistoryData:(NSString*)recordName andRecordID:(NSInteger)recordID{
     if(recordName.length == 0){
@@ -388,8 +417,8 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 
 // 删除所有数据   <这里数据库删除表没做到>
 - (void)classifyHistoryDeleAll{
-
-//    [self clearSearchHistoryList];
+    
+    [self clearSearchHistoryList];
 }
 
 #pragma mark clearHistory 暂时不用
@@ -399,16 +428,21 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [_historyModel deleteAll];
-            showHistory = NO;
-            historyListArr = nil;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_tableView reloadData];
-            });
-        });
+    //    if(buttonIndex == 1){
+    //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //            [_historyModel deleteAll];
+    //            showHistory = NO;
+    //            historyListArr = nil;
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [_tableView reloadData];
+    //            });
+    //        });
+    //    }
+    if (buttonIndex == 1) {
+        [_historyModel delerteAllText];
     }
+    historyListArr = _historyModel.listNewArr;
+    [_tableView reloadData];
 }
 
 -(void)backToLastPage{
@@ -419,6 +453,13 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark --- CLassifySearchListVC
+- (void)searchListVCWithGoodsName:(NSString *)goodsName{
+    [_historyModel addSearchText:goodsName];
+    historyListArr = _historyModel.listNewArr;
+    [_tableView reloadData];
 }
 
 @end

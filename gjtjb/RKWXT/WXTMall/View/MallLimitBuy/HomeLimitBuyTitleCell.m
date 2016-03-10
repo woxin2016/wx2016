@@ -28,7 +28,8 @@
         nameLabel.frame = CGRectMake(xOffset, (T_HomePageTextSectionHeight-nameHeight)/2, nameWidth, nameHeight);
         [nameLabel setBackgroundColor:[UIColor clearColor]];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
-        [nameLabel setTextColor:WXColorWithInteger(0x000000)];
+//        [nameLabel setTextColor:WXColorWithInteger(0x000000)];
+        [nameLabel setTextColor:[UIColor redColor]];
         [nameLabel setFont:WXFont(15.0)];
         [nameLabel setText:@"秒杀"];
         [self.contentView addSubview:nameLabel];

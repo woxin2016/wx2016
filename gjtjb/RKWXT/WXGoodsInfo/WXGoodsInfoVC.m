@@ -80,7 +80,7 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(userBuyBtnClicked) name:K_Notification_Name_UserBuyGoods object:nil];
     [notificationCenter addObserver:self selector:@selector(userAddShoppingCartBtnClicked) name:K_Notification_Name_UserAddShoppingCart object:nil];
-    [notificationCenter addObserver:self selector:@selector(addShoppingCartSucceed) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
+    [notificationCenter addObserver:self selector:@selector(addShoppingCartSucceed:) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
     [notificationCenter addObserver:self selector:@selector(addShoppingCartFailed:) name:D_Notification_AddGoodsShoppingCart_Failed object:nil];
 //    [notificationCenter addObserver:self selector:@selector(goodsCollectionSucceed) name:K_Notification_Name_GoodsAddCollectionSucceed object:nil];
 //    [notificationCenter addObserver:self selector:@selector(goodsCancelCollectionSucceed) name:K_Notification_Name_GoodsCancelCollectionSucceed object:nil];
@@ -777,9 +777,11 @@
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
--(void)addShoppingCartSucceed{
+-(void)addShoppingCartSucceed:(NSNotification*)notification{
     [self unShowWaitView];
     [UtilTool showTipView:@"加入购物车成功"];
+    NSString *goodsID = [[notification.object objectForKey:@"data"] objectForKey:@"cart_id"];
+
 }
 
 -(void)addShoppingCartFailed:(NSNotification*)notification{

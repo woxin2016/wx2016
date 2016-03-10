@@ -33,6 +33,9 @@
 #define D_WXUserdefault_Key_iUnreadSysMsg @"D_WXUserdefault_Key_iUnreadSysMsg"//系统信息未读的数目
 #define D_WXUserdefault_Key_iUnfetchRewardPacket @"D_WXUserdefault_Key_iUnfetchRewardPacket"//未领取的红包个数
 
+#pragma mark 购物车数量
+#define D_WXUserdefault_Key_ShoppingCartCount @"D_WXUserdefault_Key_ShoppingCartCount"  //购物车数量
+
 //#pragma mark tocken
 //#define D_WXUserdefault_Key_tToken @"D_WXUserdefault_Key_tTokenTemp"//token
 

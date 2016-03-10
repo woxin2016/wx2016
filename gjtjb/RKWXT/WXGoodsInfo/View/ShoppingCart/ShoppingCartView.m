@@ -54,8 +54,31 @@
         [_unreadLabel setFont:[UIFont systemFontOfSize:9.0]];
         [_unreadLabel setTextColor:[UIColor whiteColor]];
         [_unreadNumberImgV addSubview:_unreadLabel];
+        
+        
     }
     return self;
+}
+
+
+
+- (void)inComeBuyShop{
+    
+}
+
+- (void)setUnreadNumber:(NSInteger)number{
+    [_unreadNumberImgV setHidden:number <= 0];
+    if(number > 0){
+        NSString *text = [NSString stringWithFormat:@"%d",(int)number];
+        
+        CGSize textSize = [text stringSize:_unreadLabel.font];
+        [_unreadLabel setText:text];
+        
+        CGSize unreadViewSize = _unreadNumberImgV.frame.size;
+        CGFloat xOffset = (unreadViewSize.width - textSize.width)*0.5;
+        CGFloat yOffset = (unreadViewSize.height - textSize.height)*0.5;
+        [_unreadLabel setFrame:CGRectMake(xOffset, yOffset, textSize.width, textSize.height)];
+    }
 }
 
 - (void)goShoppingVC{

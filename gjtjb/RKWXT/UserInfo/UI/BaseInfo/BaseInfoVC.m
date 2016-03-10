@@ -98,9 +98,9 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
         case T_Base_UserInfo:
             number = BaseInfo_Invalid;
             break;
-        case T_Base_ManagerInfo:
-            number = Manager_Invalid;
-            break;
+//        case T_Base_ManagerInfo:
+//            number = Manager_Invalid;
+//            break;
         default:
             break;
     }
@@ -109,9 +109,9 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     CGFloat height = 0.0;
-    if(section == T_Base_ManagerInfo){
-        height = 15.0;
-    }
+//    if(section == T_Base_ManagerInfo){
+//        height = 15.0;
+//    }
     return height;
 }
 
@@ -196,8 +196,8 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
                 cell = [self tableViewForCommonCellAtRow:row];
             }
             break;
-        case T_Base_ManagerInfo:
-            cell = [self tableViewForManagerCellAtRow:row];
+//        case T_Base_ManagerInfo:
+//            cell = [self tableViewForManagerCellAtRow:row];
             break;
         default:
             break;
@@ -248,18 +248,18 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
                 break;
         }
     }
-    if(section == T_Base_ManagerInfo){
-        switch (row) {
-            case ManagerAddress:
-            {
-                ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
-                [self.wxNavigationController pushViewController:addressVC];
-            }
-                break;
-            default:
-                break;
-        }
-    }
+//    if(section == T_Base_ManagerInfo){
+//        switch (row) {
+//            case ManagerAddress:
+//            {
+//                ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
+//                [self.wxNavigationController pushViewController:addressVC];
+//            }
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }
 
 #pragma mark update

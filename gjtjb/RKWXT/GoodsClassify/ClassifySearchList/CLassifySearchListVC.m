@@ -10,13 +10,16 @@
 #import "ClassifyResultListCell.h"
 #import "WXGoodsInfoVC.h"
 #import "SearchResultEntity.h"
+#import "CLassifySearchModel.h"
 
 #define Size self.bounds.size
 
-@interface CLassifySearchListVC()<UITableViewDataSource,UITableViewDelegate>{
+@interface CLassifySearchListVC()<UITableViewDataSource,UITableViewDelegate,CLassifySearchModelDelegate>{
     UITableView *_tabelView;
     WXUIButton *rightBtn;
     BOOL showUp;
+    CLassifySearchModel *_searchModel;
+    UIView *didview;
 }
 @end
 
@@ -35,7 +38,12 @@
     [self addSubview:_tabelView];
     [_tabelView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self createRightItemBtn];
+    
+    _searchModel = [[CLassifySearchModel alloc] init];
+    [_searchModel setDelegate:self];
 }
+
+
 
 -(void)createRightItemBtn{
     CGFloat btnWidth = 60;
@@ -92,6 +100,14 @@
     WXGoodsInfoVC *goodsInfoVC = [[WXGoodsInfoVC alloc] init];
     goodsInfoVC.goodsId = entity.goodsID;
     [self.wxNavigationController pushViewController:goodsInfoVC];
+    
+    [self storageGoodsName:entity.goodsName];
+}
+
+- (void)storageGoodsName:(NSString*)goodsName{
+    if (_delegate && [_delegate respondsToSelector:@selector(searchListVCWithGoodsName:)]) {
+        [_delegate searchListVCWithGoodsName:goodsName];
+    }
 }
 
 -(void)changeListViewShow{
@@ -137,6 +153,36 @@
         return NSOrderedSame;
     }];
     return sortArray;
+}
+
+
+- (void)searchText:(NSString *)text{
+    _searchModel.searchType = Search_Type_Goods;
+    [_searchModel classifySearchWith:text];
+    
+    // 遮盖不允许点击返回
+    didview = [[UIView alloc]initWithFrame:self.bounds];
+    [didview setAlpha:0.5];
+    [self.view addSubview:didview];
+    
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    self.dexterity = E_Slide_Dexterity_None;
+    
+    
+}
+
+-(void)classifySearchResultSucceed{
+    [self unShowWaitView];
+    [didview setHidden:YES];
+    
+    self.dexterity = E_Slide_Dexterity_Normal;
+    _searchList = _searchModel.searchResultArr;
+    [_tabelView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)classifySearchResultFailure:(NSString *)retDase{
+    [self unShowWaitView];
+    [didview setHidden:YES];
 }
 
 @end

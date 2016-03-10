@@ -72,4 +72,56 @@
     }
 }
 
+- (NSMutableArray*)listNewArr{
+    if (!_listNewArr) {
+        _listNewArr = [NSMutableArray array];
+    }
+    return _listNewArr;
+}
+
+static ClassifyHistoryModel * model = nil;
++ (instancetype)HistoryModel{
+    if (!model) {
+        model = [[ClassifyHistoryModel alloc]init];
+    }
+    return model;
+}
+
+- (void)loadClassifyHistoryNewList{
+    self.listNewArr = [NSMutableArray arrayWithContentsOfFile:[self setPath]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_Name_ClassifyHistoryLoadSucceed object:nil];
+}
+
+- (void)addSearchText:(NSString *)text{
+    
+    
+    
+    NSArray *array  = [NSArray arrayWithContentsOfFile:[self setPath]];
+    self.listNewArr = [NSMutableArray arrayWithArray:array];
+    NSArray *stArray  =[NSArray arrayWithArray:self.listNewArr];
+    for (NSString *str in stArray) {
+        if ([str isEqualToString:text]) {
+            [self.listNewArr removeObject:str];
+        }
+    }
+    [self.listNewArr addObject:text];
+    //    self.listNewArr = [stArray valueForKeyPath:@"@distinctUnionOfObjects.self"];
+    
+    [self.listNewArr writeToFile:[self setPath] atomically:YES];
+}
+
+
+- (NSString*)setPath{
+    NSString *homePath = NSHomeDirectory();
+    //拼接路径
+    NSString *docPath = [homePath stringByAppendingPathComponent:@"Documents"];
+    NSLog(@"%@",docPath);
+    return [docPath stringByAppendingPathComponent:@"search.text"];
+    
+}
+
+- (void)delerteAllText{
+    [self.listNewArr removeAllObjects];
+    [self.listNewArr writeToFile:[self setPath] atomically:YES];
+}
 @end

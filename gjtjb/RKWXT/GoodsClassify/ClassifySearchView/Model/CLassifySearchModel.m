@@ -58,7 +58,7 @@
 
 -(void)classifySearchWith:(NSString *)searchStr{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-
+    
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
     baseDic[@"pid"]= @"ios";
     baseDic[@"ver"]= [UtilTool currentVersion];
@@ -80,11 +80,14 @@
     dic[@"keyword"]= searchStr;
     dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
     
-    NSLog(@"%@>>>>>>>>!!!!!!!",dic);
+    
     
     __block CLassifySearchModel *blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_SearchGoodsOrShop httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if(retData.code != 0){
+            if (_delegate && [_delegate respondsToSelector:@selector(classifySearchResultFailure:)]) {
+                [_delegate classifySearchResultFailure:retData.errorDesc];
+            }
         }else{
             [blockSelf parseSearchResultWith:[retData.data objectForKey:@"data"]];
             if(_delegate && [_delegate respondsToSelector:@selector(classifySearchResultSucceed)]){
