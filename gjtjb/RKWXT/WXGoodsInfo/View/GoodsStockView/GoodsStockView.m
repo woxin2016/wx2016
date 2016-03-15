@@ -405,6 +405,13 @@
     [stockNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.stockNum]];
     [buyNumLabel setText:[NSString stringWithFormat:@"%ld",(long)buyNumber]];
     [pricelaebl setText:[NSString stringWithFormat:@"￥%.2f",entity.stockPrice]];
+    
+    //外部变量
+    _stockID = entity.stockID;
+    _stockName = entity.stockName;
+    _buyNum = buyNumber;
+    _stockPrice = entity.stockPrice;
+    _redPacket = entity.redPacket;
 }
 
 //立即购买或加入购物车

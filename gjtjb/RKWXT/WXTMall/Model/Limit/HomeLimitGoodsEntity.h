@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface HomeLimitGoodsEntity : NSObject
-@property (nonatomic,assign)NSInteger startTime;
-@property (nonatomic,assign)NSInteger endTime;
+@property (nonatomic,copy)NSString *startTime;
+@property (nonatomic,copy)NSString *endTime;
+@property (nonatomic,assign)NSInteger sckillID;
 @property (nonatomic,strong)NSMutableArray *goodsArray;
 + (instancetype)homeLimitGoodsWithDic:(NSDictionary*)dic;
 @end

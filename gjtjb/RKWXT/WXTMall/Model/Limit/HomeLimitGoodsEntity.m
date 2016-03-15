@@ -12,8 +12,9 @@
 @implementation HomeLimitGoodsEntity
 + (instancetype)homeLimitGoodsWithDic:(NSDictionary *)dic{
     HomeLimitGoodsEntity *limitGoods = [[HomeLimitGoodsEntity alloc]init];
-    limitGoods.startTime = [dic[@"begin_time"] integerValue];
-    limitGoods.endTime = [dic[@"end_time"] integerValue];
+    limitGoods.startTime = dic[@"begin_time"];
+    limitGoods.endTime = dic[@"end_time"];
+    limitGoods.sckillID = [dic[@"seckill_id"] integerValue];
     for (NSDictionary *goods in dic[@"seckill_goods"]) {
         LImitGoodsEntity *goodsEntity = [LImitGoodsEntity limitGoodsEntityWithDict:goods];
         [limitGoods.goodsArray addObject:goodsEntity];

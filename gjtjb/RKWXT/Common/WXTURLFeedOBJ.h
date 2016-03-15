@@ -53,6 +53,7 @@ typedef enum {
     //订单
     WXT_UrlFeed_Type_Home_OrderList,
     WXT_UrlFeed_Type_New_MakeOrder,
+    WXT_UrlFeed_Type_New_MakeLimitOrder,
     WXT_UrlFeed_Type_New_CancelOrder,
     WXT_UrlFeed_Type_New_CompleteOrder,
     WXT_UrlFeed_Type_Home_OrderEvaluate,
@@ -65,6 +66,7 @@ typedef enum {
     WXT_UrlFeed_Type_New_LoadLimitGoods,
     //商品详情
     WXT_UrlFeed_Type_Home_GoodsInfo,
+    WXT_UrlFeed_Type_Home_LimitGoodsInfo,
     WXT_UrlFeed_Type_NewMall_ImgAndText,
     WXT_UrlFeed_Type_New_SearchCarriageMoney,
     //收货地址

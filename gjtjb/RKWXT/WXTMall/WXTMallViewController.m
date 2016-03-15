@@ -9,7 +9,7 @@
 #import "WXTMallViewController.h"
 #import "NewHomePageCommonDef.h"
 
-@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate>{
+@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,ShoppingCartViewDelegate>{
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
@@ -81,31 +81,14 @@
     didView.userInteractionEnabled = YES;
     [self setRightNavigationItem:didView];
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(44, 0, kDefaultNavigationBarButtonSize.width, kDefaultNavigationBarButtonSize.height)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(40, 0, kDefaultNavigationBarButtonSize.width, kDefaultNavigationBarButtonSize.height)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
     [didView addSubview:_unreadView];
     
-    WXUIButton *shopCartBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    shopCartBtn.frame = CGRectMake(30, 10, 44, 44);
-    [shopCartBtn setImage:[UIImage imageNamed:@"Shopping.png"] forState:UIControlStateNormal];
-//    [shopCartBtn setTitle:@"购物车" forState:UIControlStateNormal];
-    [shopCartBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [shopCartBtn.titleLabel setFont:WXFont(10.0)];
-    [shopCartBtn addTarget:self action:@selector(clickShopCartBtn) forControlEvents:UIControlEventTouchUpInside];
-    [didView addSubview:shopCartBtn];
-    
-    CGPoint shopBoundsCenter = CGPointMake(CGRectGetMidX(shopCartBtn.titleLabel.bounds), CGRectGetMidY(shopCartBtn.titleLabel.bounds));
-    CGPoint shopImageViewCenter = CGPointMake(shopBoundsCenter.x, CGRectGetMidY(shopCartBtn.imageView.bounds));
-    CGPoint shopTitleLabelCenter = CGPointMake(shopBoundsCenter.x, CGRectGetHeight(shopCartBtn.bounds)-CGRectGetMidY(shopCartBtn.titleLabel.bounds));
-    CGPoint btnImageViewCenter = shopCartBtn.imageView.center;
-    CGPoint btnTitleLabelCenter = shopCartBtn.titleLabel.center;
-    CGFloat btnEdgeInsetsLeft = shopImageViewCenter.x - btnImageViewCenter.x;
-    CGFloat btnEdgeInsetsRight = -btnEdgeInsetsLeft;
-    shopCartBtn.imageEdgeInsets = UIEdgeInsetsMake(0, btnEdgeInsetsLeft, 40/3, btnEdgeInsetsRight);
-    CGFloat btntitleEdgeInsetsLeft = shopTitleLabelCenter.x - btnTitleLabelCenter.x;
-    CGFloat btntitleEdgeInsetsRight = -btntitleEdgeInsetsLeft;
-    shopCartBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, btntitleEdgeInsetsLeft, 0, btntitleEdgeInsetsRight);
+    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(0, 3, kDefaultNavigationBarButtonSize.width,kDefaultNavigationBarButtonSize.height )];
+    cartView.delegate = self;
+    [didView addSubview:cartView];
 
 }
 
@@ -140,6 +123,9 @@
         case T_HomePage_LimitBuyInfo:
         case T_HomePage_LimitBuyTitle:
             row = 0;
+            if ([_model.limitGoods.data count] > 0) {
+            row = 1;
+            }
             break;
         case T_HomePage_RecomendInfo:
             row = [_model.recommend.data count]/3+([_model.recommend.data count]%3>0?1:0);
@@ -219,7 +205,10 @@
         cell = [[[HomeLimitBuyTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell load];
+    if ([_model.limitGoods.data count ] > 0) {
+        [cell setCellInfo:_model.limitGoods.data[0]];
+        [cell load];
+    }
     return cell;
 }
 
@@ -230,18 +219,13 @@
         cell = [[HomeLimitBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
-    NSMutableArray *rowArray = [NSMutableArray array];
-    NSInteger max = (row+1)*LimitBuyShow;
-    NSInteger count = [_model.surprise.data count];
-    if(max > count){
-        max = count;
+    
+    if ([_model.limitGoods.data count ] > 0) {
+        [cell setCellInfo:_model.limitGoods.data[0]];
+        [cell setDelegate:self];
+        [cell load];
     }
-    for(NSInteger i = row*LimitBuyShow; i < max; i++){
-        [rowArray addObject:[_model.surprise.data objectAtIndex:i]];
-    }
-    [cell setCellInfo:rowArray];
-    [cell setDelegate:self];
-    [cell load];
+   
     return cell;
 }
 
@@ -257,7 +241,7 @@
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     [cell.textLabel setText:@"为我推荐"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
-    [cell.textLabel setTextColor:WXColorWithInteger(0x888888)];
+    [cell.textLabel setTextColor:[UIColor redColor]];
     return cell;
 }
 
@@ -296,7 +280,7 @@
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     [cell.textLabel setText:@"猜你喜欢"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
-    [cell.textLabel setTextColor:WXColorWithInteger(0x888888)];
+    [cell.textLabel setTextColor:[UIColor redColor]];
     return cell;
 }
 
@@ -516,9 +500,26 @@
 }
 
 #pragma mark limitbuy
--(void)clickClassifyBtnAtIndex:(NSInteger)index{
-    GoodsClassifyVC *goodsClassifyVC = [[GoodsClassifyVC alloc] init];
-    [self.wxNavigationController pushViewController:goodsClassifyVC];
+
+-(void)homePageLimitGoodsSucceed{
+    [_tableView reloadData];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_LimitBuyInfo] withRowAnimation:UITableViewRowAnimationFade];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_LimitBuyTitle] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+-(void)homePageLimitGoodsFailed:(NSString*)errorMsg{
+    
+}
+
+-(void)homeLimitBuyCellbtnClicked:(id)sender{
+    HomeLimitGoodsEntity*goods = _model.limitGoods.data[0];
+    LImitGoodsEntity *entity = sender;
+    WXGoodsInfoVC *goodsInfoVC = [[WXGoodsInfoVC alloc] init];
+    goodsInfoVC.goodsId = entity.goodsID;
+    goodsInfoVC.sckillID = goods.sckillID;
+    goodsInfoVC.goodsInfo_type = GoodsInfo_LimitGoods;
+    [self.wxNavigationController pushViewController:goodsInfoVC];
+
 }
 
 #pragma mark recommend
@@ -546,6 +547,11 @@
 -(void)changeCellClicked:(id)entity{
     HomePageSurpEntity *ent = entity;
     [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:ent.goods_id animated:YES];
+}
+
+#pragma mark  shopping cart
+- (void)shoppingCartViewInShoppingVC{
+    [[CoordinateController sharedCoordinateController] toShoppingCartVC:self animated:YES];
 }
 
 #pragma mark  shopping Btn 

@@ -8,11 +8,14 @@
 
 #import "HomeLimitBuyTitleCell.h"
 #import "NewHomePageCommonDef.h"
+#import "HomeLimitGoodsEntity.h"
+#import "LImitGoodsEntity.h"
 
 @interface HomeLimitBuyTitleCell(){
     WXUILabel *hoursLabel;
     WXUILabel *minuteLabel;
     WXUILabel *secondLabel;
+    WXUILabel *textLabel;
 }
 @end
 
@@ -84,9 +87,9 @@
         [self.contentView addSubview:hoursLabel];
         
         xOffset += timeLabelWidth+3;
-        CGFloat labelWidth = 75;
+        CGFloat labelWidth = 80;
         CGFloat labelHeight = 17;
-        WXUILabel *textLabel = [[WXUILabel alloc] init];
+        textLabel = [[WXUILabel alloc] init];
         textLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-labelWidth, (T_HomePageTextSectionHeight-labelHeight)/2, labelWidth, labelHeight);
         [textLabel setBackgroundColor:[UIColor clearColor]];
         [textLabel setText:@"距结束时间:"];
@@ -94,12 +97,60 @@
         [textLabel setTextColor:WXColorWithInteger(0x999999)];
         [textLabel setFont:WXFont(12.0)];
         [self.contentView addSubview:textLabel];
+        
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(OperationTime) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     }
     return self;
 }
 
--(void)load{
-    
+- (void)OperationTime{
+    [self load];
 }
+
+-(void)load{
+    HomeLimitGoodsEntity *goodsEntity = self.cellInfo;
+    NSDateComponents *com = nil;
+    NSString *str = nil;
+    if ([self isStartDate:goodsEntity.startTime]) { // 现在时间 大于 开始时间
+    
+        com = [self conversionStr:goodsEntity.endTime];
+        str = @"距离结束时间:";
+
+    }else{ //  现在时间 小于 开始时间
+        
+        com = [self conversionStr:goodsEntity.startTime];
+        str = @"距离开始时间:";
+    }
+
+    [textLabel setText:str];
+    [secondLabel setText:[NSString stringWithFormat:@"%d",com.second]];
+    [minuteLabel setText:[NSString stringWithFormat:@"%d",com.minute]];
+    [hoursLabel setText:[NSString stringWithFormat:@"%d",com.hour]];
+}
+
+- (NSDateComponents *)conversionStr:(NSString*)str{
+    NSCalendar *len = [NSCalendar currentCalendar];
+    NSCalendarUnit unit = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    return   [len components:unit fromDate:[NSDate date] toDate:[self countdownStr:str] options:0];
+}
+
+- (BOOL)isStartDate:(NSString*)startDate{
+    NSTimeInterval start  = [[self countdownStr:startDate] timeIntervalSince1970];
+    NSTimeInterval nowDate = [[NSDate date] timeIntervalSince1970];
+    
+    if (nowDate > start) {  // 现在时间  大于 开始时间
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (NSDate *)countdownStr:(NSString*)str{
+    NSDate *date =  [NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
+    return date;
+}
+
+
 
 @end

@@ -8,13 +8,13 @@
 
 #import "WXUITableViewCell.h"
 
+
 @protocol HomeLimitBuyCellDelegate;
 @interface HomeLimitBuyCell : WXUITableViewCell
 @property (nonatomic,assign)id<HomeLimitBuyCellDelegate>delegate;
-
 @end
 
 @protocol HomeLimitBuyCellDelegate <NSObject>
 - (void)clickClassifyBtnAtIndex:(NSInteger)index;
-
+-(void)homeLimitBuyCellbtnClicked:(id)sender;
 @end

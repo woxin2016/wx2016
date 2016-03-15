@@ -89,6 +89,7 @@
 
 //添加
 -(void)insertOneGoodsToShoppingCart:(NSInteger)stockID num:(NSInteger)number{
+    
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:userObj.user, @"phone", @"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", [NSNumber numberWithInt:1], @"type", [NSNumber numberWithInteger:stockID], @"goods_stock_id", [NSNumber numberWithInteger:number], @"goods_number", nil];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:userObj.user, @"phone", @"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", [NSNumber numberWithInt:1], @"type", [NSNumber numberWithInteger:stockID], @"goods_stock_id", [NSNumber numberWithInteger:number], @"goods_number", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];

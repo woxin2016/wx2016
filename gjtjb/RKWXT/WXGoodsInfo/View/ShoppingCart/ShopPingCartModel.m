@@ -54,43 +54,6 @@
     
 }
 
-- (void)setUnreadGoodsID:(NSInteger)goodsID structrue:(ShopPingCartModel_Structure)structrue{
-    if (goodsID) {
-        
-        NSString *str = [NSString stringWithFormat:@"%d",goodsID];
-        if (structrue == ShopPingCartModel_Structure_Add) {
-            [self.shoppingCartArray addObject:str];
-            
-            NSArray *array = [NSArray arrayWithArray:self.shoppingCartArray];
-            
-            for (NSString *goods in array) {   // 剔除掉重复的goodsID
-                if ([goods isEqualToString:str]) {
-                    [self.shoppingCartArray removeObject:goods];
-                }
-            }
-            
-            WXUserDefault *userDefault = [WXUserDefault sharedWXUserDefault];
-            [userDefault setInteger:self.shoppingCartArray.count forKey:D_WXUserdefault_Key_ShoppingCartCount];
-        }
-        
-        
-        if (structrue == ShopPingCartModel_Structure_Remove) {
-            
-            NSArray *array = [NSArray arrayWithArray:self.shoppingCartArray];
-            for (NSString *goods in array) {   // 剔除掉重复的goodsID
-                if ([goods isEqualToString:str]) {
-                    [self.shoppingCartArray removeObject:goods];
-                }
-            }
-            
-            WXUserDefault *userDefault = [WXUserDefault sharedWXUserDefault];
-            [userDefault setInteger:self.shoppingCartArray.count forKey:D_WXUserdefault_Key_ShoppingCartCount];
-        }
-
-    }
-        
-}
-
 
 
 

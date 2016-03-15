@@ -171,7 +171,7 @@ enum{
 
 #pragma mark wechat
 -(void)wechatPay{
-    [_model wechatPayWithOrderID:_orderID type:(_orderpay_type==OrderPay_Type_Order?@"N":(_orderpay_type==OrderPay_Type_Lucky?@"P":@""))];
+    [_model wechatPayWithOrderID:_orderID type:(_orderpay_type==OrderPay_Type_Order ? @"N" : (_orderpay_type==OrderPay_Type_Lucky ? @"P" : @""))];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 

@@ -71,14 +71,14 @@
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LoadLimitGoods httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
             [blockSelf setStatus:E_ModelDataStatus_LoadFailed];
-            if (_delegate && [_delegate respondsToSelector:@selector(homePageSurpLoadedFailed:)]){
-                [_delegate homePageSurpLoadedFailed:retData.errorDesc];
+            if (_delegate && [_delegate respondsToSelector:@selector(homePageLimitGoodsFailed:)]){
+                [_delegate homePageLimitGoodsFailed:retData.errorDesc];
             }
         }else{
             [blockSelf setStatus:E_ModelDataStatus_LoadSucceed];
             [blockSelf fillDataWithJsonData:retData.data];
-            if (_delegate && [_delegate respondsToSelector:@selector(homePageSurpLoadedSucceed)]){
-                [_delegate homePageSurpLoadedSucceed];
+            if (_delegate && [_delegate respondsToSelector:@selector(homePageLimitGoodsSucceed)]){
+                [_delegate homePageLimitGoodsSucceed];
             }
         }
     }];
@@ -92,6 +92,10 @@
     [_dataList addObject:limit];
 }
 
-
+- (void)loadCacheDataSucceed{
+    if (_delegate && [_delegate respondsToSelector:@selector(homePageLimitGoodsSucceed)]){
+        [_delegate homePageLimitGoodsSucceed];
+    }
+}
 
 @end

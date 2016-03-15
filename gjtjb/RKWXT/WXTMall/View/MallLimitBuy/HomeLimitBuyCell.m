@@ -9,6 +9,9 @@
 #import "HomeLimitBuyCell.h"
 #import "WXRemotionImgBtn.h"
 #import "NewHomePageCommonDef.h"
+#import "HomeLimitGoodsEntity.h"
+#import "LImitGoodsEntity.h"
+#import "LimitGoodsView.h"
 
 #define kTimerInterval (5.0)
 #define kOneCellShowNumber (5)
@@ -33,39 +36,35 @@
         [_browser setShowsHorizontalScrollIndicator:NO];
         [self.contentView addSubview:_browser];
         
-        _merchantImgViewArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
+
+
 -(void)load{
-    if([_merchantImgViewArray count] > 0){
-        return;
-    }
     
-    classifyArr = self.cellInfo;
+    HomeLimitGoodsEntity *goodsEntity = self.cellInfo;
+    CGRect rect = self.frame;
+    rect.size.height = T_HomePageLimitBuyHeight;
+    self.frame = rect;
     
     CGFloat xOffset = 10;
     CGFloat btnWidth = 90;
-    CGFloat btnHeight = btnWidth;
-    for(NSInteger i = 0; i < [classifyArr count]; i++){
-        if(count > [classifyArr count]-1){
-            break;
-        }
-//        ShopUnionClassifyEntity *entity = [classifyArr objectAtIndex:count];
+    
+    CGFloat width = self.frame.size.width / 3.5;
+    CGFloat Height = self.frame.size.height;
+    for(NSInteger i = 0; i < [goodsEntity.goodsArray count]; i++){
         
-        WXRemotionImgBtn *bgImgBtn = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset, (T_HomePageLimitBuyHeight-btnHeight)/2, btnWidth, btnHeight)];
-        [bgImgBtn setUserInteractionEnabled:YES];
-        [bgImgBtn setDelegate:self];
-        [bgImgBtn setBackgroundColor:WXColorWithInteger(0xffffff)];
-//        [bgImgBtn setTag:entity.industryID];
-        [_browser addSubview:bgImgBtn];
-        [_merchantImgViewArray addObject:_browser];
+        CGFloat X =  xOffset + (width * i);
+        LImitGoodsEntity *entity = goodsEntity.goodsArray[i];
         
-        xOffset += btnWidth+10;
-        count++;
+        LimitGoodsView *view = [[LimitGoodsView alloc]initWithFrame:CGRectMake(X, 0, width, Height)];
+        view.entity = entity;
+        [_browser addSubview:view];
+        
     }
-    [_browser setContentSize:CGSizeMake(xOffset, T_HomePageLimitBuyHeight)];
+    [_browser setContentSize:CGSizeMake((xOffset + width ) * [goodsEntity.goodsArray count], T_HomePageLimitBuyHeight)];
 }
 
 -(void)buttonImageClicked:(id)sender{

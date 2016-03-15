@@ -20,6 +20,7 @@
 #import "LuckySharkEntity.h"
 #import "DownSheet.h"
 #import "WXWeiXinOBJ.h"
+#import "FindCommonVC.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #define size self.bounds.size
@@ -420,10 +421,11 @@ enum{
 -(void)gotoWebView{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     WXTMallListWebVC *webViewVC = [[WXTMallListWebVC alloc] init];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:luckyEntity.goods_id], @"goods_id", userObj.wxtID, @"woxin_id", userObj.user, @"phone", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:luckyEntity.goods_id], @"goods_id",[NSNumber numberWithInteger:kMerchantID], @"sid", userObj.user, @"phone", [UtilTool newStringWithAddSomeStr:5 withOldStr:userObj.pwd], @"pwd", nil];
     id ret = [webViewVC initWithFeedType:WXT_UrlFeed_Type_NewMall_ImgAndText paramDictionary:dic];
     NSLog(@"ret = %@",ret);
     [self.wxNavigationController pushViewController:webViewVC];
+   
 }
 
 //分享

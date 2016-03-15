@@ -497,7 +497,28 @@
 #pragma mark submit
 -(void)submitOrder{
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
-    [_model submitOrderDataWithTotalMoney:[self allGoodsOldMoney] factPay:[self allGoodsTotalMoney] redPac:(userBonus?_bonus:0) carriage:carriageModel.carriageMoney remark:(self.userMessage.length==0?@"无":self.userMessage) goodsInfo:[self makeOrderGoodsInfo]];
+
+    if (self.payType == MakePayType_Limit) {
+        [_model limitSubmitOrderDataWithTotalMoney:[self allGoodsOldMoney] factPay:[self allGoodsTotalMoney] redPac:(userBonus?_bonus:0) carriage:carriageModel.carriageMoney remark:(self.userMessage.length==0?@"无":self.userMessage) goodsInfo:[self makeOrderGoodsInfo] inventory:[self makeLimitGoods] goodsID:[self makeLimitGoodsID]];
+    }else if(self.payType == MakePayType_Normal){
+       [_model submitOrderDataWithTotalMoney:[self allGoodsOldMoney] factPay:[self allGoodsTotalMoney] redPac:(userBonus?_bonus:0) carriage:carriageModel.carriageMoney remark:(self.userMessage.length==0?@"无":self.userMessage) goodsInfo:[self makeOrderGoodsInfo]];
+    }
+}
+
+- (NSString*)makeLimitGoodsID{
+    NSString *stock = nil;
+    for(GoodsInfoEntity *entity in _goodsList){
+        stock = [NSString stringWithFormat:@"%ld",(long)entity.goodsID];
+    }
+    return stock;
+}
+
+- (NSString*)makeLimitGoods{
+    NSString *stock = nil;
+    for(GoodsInfoEntity *entity in _goodsList){
+        stock = [NSString stringWithFormat:@"%ld",(long)entity.stockID];
+    }
+    return stock;
 }
 
 -(NSString*)makeOrderGoodsInfo{

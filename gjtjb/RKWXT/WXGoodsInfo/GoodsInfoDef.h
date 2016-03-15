@@ -43,6 +43,8 @@ enum{
 #import "NewImageZoomView.h"
 #import "WXRemotionImgBtn.h"
 #import "NewGoodsInfoWebViewViewController.h"
+#import "ShoppingCartView.h"
+
 //分享
 #import "WXWeiXinOBJ.h"
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -52,12 +54,14 @@ enum{
 #import "GoodsInfoEntity.h"
 #import "ShoppingCartModel.h"
 #import "GoodsLineTool.h"
-#import "ShopPingCartModel.h"
+#import "NewShopPingCartModel.h"
 
 #import "MakeOrderVC.h"
 #import "ShoppingCartVC.h"
 
 #import "WXTMallListWebVC.h"
+#import "FindCommonVC.h"
+#import "CallBackVC.h"
 
 enum{
     Share_Qq,

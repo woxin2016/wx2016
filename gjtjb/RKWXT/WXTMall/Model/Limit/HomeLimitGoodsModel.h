@@ -14,7 +14,7 @@
 @end
 
 @protocol HomeLimitGoodsDelegate <NSObject>
--(void)homePageSurpLoadedSucceed;
--(void)homePageSurpLoadedFailed:(NSString*)errorMsg;
+-(void)homePageLimitGoodsSucceed;
+-(void)homePageLimitGoodsFailed:(NSString*)errorMsg;
 
 @end
