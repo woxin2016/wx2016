@@ -14,7 +14,7 @@
 
 enum{
     T_Base_UserInfo = 0,
-    T_Base_ManagerInfo,
+//    T_Base_ManagerInfo,
     
     T_Base_Invalid,
 };

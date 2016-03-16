@@ -10,6 +10,12 @@
 
 @protocol GoodsInfoModelDelegate;
 
+typedef enum{
+    GoodsInfoModel_Request_Type_Normal = 0,
+    GoodsInfoModel_Request_Type_LuckyGoods,
+    GoodsInfoModel_Request_Type_LimitGoods
+}GoodsInfoModel_Request_Type;
+
 @interface GoodsInfoModel : NSObject
 @property (nonatomic,assign) id<GoodsInfoModelDelegate>delegate;
 @property (nonatomic,strong) NSArray *goodsInfoArr; //商品详情
@@ -20,10 +26,10 @@
 @property (nonatomic,strong) NSArray *otherShopArr;  //推荐店铺
 
 -(void)loadGoodsInfoData:(NSInteger)goodsID;
+-(void)loadGoodsInfoData:(NSInteger)goodsID  seckillID:(NSInteger)seckillID type:(NSInteger)type;
 @end
 
 @protocol GoodsInfoModelDelegate <NSObject>
 -(void)loadGoodsInfoDataSucceed;
 -(void)loadGoodsInfoDataFailed:(NSString*)errorMsg;
-
 @end

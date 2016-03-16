@@ -89,6 +89,7 @@
 
 //添加
 -(void)insertOneGoodsToShoppingCart:(NSInteger)stockID num:(NSInteger)number{
+    
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:userObj.user, @"phone", @"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", [NSNumber numberWithInt:1], @"type", [NSNumber numberWithInteger:stockID], @"goods_stock_id", [NSNumber numberWithInteger:number], @"goods_number", nil];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:userObj.user, @"phone", @"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", [NSNumber numberWithInt:1], @"type", [NSNumber numberWithInteger:stockID], @"goods_stock_id", [NSNumber numberWithInteger:number], @"goods_number", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
@@ -96,7 +97,7 @@
         if (retData.code != 0){
             [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_AddGoodsShoppingCart_Failed object:retData.errorDesc];
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_AddGoodsShoppingCart_Succeed object:retData.errorDesc];
+            [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_AddGoodsShoppingCart_Succeed object:retData.data];
         }
     }];
 }
@@ -122,7 +123,8 @@
         }else{
             BOOL succeed = [self parseAfterDeleteGoodsInShoppingCartList:cartID];
             if(succeed){
-                [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
+                NSString *goodsID = [NSString stringWithFormat:@"%d",cartID];
+                [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:goodsID];
             }
         }
     }];

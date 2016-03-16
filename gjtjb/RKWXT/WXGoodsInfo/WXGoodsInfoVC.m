@@ -9,19 +9,23 @@
 #import "WXGoodsInfoVC.h"
 #import "GoodsInfoDef.h"
 
-@interface WXGoodsInfoVC ()<UITableViewDataSource,UITableViewDelegate,MerchantImageCellDelegate,GoodsInfoModelDelegate,GoodsInfoDesCellDelegate,CDSideBarControllerDelegate>{
+@interface WXGoodsInfoVC ()<UITableViewDataSource,UITableViewDelegate,MerchantImageCellDelegate,GoodsInfoModelDelegate,GoodsInfoDesCellDelegate,CDSideBarControllerDelegate,UIActionSheetDelegate,ShoppingCartViewDelegate>{
     UITableView *_tableView;
     GoodsInfoModel *_model;
     BOOL userCut;
+    BOOL pocket;
+    NSString *shopPhone;
 //    LMGoods_Collection collection_type;
 //    LMDataCollectionModel *_collectionModel;
     
     CDSideBarController *sideBar;
     WXUIButton *collectionBtn;
+    ShoppingCartView *shoppingCartBtn;
     
     GoodsStockView *goodsView; //库存页面
+    BOOL _isOpen;
 }
-
+@property (nonatomic,strong) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation WXGoodsInfoVC
@@ -34,7 +38,11 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [sideBar insertMenuButtonOnView:self.view atPosition:CGPointMake(self.bounds.size.width-35, TopNavigationViewHeight-35)];
+    [sideBar insertMenuButtonOnView:self.view atPosition:CGPointMake(self.bounds.size.width-35 - 40, TopNavigationViewHeight-35)];
+  
+    shoppingCartBtn = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width-35, TopNavigationViewHeight-35, 25, 25)];
+    shoppingCartBtn.delegate = self;
+    [self.view addSubview:shoppingCartBtn];
     
     collectionBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     collectionBtn.frame = CGRectMake(self.bounds.size.width-35-45, TopNavigationViewHeight-35, 25, 25);
@@ -48,7 +56,7 @@
     if(self){
         _model = [[GoodsInfoModel alloc] init];
         [_model setDelegate:self];
-        
+        _isOpen = NO;
 //        _collectionModel = [[LMDataCollectionModel alloc] init];
     }
     return self;
@@ -64,13 +72,20 @@
     _tableView.frame = CGRectMake(0, TopNavigationViewHeight, Size.width, Size.height-TopNavigationViewHeight);
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
-    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_tableView setBackgroundColor:WXColorWithInteger(0xffffff)];
     [self.scrollView addSubview:_tableView];
-    [self addSubview:[self baseDownView]];
+  
     [self initDropList];
+#warning mark --  调商品详情页面
+    if (self.goodsInfo_type == GoodsInfo_LimitGoods) {
+        [_model loadGoodsInfoData:self.goodsId  seckillID:self.sckillID type:GoodsInfo_LimitGoods];
+        [self addSubview:[self limitBaseDownView]];
+    }else{
+         [_model loadGoodsInfoData:self.goodsId];
+        [self addSubview:[self baseDownView]];
+    }
     
-    [_model loadGoodsInfoData:_goodsId];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -78,7 +93,7 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(userBuyBtnClicked) name:K_Notification_Name_UserBuyGoods object:nil];
     [notificationCenter addObserver:self selector:@selector(userAddShoppingCartBtnClicked) name:K_Notification_Name_UserAddShoppingCart object:nil];
-    [notificationCenter addObserver:self selector:@selector(addShoppingCartSucceed) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
+    [notificationCenter addObserver:self selector:@selector(addShoppingCartSucceed:) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
     [notificationCenter addObserver:self selector:@selector(addShoppingCartFailed:) name:D_Notification_AddGoodsShoppingCart_Failed object:nil];
 //    [notificationCenter addObserver:self selector:@selector(goodsCollectionSucceed) name:K_Notification_Name_GoodsAddCollectionSucceed object:nil];
 //    [notificationCenter addObserver:self selector:@selector(goodsCancelCollectionSucceed) name:K_Notification_Name_GoodsCancelCollectionSucceed object:nil];
@@ -90,47 +105,83 @@
     sideBar.delegate = self;
 }
 
--(WXUIView*)baseDownView{
+- (WXUIView*)limitBaseDownView{
     WXUIView *downView = [[WXUIView alloc] init];
     [downView setBackgroundColor:[UIColor whiteColor]];
-    CGFloat btnWidth = IPHONE_SCREEN_WIDTH/3/2;
-    CGFloat btnHeight = 28;
     
+    CGFloat btnWidth = [UIScreen mainScreen].bounds.size.width /2;
     CGFloat xOffset = 0;
-    WXUIButton *sellerBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    sellerBtn.frame = CGRectMake(xOffset, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [sellerBtn setBackgroundColor:[UIColor clearColor]];
-    [sellerBtn setImage:[UIImage imageNamed:@"GoodsInfoShopImg.png"] forState:UIControlStateNormal];
-    [sellerBtn addTarget:self action:@selector(sellerBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [downView addSubview:sellerBtn];
+    UIButton *phontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    phontBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
+    [phontBtn setBackgroundColor:[UIColor clearColor]];
+    [phontBtn setTag:1];
+    [phontBtn.titleLabel setFont:WXFont(14.0)];
+    [phontBtn setTitle:@"联系卖家" forState:UIControlStateNormal];
+    [phontBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [phontBtn setImage:[UIImage imageNamed:@"storeCart.png"] forState:UIControlStateNormal];
+     phontBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 8);
+    [phontBtn addTarget:self action:@selector(contactSeller) forControlEvents:UIControlEventTouchUpInside];
+    [downView addSubview:phontBtn];
     
-    xOffset += btnWidth;
-    WXUIButton *cartBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    cartBtn.frame = CGRectMake(xOffset, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [cartBtn setBackgroundColor:[UIColor clearColor]];
-    [cartBtn setImage:[UIImage imageNamed:@"GoodsInfoCartImg.png"] forState:UIControlStateNormal];
-    [cartBtn addTarget:self action:@selector(cartBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [downView addSubview:cartBtn];
     
     xOffset += btnWidth;
     WXUIButton *buyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(xOffset, (DownViewHeight-btnHeight)/2, (IPHONE_SCREEN_WIDTH-xOffset)/2, btnHeight);
+    buyBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
     [buyBtn setBackgroundColor:[UIColor clearColor]];
     [buyBtn setTag:1];
     [buyBtn.titleLabel setFont:WXFont(14.0)];
     [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
-    [buyBtn setTitleColor:WXColorWithInteger(AllBaseColor) forState:UIControlStateNormal];
+    [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [buyBtn setBackgroundColor:[UIColor redColor]];
     [downView addSubview:buyBtn];
     
+    downView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
+    
+    return downView;
+}
+
+-(WXUIView*)baseDownView{
+    WXUIView *downView = [[WXUIView alloc] init];
+    [downView setBackgroundColor:[UIColor whiteColor]];
+    
+    CGFloat btnWidth = [UIScreen mainScreen].bounds.size.width / 3;
+    CGFloat xOffset = 0;
+    UIButton *phontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    phontBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
+    [phontBtn setBackgroundColor:[UIColor clearColor]];
+    [phontBtn setTag:1];
+    [phontBtn.titleLabel setFont:WXFont(14.0)];
+    [phontBtn setTitle:@"联系卖家" forState:UIControlStateNormal];
+    [phontBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [phontBtn setImage:[UIImage imageNamed:@"storeCart.png"] forState:UIControlStateNormal];
+     phontBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 8);
+    [phontBtn addTarget:self action:@selector(contactSeller) forControlEvents:UIControlEventTouchUpInside];
+    [downView addSubview:phontBtn];
+    
+    
+    xOffset += btnWidth;
+    WXUIButton *buyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    buyBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
+    [buyBtn setBackgroundColor:[UIColor clearColor]];
+    [buyBtn setTag:1];
+    [buyBtn.titleLabel setFont:WXFont(14.0)];
+    [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
+    [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [buyBtn setBackgroundColor:[UIColor redColor]];
+    [downView addSubview:buyBtn];
+    
+   
     WXUIButton *addBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, (DownViewHeight-btnHeight)/2, (IPHONE_SCREEN_WIDTH-xOffset)/2, btnHeight);
+    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, 0, btnWidth, DownViewHeight);
     [addBtn setTag:2];
     [addBtn.titleLabel setFont:WXFont(14.0)];
     [addBtn setBackgroundColor:[UIColor clearColor]];
     [addBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
-    [addBtn setTitleColor:WXColorWithInteger(AllBaseColor) forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [addBtn setBackgroundColor:[UIColor grayColor]];
     [downView addSubview:addBtn];
     
     downView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
@@ -198,9 +249,22 @@
     switch (section) {
         case GoodsInfo_Section_TopImg:
         case GoodsInfo_Section_GoodsDesc:
-        case GoodsInfo_Section_SellerInfo:
-        case GoodsInfo_Section_OtherShop:
+//        case GoodsInfo_Section_SellerInfo:
+//        case GoodsInfo_Section_OtherShop:
             row = 1;
+            break;
+        case GoodsInfo_Section_GoodsBaseData:
+            if(_isOpen){
+                if(_selectedIndexPath.section == section){
+                    if([_model.attrArr count] > 0){
+                        return [_model.attrArr count]+1;
+                    }else{
+                        return 1;
+                    }
+                }
+            }else{
+                return 1;
+            }
             break;
         case GoodsInfo_Section_GoodsInfo:
             row = [_model.attrArr count];
@@ -226,26 +290,32 @@
             height = GoodsInfoDesCellHeight;
             if([_model.goodsInfoArr count] > 0){
                 GoodsInfoEntity *entity = [_model.goodsInfoArr objectAtIndex:0];
-                if(entity.postage == Goods_Postage_None || userCut){
-                    height += 40;
+                if(entity.postage == Goods_Postage_None || userCut || pocket){
+                    height += 60;
                 }
             }
         }
             break;
         case GoodsInfo_Section_GoodsInfo:
-            height = LMGoodsBaseInfoCellHeight;
+//            height = LMGoodsBaseInfoCellHeight;
+            height = 44;
             break;
-        case GoodsInfo_Section_SellerInfo:
-            height = GoodsSellerInfoCellHeight;
+        case GoodsInfo_Section_GoodsBaseData:
+            if (indexPath.row == 0) {
+                 height = 44;
+            }else{
+                height = [NewGoodsInfoDownCell cellHeightOfInfo:nil];;
+            }
+           
             break;
-        case GoodsInfo_Section_OtherShop:
-            height = GoodsSellerInfoCellHeight;
+//        case GoodsInfo_Section_OtherShop:
+//            height = GoodsSellerInfoCellHeight;
             break;
 //        case GoodsInfo_Section_Evaluate:
 //        {
-////            if([_model.evaluteArr count] > 0){
-////                height = [LMGoodsEvaluteCell cellHeightOfInfo:[_model.evaluteArr objectAtIndex:0]];
-////            }
+//            if([_model.evaluteArr count] > 0){
+//                height = [LMGoodsEvaluteCell cellHeightOfInfo:[_model.evaluteArr objectAtIndex:0]];
+//            }
 //            height = 0;
 //        }
 //            break;
@@ -259,12 +329,13 @@
     CGFloat height = 0;
     switch (section) {
         case GoodsInfo_Section_GoodsInfo:
-            height = GoodsInfoTitleHeaderViewHeight;
+//            height = GoodsInfoTitleHeaderViewHeight;
+            height = 20;
             break;
-        case GoodsInfo_Section_SellerInfo:
-        case GoodsInfo_Section_OtherShop:
+//        case GoodsInfo_Section_SellerInfo:
+//        case GoodsInfo_Section_OtherShop:
 //        case GoodsInfo_Section_Evaluate:
-            height = GoodsOtherHeaderViewHeight;
+//            height = GoodsOtherHeaderViewHeight;
             break;
         default:
             break;
@@ -273,51 +344,89 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGFloat height = 0;
-    NSString *title = nil;
-    switch (section) {
-        case GoodsInfo_Section_GoodsInfo:
-            height = GoodsInfoTitleHeaderViewHeight;
-            title = @"详细商品参数";
-            break;
-        case GoodsInfo_Section_SellerInfo:
-            title = @"商家信息";
-            height = GoodsOtherHeaderViewHeight;
-            break;
-        case GoodsInfo_Section_OtherShop:
-            title = @"推荐店铺";
-            height = GoodsOtherHeaderViewHeight;
-            break;
+//    CGFloat height = 0;
+//    NSString *title = nil;
+//    switch (section) {
+//        case GoodsInfo_Section_GoodsInfo:
+//            height = GoodsInfoTitleHeaderViewHeight;
+//            title = @"详细商品参数";
+//            break;
+//        case GoodsInfo_Section_SellerInfo:
+//            title = @"商家信息";
+//            height = GoodsOtherHeaderViewHeight;
+//            break;
+//        case GoodsInfo_Section_OtherShop:
+//            title = @"推荐店铺";
+//            height = GoodsOtherHeaderViewHeight;
+//            break;
 //        case GoodsInfo_Section_Evaluate:
 //            title = @"评论";
 //            height = GoodsOtherHeaderViewHeight;
 //            break;
-        default:
-            break;
+//        default:
+//            break;
+//    }
+    
+//    UIView *titleView = [[UIView alloc] init];
+//    [titleView setBackgroundColor:[UIColor whiteColor]];
+//    CGFloat labelHeight = 18;
+//    CGFloat labelWidth = [NSString widthForString:title fontSize:11.0 andHeight:labelHeight]+4;
+//    
+//    CGFloat lineWidth = IPHONE_SCREEN_WIDTH/3;
+//    WXUILabel *lineLabel = [[WXUILabel alloc] init];
+//    lineLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-lineWidth)/2, height/2, lineWidth, 0.5);
+//    [lineLabel setBackgroundColor:WXColorWithInteger(0xdbdbdb)];
+//    [titleView addSubview:lineLabel];
+//    
+//    WXUILabel *textLabel = [[WXUILabel alloc] init];
+//    textLabel.frame = CGRectMake((Size.width-labelWidth)/2, (height-labelHeight)/2, labelWidth, labelHeight);
+//    [textLabel setBackgroundColor:[UIColor whiteColor]];
+//    [textLabel setText:title];
+//    [textLabel setTextAlignment:NSTextAlignmentCenter];
+//    [textLabel setTextColor:WXColorWithInteger(0x000000)];
+//    [textLabel setFont:WXFont(11.0)];
+//    [titleView addSubview:textLabel];
+//    
+//    titleView.frame = CGRectMake(0, 0, Size.width, height);
+//    return titleView;
+    
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,Size.width, 20)];
+    didView.backgroundColor = [UIColor whiteColor];
+    
+    
+    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Size.width, 0.5)];
+    [topView setBackgroundColor:WXColorWithInteger(0x9b9b9b)];
+    topView.alpha = 0.8;
+    [didView addSubview:topView];
+    
+    UIView *downView = [[UIView alloc]initWithFrame:CGRectMake(0,20 - 0.5, Size.width, 0.5)];
+    [downView setBackgroundColor:WXColorWithInteger(0x9b9b9b)];
+    downView.alpha = 0.8;
+    [didView addSubview:downView];
+    
+    return didView;
+}
+-(void)viewDidLayoutSubviews {
+    
+    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_tableView setSeparatorInset:UIEdgeInsetsZero];
+        
+        
+    }
+    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)])  {
+        [_tableView setLayoutMargins:UIEdgeInsetsZero];
     }
     
-    UIView *titleView = [[UIView alloc] init];
-    [titleView setBackgroundColor:[UIColor whiteColor]];
-    CGFloat labelHeight = 18;
-    CGFloat labelWidth = [NSString widthForString:title fontSize:11.0 andHeight:labelHeight]+4;
     
-    CGFloat lineWidth = IPHONE_SCREEN_WIDTH/3;
-    WXUILabel *lineLabel = [[WXUILabel alloc] init];
-    lineLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-lineWidth)/2, height/2, lineWidth, 0.5);
-    [lineLabel setBackgroundColor:WXColorWithInteger(0xdbdbdb)];
-    [titleView addSubview:lineLabel];
-    
-    WXUILabel *textLabel = [[WXUILabel alloc] init];
-    textLabel.frame = CGRectMake((Size.width-labelWidth)/2, (height-labelHeight)/2, labelWidth, labelHeight);
-    [textLabel setBackgroundColor:[UIColor whiteColor]];
-    [textLabel setText:title];
-    [textLabel setTextAlignment:NSTextAlignmentCenter];
-    [textLabel setTextColor:WXColorWithInteger(0x000000)];
-    [textLabel setFont:WXFont(11.0)];
-    [titleView addSubview:textLabel];
-    
-    titleView.frame = CGRectMake(0, 0, Size.width, height);
-    return titleView;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPat{
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
 }
 
 -(void)initWebView{
@@ -366,6 +475,7 @@
     [img updateImageDate:entity.goodsImgArr selectIndex:index];
 }
 
+
 //商品介绍
 -(WXUITableViewCell*)goodsDesCell{
     static NSString *identifier = @"desCell";
@@ -378,6 +488,7 @@
     if([_model.goodsInfoArr count] > 0){
         [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
         [cell setUserCut:userCut];
+        [cell setPocket:pocket];
         cell.stockEntity = [_model.stockArr objectAtIndex:0];
     }
     
@@ -385,20 +496,66 @@
     return cell;
 }
 
-//商品详情
--(WXUITableViewCell*)goodsInfoCell:(NSInteger)row{
-    static NSString *identifier = @"infoCell";
-    GoodsIBasenfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+//图文详情
+- (WXUITableViewCell*)goodsInfoCell:(NSInteger)row{
+        static NSString *identifier = @"webShowCell";
+        WXUITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+        if(!cell){
+            cell = [[WXUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
+        [cell.imageView setImage:[UIImage imageNamed:@"T_GoodsInfo.png"]];
+        [cell.textLabel setText:@"图文详情"];
+        [cell.textLabel setFont:WXFont(13.0)];
+        return cell;
+}
+
+////商品详情
+//-(WXUITableViewCell*)goodsInfoCell:(NSInteger)row{
+//    static NSString *identifier = @"infoCell";
+//    GoodsIBasenfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+//    if(!cell){
+//        cell = [[GoodsIBasenfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    if([_model.attrArr count] > 0){
+//        [cell setCellInfo:[_model.attrArr objectAtIndex:row]];
+//    }
+//    [cell load];
+//    return cell;
+//}
+
+//产品参数
+-(WXUITableViewCell*)tableViewForBaseDataCell:(NSIndexPath*)indexpath{
+    static NSString *identifier = @"baseDateCell";
+    NewGoodsInfoBDCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
-        cell = [[GoodsIBasenfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[NewGoodsInfoBDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell.imageView setImage:[UIImage imageNamed:@"T_GoodsIInfoDetail.png"]];
+    [cell.textLabel setText:@"产品参数"];
+    [cell changeArrowWithDown:_isOpen];
+    [cell.textLabel setFont:WXFont(13.0)];
+    return cell;
+}
+
+-(WXUITableViewCell*)tabelViewForDownCellAtRow:(NSInteger)row{
+    static NSString *identifier = @"textCell";
+    NewGoodsInfoDownCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[NewGoodsInfoDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     if([_model.attrArr count] > 0){
-        [cell setCellInfo:[_model.attrArr objectAtIndex:row]];
+        for (GoodsInfoEntity *entity in _model.attrArr) {
+            [cell setName:entity.attrName];
+            [cell setInfo:entity.attrValue];
+        }
     }
     [cell load];
     return cell;
 }
+
 
 //商家信息
 -(WXUITableViewCell*)goodsSellerCell{
@@ -444,6 +601,23 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(_isOpen && indexPath.section == GoodsInfo_Section_GoodsBaseData){
+        static NSString *identifier = @"goodsInfoBDCell";
+        NewGoodsInfoBDCell *cell = (NewGoodsInfoBDCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if(!cell){
+            cell = [[NewGoodsInfoBDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        if(indexPath.row > 0){
+            cell = (NewGoodsInfoBDCell*)[self tabelViewForDownCellAtRow:indexPath.row];
+        }
+        if(indexPath.row == 0){
+            [cell changeArrowWithDown:_isOpen];
+            [cell.imageView setImage:[UIImage imageNamed:@"T_GoodsIInfoDetail.png"]];
+            [cell.textLabel setText:@"产品参数"];
+            [cell.textLabel setFont:WXFont(13.0)];
+        }
+        return cell;
+    }else{
     WXUITableViewCell *cell = nil;
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
@@ -457,11 +631,13 @@
         case GoodsInfo_Section_GoodsInfo:
             cell = [self goodsInfoCell:row];
             break;
-        case GoodsInfo_Section_SellerInfo:
-            cell = [self goodsSellerCell];
+//        case GoodsInfo_Section_SellerInfo:
+//            cell = [self goodsSellerCell];
+        case GoodsInfo_Section_GoodsBaseData:
+            cell = [self tableViewForBaseDataCell:indexPath];
             break;
-        case GoodsInfo_Section_OtherShop:
-            cell = [self goodsOtherSellerCell:row];
+//        case GoodsInfo_Section_OtherShop:
+//            cell = [self goodsOtherSellerCell:row];
             break;
 //        case GoodsInfo_Section_Evaluate:
 //            cell = [self goodsEvaluteCell:row];
@@ -470,16 +646,53 @@
             break;
     }
     return cell;
+  }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    NSInteger section = indexPath.section;
+    NSInteger section = indexPath.section;
+    if(section == GoodsInfo_Section_GoodsInfo){
+        [self gotoWebView];
+    }
+    if(section == GoodsInfo_Section_GoodsBaseData){
+        if(indexPath.row == 0){
+            if([indexPath isEqual:_selectedIndexPath]){
+                [self didSelectCellRowFirstDo:NO nextDo:NO];
+                _selectedIndexPath = nil;
+            }else{
+                if(!_selectedIndexPath){
+                    [self setSelectedIndexPath:indexPath];
+                    [self didSelectCellRowFirstDo:YES nextDo:NO];
+                }else{
+                    [self didSelectCellRowFirstDo:NO nextDo:YES];
+                }
+            }
+        }
+    }
 //    NSInteger row = indexPath.row;
 //    if(section == GoodsInfo_Section_SellerInfo){
 //        LMGoodsInfoEntity *entity = [_model.sellerArr objectAtIndex:row];
 //        [[CoordinateController sharedCoordinateController] toLMSellerInfopVC:self sellerID:entity.sellerID animated:YES];
 //    }
+}
+
+-(void)gotoWebView{
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    NSString *urlStr = [NSString stringWithFormat:@"%@wx_union/index.php/Public/good_info?phone=%@&woxin_id=%@&goods_id=%@&pid=%@",WXTBaseUrl,userObj.user,userObj.wxtID,[NSString stringWithFormat:@"%d",self.goodsId],@"ios"];
+    FindCommonVC *webViewVC = [[FindCommonVC alloc]init];
+    webViewVC.name = @"商品详情";
+    webViewVC.webURl = urlStr;
+    [self.wxNavigationController pushViewController:webViewVC];
+}
+-(void)didSelectCellRowFirstDo:(BOOL)firstDoInsert nextDo:(BOOL)nextDoInsert{
+    _isOpen = firstDoInsert;
+    NewGoodsInfoBDCell *cell = (NewGoodsInfoBDCell*)[_tableView cellForRowAtIndexPath:_selectedIndexPath];
+    [cell changeArrowWithDown:firstDoInsert];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsBaseData] withRowAnimation:UITableViewRowAnimationFade];
+    if(_isOpen){
+        [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:GoodsInfo_Section_GoodsBaseData] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 #pragma mark dataDelegate
@@ -495,6 +708,9 @@
         for(GoodsInfoEntity *entity in _model.stockArr){
             if(entity.userCut > 0){
                 userCut = YES;
+            }
+            if (entity.redPacket > 0 ) {
+                pocket = YES;
             }
         }
     }
@@ -549,6 +765,61 @@
     [self.view addSubview:goodsView];
 }
 
+- (void)contactSeller{
+    GoodsInfoEntity *entity = nil;
+    if ([_model.sellerArr  count] > 0) {
+        entity = [_model.sellerArr objectAtIndex:0];
+    }
+    
+    shopPhone = entity.sellerPhone;
+    [self showAlertView:shopPhone];
+}
+
+-(void)showAlertView:(NSString*)phone{
+    NSString *title = [NSString stringWithFormat:@"联系商家:%@",phone];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:title
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:[NSString stringWithFormat:@"使用%@",kMerchantName]
+                                  otherButtonTitles:@"系统", nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex > 2){
+        return;
+    }
+    if(shopPhone.length == 0){
+        return;
+    }
+    if(buttonIndex == 1){
+        [UtilTool callBySystemAPI:shopPhone];
+        return;
+    }
+    if(buttonIndex == 0){
+        CallBackVC *backVC = [[CallBackVC alloc] init];
+        backVC.phoneName = kMerchantName;
+        if([backVC callPhone:shopPhone]){
+            [self presentViewController:backVC animated:YES completion:^{
+            }];
+        }
+    }
+}
+
+-(NSString*)phoneWithoutNumber:(NSString*)phone{
+    NSString *new = [[NSString alloc] init];
+    for(NSInteger i = 0; i < phone.length; i++){
+        char c = [phone characterAtIndex:i];
+        if(c >= '0' && c <= '9'){
+            new = [new stringByAppendingString:[NSString stringWithFormat:@"%c",c]];
+        }
+    }
+    return new;
+}
+
+
 //查看更多评价
 -(void)searchMoreEvaluateData{
 //    LMGoodsMoreEvaluateVC *evaluateVC = [[LMGoodsMoreEvaluateVC alloc] init];
@@ -558,7 +829,15 @@
 
 //购买
 -(void)userBuyBtnClicked{
-    [[CoordinateController sharedCoordinateController] toMakeOrderVC:self orderInfo:[self makeOrderInfoArr] animated:YES];
+    MakeOrderVC *makeOrderVC = [[MakeOrderVC alloc] init];
+    makeOrderVC.goodsList = [self makeOrderInfoArr];
+    if (self.goodsInfo_type == GoodsInfo_LimitGoods) {
+        makeOrderVC.payType = MakePayType_Limit;
+    }else if(self.goodsInfo_type == GoodsInfo_Normal){
+        makeOrderVC.payType = MakePayType_Normal;
+    }
+    [self.wxNavigationController pushViewController:makeOrderVC];
+//    [[CoordinateController sharedCoordinateController] toMakeOrderVC:self orderInfo:[self makeOrderInfoArr] animated:YES];
 }
 
 -(NSArray*)makeOrderInfoArr{
@@ -571,7 +850,7 @@
         return nil;
     }
     entity.goodsID = _goodsId;
-    entity.stockID = goodsView.stockID;
+    entity.stockID = goodsView.stockID;   // 库存
     entity.stockName = goodsView.stockName;
     entity.stockPrice = goodsView.stockPrice;
     entity.buyNumber = goodsView.buyNum;      //下单商品个数
@@ -591,7 +870,7 @@
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
--(void)addShoppingCartSucceed{
+-(void)addShoppingCartSucceed:(NSNotification*)notification{
     [self unShowWaitView];
     [UtilTool showTipView:@"加入购物车成功"];
 }
@@ -726,6 +1005,12 @@
     [super viewWillDisappear:animated];
     [_model setDelegate:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark  shoppingCart
+- (void)shoppingCartViewInShoppingVC{
+    ShoppingCartVC *cartVC = [[ShoppingCartVC alloc]init];
+    [self.wxNavigationController pushViewController:cartVC];
 }
 
 @end

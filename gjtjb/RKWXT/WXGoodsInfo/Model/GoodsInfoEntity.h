@@ -33,15 +33,19 @@ typedef enum{
 @property (nonatomic,strong) NSString *goodsShopName;
 @property (nonatomic,assign) Goods_Collection collectionType;
 
+// 商家信息
 @property (nonatomic,strong) NSString *sellerAddress;
 @property (nonatomic,assign) CGFloat sellerLatitude;
 @property (nonatomic,assign) CGFloat sellerLongitude;
 @property (nonatomic,assign) NSInteger sellerID;
 @property (nonatomic,strong) NSString *sellerName;
+@property (nonatomic,strong) NSString *sellerPhone;
 
 //基本参数
 @property (nonatomic,strong) NSString *attrName;
 @property (nonatomic,strong) NSString *attrValue;
+@property (nonatomic,strong)NSArray *atterNameArr;
+@property (nonatomic,strong)NSArray *atterValueArr;
 
 //评价
 @property (nonatomic,assign) NSInteger addTime;
@@ -66,6 +70,10 @@ typedef enum{
 @property (nonatomic,strong) NSString *stockName;
 @property (nonatomic,assign) NSInteger redPacket;
 
+
+//秒杀
+@property (nonatomic,assign)NSInteger  speacialid;
+
 //临时属性
 @property (nonatomic,assign) BOOL selected;
 @property (nonatomic,assign) NSInteger buyNumber;
@@ -77,4 +85,6 @@ typedef enum{
 +(GoodsInfoEntity*)initOtherShopEntity:(NSDictionary*)dic;  //推荐商家
 +(GoodsInfoEntity*)initStockDataEntity:(NSDictionary*)dic; //库存
 
++ (GoodsInfoEntity*)initLimitStockDataEntity:(NSDictionary*)dic; //秒杀库存
++ (GoodsInfoEntity*)initLimitGoodsInfoEntity:(NSDictionary*)dic; //秒杀的商品详情
 @end

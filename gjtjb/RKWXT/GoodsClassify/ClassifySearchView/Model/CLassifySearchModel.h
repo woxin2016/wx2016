@@ -25,5 +25,5 @@ typedef enum{
 
 @protocol CLassifySearchModelDelegate <NSObject>
 -(void)classifySearchResultSucceed;
-
+- (void)classifySearchResultFailure:(NSString*)retDase;
 @end

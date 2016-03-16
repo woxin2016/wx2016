@@ -132,9 +132,10 @@
     [bgImageView setContentMode:UIViewContentModeScaleAspectFill];
     [headView addSubview:bgImageView];
     
-    CGFloat xOffset = 14;
+    
     UIImage *iconImg = [UIImage imageNamed:@"PersonalInfo.png"];
-    CGFloat yOffset = (UserBgImageViewHeight-20-iconImg.size.height)/2+20;
+    CGFloat xOffset = ([UIScreen mainScreen].bounds.size.width - iconImg.size.width) / 2;
+    CGFloat yOffset = (UserBgImageViewHeight-20-iconImg.size.height)/2;
     iconImageView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset, yOffset, iconImg.size.width, iconImg.size.height)];
     [iconImageView setImage:iconImg];
     [iconImageView setUserInteractionEnabled:NO];
@@ -145,48 +146,39 @@
         [iconImageView load];
     }
     
-    yOffset = iconImageView.frame.origin.y+10;
-    xOffset += iconImg.size.width+8;
+//    yOffset = CGRectGetMaxY(iconImageView.frame)+10;
     WXTUserOBJ *userDefault = [WXTUserOBJ sharedUserOBJ];
-    CGFloat phoneLabelWidth = 150;
-    CGFloat phoneLabelHeight = 20;
-    UILabel *phoneLabel = [[UILabel alloc] init];
-    phoneLabel.frame = CGRectMake(xOffset, yOffset, phoneLabelWidth, phoneLabelHeight);
-    [phoneLabel setBackgroundColor:[UIColor clearColor]];
-    [phoneLabel setTextAlignment:NSTextAlignmentLeft];
-    [phoneLabel setFont:WXTFont(15.0)];
-    [phoneLabel setText:userDefault.user];
-    [phoneLabel setTextColor:WXColorWithInteger(0xffffff)];
-    [headView addSubview:phoneLabel];
+//    CGFloat phoneLabelWidth = 150;
+//    CGFloat phoneLabelHeight = 20;
+//    UILabel *phoneLabel = [[UILabel alloc] init];
+//    phoneLabel.frame = CGRectMake(xOffset, yOffset, phoneLabelWidth, phoneLabelHeight);
+//    [phoneLabel setBackgroundColor:[UIColor clearColor]];
+//    [phoneLabel setTextAlignment:NSTextAlignmentLeft];
+//    [phoneLabel setFont:WXTFont(15.0)];
+//    [phoneLabel setText:userDefault.user];
+//    [phoneLabel setTextColor:WXColorWithInteger(0xffffff)];
+//    [headView addSubview:phoneLabel];
     
-    yOffset += phoneLabelHeight+2;
+    yOffset = CGRectGetMaxY(iconImageView.frame) + 5;
     namelabel = [[WXUILabel alloc] init];
-    namelabel.frame = CGRectMake(xOffset, yOffset, phoneLabelWidth, phoneLabelHeight);
+    namelabel.frame = CGRectMake(xOffset, yOffset, iconImg.size.width, 20);
     [namelabel setBackgroundColor:[UIColor clearColor]];
     [namelabel setFont:WXFont(12.0)];
     [namelabel setTextColor:WXColorWithInteger(0xffffff)];
-    [namelabel setTextAlignment:NSTextAlignmentLeft];
+    [namelabel setTextAlignment:NSTextAlignmentCenter];
     [headView addSubview:namelabel];
     
     if(userDefault.nickname){
         [namelabel setText:userDefault.nickname];
     }else{
-        [namelabel setText:@"空"];
+        [namelabel setText:@"dsfsdfas"];
     }
     
-    CGFloat btnWidth = 140;
-    CGFloat btnHeight = 20;
-    yOffset += phoneLabelHeight+3;
-    xOffset += phoneLabelWidth;
+    
+
     WXUIButton *nextBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    nextBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-btnWidth-10, yOffset, btnWidth, btnHeight);
+    nextBtn.frame = iconImageView.frame;
     [nextBtn setBackgroundColor:[UIColor clearColor]];
-    [nextBtn setTitle:@"账户管理/收货地址" forState:UIControlStateNormal];
-    [nextBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
-    [nextBtn setImage:[UIImage imageNamed:@"AddressNextImg.png"] forState:UIControlStateNormal];
-    [nextBtn setImageEdgeInsets:UIEdgeInsetsMake(5, btnWidth-15, 5, 0)];
-    [nextBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
-    [nextBtn.titleLabel setFont:WXFont(12.0)];
     [nextBtn addTarget:self action:@selector(nextPageSetInfo) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:nextBtn];
     
@@ -226,10 +218,7 @@
             number = Order_Invalid;
             break;
         case PersonalInfo_SharkOrder:
-            number = Shark_Invalid;
-            break;
-        case PersonalInfo_Call:
-            number = Call_Invalid;
+            number = Address_Invalid;
             break;
         case PersonalInfo_CutAndShare:
             number = User_Invalid;
@@ -303,23 +292,13 @@
     }
     [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
     switch (row) {
-        case Shark_OrderList:
+        case Address_userShopping:
         {
             [cell.imageView setImage:[UIImage imageNamed:@"SharkImg.png"]];
-            [cell.textLabel setText:@"我的奖品"];
+            [cell.textLabel setText:@"收货地址管理"];
             [cell.textLabel setFont:WXFont(15.0)];
             [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
         }
-            break;
-        case Shark_Collection:
-        {
-            [cell.imageView setImage:[UIImage imageNamed:@"MyCollectionImg.png"]];
-            [cell.textLabel setText:@"我的收藏"];
-            [cell.textLabel setFont:WXFont(15.0)];
-            [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
-        }
-            break;
-        default:
             break;
     }
     return cell;
@@ -367,16 +346,16 @@
     switch (row) {
         case User_Cut:
         {
-            [cell.imageView setImage:[UIImage imageNamed:@"MyCutImg.png"]];
-            [cell.textLabel setText:@"我的奖励"];
+            [cell.imageView setImage:[UIImage imageNamed:@"userCollection.png"]];
+            [cell.textLabel setText:@"我的收藏"];
             [cell.textLabel setFont:WXFont(15.0)];
             [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
         }
             break;
         case User_Share:
         {
-            [cell.imageView setImage:[UIImage imageNamed:@"PersonalShareImg.png"]];
-            [cell.textLabel setText:@"推荐分享"];
+            [cell.imageView setImage:[UIImage imageNamed:@"SharkNewImg.png"]];
+            [cell.textLabel setText:@"我的奖品"];
             [cell.textLabel setFont:WXFont(15.0)];
             [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
         }
@@ -437,9 +416,6 @@
         case PersonalInfo_SharkOrder:
             cell = [self tableViewForSharkOrderCell:row];
             break;
-        case PersonalInfo_Call:
-            cell = [self tableViewForMoneyCell:row];
-            break;
         case PersonalInfo_CutAndShare:
             cell = [self tableViewForUserCutCellAtRow:row];
             break;
@@ -468,20 +444,9 @@
             break;
         case PersonalInfo_SharkOrder:
         {
-            if(row == Shark_OrderList){
-                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
-                [self.wxNavigationController pushViewController:orderListVC];
-            }
-        }
-            break;
-        case PersonalInfo_Call:
-        {
-            if(row == Call_Recharge){
-                UserBalanceVC *userBalanceVC = [[UserBalanceVC alloc] init];
-                [self.wxNavigationController pushViewController:userBalanceVC];
-            }else{
-                SignViewController *signVC = [[SignViewController alloc] init];
-                [self.wxNavigationController pushViewController:signVC];
+            if(row == Address_userShopping){
+                ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
+                [self.wxNavigationController pushViewController:addressVC];
             }
         }
             break;
@@ -492,8 +457,8 @@
                 [self.wxNavigationController pushViewController:cutVC];
             }
             if(row == User_Share){
-                WXUITableViewCell *cell = (WXUITableViewCell*)[_tableView cellForRowAtIndexPath:indexPath];
-                [self showShareBrowerFromThumbView:cell];
+                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
+                [self.wxNavigationController pushViewController:orderListVC];
             }
         }
             break;

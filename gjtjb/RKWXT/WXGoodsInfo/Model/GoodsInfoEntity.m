@@ -53,12 +53,7 @@
         
 //        NSString *shopName = [dic objectForKey:@"shop_name"];
 //        [self setGoodsShopName:shopName];
-        
-//        NSInteger cut = [[dic objectForKey:@"divide"] integerValue];
-//        [self setUserCut:cut];
-//        
-//        NSInteger red = [[dic objectForKey:@"is_use_red"] integerValue];
-//        [self setRedPacket:red];
+
     }
     return self;
 }
@@ -88,6 +83,9 @@
         
         NSInteger sellerID = [[dic objectForKey:@"seller_id"] integerValue];
         [self setSellerID:sellerID];
+        
+        NSString *sellerPhone = [dic objectForKey:@"telephone"];
+        [self setSellerPhone:sellerPhone];
     }
     return self;
 }
@@ -204,5 +202,76 @@
     }
     return self;
 }
+
++ (GoodsInfoEntity*)initLimitStockDataEntity:(NSDictionary*)dic{
+    if (!dic) {
+        return nil;
+    }
+    return [[self alloc] initLimitStock:dic];
+}
+
+- (instancetype)initLimitStock:(NSDictionary*)dic{
+    if (self = [super init]) {
+        
+        NSInteger stockId = [[dic objectForKey:@"seckill_goods_id"] integerValue];
+        [self setStockID:stockId];
+        
+        NSString *name = [dic objectForKey:@"goods_stock_name"];
+        [self setStockName:name];
+        
+        NSInteger number = [[dic objectForKey:@"seckill_number"] integerValue];
+        [self setStockNum:number];
+        
+        CGFloat goodsPrice = [[dic objectForKey:@"seckill_price"] floatValue];
+        [self setStockPrice:goodsPrice];
+        
+        NSInteger goodsID = [[dic objectForKey:@"goods_id"] integerValue];
+        [self setGoodsID:goodsID];
+        
+        NSInteger speacialID = [[dic objectForKey:@"seckill_id"] integerValue];
+        [self setSpeacialid:speacialID];
+    }
+    return self;
+}
+
++ (GoodsInfoEntity*)initLimitGoodsInfoEntity:(NSDictionary*)dic{
+    if(!dic){
+        return nil;
+    }
+    return [[self alloc] initLimitGoodsInfoDic:dic];
+}
+
+- (instancetype)initLimitGoodsInfoDic:(NSDictionary*)dic{
+    self = [super init];
+    if(self){
+        NSString *homeImg = [dic objectForKey:@"goods_home_img"];
+        [self setHomeImg:homeImg];
+        
+        NSString *topImg = [dic objectForKey:@"goods_icarousel_img"];
+        [self setGoodsImg:topImg];
+        
+        NSInteger goodsID = [[dic objectForKey:@"goods_id"] integerValue];
+        [self setGoodsID:goodsID];
+        
+        NSString *goodsName = [dic objectForKey:@"goods_name"];
+        [self setGoodsName:goodsName];
+        
+        NSInteger postage = [[dic objectForKey:@"is_postage"] integerValue];
+        [self setPostage:postage];
+        
+        CGFloat marketPrice = [[dic objectForKey:@"max_goods_price"] floatValue];
+        [self setMarketPrice:marketPrice];
+        
+        CGFloat shopPrice = [[dic objectForKey:@"min_seckill_price"] floatValue];
+        [self setShopPrice:shopPrice];
+        
+        NSString *merName = [dic objectForKey:@"meterage_name"];
+        [self setMeterageName:merName];
+        
+        NSInteger shopId = [[dic objectForKey:@"shop_id"] integerValue];
+        [self setGoodshop_id:shopId];
+     }
+    return self;
+  }
 
 @end

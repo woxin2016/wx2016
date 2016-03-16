@@ -12,7 +12,7 @@
 #define Size self.bounds.size
 #define T_HomePageTopImgHeight          (107)
 #define T_HomePageBaseFunctionHeight    (128)
-#define T_HomePageLimitBuyHeight        (125)
+#define T_HomePageLimitBuyHeight        (145)
 #define T_HomePageTextSectionHeight     (30)
 #define T_HomePageRecommendHeight       (145)
 #define T_HomePageGuessInfoHeight       (195)
@@ -47,6 +47,7 @@ enum{
 #import "WXSysMsgUnreadV.h"
 #import "MJRefresh.h"
 #import "ShareBrowserView.h"
+#import "WXGoodsInfoVC.h"
 
 #import "WXHomeTopGoodCell.h"
 #import "WXHomeBaseFunctionCell.h"
@@ -70,7 +71,12 @@ enum{
 #import "NewHomePageModel.h"
 #import "HomePageSurpEntity.h"
 #import "HomePageRecEntity.h"
+#import "LImitGoodsEntity.h"
+#import "HomeLimitGoodsEntity.h"
+
+
 #import "ShoppingCartVC.h"
+#import "ShoppingCartView.h"
 
 #pragma mark 导航跳转
 enum{

@@ -16,6 +16,7 @@
 
 @interface ClassifyHistoryCell : WXUITableViewCell
 @property (nonatomic,assign) NSInteger count;
+@property (nonatomic,strong) WXUIButton *_deleAllBtn;
 @property (nonatomic,weak)id<ClassifyHistoryCellDelegate> delegate;
 @end
 

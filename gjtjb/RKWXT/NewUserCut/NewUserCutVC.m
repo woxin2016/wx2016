@@ -79,7 +79,7 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setCSTTitle:@"我的提成"];
+    [self setCSTTitle:@"我的奖励"];
     [self setBackgroundColor:WXColorWithInteger(0xefeff4)];
     
     _isOpen = NO;

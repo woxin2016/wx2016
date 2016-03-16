@@ -154,8 +154,14 @@
         case WXT_UrlFeed_Type_New_LoadClassifyGoodsList:
             url = @"/category_goods.php";
             break;
+        case WXT_UrlFeed_Type_New_LoadLimitGoods:
+            url = @"/seckills.php";
+            break;
         case WXT_UrlFeed_Type_Home_GoodsInfo:
             url = @"/single_goods_info.php";
+            break;
+        case WXT_UrlFeed_Type_Home_LimitGoodsInfo:
+            url = @"/seckill_goods_info.php";
             break;
         case WXT_UrlFeed_Type_NewMall_ImgAndText:
             url = @"";
@@ -177,6 +183,9 @@
             break;
         case WXT_UrlFeed_Type_New_MakeOrder:
             url = @"/insert_order.php";
+            break;
+        case WXT_UrlFeed_Type_New_MakeLimitOrder:
+            url = @"/seckill_order.php";
             break;
         case WXT_UrlFeed_Type_New_CancelOrder:
             url = @"/cancel_order.php";

@@ -8,7 +8,12 @@
 
 #import "WXUIViewController.h"
 
-@interface MakeOrderVC : WXUIViewController
-@property (nonatomic,strong) id goodsList;
+typedef enum{
+    MakePayType_Normal = 0,
+    MakePayType_Limit,
+}MakePayType;
 
+@interface MakeOrderVC : WXUIViewController
+@property (nonatomic,strong)id  goodsList;
+@property (nonatomic,assign)MakePayType payType;
 @end

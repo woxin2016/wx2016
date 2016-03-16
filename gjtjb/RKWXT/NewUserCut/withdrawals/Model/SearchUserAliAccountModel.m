@@ -30,6 +30,9 @@
     if(!dic){
         return;
     }
+    if ([dic[@"data"] count] == 0) {
+        return;
+    }
     UserAliEntity *entity = [[UserAliEntity alloc] init];
     if([[dic objectForKey:@"data"] isKindOfClass:[NSString class]]){
         entity.userali_type = UserAliCount_Type_None;

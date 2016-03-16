@@ -43,6 +43,7 @@
         lineLabel.frame = CGRectMake(xOffset, yOffset+labelHeight+1, IPHONE_SCREEN_WIDTH-2*xOffset, 0.2);
         [lineLabel setBackgroundColor:WXColorWithInteger(0xdbdbdb)];
         [self.contentView addSubview:lineLabel];
+        
     }
     return self;
 }
