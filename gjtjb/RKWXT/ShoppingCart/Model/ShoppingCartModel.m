@@ -123,7 +123,8 @@
         }else{
             BOOL succeed = [self parseAfterDeleteGoodsInShoppingCartList:cartID];
             if(succeed){
-                [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
+                NSString *goodsID = [NSString stringWithFormat:@"%d",cartID];
+                [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:goodsID];
             }
         }
     }];

@@ -46,19 +46,26 @@
 //        CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
 //        leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
         
-//        UIImage *image = [UIImage imageNamed:@"unreadBg.png"];
-//        CGSize imgSize = image.size;
-//        _unreadNumberImgV = [[UIImageView alloc] initWithImage:image];
-//        CGRect unreadViewRect = CGRectMake(-imgSize.width*0.3 + (frame.size.width-btnSize.width)/2.0-5, (frame.size.height-btnSize.height)/2.0-imgSize.height*0.3-10, imgSize.width, imgSize.height);
-//        [_unreadNumberImgV setFrame:unreadViewRect];
-//        [leftBtn addSubview:_unreadNumberImgV];
-//        [_unreadNumberImgV setHidden:_number];
-//        
-//        _unreadLabel = [[WXUILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-//        [_unreadLabel setFont:[UIFont systemFontOfSize:9.0]];
-//        [_unreadLabel setTextColor:[UIColor whiteColor]];
-//        [_unreadNumberImgV addSubview:_unreadLabel];
-//        [_unreadLabel setText:[NSString stringWithFormat:@"%d",_number]];
+        UIImage *image = [UIImage imageNamed:@"unreadBg.png"];
+        CGSize imgSize = image.size;
+        _unreadNumberImgV = [[UIImageView alloc] initWithImage:image];
+        CGRect unreadViewRect = CGRectMake(imgSize.width * 0.3 + frame.size.width / 2.0, frame.size.height/2.0-imgSize.height*0.3-10, imgSize.width, imgSize.height);
+        [_unreadNumberImgV setFrame:unreadViewRect];
+        [leftBtn addSubview:_unreadNumberImgV];
+        [_unreadNumberImgV setHidden:_number];
+        
+        _unreadLabel = [[WXUILabel alloc] initWithFrame:_unreadNumberImgV.frame];
+        [_unreadLabel setFont:[UIFont systemFontOfSize:9.0]];
+        [_unreadLabel setTextColor:[UIColor whiteColor]];
+         _unreadLabel.textAlignment = NSTextAlignmentCenter;
+        [leftBtn addSubview:_unreadLabel];
+        
+        _number = [[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber];
+        [_unreadLabel setText:[NSString stringWithFormat:@"%d",_number]];
+        [_unreadLabel setHidden:_number == 0];
+        [_unreadNumberImgV setHidden:_number == 0];
+    
+        
         
         [self addOBS];
     }
@@ -68,34 +75,31 @@
 - (void)addOBS{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inComeBuyShop:) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteOneGoodsSucceed) name:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteOneGoodsSucceed:) name:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
 }
 
 - (void)inComeBuyShop:(NSNotification*)notification{
     NSString *goodsID = [[notification.object objectForKey:@"data"] objectForKey:@"cart_id"];
     [[NewShopPingCartModel shopPingCartModelAlloc] setUnreadGoodsID:[goodsID integerValue] structrue:ShopPingCartModel_Structure_Add];
-//    [self setUnreadNumber:[[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber]];
+    [self setUnreadNumber:[[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber]];
 }
 
-- (void)deleteOneGoodsSucceed{
-    [[NewShopPingCartModel shopPingCartModelAlloc] setUnreadGoodsID:1 structrue:ShopPingCartModel_Structure_Remove];
-//    [self setUnreadNumber:[[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber]];
+- (void)deleteOneGoodsSucceed:(NSNotification*)notification{
+    NSString *goodsID = notification.object;
+    [[NewShopPingCartModel shopPingCartModelAlloc] setUnreadGoodsID:[goodsID integerValue] structrue:ShopPingCartModel_Structure_Remove];
+    [self setUnreadNumber:[[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber]];
 }
 
 - (void)setUnreadNumber:(NSInteger)number{
         _number = number;
-      [_unreadNumberImgV setHidden:_number];
     
         NSString *text = [NSString stringWithFormat:@"%d",(int)number];
-        
-        CGSize textSize = [text stringSize:_unreadLabel.font];
-        [_unreadLabel setText:text];
-        
-        CGSize unreadViewSize = _unreadNumberImgV.frame.size;
-        CGFloat xOffset = (unreadViewSize.width - textSize.width)*0.5;
-        CGFloat yOffset = (unreadViewSize.height - textSize.height)*0.5;
-        [_unreadLabel setFrame:CGRectMake(xOffset, yOffset, textSize.width, textSize.height)];
     
+        [_unreadLabel setText:text];
+        _unreadLabel.center = _unreadNumberImgV.center;
+    
+        [_unreadLabel setHidden:_number == 0];
+        [_unreadNumberImgV setHidden:_number == 0];
 }
 
 - (void)goShoppingVC{

@@ -40,33 +40,37 @@
     if (!goodsID) return ;
     
        NSString *goods = [NSString stringWithFormat:@"%d",goodsID];
+       self.shoppingCartArray  = [NSMutableArray arrayWithContentsOfFile:[self storagePath]];
+       NSMutableArray *array = [NSMutableArray arrayWithArray:self.shoppingCartArray];
     
     
-    
-        if (structrue == ShopPingCartModel_Structure_Add) {
-    
-            self.number++;
-           
-            WXUserDefault *userDefault = [WXUserDefault sharedWXUserDefault];
-            [userDefault setInteger:self.number forKey:D_WXUserdefault_Key_ShoppingCartCount];
+        if (structrue == ShopPingCartModel_Structure_Add) {  // 添加购物车商品
+            [array addObject:goods];
+            self.shoppingCartArray = [array valueForKeyPath:@"@distinctUnionOfObjects.self"];
         }
         
         
-        if (structrue == ShopPingCartModel_Structure_Remove) {
+        if (structrue == ShopPingCartModel_Structure_Remove) { // 删除购物车商品
+            for (NSString *str in array) {
+                if ([str isEqualToString:goods]) {
+                    [self.shoppingCartArray removeObject:str];
+                }
+            }
             
-            self.number--;
-            
-            WXUserDefault *userDefault = [WXUserDefault sharedWXUserDefault];
-            [userDefault setInteger:self.number  forKey:D_WXUserdefault_Key_ShoppingCartCount];
         }
-        
     
+    [self.shoppingCartArray writeToFile:[self storagePath] atomically:YES];
+    
+    WXUserDefault *userDefault = [WXUserDefault sharedWXUserDefault];
+    [userDefault setInteger:self.shoppingCartArray.count  forKey:D_WXUserdefault_Key_ShoppingCartCount];
     
 }
 
 - (NSString *)storagePath{
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    return [paths lastObject];
+    NSString *doc = [paths lastObject];
+    NSString *store = [doc stringByAppendingPathComponent:@"shoppingCart.text"];
+    return store;
 }
 
 

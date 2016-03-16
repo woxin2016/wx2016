@@ -14,12 +14,14 @@
 #import "WXGoodsInfoVC.h"
 #import "ClassifyGoodsListVC.h"
 #import "ClassifySearchVC.h"
+#import "ShoppingCartView.h"
+
 
 #define size self.bounds.size
 #define yGap (10)
 #define TextFieldHeight (25)
 
-@interface GoodsClassifyVC (){
+@interface GoodsClassifyVC ()<ShoppingCartViewDelegate>{
     WXTUITextField *_textField;
     
     ClassifyLeftListView *_leftView;
@@ -46,6 +48,10 @@
     
     [[ClassifyModel shareClassifyNodel] loadAllClassifyData];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    
+    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(size.width - 44, 22, 44, 44)];
+    cartView.delegate = self;
+    [self.view addSubview:cartView];
 }
 
 -(void)addOBS{
