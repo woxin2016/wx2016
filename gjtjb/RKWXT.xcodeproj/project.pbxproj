@@ -525,6 +525,10 @@
 		12C0691A1B7C743600C05D42 /* FindWeatherImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C069181B7C743600C05D42 /* FindWeatherImg@2x.png */; };
 		12C46EBC1C71B02500745787 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C46EBB1C71B02500745787 /* libz.tbd */; };
 		12CCD7ED1AC0184400A5BDF0 /* defaultContactIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CCD7EC1AC0184400A5BDF0 /* defaultContactIcon@2x.png */; };
+		12CD4EB61C9A4F92003789F8 /* PersonalNickNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CD4EB51C9A4F92003789F8 /* PersonalNickNameCell.m */; };
+		12CD4EB91C9A57AE003789F8 /* PersonalSexNor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD4EB71C9A57AE003789F8 /* PersonalSexNor@2x.png */; };
+		12CD4EBA1C9A57AE003789F8 /* PersonalSexSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD4EB81C9A57AE003789F8 /* PersonalSexSel@2x.png */; };
+		12CD4EBD1C9A57D7003789F8 /* PersonalSexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CD4EBC1C9A57D7003789F8 /* PersonalSexCell.m */; };
 		12CE11D51C50694200FF85FA /* GoodsListDownImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CE11D31C50694200FF85FA /* GoodsListDownImg@2x.png */; };
 		12CE11D61C50694200FF85FA /* GoodsListUpImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CE11D41C50694200FF85FA /* GoodsListUpImg@2x.png */; };
 		12CE11D91C506E7500FF85FA /* UserQuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CE11D81C506E7500FF85FA /* UserQuestionModel.m */; };
@@ -1837,6 +1841,12 @@
 		12C069181B7C743600C05D42 /* FindWeatherImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FindWeatherImg@2x.png"; sourceTree = "<group>"; };
 		12C46EBB1C71B02500745787 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		12CCD7EC1AC0184400A5BDF0 /* defaultContactIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultContactIcon@2x.png"; sourceTree = "<group>"; };
+		12CD4EB41C9A4F92003789F8 /* PersonalNickNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNickNameCell.h; sourceTree = "<group>"; };
+		12CD4EB51C9A4F92003789F8 /* PersonalNickNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNickNameCell.m; sourceTree = "<group>"; };
+		12CD4EB71C9A57AE003789F8 /* PersonalSexNor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PersonalSexNor@2x.png"; sourceTree = "<group>"; };
+		12CD4EB81C9A57AE003789F8 /* PersonalSexSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PersonalSexSel@2x.png"; sourceTree = "<group>"; };
+		12CD4EBB1C9A57D7003789F8 /* PersonalSexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSexCell.h; sourceTree = "<group>"; };
+		12CD4EBC1C9A57D7003789F8 /* PersonalSexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSexCell.m; sourceTree = "<group>"; };
 		12CE11D31C50694200FF85FA /* GoodsListDownImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsListDownImg@2x.png"; sourceTree = "<group>"; };
 		12CE11D41C50694200FF85FA /* GoodsListUpImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsListUpImg@2x.png"; sourceTree = "<group>"; };
 		12CE11D71C506E7500FF85FA /* UserQuestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserQuestionModel.h; sourceTree = "<group>"; };
@@ -5262,6 +5272,8 @@
 		12F916251B19A79600C94717 /* PersonalInfo */ = {
 			isa = PBXGroup;
 			children = (
+				12CD4EB71C9A57AE003789F8 /* PersonalSexNor@2x.png */,
+				12CD4EB81C9A57AE003789F8 /* PersonalSexSel@2x.png */,
 				DD2E63DB1C9161660037632F /* SharkNewImg@2x.png */,
 				DD2E63D91C915FEC0037632F /* userCollection@2x.png */,
 				1211210D1BA2775000651E4A /* MyCutReferee@2x.png */,
@@ -5324,6 +5336,8 @@
 			children = (
 				120B75521B1C3B7100B8746C /* PersonNicknameVC.h */,
 				120B75531B1C3B7100B8746C /* PersonNicknameVC.m */,
+				12CD4EB41C9A4F92003789F8 /* PersonalNickNameCell.h */,
+				12CD4EB51C9A4F92003789F8 /* PersonalNickNameCell.m */,
 			);
 			path = UserNickName;
 			sourceTree = "<group>";
@@ -5333,6 +5347,8 @@
 			children = (
 				120B754C1B1C19EA00B8746C /* PersonSexVC.h */,
 				120B754D1B1C19EA00B8746C /* PersonSexVC.m */,
+				12CD4EBB1C9A57D7003789F8 /* PersonalSexCell.h */,
+				12CD4EBC1C9A57D7003789F8 /* PersonalSexCell.m */,
 			);
 			path = UserSex;
 			sourceTree = "<group>";
@@ -6666,6 +6682,7 @@
 				1241E5311AE9D89B00811D3F /* CallBtnImg@2x.png in Resources */,
 				124535521AE9D146004198C9 /* sign2@2x.png in Resources */,
 				1245355B1AE9D146004198C9 /* sign6@2x.png in Resources */,
+				12CD4EB91C9A57AE003789F8 /* PersonalSexNor@2x.png in Resources */,
 				122D63B71C3F49A30086AAB8 /* HomePageWallet@2x.png in Resources */,
 				1245353F1AE9D146004198C9 /* sign11@2x.png in Resources */,
 				1295C5E51B293BBB004C861D /* NoOrderImg@2x.png in Resources */,
@@ -6814,6 +6831,7 @@
 				DD35D8711C84258400422F5B /* ClassifySearchImg@2x.png in Resources */,
 				1241E54F1AE9D89B00811D3F /* 9N@2x.png in Resources */,
 				124535561AE9D146004198C9 /* sign33@2x.png in Resources */,
+				12CD4EBA1C9A57AE003789F8 /* PersonalSexSel@2x.png in Resources */,
 				1245350C1AE9D0BC004198C9 /* CallNormal@2x.png in Resources */,
 				122D63B51C3F49A30086AAB8 /* HomePageSide@2x.png in Resources */,
 				1263EFE61ACD35820014C347 /* Icon-Small@2x.png in Resources */,
@@ -7232,6 +7250,7 @@
 				123667621C44AAAD000FAF70 /* NewGoodsInfoBDCell.m in Sources */,
 				775842D41AB95A300039B129 /* NSNotificationAdditions.m in Sources */,
 				775842FD1AB95A300039B129 /* WXImageClipOBJ.m in Sources */,
+				12CD4EB61C9A4F92003789F8 /* PersonalNickNameCell.m in Sources */,
 				1236674A1C44AA04000FAF70 /* LuckyOrderEntity.m in Sources */,
 				DD89B5571C895CDD0059F097 /* T_ChangeView.m in Sources */,
 				128766F41B50ED8400A79320 /* AboutShopModel.m in Sources */,
@@ -7403,6 +7422,7 @@
 				122EFBE51C4108FC00CE0EA0 /* AllOrderListHandleCell.m in Sources */,
 				120A2BED1AB135DD006A28B1 /* CalendarView.m in Sources */,
 				DDB58F521AD3C6A2006248E9 /* StrangerEntity.m in Sources */,
+				12CD4EBD1C9A57D7003789F8 /* PersonalSexCell.m in Sources */,
 				120D01631BBB91B5005CAA6C /* openssl_wrapper.m in Sources */,
 				DD2498B71C88312F0079DB5A /* ClassifyHistoryModel.m in Sources */,
 				128767001B51012700A79320 /* AboutShopTopImgCell.m in Sources */,

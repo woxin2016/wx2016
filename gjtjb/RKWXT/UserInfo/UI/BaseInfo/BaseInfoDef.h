@@ -14,7 +14,6 @@
 
 enum{
     T_Base_UserInfo = 0,
-//    T_Base_ManagerInfo,
     
     T_Base_Invalid,
 };
@@ -37,9 +36,8 @@ enum{
 #import "BaseInfoCommonCell.h"
 #import "BaseInfoHeadCell.h"
 #import "WXTResetPwdVC.h"
-#import "PersonSexVC.h"
 #import "PersonDatePickerVC.h"
-#import "PersonNicknameVC.h"
-#import "ManagerAddressVC.h"
+#import "PersonalNickNameCell.h"
+#import "PersonalSexCell.h"
 
 #endif

@@ -19,7 +19,7 @@
 
 #define Size self.bounds.size
 
-@interface BaseInfoVC ()<UITableViewDataSource,UITableViewDelegate,PersonaSexSelectDelegate,PersonDatePickerDelegate,PersonalInfoModelDelegate,WXImageClipOBJDelegate>{
+@interface BaseInfoVC ()<UITableViewDataSource,UITableViewDelegate,PersonDatePickerDelegate,PersonalInfoModelDelegate,WXImageClipOBJDelegate,PersonalNickNameCellDelegate,PersonalSexCellDelegate>{
     UITableView *_tableView;
     PersonalInfoModel *_model;
     WXImageClipOBJ *_imageClipOBJ;
@@ -98,9 +98,6 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
         case T_Base_UserInfo:
             number = BaseInfo_Invalid;
             break;
-//        case T_Base_ManagerInfo:
-//            number = Manager_Invalid;
-//            break;
         default:
             break;
     }
@@ -109,9 +106,6 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     CGFloat height = 0.0;
-//    if(section == T_Base_ManagerInfo){
-//        height = 15.0;
-//    }
     return height;
 }
 
@@ -125,6 +119,7 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     return height;
 }
 
+//头像
 -(BaseInfoHeadCell*)tableViewForBaseInfoHeadImgCell:(NSInteger)row{
     static NSString *identifier = @"headCell";
     BaseInfoHeadCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
@@ -140,6 +135,35 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     return cell;
 }
 
+//昵称
+-(PersonalNickNameCell*)tableViewForNickNameCell{
+    static NSString *identifier = @"nickNameCell";
+    PersonalNickNameCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[PersonalNickNameCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setDelegate:self];
+    [cell setCellInfo:self.nickNameStr];
+    [cell load];
+    return cell;
+}
+
+//性别
+-(PersonalSexCell*)tableViewForSexCell{
+    static NSString *identifier = @"sexCell";
+    PersonalSexCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[PersonalSexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setDelegate:self];
+    [cell setCellInfo:[NSString stringWithFormat:@"%ld",(long)self.bSex]];
+    [cell load];
+    return cell;
+}
+
+//通用
 -(BaseInfoCommonCell *)tableViewForCommonCellAtRow:(NSInteger)row{
     static NSString *identifier = @"commonCell";
     BaseInfoCommonCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
@@ -151,12 +175,6 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     [cell.textLabel setFont:WXFont(15.0)];
     NSString *str = [NSString stringWithFormat:@"%ld",(long)row];
     switch (row) {
-        case BaseInfo_Nickname:
-            str = _nickNameStr;
-            break;
-        case BaseInfo_Usersex:
-            str = (_bSex==1?@"男":(_bSex==2?@"女":@""));
-            break;
         case BaseInfo_Userdate:
             str = _dateStr;
             break;
@@ -168,22 +186,6 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     return cell;
 }
 
--(WXUITableViewCell*)tableViewForManagerCellAtRow:(NSInteger)row{
-    static NSString *identifier = @"managerCell";
-    WXUITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
-    if(!cell){
-        cell = [[WXUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
-    NSString *nameStr = @"收货地址管理";
-    if(row == 1){
-        nameStr = @"修改密码";
-    }
-    [cell.textLabel setText:nameStr];
-    [cell.textLabel setFont:WXFont(14.0)];
-    return cell;
-}
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
     NSInteger section = indexPath.section;
@@ -192,12 +194,16 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
         case T_Base_UserInfo:
             if(row == BaseInfo_Userhead){
                 cell = [self tableViewForBaseInfoHeadImgCell:row];
-            }else{
+            }
+            if(row == BaseInfo_Nickname){
+                cell = [self tableViewForNickNameCell];
+            }
+            if(row == BaseInfo_Usersex){
+                cell = [self tableViewForSexCell];
+            }
+            if(row == BaseInfo_Userdate){
                 cell = [self tableViewForCommonCellAtRow:row];
             }
-            break;
-//        case T_Base_ManagerInfo:
-//            cell = [self tableViewForManagerCellAtRow:row];
             break;
         default:
             break;
@@ -218,22 +224,22 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
                 break;
             case BaseInfo_Nickname:
             {
-                PersonNicknameVC *nickNameVC = [[PersonNicknameVC alloc] init];
-//                [nickNameVC setDelegate:self];
-                [nickNameVC setTransferNickName:^(NSString *nickName) {
-                    self.nickNameStr = nickName;
-                    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:BaseInfo_Nickname inSection:T_Base_UserInfo];
-                    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }];
-                [self.wxNavigationController pushViewController:nickNameVC];
+//                PersonNicknameVC *nickNameVC = [[PersonNicknameVC alloc] init];
+////                [nickNameVC setDelegate:self];
+//                [nickNameVC setTransferNickName:^(NSString *nickName) {
+//                    self.nickNameStr = nickName;
+//                    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:BaseInfo_Nickname inSection:T_Base_UserInfo];
+//                    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//                }];
+//                [self.wxNavigationController pushViewController:nickNameVC];
             }
                 break;
             case BaseInfo_Usersex:
             {
-                PersonSexVC *sexVC= [[PersonSexVC alloc] init];
-                sexVC.sexSelectedIndex = _bSex;
-                [sexVC setDelegate:self];
-                [self.wxNavigationController pushViewController:sexVC];
+//                PersonSexVC *sexVC= [[PersonSexVC alloc] init];
+//                sexVC.sexSelectedIndex = _bSex;
+//                [sexVC setDelegate:self];
+//                [self.wxNavigationController pushViewController:sexVC];
             }
                 break;
             case BaseInfo_Userdate:
@@ -248,18 +254,6 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
                 break;
         }
     }
-//    if(section == T_Base_ManagerInfo){
-//        switch (row) {
-//            case ManagerAddress:
-//            {
-//                ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
-//                [self.wxNavigationController pushViewController:addressVC];
-//            }
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 }
 
 #pragma mark update
@@ -272,6 +266,10 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     }
     if(!self.dateStr){
         self.dateStr = 0;
+    }
+    if(self.nickNameStr.length > 15){
+        [UtilTool showAlertView:@"昵称不能超过15个字符"];
+        return;
     }
     NSString *birthday = 0;
     if(self.dateStr.length > 0){
@@ -337,6 +335,10 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+-(void)personalSexButtonClicked:(NSInteger)index{
+    self.bSex = index;
+}
+
 #pragma mark 日期选择
 -(void)didSelectDate:(NSString *)dateStr{
     self.dateStr = dateStr;
@@ -344,11 +346,22 @@ static NSString *_nameListArray[BaseInfo_Invalid]={
     [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
--(void)didSetPersonNickname:(NSString *)nickName{
-    self.nickNameStr = nickName;
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:BaseInfo_Nickname inSection:T_Base_UserInfo];
-    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+#pragma mark 昵称
+-(void)personalNickNameTextFieldChanged:(PersonalNickNameCell *)cell{
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    if(indexPath){
+        NSInteger row = indexPath.row;
+        if(row == BaseInfo_Nickname){
+            self.nickNameStr = cell.textField.text;
+        }
+    }
 }
+
+//-(void)didSetPersonNickname:(NSString *)nickName{
+//    self.nickNameStr = nickName;
+//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:BaseInfo_Nickname inSection:T_Base_UserInfo];
+//    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//}
 
 #pragma mark 头像
 -(void)changeheadImg:(id)sender{
