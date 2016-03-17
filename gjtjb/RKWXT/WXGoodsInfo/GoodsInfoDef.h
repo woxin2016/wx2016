@@ -38,6 +38,7 @@ enum{
 #import "GoodsEvaluateCell.h"
 #import "NewGoodsInfoBDCell.h"
 #import "NewGoodsInfoDownCell.h"
+#import "HomeLimitBuyTitleCell.h"
 
 #import "GoodsStockView.h"
 #import "NewImageZoomView.h"

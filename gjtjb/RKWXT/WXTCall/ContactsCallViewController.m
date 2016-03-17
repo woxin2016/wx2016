@@ -75,7 +75,7 @@
     
     for (int i=0; i<1; i++) {
         self.segmentControl = [[RFSegmentView alloc] initWithFrame:CGRectMake((Size.width-segWidth)/2, IPHONE_STATUS_BAR_HEIGHT+10, segWidth, segHeight) items:@[@"通话",@"通讯录"]];
-        self.segmentControl.tintColor = [UIColor redColor];
+        self.segmentControl.tintColor = [UIColor whiteColor];
         self.segmentControl.delegate = self;
         [self.view addSubview:self.segmentControl];
     }

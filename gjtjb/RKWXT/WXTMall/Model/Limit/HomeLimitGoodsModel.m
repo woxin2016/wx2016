@@ -90,6 +90,21 @@
     
     HomeLimitGoodsEntity *limit = [HomeLimitGoodsEntity homeLimitGoodsWithDic:jsonDicData[@"data"]];
     [_dataList addObject:limit];
+    
+    [self setIsBeglimit:[jsonDicData[@"data"] objectForKey:@"begin_time"]];
+    
+}
+
+- (void)setIsBeglimit:(NSString *)str{
+    NSDate *startDate =  [NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
+    NSTimeInterval start  = [startDate timeIntervalSince1970];
+    NSTimeInterval nowDate = [[NSDate date] timeIntervalSince1970];
+    
+    if (nowDate < start) {  // 现在时间  大于 开始时间
+        if (_delegate && [_delegate respondsToSelector:@selector(limitBuyNoStartBuyGoods)]) {
+            [_delegate limitBuyNoStartBuyGoods];
+        }
+    }
 }
 
 - (void)loadCacheDataSucceed{

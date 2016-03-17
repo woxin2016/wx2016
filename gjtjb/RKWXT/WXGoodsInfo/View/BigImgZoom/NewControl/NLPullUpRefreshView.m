@@ -11,7 +11,7 @@
 // 加载中
 #define REFRESH_LOADING_STATUS @""
 #define REFRESH_NO_MORE @"没有更多了"
-#define REFRESHER_HEIGHT 50.0f
+#define REFRESHER_HEIGHT 20.0f
 
 #import "NLPullUpRefreshView.h"
 

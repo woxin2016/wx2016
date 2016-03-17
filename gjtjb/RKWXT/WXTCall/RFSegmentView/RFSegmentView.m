@@ -111,7 +111,7 @@
         
         //
         self.bgView = [[UIView alloc] initWithFrame:CGRectMake(kLeftMargin, (viewHeight - kItemHeight)/2, viewWidth -2*kLeftMargin, kItemHeight)];
-        self.bgView.backgroundColor    = [UIColor whiteColor];
+        self.bgView.backgroundColor    = [UIColor redColor];
         self.bgView.clipsToBounds      = YES;
         self.bgView.layer.cornerRadius = 5;
         self.bgView.layer.borderWidth  = kBorderLineWidth;
@@ -126,7 +126,7 @@
             for (NSInteger i =0; i<items.count; i++) {
                 RFSegmentItem *item = [[RFSegmentItem alloc] initWithFrame:CGRectMake(init_x, init_y, itemWidth, itemHeight)
                                                                      index:i title:items[i]
-                                                                  norColor:[UIColor whiteColor]
+                                                                  norColor:[UIColor redColor]
                                                                   selColor:kDefaultTintColor
                                                                 isSelected:(i == 0)? YES: NO];
                 init_x += itemWidth;

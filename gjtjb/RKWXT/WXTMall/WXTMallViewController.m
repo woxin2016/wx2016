@@ -13,6 +13,8 @@
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
+    WXGoodsInfoVC *goodsInfoVC;
+    BOOL buyGoods;
 }
 @end
 
@@ -53,6 +55,7 @@
     [self createTopBtn];
    
     [_model loadData];
+    buyGoods = NO;
 }
 
 -(void)createTopBtn{
@@ -87,9 +90,10 @@
     [didView addSubview:_unreadView];
     
     ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(0, 3, kDefaultNavigationBarButtonSize.width,kDefaultNavigationBarButtonSize.height )];
-    cartView.delegate = self;
     [didView addSubview:cartView];
-
+     cartView.delegate = self;
+    [cartView searchShoppingCartNumber];
+    
 }
 
 //集成刷新控件
@@ -514,10 +518,11 @@
 -(void)homeLimitBuyCellbtnClicked:(id)sender{
     HomeLimitGoodsEntity*goods = _model.limitGoods.data[0];
     LImitGoodsEntity *entity = sender;
-    WXGoodsInfoVC *goodsInfoVC = [[WXGoodsInfoVC alloc] init];
+    goodsInfoVC = [[WXGoodsInfoVC alloc] init];
     goodsInfoVC.goodsId = entity.goodsID;
     goodsInfoVC.sckillID = goods.sckillID;
     goodsInfoVC.goodsInfo_type = GoodsInfo_LimitGoods;
+    goodsInfoVC.buyGoods = buyGoods;
     [self.wxNavigationController pushViewController:goodsInfoVC];
 
 }
@@ -562,6 +567,11 @@
 #pragma mark refresh
 -(void)headerRefreshing{
     [_model loadData];
+}
+
+#pragma mark --- limitBuyGoods
+- (void)limitBuyNoStartBuyGoods{
+    buyGoods = YES;
 }
 
 @end

@@ -146,19 +146,7 @@
         [iconImageView load];
     }
     
-//    yOffset = CGRectGetMaxY(iconImageView.frame)+10;
     WXTUserOBJ *userDefault = [WXTUserOBJ sharedUserOBJ];
-//    CGFloat phoneLabelWidth = 150;
-//    CGFloat phoneLabelHeight = 20;
-//    UILabel *phoneLabel = [[UILabel alloc] init];
-//    phoneLabel.frame = CGRectMake(xOffset, yOffset, phoneLabelWidth, phoneLabelHeight);
-//    [phoneLabel setBackgroundColor:[UIColor clearColor]];
-//    [phoneLabel setTextAlignment:NSTextAlignmentLeft];
-//    [phoneLabel setFont:WXTFont(15.0)];
-//    [phoneLabel setText:userDefault.user];
-//    [phoneLabel setTextColor:WXColorWithInteger(0xffffff)];
-//    [headView addSubview:phoneLabel];
-    
     yOffset = CGRectGetMaxY(iconImageView.frame) + 5;
     namelabel = [[WXUILabel alloc] init];
     namelabel.frame = CGRectMake(xOffset, yOffset, iconImg.size.width, 20);
@@ -168,7 +156,7 @@
     [namelabel setTextAlignment:NSTextAlignmentCenter];
     [headView addSubview:namelabel];
     
-    if(userDefault.nickname){
+    if(userDefault.nickname.length != 0){
         [namelabel setText:userDefault.nickname];
     }else{
         [namelabel setText:@"dsfsdfas"];
@@ -453,8 +441,9 @@
         case PersonalInfo_CutAndShare:
         {
             if(row == User_Cut){
-                NewUserCutVC *cutVC = [[NewUserCutVC alloc] init];
-                [self.wxNavigationController pushViewController:cutVC];
+                 [UtilTool showTipView:@"努力开发中..."];
+//                NewUserCutVC *cutVC = [[NewUserCutVC alloc] init];
+//                [self.wxNavigationController pushViewController:cutVC];
             }
             if(row == User_Share){
                 LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];

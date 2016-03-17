@@ -17,6 +17,7 @@
     UIImageView *_unreadNumberImgV;
     UILabel *_unreadLabel;
     NSInteger _number;
+    ShoppingCartModel *model;
 }
 @end
 
@@ -34,17 +35,6 @@
         [leftBtn addTarget:self action:@selector(goShoppingVC) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:leftBtn];
         
-//        CGPoint buttonBoundsCenter = CGPointMake(CGRectGetMidX(leftBtn.titleLabel.bounds), CGRectGetMidY(leftBtn.titleLabel.bounds));
-//        CGPoint endImageViewCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetMidY(leftBtn.imageView.bounds));
-//        CGPoint endTitleLabelCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetHeight(leftBtn.bounds)-CGRectGetMidY(leftBtn.titleLabel.bounds));
-//        CGPoint startImageViewCenter = leftBtn.imageView.center;
-//        CGPoint startTitleLabelCenter = leftBtn.titleLabel.center;
-//        CGFloat imageEdgeInsetsLeft = endImageViewCenter.x - startImageViewCenter.x;
-//        CGFloat imageEdgeInsetsRight = -imageEdgeInsetsLeft;
-//        leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, imageEdgeInsetsLeft, 40/3, imageEdgeInsetsRight);
-//        CGFloat titleEdgeInsetsLeft = endTitleLabelCenter.x - startTitleLabelCenter.x;
-//        CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
-//        leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
         
         UIImage *image = [UIImage imageNamed:@"unreadBg.png"];
         CGSize imgSize = image.size;
@@ -60,46 +50,57 @@
          _unreadLabel.textAlignment = NSTextAlignmentCenter;
         [leftBtn addSubview:_unreadLabel];
         
-        _number = [[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber];
-        [_unreadLabel setText:[NSString stringWithFormat:@"%d",_number]];
-        [_unreadLabel setHidden:_number == 0];
-        [_unreadNumberImgV setHidden:_number == 0];
-    
-        
-        
         [self addOBS];
     }
     return self;
 }
 
 - (void)addOBS{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inComeBuyShop:) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inComeBuyShop) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteOneGoodsSucceed:) name:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lookShoppingCartCount) name:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lookShoppingCartCount) name:D_Notification_LoadShoppingCartList_Succeed object:nil];
 }
 
-- (void)inComeBuyShop:(NSNotification*)notification{
-    NSString *goodsID = [[notification.object objectForKey:@"data"] objectForKey:@"cart_id"];
-    [[NewShopPingCartModel shopPingCartModelAlloc] setUnreadGoodsID:[goodsID integerValue] structrue:ShopPingCartModel_Structure_Add];
-    [self setUnreadNumber:[[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber]];
+- (void)lookShoppingCartCount{
+     [self setUnreadNumber:[ShoppingCartModel shareShoppingCartModel].shoppingCartListArr.count];
+}
+
+- (void)inComeBuyShop{
+    [self searchShoppingCartNumber];
 }
 
 - (void)deleteOneGoodsSucceed:(NSNotification*)notification{
-    NSString *goodsID = notification.object;
-    [[NewShopPingCartModel shopPingCartModelAlloc] setUnreadGoodsID:[goodsID integerValue] structrue:ShopPingCartModel_Structure_Remove];
-    [self setUnreadNumber:[[NewShopPingCartModel shopPingCartModelAlloc] unreadShopNumber]];
+     [self searchShoppingCartNumber];
+}
+
+- (void)searchShoppingCartNumber{
+    [[ShoppingCartModel shareShoppingCartModel] loadShoppingCartList];
+    _number = [ShoppingCartModel shareShoppingCartModel].shoppingCartListArr.count;
+    [_unreadLabel setText:[NSString stringWithFormat:@"%d",_number]];
+    [_unreadLabel setHidden:_number == 0];
+    
+    [_unreadNumberImgV setHidden:_number == 0];
 }
 
 - (void)setUnreadNumber:(NSInteger)number{
-        _number = number;
+    _number = number;
+    [_unreadLabel setHidden:_number == 0];
+    [_unreadNumberImgV setHidden:_number == 0];
     
-        NSString *text = [NSString stringWithFormat:@"%d",(int)number];
+    if (number == 0) return;
     
-        [_unreadLabel setText:text];
-        _unreadLabel.center = _unreadNumberImgV.center;
+    NSString *text = [NSString stringWithFormat:@"%d",(int)number];
     
-        [_unreadLabel setHidden:_number == 0];
-        [_unreadNumberImgV setHidden:_number == 0];
+    [_unreadLabel setText:text];
+    _unreadLabel.center = _unreadNumberImgV.center;
+    
+    
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]  removeObserver:self];
 }
 
 - (void)goShoppingVC{
