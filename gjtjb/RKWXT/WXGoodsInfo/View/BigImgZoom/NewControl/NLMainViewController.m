@@ -54,7 +54,7 @@
 - (void)addRefreshView {
     if (self.pullFreshView == nil) {
         float originY = self.scrollView.contentSize.height;
-        self.pullFreshView = [[NLPullUpRefreshView alloc]initWithFrame:CGRectMake(0, originY, self.view.frame.size.width, 50.f)];
+        self.pullFreshView = [[NLPullUpRefreshView alloc]initWithFrame:CGRectMake(0, originY, self.view.frame.size.width, 20.f)];
         self.pullFreshView.backgroundColor = [UIColor whiteColor];
     }
     

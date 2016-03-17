@@ -67,18 +67,18 @@
         [marketPrice addSubview:lineLabel];
         
         yOffset += priceLabelHeight + 3;
-        topView = [[UIView alloc]initWithFrame:CGRectMake(0, yOffset, self.frame.size.width, 0.5)];
-        topView.backgroundColor = [UIColor grayColor];
-        topView.alpha = 0.8;
+        topView = [[UIView alloc]initWithFrame:CGRectMake(0, yOffset, self.frame.size.width, 20)];
+        topView.backgroundColor = WXColorWithInteger(0xd6d6d6);
+        topView.alpha = 0.2;
         [self.contentView addSubview:topView];
         
-        yOffset += 20;
-        didView = [[UIView alloc]initWithFrame:CGRectMake(0, yOffset, self.frame.size.width, 0.5)];
-        didView.backgroundColor = [UIColor grayColor];
-        didView.alpha = 0.8;
-        [self.contentView addSubview:didView];
+//        yOffset += 20;
+//        didView = [[UIView alloc]initWithFrame:CGRectMake(0, yOffset, self.frame.size.width, 0.5)];
+//        didView.backgroundColor = [UIColor grayColor];
+//        didView.alpha = 0.8;
+//        [self.contentView addSubview:didView];
         
-        yOffset += 10;
+        yOffset += 10 + 20;
         CGFloat btnWidth = 70;
         CGFloat btnHieght = 20;
         usercutBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];

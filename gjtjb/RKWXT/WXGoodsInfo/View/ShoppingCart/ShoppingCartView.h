@@ -12,6 +12,7 @@
 
 @interface ShoppingCartView : UIView
 @property (nonatomic,weak)id <ShoppingCartViewDelegate> delegate;
+- (void)searchShoppingCartNumber;
 @end
 
 @protocol ShoppingCartViewDelegate <NSObject>

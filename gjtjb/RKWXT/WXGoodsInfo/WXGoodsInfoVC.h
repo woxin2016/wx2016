@@ -18,4 +18,5 @@ typedef enum{
 @property (nonatomic,assign) NSInteger goodsId;
 @property (nonatomic,assign)NSInteger sckillID;
 @property (nonatomic,assign) GoodsInfo_Type  goodsInfo_type;
+@property (nonatomic,assign,getter=isBuyGoods)BOOL buyGoods;
 @end

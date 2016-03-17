@@ -113,7 +113,7 @@
     NSDateComponents *com = nil;
     NSString *str = nil;
     if ([self isStartDate:goodsEntity.startTime]) { // 现在时间 大于 开始时间
-    
+        
         com = [self conversionStr:goodsEntity.endTime];
         str = @"距离结束时间:";
 
@@ -121,12 +121,14 @@
         
         com = [self conversionStr:goodsEntity.startTime];
         str = @"距离开始时间:";
+        
+        
     }
 
     [textLabel setText:str];
-    [secondLabel setText:[NSString stringWithFormat:@"%d",com.second]];
-    [minuteLabel setText:[NSString stringWithFormat:@"%d",com.minute]];
-    [hoursLabel setText:[NSString stringWithFormat:@"%d",com.hour]];
+    [secondLabel setText:[NSString stringWithFormat:@"%.2d",com.second]];
+    [minuteLabel setText:[NSString stringWithFormat:@"%.2d",com.minute]];
+    [hoursLabel setText:[NSString stringWithFormat:@"%.2d",com.hour]];
 }
 
 - (NSDateComponents *)conversionStr:(NSString*)str{
@@ -150,7 +152,6 @@
     NSDate *date =  [NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
     return date;
 }
-
 
 
 @end

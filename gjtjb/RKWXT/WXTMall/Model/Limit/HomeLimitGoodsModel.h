@@ -16,5 +16,5 @@
 @protocol HomeLimitGoodsDelegate <NSObject>
 -(void)homePageLimitGoodsSucceed;
 -(void)homePageLimitGoodsFailed:(NSString*)errorMsg;
-
+- (void)limitBuyNoStartBuyGoods;
 @end

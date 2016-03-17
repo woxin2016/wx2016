@@ -55,6 +55,8 @@
         entity.smallImg = smallImgStr;
         [_shoppingCartListArr addObject:entity];
     }
+    
+   
 }
 
 //查询
@@ -124,7 +126,7 @@
             BOOL succeed = [self parseAfterDeleteGoodsInShoppingCartList:cartID];
             if(succeed){
                 NSString *goodsID = [NSString stringWithFormat:@"%d",cartID];
-                [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:goodsID];
+                [[NSNotificationCenter defaultCenter] postNotificationName:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
             }
         }
     }];
