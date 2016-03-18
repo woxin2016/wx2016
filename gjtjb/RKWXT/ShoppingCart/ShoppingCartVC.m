@@ -69,7 +69,6 @@
     [_tableView setDelegate:self];
     [_tableView setBackgroundColor:WXColorWithInteger(0xefeff4)];
     [self addSubview:_tableView];
-    [self addSubview:[self tableViewForFootView]];
     
     [self addObs];
     [[ShoppingCartModel shareShoppingCartModel] loadShoppingCartList];
@@ -88,12 +87,13 @@
 }
 
 -(WXUIView*)tableViewForFootView{
-    //    if([_cartList count] == 0){
-    //        return nil;
-    //    }
     CGSize size = self.bounds.size;
-    _tableView.frame = CGRectMake(0, 0, size.width, size.height-FootViewheight);
-    
+    if([_cartList count] == 0){
+        WXUIView *emptyView = [[WXUIView alloc] init];
+        emptyView.frame = CGRectMake(0, size.height-FootViewheight, size.width, FootViewheight);
+        [emptyView setBackgroundColor:WXColorWithInteger(0xefeff4)];
+        return emptyView;
+    }
     WXUIView *footView = [[[WXUIView alloc] init] autorelease];
     [footView setBackgroundColor:WXColorWithInteger(0xffffff)];
     CGFloat xOffset = 15;
@@ -173,6 +173,38 @@
     return footView;
 }
 
+-(void)createEmptyView{
+    CGFloat yOffset = 100;
+    CGFloat imgWidth = 90;
+    CGFloat imgHeight = imgWidth;
+    WXUIImageView *imgView = [[WXUIImageView alloc] init];
+    imgView.frame = CGRectMake((IPHONE_SCREEN_WIDTH-imgWidth)/2, yOffset, imgWidth, imgHeight);
+    [imgView setImage:[UIImage imageNamed:@"AddressEmptyImg.png"]];
+    [self addSubview:imgView];
+    [imgView release];
+    
+    CGFloat logoWidth = 45;
+    CGFloat logoHeight = logoWidth;
+    WXUIImageView *logoView = [[WXUIImageView alloc] init];
+    logoView.frame = CGRectMake((imgWidth-logoWidth)/2, (imgHeight-logoHeight)/2, logoWidth, logoHeight);
+    [logoView setImage:[UIImage imageNamed:@"ShoppingCartEmptyImg.png"]];
+    [imgView addSubview:logoView];
+    [logoView release];
+    
+    CGFloat nameWidth = 160;
+    CGFloat nameHeight = 20;
+    yOffset += imgHeight+5;
+    WXUILabel *nameLabel = [[WXUILabel alloc] init];
+    nameLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-nameWidth)/2, yOffset, nameWidth, nameHeight);
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
+    [nameLabel setTextAlignment:NSTextAlignmentCenter];
+    [nameLabel setText:@"购物车快饿瘪了T.T"];
+    [nameLabel setTextColor:WXColorWithInteger(0x000000)];
+    [nameLabel setFont:WXFont(16.0)];
+    [self addSubview:nameLabel];
+    [nameLabel release];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -219,15 +251,19 @@
     [self unShowWaitView];
     _cartList = [ShoppingCartModel shareShoppingCartModel].shoppingCartListArr;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self addSubview:[self tableViewForFootView]];
 }
 
 -(void)loadCartDataFailed:(NSNotification*)notification{
     [self unShowWaitView];
-    NSString *errorStr = notification.object;
-    if(!errorStr){
-        errorStr = @"加载失败";
-    }
-    [UtilTool showAlertView:errorStr];
+//    NSString *errorStr = notification.object;
+//    if(!errorStr){
+//        errorStr = @"加载失败";
+//    }
+//    [UtilTool showAlertView:errorStr];
+    
+    [self createEmptyView];
+    [self addSubview:[self tableViewForFootView]];
 }
 
 -(void)deleteGoods:(NSInteger)cart_id{
@@ -261,6 +297,11 @@
         }
     [_tableView reloadData];
     [self setSumPricelabel];
+    
+    if([_cartList count] == 0){
+        [self createEmptyView];
+        [self addSubview:[self tableViewForFootView]];
+    }
 }
 
 -(void)deleteOneGoodsFailed:(NSNotification*)notification{
