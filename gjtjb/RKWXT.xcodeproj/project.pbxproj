@@ -525,6 +525,8 @@
 		12C0691A1B7C743600C05D42 /* FindWeatherImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C069181B7C743600C05D42 /* FindWeatherImg@2x.png */; };
 		12C46EBC1C71B02500745787 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C46EBB1C71B02500745787 /* libz.tbd */; };
 		12CCD7ED1AC0184400A5BDF0 /* defaultContactIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CCD7EC1AC0184400A5BDF0 /* defaultContactIcon@2x.png */; };
+		12CD08CF1C9B94E50028A629 /* AddressEmptyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */; };
+		12CD08D01C9B94E50028A629 /* AddressEmptyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */; };
 		12CD4EB61C9A4F92003789F8 /* PersonalNickNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CD4EB51C9A4F92003789F8 /* PersonalNickNameCell.m */; };
 		12CD4EB91C9A57AE003789F8 /* PersonalSexNor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD4EB71C9A57AE003789F8 /* PersonalSexNor@2x.png */; };
 		12CD4EBA1C9A57AE003789F8 /* PersonalSexSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD4EB81C9A57AE003789F8 /* PersonalSexSel@2x.png */; };
@@ -1841,6 +1843,8 @@
 		12C069181B7C743600C05D42 /* FindWeatherImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FindWeatherImg@2x.png"; sourceTree = "<group>"; };
 		12C46EBB1C71B02500745787 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		12CCD7EC1AC0184400A5BDF0 /* defaultContactIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultContactIcon@2x.png"; sourceTree = "<group>"; };
+		12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEmptyImg@2x.png"; sourceTree = "<group>"; };
+		12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEmptyLogo@2x.png"; sourceTree = "<group>"; };
 		12CD4EB41C9A4F92003789F8 /* PersonalNickNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNickNameCell.h; sourceTree = "<group>"; };
 		12CD4EB51C9A4F92003789F8 /* PersonalNickNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNickNameCell.m; sourceTree = "<group>"; };
 		12CD4EB71C9A57AE003789F8 /* PersonalSexNor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PersonalSexNor@2x.png"; sourceTree = "<group>"; };
@@ -4922,6 +4926,15 @@
 			path = OrderPayType;
 			sourceTree = "<group>";
 		};
+		12CD08CC1C9B94C30028A629 /* UserAddress */ = {
+			isa = PBXGroup;
+			children = (
+				12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */,
+				12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */,
+			);
+			path = UserAddress;
+			sourceTree = "<group>";
+		};
 		12CE11DA1C507B6000FF85FA /* OrderInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -5549,6 +5562,7 @@
 		2563B4861AAAFA7500C04227 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				12CD08CC1C9B94C30028A629 /* UserAddress */,
 				DD35D8661C84258400422F5B /* ClassifyImg */,
 				127321131C7ABDE100C8D1D7 /* withdrawals */,
 				128083DB1B622A6100260B9F /* ShareImg */,
@@ -6802,6 +6816,7 @@
 				1245350F1AE9D0BC004198C9 /* FindSelected@2x.png in Resources */,
 				1285850E1B3AA7E5005E240E /* MakeOrderSmImg@2x.png in Resources */,
 				12CE11D51C50694200FF85FA /* GoodsListDownImg@2x.png in Resources */,
+				12CD08CF1C9B94E50028A629 /* AddressEmptyImg@2x.png in Resources */,
 				12D52BBA1AC2EF4400C5CE71 /* dtmf-4.aif in Resources */,
 				1245353B1AE9D146004198C9 /* signBg.jpg in Resources */,
 				120D00FB1BBB9182005CAA6C /* AlipaySDK.bundle in Resources */,
@@ -6848,6 +6863,7 @@
 				1241E5511AE9D89B00811D3F /* delNumber@2x.png in Resources */,
 				12F46A3F1B20012000B8EC98 /* T_GoodsInfoShare@2x.png in Resources */,
 				1241E5601AE9D91400811D3F /* Arrow@2x.png in Resources */,
+				12CD08D01C9B94E50028A629 /* AddressEmptyLogo@2x.png in Resources */,
 				12D52BB41AC2EF4400C5CE71 /* dtmf-#.aif in Resources */,
 				1241E53C1AE9D89B00811D3F /* *S.png in Resources */,
 				12F963651C8575AD000972E6 /* EvaluteFullImg@2x.png in Resources */,

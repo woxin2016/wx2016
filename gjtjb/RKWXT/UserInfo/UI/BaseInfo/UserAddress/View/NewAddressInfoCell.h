@@ -8,7 +8,7 @@
 
 #import "WXUITableViewCell.h"
 
-#define NewAddressInfoCellHeight (68)
+#define NewAddressInfoCellHeight (44)
 @protocol NewAddressInfoCellDelegate;
 @interface NewAddressInfoCell : WXUITableViewCell
 @property (nonatomic,assign)id<NewAddressInfoCellDelegate>delegate;
