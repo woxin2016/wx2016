@@ -15,4 +15,5 @@
 + (UIColor*)colorWithRGB:(NSInteger)rgb alpha:(CGFloat)alpha;
 + (UIColor*)colrWithR:(NSInteger)r g:(NSInteger)g b:(NSInteger)b;
 + (UIColor*)colrWithR:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
++ (UIColor *)colorWithHexString:(NSString *)color;
 @end

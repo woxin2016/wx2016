@@ -50,7 +50,6 @@
     self.frame = rect;
     
     CGFloat xOffset = 10;
-    CGFloat btnWidth = 90;
     
     CGFloat width = self.frame.size.width / 3.5;
     CGFloat Height = self.frame.size.height;

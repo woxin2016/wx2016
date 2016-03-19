@@ -6,6 +6,8 @@
 //  Copyright © 2016年 roderick. All rights reserved.
 //
 
+#warning mark --- 加入购物车  弃用
+
 #import "WXUIView.h"
 
 #define K_Notification_Name_UserBuyGoods @"K_Notification_Name_UserBuyGoods"

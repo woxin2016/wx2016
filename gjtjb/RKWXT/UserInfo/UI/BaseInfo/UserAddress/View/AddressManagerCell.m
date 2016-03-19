@@ -53,7 +53,7 @@
         WXUIButton *editBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
         editBtn.frame = CGRectMake(xOffset, (AddressManagerCellHeight-editImg.size.height)/2, editImg.size.width+norAddWidth/2, editImg.size.height);
         [editBtn setBackgroundColor:[UIColor clearColor]];
-        [editBtn setImage:editImg forState:UIControlStateNormal];
+//        [editBtn setImage:editImg forState:UIControlStateNormal];
         [editBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
         [editBtn.titleLabel setTextAlignment:NSTextAlignmentRight];

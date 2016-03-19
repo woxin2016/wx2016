@@ -34,9 +34,9 @@ typedef enum{
 +(NewUserAddressModel*)shareUserAddress;
 -(BOOL)shouldDataReload;
 -(void)loadUserAddress;
--(void)insertUserAddressWithName:(NSString*)userName withAdd:(NSString*)address withPhone:(NSString*)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString*)proName cityName:(NSString*)cityName disName:(NSString *)disName;
+-(void)insertUserAddressWithName:(NSString*)userName withAdd:(NSString*)address withPhone:(NSString*)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString*)proName cityName:(NSString*)cityName disName:(NSString *)disName is_defult:(BOOL)is_defult;
 -(void)deleteUserAddressWithAddressID:(NSInteger)addressID;
--(void)modifyUserAddressWithName:(NSString*)userName withAdd:(NSString*)address withPhone:(NSString*)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString*)proName cityName:(NSString*)cityName disName:(NSString *)disName addressID:(NSInteger)addressID;
+-(void)modifyUserAddressWithName:(NSString*)userName withAdd:(NSString*)address withPhone:(NSString*)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString*)proName cityName:(NSString*)cityName disName:(NSString *)disName addressID:(NSInteger)addressID is_default:(BOOL)is_default;
 -(void)setNormalAddressWithOldAddID:(NSInteger)oldAddID withNewAddID:(NSInteger)newAddID;
 
 @end

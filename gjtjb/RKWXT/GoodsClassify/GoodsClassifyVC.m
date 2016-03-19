@@ -50,7 +50,7 @@
     [[ClassifyModel shareClassifyNodel] loadAllClassifyData];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     
-    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(size.width - 44, 22, 44, 44)];
+    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(size.width-35, 64-35, 25, 25)];
     cartView.delegate = self;
     [cartView searchShoppingCartNumber];
     [self.view addSubview:cartView];

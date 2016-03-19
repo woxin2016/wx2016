@@ -20,6 +20,8 @@
 #import "WXHomeOrderListVC.h"
 #import "GoodsClassifyVC.h"
 #import "LuckyGoodsOrderList.h"
+#import "UserBonusVC.h"
+
 @implementation CoordinateController
 
 + (CoordinateController*)sharedCoordinateController{
@@ -74,6 +76,9 @@
 }
 
 -(void)toUserBonusVC:(id)sender animated:(BOOL)animated{
+    WXUIViewController *vc = sender;
+    UserBonusVC *boundsVC = [[UserBonusVC alloc] init];
+    [vc.wxNavigationController pushViewController:boundsVC];
 }
 
 -(void)toMakeOrderVC:(id)sender orderInfo:(id)orderInfo animated:(BOOL)animated{

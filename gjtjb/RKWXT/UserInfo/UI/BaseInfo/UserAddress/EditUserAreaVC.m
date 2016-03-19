@@ -11,6 +11,7 @@
 #import "NewAddressInfoCell.h"
 #import "NewAddressTextfieldCell.h"
 #import "NewUserAddressPhoneCell.h"
+#import "UserDefaultSiteCell.h"
 #import "NewUserAddressModel.h"
 #import "LocalAreaModel.h"
 #import "AreaEntity.h"
@@ -27,12 +28,13 @@ enum{
     AddressEdit_Row_Invalid,
 };
 
-@interface EditUserAreaVC()<UITableViewDataSource,UITableViewDelegate,NewAddressInfoCellDelegate,NewTextFieldCellDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NewUserAddressPhoneCellDelegate>{
+@interface EditUserAreaVC()<UITableViewDataSource,UITableViewDelegate,NewAddressInfoCellDelegate,NewTextFieldCellDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NewUserAddressPhoneCellDelegate,UserDefaultSiteCellDelegate>{
     UITableView *_tableView;
     UIPickerView *picker;
     
     UIView *shellView;
     BOOL showPicker;
+    BOOL defultSite;
 }
 @property (nonatomic,strong) AreaEntity *proEnt;
 @property (nonatomic,strong) AreaEntity *cityEnt;
@@ -52,7 +54,13 @@ enum{
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self setCSTTitle:@"地址编辑"];
+    if (self.address_type == UserArea_Type_Insert) {
+        [self setCSTTitle:@"新建收货地址"];
+    }else{
+        [self setCSTTitle:@"地址编辑"];
+
+    }
+    
     self.backgroundColor = WXColorWithInteger(0xefeff4);
     [self addNotification];
     
@@ -150,11 +158,21 @@ enum{
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return AddressEdit_Row_Invalid;
+    if (section == 0) {
+        return AddressEdit_Row_Invalid;
+    }
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0.0000000000;
+    }
+    return 20;
 }
 
 -(WXUITableViewCell *)tableViewForAddressNameCell{
@@ -212,27 +230,47 @@ enum{
     return cell;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WXUITableViewCell *cell = nil;
-    NSInteger row = indexPath.row;
-    switch (row) {
-        case AddressEdit_Row_Name:
-            cell = [self tableViewForAddressNameCell];
-            break;
-        case AddressEdit_Row_Phone:
-            cell = [self tableViewForAddressPhoneCell];
-            break;
-        case AddressEdit_Row_Area:
-            cell = [self tableViewForAddressAreaCell];
-            break;
-        case AddressEdit_Row_Info:
-            cell = [self tableViewForAddressInfoCell];
-            break;
-        default:
-            break;
+// 设置为默认
+-(WXUITableViewCell*)tableViewDefaultSiteCell{
+    static NSString *identifier = @"DefaultSiteCell";
+    UserDefaultSiteCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[UserDefaultSiteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    cell.textLabel.text = @"设置为默认地址";
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.delegate = self;
     return cell;
 }
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WXUITableViewCell *cell = nil;
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    if (section == 0) {
+        switch (row) {
+            case AddressEdit_Row_Name:
+                cell = [self tableViewForAddressNameCell];
+                break;
+            case AddressEdit_Row_Phone:
+                cell = [self tableViewForAddressPhoneCell];
+                break;
+            case AddressEdit_Row_Area:
+                cell = [self tableViewForAddressAreaCell];
+                break;
+            case AddressEdit_Row_Info:
+                cell = [self tableViewForAddressInfoCell];
+                break;
+            default:
+                break;
+        }
+    }else{
+        cell = [self tableViewDefaultSiteCell];
+    }
+
+    return cell;
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -376,21 +414,28 @@ enum{
 
 #pragma mark submit
 -(void)submitUserInfoData{
+    
     if(self.userName.length != 0 && self.userPhone.length != 0 && (self.proEnt.areaName.length != 0 || _entity)){
         if(![self checkUserPhoneWithString:self.userPhone]){
             return;
         }
-        if(_address_type == UserArea_Type_Insert){
+        if (self.infoStr.length == 0 ) {
+            [UtilTool showAlertView:@"请填写详细地址"];
+            return;
+        }
+        if(_address_type == UserArea_Type_Insert){  
             [NewUserAddressModel shareUserAddress].address_type = UserAddress_Type_Insert;
-            [[NewUserAddressModel shareUserAddress] insertUserAddressWithName:self.userName withAdd:self.infoStr withPhone:self.userPhone proID:self.proEnt.areaID cityID:self.cityEnt.areaID disID:self.disEnt.areaID proName:self.proEnt.areaName cityName:self.cityEnt.areaName disName:self.disEnt.areaName];
+            [[NewUserAddressModel shareUserAddress] insertUserAddressWithName:self.userName withAdd:self.infoStr withPhone:self.userPhone proID:self.proEnt.areaID cityID:self.cityEnt.areaID disID:self.disEnt.areaID proName:self.proEnt.areaName cityName:self.cityEnt.areaName disName:self.disEnt.areaName is_defult:defultSite];
         }else{
             [NewUserAddressModel shareUserAddress].address_type = UserAddress_Type_Change;
             if(self.proEnt.areaName.length == 0){
-                [[NewUserAddressModel shareUserAddress] modifyUserAddressWithName:self.userName withAdd:self.infoStr withPhone:self.userPhone proID:_entity.proID cityID:_entity.cityID disID:_entity.disID proName:_entity.proName cityName:_entity.cityName disName:_entity.disName addressID:_entity.address_id];
+                [[NewUserAddressModel shareUserAddress] modifyUserAddressWithName:self.userName withAdd:self.infoStr withPhone:self.userPhone proID:_entity.proID cityID:_entity.cityID disID:_entity.disID proName:_entity.proName cityName:_entity.cityName disName:_entity.disName addressID:_entity.address_id is_default:defultSite];
             }else{
-                [[NewUserAddressModel shareUserAddress] modifyUserAddressWithName:self.userName withAdd:self.infoStr withPhone:self.userPhone proID:self.proEnt.areaID cityID:self.cityEnt.areaID disID:self.disEnt.areaID proName:self.proEnt.areaName cityName:self.cityEnt.areaName disName:self.disEnt.areaName addressID:_entity.address_id];
+                [[NewUserAddressModel shareUserAddress] modifyUserAddressWithName:self.userName withAdd:self.infoStr withPhone:self.userPhone proID:self.proEnt.areaID cityID:self.cityEnt.areaID disID:self.disEnt.areaID proName:self.proEnt.areaName cityName:self.cityEnt.areaName disName:self.disEnt.areaName addressID:_entity.address_id is_default:defultSite];
             }
         }
+        
+        
         [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     }else{
         [UtilTool showAlertView:@"信息不完整"];
@@ -475,6 +520,11 @@ enum{
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self removeNotification];
+}
+
+#pragma mark defaultSizeCell
+- (void)keyPadToneSetting:(WXUISwitch *)s{
+    defultSite = s.on;
 }
 
 @end
