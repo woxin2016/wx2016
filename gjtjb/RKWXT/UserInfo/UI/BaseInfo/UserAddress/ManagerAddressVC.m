@@ -24,6 +24,8 @@ enum{
 @interface ManagerAddressVC()<UITableViewDataSource,UITableViewDelegate,AddressManagerDelegate,UIAlertViewDelegate>{
     UITableView *_tableView;
     NSArray *_addListArr;
+    
+    AreaEntity *delAreaEnt;
 }
 @end
 
@@ -69,6 +71,35 @@ enum{
 
 -(void)remoNotification{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)createEmptyView{
+    CGFloat yOffset = 100;
+    CGFloat imgWidth = 90;
+    CGFloat imgHeight = imgWidth;
+    WXUIImageView *imgView = [[WXUIImageView alloc] init];
+    imgView.frame = CGRectMake((IPHONE_SCREEN_WIDTH-imgWidth)/2, yOffset, imgWidth, imgHeight);
+    [imgView setImage:[UIImage imageNamed:@"AddressEmptyImg.png"]];
+    [self addSubview:imgView];
+    
+    CGFloat logoWidth = 45;
+    CGFloat logoHeight = logoWidth;
+    WXUIImageView *logoView = [[WXUIImageView alloc] init];
+    logoView.frame = CGRectMake((imgWidth-logoWidth)/2, (imgHeight-logoHeight)/2, logoWidth, logoHeight);
+    [logoView setImage:[UIImage imageNamed:@"AddressEmptyLogo.png"]];
+    [imgView addSubview:logoView];
+    
+    CGFloat nameWidth = 160;
+    CGFloat nameHeight = 20;
+    yOffset += imgHeight+5;
+    WXUILabel *nameLabel = [[WXUILabel alloc] init];
+    nameLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-nameWidth)/2, yOffset, nameWidth, nameHeight);
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
+    [nameLabel setTextAlignment:NSTextAlignmentCenter];
+    [nameLabel setText:@"您还没添加收货地址"];
+    [nameLabel setTextColor:WXColorWithInteger(0x000000)];
+    [nameLabel setFont:WXFont(16.0)];
+    [self addSubview:nameLabel];
 }
 
 -(void)createRightView{
@@ -209,6 +240,10 @@ enum{
     [self unShowWaitView];
     _addListArr = [NewUserAddressModel shareUserAddress].userAddressArr;
     [_tableView reloadData];
+    
+    if([_addListArr count] == 0){
+        [self createEmptyView];
+    }
 }
 
 -(void)loadAddressDataFailed:(NSNotification*)notification{
@@ -218,6 +253,8 @@ enum{
         errorMsg = @"查询数据失败";
     }
     [UtilTool showAlertView:errorMsg];
+    
+    [self createEmptyView];
 }
 
 #pragma mark del
@@ -226,9 +263,17 @@ enum{
         [UtilTool showAlertView:@"请先更改默认地址后再删除!"];
         return;
     }
-    [NewUserAddressModel shareUserAddress].address_type = UserAddress_Type_Delete;
-    [[NewUserAddressModel shareUserAddress] deleteUserAddressWithAddressID:entity.address_id];
-    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    
+    delAreaEnt = entity;
+    [UtilTool showAlertView:@"" message:@"确认删除此收货地址吗?" delegate:self tag:0 cancelButtonTitle:@"取消" otherButtonTitles:@"确定"];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [NewUserAddressModel shareUserAddress].address_type = UserAddress_Type_Delete;
+        [[NewUserAddressModel shareUserAddress] deleteUserAddressWithAddressID:delAreaEnt.address_id];
+        [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+    }
 }
 
 -(void)delAddressDataSucceed{

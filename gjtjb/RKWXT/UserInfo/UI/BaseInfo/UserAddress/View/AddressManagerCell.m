@@ -48,57 +48,30 @@
         [norAddLabel setFont:WXFont(12.0)];
         [self.contentView addSubview:norAddLabel];
         
-        xOffset = IPHONE_SCREEN_WIDTH-105;
-        UIImage *editImg = [UIImage imageNamed:@"AddressEdit.png"];
+        xOffset = IPHONE_SCREEN_WIDTH-115;
+        CGFloat btnHeight = 18;
+        CGFloat btnWidth = 50;
         WXUIButton *editBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-        editBtn.frame = CGRectMake(xOffset, (AddressManagerCellHeight-editImg.size.height)/2, editImg.size.width+norAddWidth/2, editImg.size.height);
+        editBtn.frame = CGRectMake(xOffset, (AddressManagerCellHeight-btnHeight)/2, btnWidth, btnHeight);
         [editBtn setBackgroundColor:[UIColor clearColor]];
 //        [editBtn setImage:editImg forState:UIControlStateNormal];
         [editBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-        [editBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
-        [editBtn.titleLabel setFont:WXFont(12.0)];
-        [editBtn setTitleColor:WXColorWithInteger(0x8a8a8a) forState:UIControlStateNormal];
-        [editBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, editImg.size.width-10, 0, 0)];
+        [editBtn.titleLabel setFont:WXFont(10.0)];
+        [editBtn setTitleColor:WXColorWithInteger(0xbababa) forState:UIControlStateNormal];
         [editBtn addTarget:self action:@selector(editAddress) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:editBtn];
         
-        CGFloat xGap = xOffset+editImg.size.width+6;
-        CGFloat labelWidth = norAddWidth/2;
-        UILabel *editLabel = [[[UILabel alloc] init] autorelease];
-        editLabel.frame = CGRectMake(xGap, (AddressManagerCellHeight-norAddheight)/2, labelWidth, norAddheight);
-        [editLabel setBackgroundColor:[UIColor clearColor]];
-        [editLabel setTextAlignment:NSTextAlignmentLeft];
-        [editLabel setText:@"编辑"];
-        [editLabel setTextColor:WXColorWithInteger(0x8a8a8a)];
-        [editLabel setFont:WXFont(12.0)];
-//        [self.contentView addSubview:editLabel];
-        
-        
-        UIImage *delImg = [UIImage imageNamed:@"AddressDel.png"];
-        xGap += labelWidth-10;
+        CGFloat xGap = xOffset+btnWidth+10;
         WXUIButton *delBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-        delBtn.frame = CGRectMake(xGap, (AddressManagerCellHeight-delImg.size.height)/2, delImg.size.width+labelWidth, delImg.size.height);
+        delBtn.frame = CGRectMake(xGap, (AddressManagerCellHeight-btnHeight)/2, btnWidth, btnHeight);
         [delBtn setBackgroundColor:[UIColor clearColor]];
-        [delBtn setImage:delImg forState:UIControlStateNormal];
-        [delBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [delBtn setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0xc8c8c8)];
         [delBtn setTitle:@"删除" forState:UIControlStateNormal];
-        [delBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
-        [delBtn.titleLabel setFont:WXFont(12.0)];
-        [delBtn setTitleColor:WXColorWithInteger(0x8a8a8a) forState:UIControlStateNormal];
-        [delBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, delImg.size.width-10, 0, 0)];
+        [delBtn.titleLabel setFont:WXFont(10.0)];
+        [delBtn setTitleColor:WXColorWithInteger(0xbababa) forState:UIControlStateNormal];
         [delBtn addTarget:self action:@selector(delAdd) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:delBtn];
-        
-        xGap += delImg.size.width+11;
-        UILabel *delLabel = [[[UILabel alloc] init] autorelease];
-        delLabel.frame = CGRectMake(xGap, (AddressManagerCellHeight-norAddheight)/2, labelWidth, norAddheight);
-        [delLabel setBackgroundColor:[UIColor clearColor]];
-        [delLabel setTextAlignment:NSTextAlignmentLeft];
-        [delLabel setText:@"删除"];
-        [delLabel setTextColor:WXColorWithInteger(0x8a8a8a)];
-        [delLabel setFont:WXFont(12.0)];
-//        [self.contentView addSubview:delLabel];
     }
     return self;
 }
@@ -109,17 +82,11 @@
 }
 
 -(void)setAddressNormal:(BOOL)load{
-//    AddressEntity *ent = self.cellInfo;
     if(load){
         [_selBtn setImage:[UIImage imageNamed:@"AddressSelNormal.png"] forState:UIControlStateNormal];
     }else{
         [_selBtn setImage:[UIImage imageNamed:@"AddressCircle.png"] forState:UIControlStateNormal];
     }
-//    if(!load){
-//        if(_delegate && [_delegate respondsToSelector:@selector(setAddressNormal:)]){
-//            [_delegate setAddressNormal:ent];
-//        }
-//    }
 }
 
 -(void)setAddressCircleNormal{
