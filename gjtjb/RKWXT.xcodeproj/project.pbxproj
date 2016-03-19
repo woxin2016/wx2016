@@ -591,6 +591,8 @@
 		12F2D8061B1F01E900C8017F /* failedImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F2D8041B1F01E900C8017F /* failedImage@2x.png */; };
 		12F2D8071B1F01E900C8017F /* initImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F2D8051B1F01E900C8017F /* initImage@2x.png */; };
 		12F380351B3BEF6F00E9690C /* UserAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F380341B3BEF6F00E9690C /* UserAddressModel.m */; };
+		12F3B8801C9CFCDE0082B5CA /* LuckyMoreTimesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F3B87F1C9CFCDE0082B5CA /* LuckyMoreTimesVC.m */; };
+		12F3B8851C9D35410082B5CA /* LuckyTimesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F3B8841C9D35410082B5CA /* LuckyTimesModel.m */; };
 		12F3CC751B1DE82C00E64DE4 /* AboutWxImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CC681B1DE82C00E64DE4 /* AboutWxImg@2x.png */; };
 		12F3CC761B1DE82C00E64DE4 /* MyCallMoneyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CC691B1DE82C00E64DE4 /* MyCallMoneyImg@2x.png */; };
 		12F3CC7A1B1DE82C00E64DE4 /* OrderListImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F3CC6D1B1DE82C00E64DE4 /* OrderListImg@2x.png */; };
@@ -1948,6 +1950,10 @@
 		12F2D8051B1F01E900C8017F /* initImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initImage@2x.png"; sourceTree = "<group>"; };
 		12F380331B3BEF6F00E9690C /* UserAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressModel.h; sourceTree = "<group>"; };
 		12F380341B3BEF6F00E9690C /* UserAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressModel.m; sourceTree = "<group>"; };
+		12F3B87E1C9CFCDE0082B5CA /* LuckyMoreTimesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyMoreTimesVC.h; sourceTree = "<group>"; };
+		12F3B87F1C9CFCDE0082B5CA /* LuckyMoreTimesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyMoreTimesVC.m; sourceTree = "<group>"; };
+		12F3B8831C9D35410082B5CA /* LuckyTimesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyTimesModel.h; sourceTree = "<group>"; };
+		12F3B8841C9D35410082B5CA /* LuckyTimesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyTimesModel.m; sourceTree = "<group>"; };
 		12F3CC681B1DE82C00E64DE4 /* AboutWxImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutWxImg@2x.png"; sourceTree = "<group>"; };
 		12F3CC691B1DE82C00E64DE4 /* MyCallMoneyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyCallMoneyImg@2x.png"; sourceTree = "<group>"; };
 		12F3CC6D1B1DE82C00E64DE4 /* OrderListImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OrderListImg@2x.png"; sourceTree = "<group>"; };
@@ -3786,6 +3792,7 @@
 		123666D51C44AA04000FAF70 /* LuckyDraw */ = {
 			isa = PBXGroup;
 			children = (
+				12F3B87B1C9CFC500082B5CA /* LuckyMoreTimes */,
 				123666D61C44AA04000FAF70 /* CommonWebview */,
 				123666D91C44AA04000FAF70 /* LuckyGoodsInfo */,
 				123666E11C44AA04000FAF70 /* LuckyGoodsMakeOrder */,
@@ -5114,6 +5121,33 @@
 			sourceTree = "<group>";
 		};
 		12F2CCDD1B4CB91D0085F78F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12F3B87B1C9CFC500082B5CA /* LuckyMoreTimes */ = {
+			isa = PBXGroup;
+			children = (
+				12F3B87E1C9CFCDE0082B5CA /* LuckyMoreTimesVC.h */,
+				12F3B87F1C9CFCDE0082B5CA /* LuckyMoreTimesVC.m */,
+				12F3B87C1C9CFC5E0082B5CA /* Model */,
+				12F3B87D1C9CFC5F0082B5CA /* View */,
+			);
+			path = LuckyMoreTimes;
+			sourceTree = "<group>";
+		};
+		12F3B87C1C9CFC5E0082B5CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12F3B8831C9D35410082B5CA /* LuckyTimesModel.h */,
+				12F3B8841C9D35410082B5CA /* LuckyTimesModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12F3B87D1C9CFC5F0082B5CA /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -7261,6 +7295,7 @@
 				DD2E63E01C916C890037632F /* HomeLimitGoodsModel.m in Sources */,
 				12CE11E41C507D0600FF85FA /* OrderInfoUserAddressCell.m in Sources */,
 				12BC72621C78531700FC6A1C /* WXJuniorListModel.m in Sources */,
+				12F3B8851C9D35410082B5CA /* LuckyTimesModel.m in Sources */,
 				122AB8601C3E67EC00AC9DF5 /* GoodsStockView.m in Sources */,
 				123667431C44AA04000FAF70 /* LuckyOrderContactSellerCell.m in Sources */,
 				12F963351B3D4BDF00FF6A3E /* SBJsonStreamWriter.m in Sources */,
@@ -7408,6 +7443,7 @@
 				120D01751BBB9465005CAA6C /* Order.m in Sources */,
 				DD2498B81C88312F0079DB5A /* ClassifyInsertData.m in Sources */,
 				7758431A1AB95A300039B129 /* WXWaitingHud.m in Sources */,
+				12F3B8801C9CFCDE0082B5CA /* LuckyMoreTimesVC.m in Sources */,
 				12BD30F51B3E78CA00170316 /* OrderWechatCell.m in Sources */,
 				12F571691B42253800128294 /* payRequsestHandler.mm in Sources */,
 				12F9162D1B19B0AA00C94717 /* BaseInfoVC.m in Sources */,

@@ -93,6 +93,7 @@ typedef enum {
     WXT_UrlFeed_Type_New_LuckyGoodsInfo,
     WXT_UrlFeed_Type_New_LuckyMakeOrder,
     WXT_UrlFeed_Type_New_LuckyOrderList,
+    WXT_UrlFeed_Type_New_LuckyTimes,
     
     WXT_UrlFeed_Type_Invalid,
 }WXT_UrlFeed_Type;
