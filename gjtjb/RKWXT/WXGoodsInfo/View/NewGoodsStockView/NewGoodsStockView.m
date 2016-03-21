@@ -24,10 +24,10 @@
 #define buyBtnH (44)
 
 
-@interface NewGoodsStockView ()<UITableViewDataSource,UITableViewDelegate,GoodsStockStyleCellDelegate,GoodsBuyNumberCellDelegate>
+@interface NewGoodsStockView ()<UITableViewDataSource,UITableViewDelegate,GoodsBuyNumberCellDelegate>
 {
     UIView *_maskShell;
-    UITableView *tableView;
+    UITableView *tableViews;
     NSArray *goodsArr;
     NSArray *goodsStockArr;
     WXUIButton *buyBtn;
@@ -53,15 +53,15 @@
     [_maskShell setAlpha:kMaskShellDefaultAlpha];
     [self addSubview:_maskShell];
   
-    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,Size.height - DownViewHeight - buyBtnH, Size.width, DownViewHeight) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.backgroundColor = [UIColor whiteColor];
-    tableView.showsHorizontalScrollIndicator = NO;
-    tableView.shouldGroupAccessibilityChildren = NO;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    [self addSubview:tableView];
+    tableViews = [[UITableView alloc]initWithFrame:CGRectMake(0,Size.height - DownViewHeight - buyBtnH, Size.width, DownViewHeight) style:UITableViewStylePlain];
+    tableViews.delegate = self;
+    tableViews.dataSource = self;
+    tableViews.backgroundColor = [UIColor whiteColor];
+    tableViews.showsHorizontalScrollIndicator = NO;
+    tableViews.shouldGroupAccessibilityChildren = NO;
+    tableViews.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableViews.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    [self addSubview:tableViews];
     
     [self tableFootView];
 }
@@ -111,17 +111,17 @@
 }
 
 // 商品信息
-- (WXUITableViewCell*)tableViewGoodsInfo{
-    GoodsInfoStockCell *cell = [GoodsInfoStockCell GoodsInfoStockCellWithTableView:tableView];
-    [cell setCellInfo:goodsStockArr[0]];
-    cell.imgUrl = [goodsArr[0] goodsImg];
+- (WXUITableViewCell*)tableViewGoodsInfoWithRow:(NSInteger)row{
+    GoodsInfoStockCell *cell = [GoodsInfoStockCell GoodsInfoStockCellWithTableView:tableViews];
+    [cell setCellInfo:goodsStockArr[row]];
+    cell.imgUrl = [goodsArr[row] goodsImg];
     [cell load];
     return cell;
 }
 
 // 商品样式
 - (WXUITableViewCell*)tableViewGoodsStyleWithRow:(NSInteger)row{
-    GoodsStockStyleCell *cell = [GoodsStockStyleCell GoodsStockStyleCellWithTableView:tableView];
+    GoodsStockStyleCell *cell = [GoodsStockStyleCell GoodsStockStyleCellWithTableView:tableViews];
     [cell setCellInfo:entity];
     [cell load];
     if (row == 0) {
@@ -129,13 +129,12 @@
     }else{
         [cell setLabelHid:YES];
     }
-    cell.delegate = self;
     return cell;
 }
 
 //购买数量
 - (WXUITableViewCell*)tableViewGoodsBuyNumber{
-    GoodsBuyNumberCell *cell = [GoodsBuyNumberCell GoodsBuyNumberCellWithTableView:tableView];
+    GoodsBuyNumberCell *cell = [GoodsBuyNumberCell GoodsBuyNumberCellWithTableView:tableViews];
     cell.delegate = self;
     return cell;
 }
@@ -144,13 +143,31 @@
     WXUITableViewCell *cell = nil;
     NSInteger section = indexPath.section;
     if (section == GoodsInfoSection_Entity) {
-        cell = [self tableViewGoodsInfo];
+        cell = [self tableViewGoodsInfoWithRow:indexPath.row];
     }else if (section == GoodsInfoSectionStock_Number){
         cell = [self tableViewGoodsStyleWithRow:indexPath.row];
     }else if (section == GoodsInfoSectionBuy_Number){
         cell = [self tableViewGoodsBuyNumber];
     }
     return cell;
+}
+
+//选中  刷新
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSUInteger section = indexPath.section;
+    NSUInteger row = indexPath.row;
+    if (section == GoodsInfoSectionStock_Number) {
+        GoodsInfoEntity *rowEntity = goodsStockArr[row];
+        GoodsInfoEntity *infoEntity = goodsArr[row];
+        buyNumber = 1;
+        [self buyGoodsInfoWithEntity:rowEntity Number:buyNumber];
+        
+        NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+        GoodsInfoStockCell *cell = (GoodsInfoStockCell*)[tableView cellForRowAtIndexPath:path];
+        [cell setCellInfo:infoEntity];
+        cell.imgUrl = [goodsArr[row] goodsImg];
+        [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
+    }
 }
 
 
@@ -181,10 +198,7 @@
 }
 
 #pragma mark  -- cellDelegate
-- (void)GoodsStockStyleSelectedGoodsName:(NSString *)goodsName{
-    entity.stockName = goodsName;
-    [self buyGoodsInfoWithEntity:entity Number:buyNumber];
-}
+
 
 -(void)goodsBuyAddNumber{
     if (buyNumber >= entity.stockNum ) {
@@ -193,7 +207,7 @@
     }
      buyNumber ++;
     NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
-    GoodsBuyNumberCell *cell = (GoodsBuyNumberCell*)[tableView cellForRowAtIndexPath:path] ;
+    GoodsBuyNumberCell *cell = (GoodsBuyNumberCell*)[tableViews cellForRowAtIndexPath:path] ;
     [cell lookGoodsStockNumber:buyNumber];
     
     [self buyGoodsInfo];
@@ -205,7 +219,7 @@
     }
     buyNumber --;
      NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
-    GoodsBuyNumberCell *cell = (GoodsBuyNumberCell*)[tableView cellForRowAtIndexPath:path] ;
+    GoodsBuyNumberCell *cell = (GoodsBuyNumberCell*)[tableViews cellForRowAtIndexPath:path] ;
     [cell lookGoodsStockNumber:buyNumber];
     
     [self buyGoodsInfo];

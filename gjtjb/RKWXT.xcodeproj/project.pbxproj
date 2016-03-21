@@ -873,6 +873,7 @@
 		DD89B5611C897AC70059F097 /* LMResPackingImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD89B5601C897AC70059F097 /* LMResPackingImg@2x.png */; };
 		DD89B5631C8981790059F097 /* Shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD89B5621C8981790059F097 /* Shopping@2x.png */; };
 		DD8D0F601C9CE5E300882ADA /* GoodsBuyNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8D0F5F1C9CE5E300882ADA /* GoodsBuyNumberCell.m */; };
+		DD8D0F641C9D530100882ADA /* SignSeleNow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8D0F631C9D530100882ADA /* SignSeleNow@2x.png */; };
 		DD988A5D1B1D408500B3790B /* EScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD988A5C1B1D408500B3790B /* EScrollerView.m */; };
 		DD999F931B204C7B00086D1C /* UIButton+UIButtonImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = DD999F921B204C7B00086D1C /* UIButton+UIButtonImageWithLable.m */; };
 		DDA5B2C91C8EDDA4001180EE /* GoodsLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA5B2C81C8EDDA4001180EE /* GoodsLineTool.m */; };
@@ -2475,6 +2476,7 @@
 		DD89B5621C8981790059F097 /* Shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shopping@2x.png"; sourceTree = "<group>"; };
 		DD8D0F5E1C9CE5E300882ADA /* GoodsBuyNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsBuyNumberCell.h; sourceTree = "<group>"; };
 		DD8D0F5F1C9CE5E300882ADA /* GoodsBuyNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsBuyNumberCell.m; sourceTree = "<group>"; };
+		DD8D0F631C9D530100882ADA /* SignSeleNow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignSeleNow@2x.png"; sourceTree = "<group>"; };
 		DD988A5B1B1D408500B3790B /* EScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EScrollerView.h; sourceTree = "<group>"; };
 		DD988A5C1B1D408500B3790B /* EScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollerView.m; sourceTree = "<group>"; };
 		DD999F911B204C7B00086D1C /* UIButton+UIButtonImageWithLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLable.h"; sourceTree = "<group>"; };
@@ -4162,6 +4164,7 @@
 				124535171AE9D146004198C9 /* signEveryDay@2x.png */,
 				124535181AE9D146004198C9 /* SignGifView */,
 				1245353A1AE9D146004198C9 /* SignNow@2x.png */,
+				DD8D0F631C9D530100882ADA /* SignSeleNow@2x.png */,
 			);
 			path = SignImg;
 			sourceTree = "<group>";
@@ -6794,6 +6797,7 @@
 				127FDD781B57A76E0059BDB6 /* CallBtnUpImg@2x.png in Resources */,
 				121121101BA2775000651E4A /* MyCutTeam@2x.png in Resources */,
 				1245354F1AE9D146004198C9 /* sign27@2x.png in Resources */,
+				DD8D0F641C9D530100882ADA /* SignSeleNow@2x.png in Resources */,
 				1241E5391AE9D89B00811D3F /* #N@2x.png in Resources */,
 				1241E5481AE9D89B00811D3F /* 5S@2x.png in Resources */,
 				124535551AE9D146004198C9 /* sign32@2x.png in Resources */,

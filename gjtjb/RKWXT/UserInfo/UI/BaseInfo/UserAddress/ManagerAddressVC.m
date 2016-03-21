@@ -104,11 +104,11 @@ enum{
 
 -(void)createRightView{
     WXUIButton *createBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    createBtn.frame = CGRectMake(0, 0, 30, 30);
-    [createBtn setBorderRadian:6.0 width:0.1 color:WXColorWithInteger(AllBaseColor)];
-    [createBtn setBackgroundColor:WXColorWithInteger(AllBaseColor)];
+    createBtn.frame = CGRectMake(0, 0, 50, 30);
+    [createBtn setBackgroundColor:[UIColor clearColor]];
     [createBtn setTitle:@"新建" forState:UIControlStateNormal];
     [createBtn.titleLabel setFont:WXFont(14.0)];
+    [createBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
     [createBtn addTarget:self action:@selector(createNewAddress) forControlEvents:UIControlEventTouchUpInside];
     [self setRightNavigationItem:createBtn];
 }

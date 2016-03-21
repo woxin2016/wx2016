@@ -12,7 +12,7 @@
 @interface GoodsStockStyleCell ()
 {
     WXUILabel *nameLabel;
-    WXUIButton *stockBtn;
+    WXUILabel *stockBtn;
 }
 @end
 
@@ -42,12 +42,10 @@
         nameLabel.text = @"规格:";
         [self.contentView addSubview:nameLabel];
         
-        stockBtn = [[WXUIButton alloc]initWithFrame:CGRectZero];
-         stockBtn.titleLabel.font = WXFont(13.0);
-        [stockBtn setTitleColor:[UIColor colorWithHexString:@"#969696"] forState:UIControlStateNormal];
+        stockBtn = [[WXUILabel alloc]initWithFrame:CGRectZero];
+        stockBtn.font = WXFont(13.0);
+        stockBtn.textColor = [UIColor colorWithHexString:@"#969696"];
         [stockBtn setBorderRadian:4 width:1.0 color:[UIColor colorWithHexString:@"#969696"]];
-        [stockBtn addTarget:self action:@selector(clickStockBtn:) forControlEvents:UIControlEventTouchDown];
-        stockBtn.contentMode = UIViewContentModeCenter;
         [self.contentView addSubview:stockBtn];
     }
     return self;
@@ -60,7 +58,8 @@
     CGFloat offsetW = [self sizeWithString:entity.stockName font:WXFont(13.0) maxW:MAXW];
     CGFloat offsetY = (self.frame.size.height - 20) / 2;
     stockBtn.frame = CGRectMake(offsetX , offsetY, offsetW, 20);
-    [stockBtn setTitle:entity.stockName forState:UIControlStateNormal];
+    stockBtn.text = entity.stockName;
+    stockBtn.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)setLabelHid:(BOOL)hid{
@@ -75,11 +74,7 @@
     
 }
 
-- (void)clickStockBtn:(WXUIButton*)btn{
-    if (_delegate && [_delegate respondsToSelector:@selector(GoodsStockStyleSelectedGoodsName:)]) {
-        [_delegate GoodsStockStyleSelectedGoodsName:btn.titleLabel.text];
-    }
-}
+
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     

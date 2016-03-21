@@ -94,6 +94,8 @@
     infoVC.messageID = entity.push_id;
     [self.wxNavigationController pushViewController:infoVC];
     
+    JPushMessageCenterCell *cell = (JPushMessageCenterCell*)[tableView cellForRowAtIndexPath:indexPath];
+    [cell setIfierHidYes];
 }
 
 #pragma mark delete
@@ -118,6 +120,7 @@
 }
 
 -(void)deleteMessageSucceed{
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

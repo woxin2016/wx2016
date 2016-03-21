@@ -8,12 +8,9 @@
 
 #import "WXUITableViewCell.h"
 
-@protocol GoodsStockStyleCellDelegate <NSObject>
-- (void)GoodsStockStyleSelectedGoodsName:(NSString*)goodsName;
-@end
+
 
 @interface GoodsStockStyleCell : WXUITableViewCell
-@property (nonatomic,weak)id<GoodsStockStyleCellDelegate> delegate;
 + (instancetype)GoodsStockStyleCellWithTableView:(UITableView*)tableView;
 - (void)setLabelHid:(BOOL)hid;
 @end

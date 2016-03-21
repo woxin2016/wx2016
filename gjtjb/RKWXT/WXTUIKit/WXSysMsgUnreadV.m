@@ -31,10 +31,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         UIImage *btnImg = [UIImage imageNamed:@"sysPushMessageIcon.png"];
-        CGSize btnSize = btnImg.size;
         
         WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-//        leftBtn.frame = CGRectMake(20, 2, 60, 60);
         leftBtn.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [leftBtn setImage:btnImg forState:UIControlStateNormal];
         [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

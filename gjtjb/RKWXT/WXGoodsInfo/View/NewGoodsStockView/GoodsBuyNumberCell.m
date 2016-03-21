@@ -39,10 +39,10 @@
         titleL.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:titleL];
         
-        offsetX += labelW + 5;
+        offsetX = 95;
         CGFloat removeW = 20;
-        removeBtn = [[WXUIButton alloc]initWithFrame:CGRectMake(0, 0, removeW, removeW)];
-        removeBtn.center = CGPointMake(offsetX, height / 2);
+        CGFloat numberY = (self.frame.size.height - 20) / 2;
+        removeBtn = [[WXUIButton alloc]initWithFrame:CGRectMake(offsetX, numberY, removeW, removeW)];
         [removeBtn setTitle:@"-" forState:UIControlStateNormal];
         [removeBtn setTitleColor:[UIColor colorWithHexString:@"969696"] forState:UIControlStateNormal];
         [removeBtn setBorderRadian:0.1 width:1 color:[UIColor colorWithHexString:@"969696"]];
@@ -50,10 +50,9 @@
         [removeBtn addTarget:self action:@selector(clickRemoveBtn) forControlEvents:UIControlEventTouchDown];
         [self.contentView addSubview:removeBtn];
         
-        CGFloat numberW = 20;
-        offsetX += removeW + 5;
-        numberL = [[WXUILabel alloc]initWithFrame:CGRectMake(0, 0, numberW, numberW)];
-        numberL.center = CGPointMake(offsetX, height / 2);
+        CGFloat numberW = 40;
+        offsetX = 120;
+        numberL = [[WXUILabel alloc]initWithFrame:CGRectMake(offsetX,numberY, numberW, 20)];
         numberL.textColor = [UIColor colorWithHexString:@"969696"];
         numberL.text = @"1";
         numberL.font = WXFont(13.0);
@@ -61,9 +60,8 @@
         [numberL setBorderRadian:0.1 width:1 color:[UIColor colorWithHexString:@"969696"]];
         [self.contentView addSubview:numberL];
         
-        offsetX += numberW + 5;
-        addBtn = [[WXUIButton alloc]initWithFrame:CGRectMake(0, 0, removeW, removeW)];
-        addBtn.center = CGPointMake(offsetX, height / 2);
+        offsetX =  165;
+        addBtn = [[WXUIButton alloc]initWithFrame:CGRectMake(offsetX, numberY, removeW, removeW)];
         [addBtn setTitle:@"+" forState:UIControlStateNormal];
         [addBtn setTitleColor:[UIColor colorWithHexString:@"969696"] forState:UIControlStateNormal];
         [addBtn setBorderRadian:0.1 width:1 color:[UIColor colorWithHexString:@"969696"]];
