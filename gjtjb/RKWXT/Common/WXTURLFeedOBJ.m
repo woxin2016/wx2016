@@ -242,7 +242,7 @@
             url = @"/award_order.php";
             break;
         case WXT_UrlFeed_Type_New_LuckyTimes:
-            url = @"";
+            url = @"/exchange_fare.php";
             break;
         default:
             break;

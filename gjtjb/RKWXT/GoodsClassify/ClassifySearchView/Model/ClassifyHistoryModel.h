@@ -22,5 +22,5 @@
 - (void)loadClassifyHistoryNewList;
 - (void)addSearchText:(NSString *)text;
 - (void)delerteAllText;
-
+- (void)deleteClassDataWithName:(NSString*)name;
 @end

@@ -65,7 +65,7 @@
         [addBtn setTitle:@"+" forState:UIControlStateNormal];
         [addBtn setTitleColor:[UIColor colorWithHexString:@"969696"] forState:UIControlStateNormal];
         [addBtn setBorderRadian:0.1 width:1 color:[UIColor colorWithHexString:@"969696"]];
-        addBtn.titleLabel.font = WXFont(13.0);
+         addBtn.titleLabel.font = WXFont(13.0);
         [addBtn addTarget:self action:@selector(clickAddBtn) forControlEvents:UIControlEventTouchDown];
         [self.contentView addSubview:addBtn];
         

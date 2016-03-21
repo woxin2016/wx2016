@@ -114,7 +114,7 @@
 - (WXUITableViewCell*)tableViewGoodsInfoWithRow:(NSInteger)row{
     GoodsInfoStockCell *cell = [GoodsInfoStockCell GoodsInfoStockCellWithTableView:tableViews];
     [cell setCellInfo:goodsStockArr[row]];
-    cell.imgUrl = [goodsArr[row] goodsImg];
+    cell.imgUrl = [goodsArr[0] goodsImg];
     [cell load];
     return cell;
 }
@@ -122,7 +122,7 @@
 // 商品样式
 - (WXUITableViewCell*)tableViewGoodsStyleWithRow:(NSInteger)row{
     GoodsStockStyleCell *cell = [GoodsStockStyleCell GoodsStockStyleCellWithTableView:tableViews];
-    [cell setCellInfo:entity];
+    [cell setCellInfo:goodsStockArr[row]];
     [cell load];
     if (row == 0) {
         [cell setLabelHid:NO];
@@ -156,18 +156,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUInteger section = indexPath.section;
     NSUInteger row = indexPath.row;
-    if (section == GoodsInfoSectionStock_Number) {
-        GoodsInfoEntity *rowEntity = goodsStockArr[row];
-        GoodsInfoEntity *infoEntity = goodsArr[row];
+    if (section == GoodsInfoSectionStock_Number) {  //刷新数据
+        entity = goodsStockArr[row];
         buyNumber = 1;
-        [self buyGoodsInfoWithEntity:rowEntity Number:buyNumber];
-        
         NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
         GoodsInfoStockCell *cell = (GoodsInfoStockCell*)[tableView cellForRowAtIndexPath:path];
-        [cell setCellInfo:infoEntity];
-        cell.imgUrl = [goodsArr[row] goodsImg];
-        [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
+        [cell setCellInfo:entity];
+         cell.imgUrl = [goodsArr[0] goodsImg];
+        [cell load];
+      
+        
+        [self buyGoodsInfoWithEntity:entity Number:buyNumber];
     }
+    
+     NSIndexPath *cellPath = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
+    GoodsBuyNumberCell *buyCell = (GoodsBuyNumberCell*)[tableView cellForRowAtIndexPath:cellPath];
+    [buyCell lookGoodsStockNumber:buyNumber];
 }
 
 
@@ -219,7 +223,7 @@
     }
     buyNumber --;
      NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
-    GoodsBuyNumberCell *cell = (GoodsBuyNumberCell*)[tableViews cellForRowAtIndexPath:path] ;
+    GoodsBuyNumberCell *cell = (GoodsBuyNumberCell*)[tableViews cellForRowAtIndexPath:path];
     [cell lookGoodsStockNumber:buyNumber];
     
     [self buyGoodsInfo];
@@ -277,7 +281,7 @@
 
 //立即购买或加入购物车
 -(void)buyBtnClicked{
-    [self buyGoodsInfo];
+   [self buyGoodsInfo];
     
     if(_goodsViewType == NewGoodsStockView_Type_ShoppingCart){
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserAddShoppingCart object:nil];

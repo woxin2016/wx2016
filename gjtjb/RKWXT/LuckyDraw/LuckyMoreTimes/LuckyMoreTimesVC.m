@@ -202,7 +202,7 @@
 #pragma mark luckyTimes
 -(void)luckyTimesChange{
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
-    [_model luckyTimesChangeWithNumber:0 completion:^(NSDictionary *retDic) {
+    [_model luckyTimesChangeWithNumber:luckyTimes type:LuckyTimes_ReaquestType_Exchage  completion:^(NSDictionary *retDic) {
         [self unShowWaitView];
         if([[retDic objectForKey:@"error"] integerValue] == 0 && retDic){
             [UtilTool showTipView:@"兑换抽奖次数成功"];

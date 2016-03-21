@@ -94,8 +94,6 @@ static ClassifyHistoryModel * model = nil;
 
 - (void)addSearchText:(NSString *)text{
     
-    
-    
     NSArray *array  = [NSArray arrayWithContentsOfFile:[self setPath]];
     self.listNewArr = [NSMutableArray arrayWithArray:array];
     NSArray *stArray  =[NSArray arrayWithArray:self.listNewArr];
@@ -104,8 +102,20 @@ static ClassifyHistoryModel * model = nil;
             [self.listNewArr removeObject:str];
         }
     }
-    [self.listNewArr addObject:text];
-    //    self.listNewArr = [stArray valueForKeyPath:@"@distinctUnionOfObjects.self"];
+    [self.listNewArr insertObject:text atIndex:0];
+    
+    [self.listNewArr writeToFile:[self setPath] atomically:YES];
+}
+
+// 删除单条数据
+- (void)deleteClassDataWithName:(NSString*)name{
+  NSArray *array  = [NSArray arrayWithContentsOfFile:[self setPath]];
+    self.listNewArr = [NSMutableArray arrayWithArray:array];
+    for (NSString *str in array) {
+        if ([str isEqualToString:name]) {
+            [self.listNewArr removeObject:str];
+        }
+    }
     
     [self.listNewArr writeToFile:[self setPath] atomically:YES];
 }

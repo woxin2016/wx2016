@@ -213,7 +213,8 @@
     
     WXUIButton *goodsBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     goodsBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xGap-btnWidth, yOffset, btnWidth, btnHeight);
-    [goodsBtn setBackgroundColor:[UIColor clearColor]];
+    [goodsBtn setBackgroundColor:WXColorWithInteger(0xce2729)];
+    [goodsBtn setBorderRadian:2.0 width:1.0 color:[UIColor clearColor]];
     [goodsBtn setTitle:@"奖品列表" forState:UIControlStateNormal];
     [goodsBtn.titleLabel setTextColor:WXColorWithInteger(0xffffff)];
     [goodsBtn.titleLabel setFont:WXFont(13.0)];

@@ -22,6 +22,11 @@
 #import "WXGoodsInfoVC.h"
 //#import "NewGoodsInfoVC.h"
 #import "CLassifySearchListVC.h"
+#import "DropdownMenu.h"
+#import "DropdownView.h"
+
+
+
 
 #define Size self.bounds.size
 enum{
@@ -31,10 +36,11 @@ enum{
     CLassify_Search_Invalid,
 };
 
-@interface ClassifySearchVC()<UIAlertViewDelegate,WXDropListViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CLassifySearchModelDelegate,ClassifyHistoryCellDelegate,CLassifySearchListVCDelelgae>{
+@interface ClassifySearchVC()<UIAlertViewDelegate,WXDropListViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,CLassifySearchModelDelegate,ClassifyHistoryCellDelegate,CLassifySearchListVCDelelgae,DropdownViewDeleate>{
     WXUIButton *dropListBtn;
     WXDropListView *_dropListView;
     WXUITextField *_textField;
+    DropdownMenu *_menu;
     
     UITableView *_tableView;
     BOOL showHistory;
@@ -73,8 +79,9 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [_tableView setBackgroundColor:[UIColor whiteColor]];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
+    _tableView.tableFooterView = [self tableViewFootView];
     [self addSubview:_tableView];
-    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+   
     
     [self addOBS];
     _historyModel = [[ClassifyHistoryModel alloc] init];
@@ -89,6 +96,23 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(loadClassifyHistoryListSucceed) name:D_Notification_Name_ClassifyHistoryLoadSucceed object:nil];
     [defaultCenter addObserver:self selector:@selector(delClassifyHistoryOneRecordSucceed) name:D_Notification_Name_ClassifyHistoryDelOnRecordSucceed object:nil];
+}
+
+- (UIView*)tableViewFootView{
+    CGFloat width = self.view.frame.size.width;
+    UIView *tableFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 100)];
+    tableFootView.backgroundColor = [UIColor whiteColor];
+    
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(40,65, width - 80,35)];
+    [btn setTitle:@"清除搜索记录" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithHexString:@"#484848"] forState:UIControlStateNormal];
+    [btn setContentMode:UIViewContentModeCenter];
+    btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btn setBorderRadian:0 width:1 color:[UIColor colorWithRed:194 green:193 blue:194 alpha:1.0]];
+    [btn addTarget:self action:@selector(clearData) forControlEvents:UIControlEventTouchDown];
+    [tableFootView addSubview:btn];
+    
+    return tableFootView;
 }
 
 -(void)createNavigationBar{
@@ -110,21 +134,19 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [self createDropListViewBtn:xOffset+img.size.width with:yOffset];
 }
 
+
 -(void)createDropListViewBtn:(CGFloat)xGap with:(CGFloat)yGap{
     CGFloat xOffset = xGap+20;
     CGFloat yOffset = yGap;
     CGFloat btnHeight = 20;
-    WXUILabel *leftLine = [[WXUILabel alloc] init];
-    leftLine.frame = CGRectMake(xOffset, yOffset+btnHeight/2-2, 0.5, 6);
-    [leftLine setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:leftLine];
+    
+    CGFloat width = self.view.frame.size.width - 2 * xOffset;
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, yGap - 5, width, 25)];
+    backView.backgroundColor = [UIColor redColor];
+    [backView setBorderRadian:10 width:0 color:[UIColor redColor]];
+    [self addSubview:backView];
     
     CGFloat rightBtnWidth = 40;
-    WXUILabel *downLine = [[WXUILabel alloc] init];
-    downLine.frame = CGRectMake(xOffset, leftLine.frame.origin.y+leftLine.frame.size.height+1, Size.width-2*10-rightBtnWidth-xOffset, 0.5);
-    [downLine setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:downLine];
-    
     CGFloat dropListBtnWidth = 50;
     xOffset += 1;
     dropListBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
@@ -134,13 +156,15 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [dropListBtn.titleLabel setFont:WXFont(13.0)];
     [dropListBtn setTitle:@"商品" forState:UIControlStateNormal];
     [dropListBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 5, 15)];
-    [dropListBtn setImage:[UIImage imageNamed:@"ClassifySearchBtnImg.png"] forState:UIControlStateNormal];
-    [dropListBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 45, 0, 0)];
+    [dropListBtn setImage:[UIImage imageNamed:@"searchGoods.png"] forState:UIControlStateNormal];
+    [dropListBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    [dropListBtn addTarget:self action:@selector(clickDownView) forControlEvents:UIControlEventTouchDown];
     [self addSubview:dropListBtn];
     
-    _dropListView = [self createDropListViewWith:dropListBtn];
-    [_dropListView unshow:NO];
-    //    [self.view addSubview:_dropListView];
+//    _dropListView = [self createDropListViewWith:dropListBtn];
+//    [_dropListView unshow:NO];
+//    [self.view addSubview:_dropListView];
+
     
     xOffset += dropListBtnWidth+8;
     _textField = [[WXUITextField alloc] initWithFrame:CGRectMake(xOffset, yOffset-3, Size.width-xOffset-rightBtnWidth-2*10, btnHeight)];
@@ -156,13 +180,9 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [_textField setPlaceHolder:@"搜索" color:WXColorWithInteger(0xffffff)];
     [self addSubview:_textField];
     
-    WXUILabel *rightLine = [[WXUILabel alloc] init];
-    rightLine.frame = CGRectMake(_textField.frame.origin.x+_textField.frame.size.width-0.5, yOffset+btnHeight/2-2, 0.5, 6);
-    [rightLine setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:rightLine];
     
     WXUIButton *searchBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    CGFloat btnX = CGRectGetMaxX(rightLine.frame);
+    CGFloat btnX = _textField.frame.origin.x+_textField.frame.size.width-0.5 + 6;
     searchBtn.frame = CGRectMake(btnX + 10, yOffset, dropListBtnWidth, btnHeight);
     [searchBtn setBackgroundColor:[UIColor clearColor]];
     [searchBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
@@ -194,6 +214,29 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     return dropListView;
 }
 
+- (void)clickDownView{
+    _menu = [self createDropListView:dropListBtn];
+    [self.view addSubview:_menu];
+}
+
+//新的下拉菜单
+- (DropdownMenu*)createDropListView:(WXUIButton*)btn{
+    DropdownMenu *down = [[DropdownMenu alloc]init];
+    [down show:btn];
+    
+    NSMutableArray *itemArray = [NSMutableArray array];
+    for (int i = 0; i < CLassify_Search_Invalid; i++) {
+        [itemArray addObject:g_dropItemList[i]];
+    }
+    NSArray *iconArr = @[@"searchGoodsIcon.png",@"searchShopIcon.png"];
+    DropdownView *downView = [[DropdownView alloc]initWithFrame:CGRectMake(0, 0, 100, 70) sourceData:itemArray imgArray:iconArr];
+    downView.delegate = self;
+    down.content = downView;
+    
+    return down;
+}
+
+
 #pragma mark tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -201,9 +244,9 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(showHistory){
-        return ([historyListArr count]>0?[historyListArr count]+1:1);
+        return [historyListArr count];
     }else{
-        return [searchListArr count]+1;
+        return [searchListArr count];
     }
 }
 
@@ -218,14 +261,9 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     if(!cell){
         cell = [[ClassifySrarchListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    if(row == 0){
-        [cell setCellInfo:AlertName];
-        [cell setCount:[searchListArr count]];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    }else{
-        SearchResultEntity *entity = searchListArr[row-1];
+        SearchResultEntity *entity = searchListArr[row];
         [cell setCellInfo:entity];
-    }
+    
     [cell load];
     return cell;
 }
@@ -238,21 +276,10 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     if(!cell){
         cell = [[ClassifyHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    if(row == 0){
-        //        [cell setCellInfo:AlertRecordName];
-        //        [cell setCount:[historyListArr count]];
-        NSLog(@"%@",historyListArr);
-        cell.textLabel.text  = [NSString stringWithFormat: @"历史搜索:(%d）条",[historyListArr count]];
-        [cell._deleAllBtn setHidden:NO];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    }else{
-        //        ClassifySqlEntity *entity = historyListArr[row-1];
-        //        [cell setCellInfo:entity];
-        NSString *str  = historyListArr[row - 1];
+        NSString *str  = historyListArr[row];
         cell.textLabel.text = str;
         [cell._deleAllBtn setHidden:YES];
-    }
-    //    [cell load];
+ 
     return cell;
 }
 
@@ -269,13 +296,11 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.row == 0){
-        return;
-    }
+   
     NSInteger goodsID = 0;
     NSString *name = nil;
     if(!showHistory){
-        SearchResultEntity *entity = [searchListArr objectAtIndex:indexPath.row-1];
+        SearchResultEntity *entity = [searchListArr objectAtIndex:indexPath.row];
         goodsID = entity.goodsID;
         name = entity.goodsName;
         
@@ -286,10 +311,7 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
         
         [_historyModel addSearchText:name];
     }else{
-        //        ClassifySqlEntity *entity = historyListArr[indexPath.row-1];
-        //        goodsID = [entity.recordID integerValue];
-        //        name = entity.recordName;
-        NSString *str = historyListArr[indexPath.row - 1];
+        NSString *str = historyListArr[indexPath.row];
         CLassifySearchListVC *searchListVC = [[CLassifySearchListVC alloc] init];
         searchListVC.delegate = self;
         [self.wxNavigationController pushViewController:searchListVC];
@@ -298,31 +320,19 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     }
     
     
-    //    [self insertHistoryData:name andRecordID:goodsID];  //加入本地数据库
-    
 }
 
 #pragma mark delete
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(showHistory){
-        if(indexPath.row == 0){
-            return NO;
-        }
-    }else{
-        return NO;
-    }
-    return YES;
-}
 
 -(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger row = indexPath.row;
-    ClassifySqlEntity *entity = [historyListArr objectAtIndex:row-1];
-    [_historyModel deleteClassifyRecordWith:entity.recordName];
-    [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    WXUITableViewCell *cell = (WXUITableViewCell*)[_tableView cellForRowAtIndexPath:indexPath];
+    [_historyModel deleteClassDataWithName:cell.textLabel.text];
+    historyListArr = _historyModel.listNewArr;
+    [_tableView reloadData];
 }
 
 
@@ -356,9 +366,14 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+#pragma mark --- drowdownView
+- (void)dropdownViewSwitchTitle:(NSString *)title{
+    [_menu disMiss];
+    [dropListBtn setTitle:title forState:UIControlStateNormal];
+}
+
 #pragma mark sql
 -(void)loadClassifyHistoryListSucceed{
-    //    historyListArr = _historyModel.listArr;
     historyListArr = _historyModel.listNewArr;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -421,6 +436,11 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [self clearSearchHistoryList];
 }
 
+#pragma mark --- 清空数据源
+- (void)clearData{
+  [self clearSearchHistoryList];
+}
+
 #pragma mark clearHistory 暂时不用
 -(void)clearSearchHistoryList{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"删除所有搜索记录" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -428,16 +448,6 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    //    if(buttonIndex == 1){
-    //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //            [_historyModel deleteAll];
-    //            showHistory = NO;
-    //            historyListArr = nil;
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    //                [_tableView reloadData];
-    //            });
-    //        });
-    //    }
     if (buttonIndex == 1) {
         [_historyModel delerteAllText];
     }

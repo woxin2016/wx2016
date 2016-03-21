@@ -69,7 +69,7 @@
     _textField = [[WXTUITextField alloc] initWithFrame:CGRectMake(xOffset, yGap, size.width-2*xOffset, TextFieldHeight)];
     [_textField setEnabled:NO];
     [_textField setBackgroundColor:WXColorWithInteger(0xefeff4)];
-    [_textField setBorderRadian:6.0 width:1.0 color:[UIColor whiteColor]];
+    [_textField setBorderRadian:10.0 width:1.0 color:[UIColor whiteColor]];
     [_textField setTextColor:WXColorWithInteger(0xda7c7b)];
     [_textField setTintColor:WXColorWithInteger(0xdd2726)];
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ClassifySearchImg.png"]];
