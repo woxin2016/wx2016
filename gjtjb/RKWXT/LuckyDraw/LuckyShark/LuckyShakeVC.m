@@ -15,6 +15,7 @@
 #import "WXCommonWebView.h"
 #import "LuckySharkNumberModel.h"
 #import "LuckyGoodsShowVC.h"
+#import "LuckyMoreTimesVC.h"
 
 #import "WinningView.h"
 #import "WXUIViewController+WinningPopView.h"
@@ -84,8 +85,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self setCSTTitle:@"摇一摇"];
-    [self setBackgroundColor:[UIColor whiteColor]];
     
     [[UIApplication sharedApplication] setApplicationSupportsShakeToEdit:YES];
     
@@ -125,6 +124,32 @@
     [self addSubview:label];
     
     [self createTextAndbtnView];
+    
+    [self createTopBackgroundView];
+}
+
+-(void)createTopBackgroundView{
+    WXUIView *backgroundView = [[WXUIView alloc] init];
+    backgroundView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, 64);
+    [backgroundView setBackgroundColor:WXColorWithInteger(0xf74f35)];
+    [self.view addSubview:backgroundView];
+    
+    WXUIButton *backBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(6, 35, 30, 20);
+    [backBtn setImage:[UIImage imageNamed:@"CommonArrowLeft.png"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundView addSubview:backBtn];
+    
+    CGFloat nameWidth = 80;
+    CGFloat nameHeight = 20;
+    WXUILabel *nameLabel = [[WXUILabel alloc] init];
+    nameLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-nameWidth)/2, 35, nameWidth, nameHeight);
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
+    [nameLabel setText:@"摇一摇"];
+    [nameLabel setTextAlignment:NSTextAlignmentCenter];
+    [nameLabel setTextColor:WXColorWithInteger(0xffffff)];
+    [nameLabel setFont:WXFont(15.0)];
+    [backgroundView addSubview:nameLabel];
 }
 
 -(void)createTextAndbtnView{
@@ -159,24 +184,41 @@
     [text2Label setFont:WXFont(15.0)];
     [self addSubview:text2Label];
     
-    yOffset -= textheight;
-    CGFloat btnWidth = 125;
-    CGFloat btnHeight = 23;
+    CGFloat moreBtnWIdth = 220;
+    CGFloat moreBtnHeight = 40;
+    WXUIButton *moreTimes = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    moreTimes.frame = CGRectMake((IPHONE_SCREEN_WIDTH-moreBtnWIdth)/2, text2Label.frame.origin.y+text2Label.frame.size.height+12, moreBtnWIdth, moreBtnHeight);
+    [moreTimes setBackgroundImage:[UIImage imageNamed:@"SharkRuleImg.png"] forState:UIControlStateNormal];
+    [moreTimes setTitle:@"戳此处获取更多抽奖机会" forState:UIControlStateNormal];
+    [moreTimes.titleLabel setFont:WXFont(15.0)];
+    [moreTimes setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
+    [moreTimes addTarget:self action:@selector(gotoGainMoreTimesPage) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:moreTimes];
+    
+    CGFloat xGap = 10;
+    yOffset = 10+64;
+    CGFloat btnWidth = 22;
+    CGFloat btnHeight = 80;
     WXUIButton *ruleBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    ruleBtn.frame = CGRectMake((self.bounds.size.width-btnWidth)/2, self.bounds.size.height-yOffset+6, btnWidth, btnHeight);
-    [ruleBtn setBackgroundImage:[UIImage imageNamed:@"SharkRuleImg.png"] forState:UIControlStateNormal];
+    ruleBtn.frame = CGRectMake(xGap, yOffset, btnWidth, btnHeight);
+    [ruleBtn setBackgroundColor:WXColorWithInteger(0xce2729)];
+    [ruleBtn setBorderRadian:2.0 width:1.0 color:[UIColor clearColor]];
     [ruleBtn setTitle:@"活动规则" forState:UIControlStateNormal];
     [ruleBtn.titleLabel setTextColor:WXColorWithInteger(0xffffff)];
     [ruleBtn.titleLabel setFont:WXFont(13.0)];
+    [ruleBtn.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [ruleBtn.titleLabel setNumberOfLines:0];
     [ruleBtn addTarget:self action:@selector(gotoSharkRuleVC) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:ruleBtn];
     
     WXUIButton *goodsBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    goodsBtn.frame = CGRectMake((self.bounds.size.width-btnWidth)/2, ruleBtn.frame.origin.y+ruleBtn.frame.size.height+5, btnWidth, btnHeight);
-    [goodsBtn setBackgroundImage:[UIImage imageNamed:@"SharkRuleImg.png"] forState:UIControlStateNormal];
-    [goodsBtn setTitle:@"查看奖品" forState:UIControlStateNormal];
+    goodsBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xGap-btnWidth, yOffset, btnWidth, btnHeight);
+    [goodsBtn setBackgroundColor:[UIColor clearColor]];
+    [goodsBtn setTitle:@"奖品列表" forState:UIControlStateNormal];
     [goodsBtn.titleLabel setTextColor:WXColorWithInteger(0xffffff)];
     [goodsBtn.titleLabel setFont:WXFont(13.0)];
+    [goodsBtn.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [goodsBtn.titleLabel setNumberOfLines:0];
     [goodsBtn addTarget:self action:@selector(searchLuckyGoodsListVC) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:goodsBtn];
 }
@@ -325,6 +367,16 @@
 -(void)searchLuckyGoodsListVC{
     LuckyGoodsShowVC *showVC = [[LuckyGoodsShowVC alloc] init];
     [self.wxNavigationController pushViewController:showVC];
+}
+
+-(void)backToLastPage{
+    [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+    }];
+}
+
+-(void)gotoGainMoreTimesPage{
+    LuckyMoreTimesVC *timeVC = [[LuckyMoreTimesVC alloc] init];
+    [self.wxNavigationController pushViewController:timeVC];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

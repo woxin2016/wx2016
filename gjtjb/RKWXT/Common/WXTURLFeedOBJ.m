@@ -241,6 +241,9 @@
         case WXT_UrlFeed_Type_New_LuckyOrderList:
             url = @"/award_order.php";
             break;
+        case WXT_UrlFeed_Type_New_LuckyTimes:
+            url = @"";
+            break;
         default:
             break;
     }
