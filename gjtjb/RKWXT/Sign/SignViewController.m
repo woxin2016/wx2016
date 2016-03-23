@@ -192,7 +192,9 @@
 }
 
 -(void)signSucceed{
-    [_signBtn setEnabled:NO];
+   [_signBtn setEnabled:NO];
+   [_signBtn setImage:[UIImage imageNamed:@"SignSeleNow.png"] forState:UIControlStateNormal];
+    
     if([_model.signArr count] > 0){
         SignEntity *signEntity = [_model.signArr objectAtIndex:0];
         NSString *message = [NSString stringWithFormat:@"签到奖励:%.2f",signEntity.money];

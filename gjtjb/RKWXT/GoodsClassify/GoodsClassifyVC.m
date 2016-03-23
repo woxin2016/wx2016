@@ -50,7 +50,7 @@
     [[ClassifyModel shareClassifyNodel] loadAllClassifyData];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     
-    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(size.width - 44, 22, 44, 44)];
+    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(size.width-35, 64-35, 25, 25)];
     cartView.delegate = self;
     [cartView searchShoppingCartNumber];
     [self.view addSubview:cartView];
@@ -69,7 +69,7 @@
     _textField = [[WXTUITextField alloc] initWithFrame:CGRectMake(xOffset, yGap, size.width-2*xOffset, TextFieldHeight)];
     [_textField setEnabled:NO];
     [_textField setBackgroundColor:WXColorWithInteger(0xefeff4)];
-    [_textField setBorderRadian:6.0 width:1.0 color:[UIColor whiteColor]];
+    [_textField setBorderRadian:10.0 width:1.0 color:[UIColor whiteColor]];
     [_textField setTextColor:WXColorWithInteger(0xda7c7b)];
     [_textField setTintColor:WXColorWithInteger(0xdd2726)];
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ClassifySearchImg.png"]];

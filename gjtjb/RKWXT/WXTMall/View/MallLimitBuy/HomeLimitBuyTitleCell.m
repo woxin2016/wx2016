@@ -16,6 +16,9 @@
     WXUILabel *minuteLabel;
     WXUILabel *secondLabel;
     WXUILabel *textLabel;
+    WXUILabel *markLabel;
+    WXUILabel *markLabel1;
+    NSTimer *timer;
 }
 @end
 
@@ -49,7 +52,7 @@
         
         xOffset += timeLabelWidth+1;
         CGFloat markLabelWidth = 5;
-        WXUILabel *markLabel = [[WXUILabel alloc] init];
+        markLabel = [[WXUILabel alloc] init];
         markLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-markLabelWidth, (T_HomePageTextSectionHeight-timeLabelHeight)/2, markLabelWidth, timeLabelHeight);
         [markLabel setBackgroundColor:[UIColor clearColor]];
         [markLabel setText:@":"];
@@ -68,7 +71,7 @@
         [self.contentView addSubview:minuteLabel];
         
         xOffset += timeLabelWidth+1;
-        WXUILabel *markLabel1 = [[WXUILabel alloc] init];
+        markLabel1 = [[WXUILabel alloc] init];
         markLabel1.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-markLabelWidth, (T_HomePageTextSectionHeight-timeLabelHeight)/2, markLabelWidth, timeLabelHeight);
         [markLabel1 setBackgroundColor:[UIColor clearColor]];
         [markLabel1 setText:@":"];
@@ -98,7 +101,7 @@
         [textLabel setFont:WXFont(12.0)];
         [self.contentView addSubview:textLabel];
         
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(OperationTime) userInfo:nil repeats:YES];
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(OperationTime) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     }
     return self;
@@ -122,13 +125,22 @@
         com = [self conversionStr:goodsEntity.startTime];
         str = @"距离开始时间:";
         
-        
     }
-
-    [textLabel setText:str];
-    [secondLabel setText:[NSString stringWithFormat:@"%.2d",com.second]];
-    [minuteLabel setText:[NSString stringWithFormat:@"%.2d",com.minute]];
-    [hoursLabel setText:[NSString stringWithFormat:@"%.2d",com.hour]];
+    if (![self isStartDate:goodsEntity.endTime]) { // 现在时间小于结束时间
+        [textLabel setText:str];
+        [secondLabel setText:[NSString stringWithFormat:@"%.2d",com.second]];
+        [minuteLabel setText:[NSString stringWithFormat:@"%.2d",com.minute]];
+        [hoursLabel setText:[NSString stringWithFormat:@"%.2d",com.hour]];
+    }else{
+        [textLabel setText:@"秒杀已结束"];
+        [secondLabel setHidden:YES];
+        [minuteLabel setHidden:YES];
+        [hoursLabel setHidden:YES];
+        [markLabel setHidden:YES];
+        [markLabel1 setHidden:YES];
+        [timer invalidate];
+    }
+    
 }
 
 - (NSDateComponents *)conversionStr:(NSString*)str{

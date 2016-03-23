@@ -23,9 +23,6 @@ enum{
     GoodsInfo_Section_GoodsDesc,
     GoodsInfo_Section_GoodsInfo,
     GoodsInfo_Section_GoodsBaseData,
-//    GoodsInfo_Section_SellerInfo,
-//    GoodsInfo_Section_OtherShop,
-//    GoodsInfo_Section_Evaluate,
     
     GoodsInfo_Section_Invalid,
 };
@@ -45,6 +42,7 @@ enum{
 #import "WXRemotionImgBtn.h"
 #import "NewGoodsInfoWebViewViewController.h"
 #import "ShoppingCartView.h"
+#import "NewGoodsStockView.h"
 
 //分享
 #import "WXWeiXinOBJ.h"

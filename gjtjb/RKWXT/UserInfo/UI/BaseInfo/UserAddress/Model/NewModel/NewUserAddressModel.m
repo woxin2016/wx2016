@@ -69,11 +69,14 @@
     }
 }
 
+
 //添加地址
--(void)insertUserAddressWithName:(NSString *)userName withAdd:(NSString *)address withPhone:(NSString *)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString *)proName cityName:(NSString *)cityName disName:(NSString *)disName{
+-(void)insertUserAddressWithName:(NSString *)userName withAdd:(NSString *)address withPhone:(NSString *)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString *)proName cityName:(NSString *)cityName disName:(NSString *)disName is_defult:(BOOL)is_defult{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", nil];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
+
+    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county",[NSNumber numberWithBool:is_defult],@"is_default", nil];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign",[NSNumber numberWithBool:is_defult],@"is_default", nil];
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_NewMall_NewUserAddress httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_UserAddress_InsertDataFailed object:retData.errorDesc];
@@ -97,6 +100,7 @@
     }];
 }
 
+
 //删除地址
 -(void)deleteUserAddressWithAddressID:(NSInteger)addressID{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
@@ -118,10 +122,12 @@
 }
 
 //修改
--(void)modifyUserAddressWithName:(NSString *)userName withAdd:(NSString *)address withPhone:(NSString *)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString *)proName cityName:(NSString *)cityName disName:(NSString *)disName addressID:(NSInteger)addressID{
+-(void)modifyUserAddressWithName:(NSString *)userName withAdd:(NSString *)address withPhone:(NSString *)phone proID:(NSInteger)proID cityID:(NSInteger)cityID disID:(NSInteger)disID proName:(NSString *)proName cityName:(NSString *)cityName disName:(NSString *)disName addressID:(NSInteger)addressID is_default:(BOOL)is_default{
+    
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", [NSNumber numberWithInt:addressID], @"address_id", nil];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", [NSNumber numberWithInt:addressID], @"address_id", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
+    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", [NSNumber numberWithInt:addressID], @"address_id",[NSNumber numberWithBool:is_default],@"is_default", nil];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", userObj.user, @"phone", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userName, @"consignee", phone, @"telephone", [NSNumber numberWithInt:_address_type], @"type", address, @"address", [NSNumber numberWithInt:proID],@"provincial_id", [NSNumber numberWithInt:cityID], @"municipality_id", [NSNumber numberWithInt:disID], @"county_id", proName, @"provincial", cityName, @"municipality", disName, @"county", [NSNumber numberWithInt:addressID], @"address_id", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign",[NSNumber numberWithBool:is_default],@"is_default", nil];
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_NewMall_NewUserAddress httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_UserAddress_InsertDataFailed object:retData.errorDesc];
@@ -165,5 +171,7 @@
         }
     }];
 }
+
+
 
 @end

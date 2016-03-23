@@ -13,7 +13,6 @@
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
-    WXGoodsInfoVC *goodsInfoVC;
     BOOL buyGoods;
 }
 @end
@@ -60,37 +59,27 @@
 
 -(void)createTopBtn{
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(20, 6, 60, 40);
+    leftBtn.frame = CGRectMake(0, 6, 60, 40);
     [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
-    [leftBtn setTitle:@"分类" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn.titleLabel setFont:WXFont(10.0)];
     [leftBtn addTarget:self action:@selector(homePageToCategaryView) forControlEvents:UIControlEventTouchUpInside];
     [self setLeftNavigationItem:leftBtn];
-    
-    CGPoint buttonBoundsCenter = CGPointMake(CGRectGetMidX(leftBtn.titleLabel.bounds), CGRectGetMidY(leftBtn.titleLabel.bounds));
-    CGPoint endImageViewCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetMidY(leftBtn.imageView.bounds));
-    CGPoint endTitleLabelCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetHeight(leftBtn.bounds)-CGRectGetMidY(leftBtn.titleLabel.bounds));
-    CGPoint startImageViewCenter = leftBtn.imageView.center;
-    CGPoint startTitleLabelCenter = leftBtn.titleLabel.center;
-    CGFloat imageEdgeInsetsLeft = endImageViewCenter.x - startImageViewCenter.x;
-    CGFloat imageEdgeInsetsRight = -imageEdgeInsetsLeft;
-    leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, imageEdgeInsetsLeft, 40/3, imageEdgeInsetsRight);
-    CGFloat titleEdgeInsetsLeft = endTitleLabelCenter.x - startTitleLabelCenter.x;
-    CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
-    leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
+
     
     UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     didView.userInteractionEnabled = YES;
     [self setRightNavigationItem:didView];
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(40, 0, kDefaultNavigationBarButtonSize.width, kDefaultNavigationBarButtonSize.height)];
+    
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(self.bounds.size.width-35, 64-35, 25, 25)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
-    [didView addSubview:_unreadView];
+    [self.view addSubview:_unreadView];
     
-    ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(0, 3, kDefaultNavigationBarButtonSize.width,kDefaultNavigationBarButtonSize.height )];
-    [didView addSubview:cartView];
+    
+     ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width- 35 * 2, 64-35, 25, 25)];
+    [self.view addSubview:cartView];
      cartView.delegate = self;
     [cartView searchShoppingCartNumber];
     
@@ -290,16 +279,6 @@
 
 
 -(WXUITableViewCell*)tableViewForGuessInfoCell:(NSInteger)row{
-//    static NSString *identifier = @"guessInfoCell";
-//    HomeGuessInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
-//    if(!cell){
-//        cell = [[[HomeGuessInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
-//    }
-//    if([_model.surprise.data count] > 0){
-//        [cell setCellInfo:[_model.surprise.data objectAtIndex:row]];
-//    }
-//    [cell load];
-//    return cell;
     static NSString *identifier = @"HomeNewGuessInfoCell";
     HomeNewGuessInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
@@ -357,12 +336,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    NSInteger row = indexPath.row;
-//    NSInteger section = indexPath.section;
-//    if(section == T_HomePage_GuessInfo){
-//        HomePageSurpEntity *entity = [_model.surprise.data objectAtIndex:row];
-//        [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.goods_id animated:YES];
-//    }
 }
 
 #pragma mark 导航
@@ -376,19 +349,79 @@
 
 #pragma mark topimg
 -(void)clickTopGoodAtIndex:(NSInteger)index{
-    HomePageTopEntity *entity = nil;
-    if([_model.top.data count] > 0){
-        entity = [_model.top.data objectAtIndex:index];
+//    HomePageTopEntity *entity = nil;
+//    if([_model.top.data count] > 0){
+//        entity = [_model.top.data objectAtIndex:index];
+//    }
+//    switch (entity.topAddID) {
+//        case HomePageJump_Type_Catagary:
+//        {
+//            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.linkID animated:YES];
+//        }
+//            break;
+//        case HomePageJump_Type_GoodsInfo:
+//        {
+//            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.linkID animated:YES];
+//        }
+//            break;
+//        case HomePageJump_Type_MessageCenter:  
+//        {
+//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
+//        }
+//            break;
+//        case HomePageJump_Type_MessageInfo:  //消息详情
+//        {
+//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
+//        }
+//            break;
+//        case HomePageJump_Type_UserBonus:   //红包
+//        {
+//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
+//        }
+//            break;
+//        case HomePageJump_Type_BusinessAlliance:   //商家联盟
+//        {
+//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+    
+    if(index > HomePageJump_Type_Invalid){
+        return;
     }
+    HomePageTopEntity *entity = [_model.top.data objectAtIndex:index];
     switch (entity.topAddID) {
+        case HomePageJump_Type_GoodsInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.linkID animated:YES];
+        }
+            break;
         case HomePageJump_Type_Catagary:
         {
             [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.linkID animated:YES];
         }
             break;
-        case HomePageJump_Type_GoodsInfo:
+        case HomePageJump_Type_MessageCenter:
         {
-            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.linkID animated:YES];
+            [self toSysPushMsgView];
+        }
+            break;
+        case HomePageJump_Type_MessageInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toJPushMessageInfoVC:self messageID:entity.linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_UserBonus:
+        {
+            [[CoordinateController sharedCoordinateController] toUserBonusVC:self animated:YES];
+        }
+            break;
+        case HomePageJump_Type_BusinessAlliance:
+        {
+            NSString *shopUnionUrl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:shopUnionUrl title:@"商家联盟" animated:YES];
         }
             break;
         default:
@@ -518,13 +551,12 @@
 -(void)homeLimitBuyCellbtnClicked:(id)sender{
     HomeLimitGoodsEntity*goods = _model.limitGoods.data[0];
     LImitGoodsEntity *entity = sender;
-    goodsInfoVC = [[WXGoodsInfoVC alloc] init];
+    WXLimitGoodsInfoVC *goodsInfoVC = [[WXLimitGoodsInfoVC alloc] init];
     goodsInfoVC.goodsId = entity.goodsID;
     goodsInfoVC.sckillID = goods.sckillID;
-    goodsInfoVC.goodsInfo_type = GoodsInfo_LimitGoods;
+    goodsInfoVC.LimitGoodsInfo_Type = LimitGoodsInfo_LimitGoods;
     goodsInfoVC.buyGoods = buyGoods;
     [self.wxNavigationController pushViewController:goodsInfoVC];
-
 }
 
 #pragma mark recommend

@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum{
+    LuckyTimes_ReaquestType_Number = 1,
+    LuckyTimes_ReaquestType_Exchage,
+}LuckyTimes_ReaquestType;
+
 @interface LuckyTimesModel : NSObject
--(void)luckyTimesChangeWithNumber:(NSInteger)num completion:(void(^)(NSDictionary* retDic))completion;
+@property (nonatomic,assign)LuckyTimes_ReaquestType type;
+-(void)luckyTimesChangeWithNumber:(NSInteger)num type:(LuckyTimes_ReaquestType)type completion:(void(^)(NSDictionary* retDic))completion;
 
 @end

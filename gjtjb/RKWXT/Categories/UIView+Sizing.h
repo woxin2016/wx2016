@@ -16,5 +16,5 @@
 - (void)setHieght:(CGFloat)height;
 - (void)setCenterX:(CGFloat)x;
 - (void)setCenterY:(CGFloat)y;
-
+@property (nonatomic,assign) CGFloat centerx;
 @end

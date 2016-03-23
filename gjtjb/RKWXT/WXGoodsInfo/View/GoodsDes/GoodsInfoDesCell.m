@@ -18,7 +18,6 @@
     WXUIButton *carriageBtn;
     WXUIButton *redPacketBtn;
     UIView *topView;
-    UIView *didView;
 }
 @end
 
@@ -72,11 +71,7 @@
         topView.alpha = 0.2;
         [self.contentView addSubview:topView];
         
-//        yOffset += 20;
-//        didView = [[UIView alloc]initWithFrame:CGRectMake(0, yOffset, self.frame.size.width, 0.5)];
-//        didView.backgroundColor = [UIColor grayColor];
-//        didView.alpha = 0.8;
-//        [self.contentView addSubview:didView];
+
         
         yOffset += 10 + 20;
         CGFloat btnWidth = 70;
@@ -136,22 +131,7 @@
     [lineLabel setFrame:rect];
     
     
-//    if(_userCut){
-//        [usercutBtn setHidden:NO];
-//    }
-//    if(entity.postage == Goods_Postage_None){
-//        [carriageBtn setHidden:NO];
-//    }
-//    if(entity.postage == Goods_Postage_None && !_userCut){
-//        [carriageBtn setHidden:NO];
-//        CGRect rect = carriageBtn.frame;
-//        rect.origin.x = 12;
-//        [carriageBtn setFrame:rect];
-//    }
-//    if(entity.postage == Goods_Postage_Have && !_userCut){
-//        [carriageBtn setHidden:YES];
-//        [usercutBtn setHidden:YES];
-//    }
+
     [self refreshCentent];
   
 }
@@ -183,10 +163,8 @@
     
     if (!self.stockEntity.userCut && !self.stockEntity.redPacket && entity.postage == Goods_Collection_None) {
         topView.hidden = YES;
-        didView.hidden = YES;
     }else{
         topView.hidden = NO;
-        didView.hidden = NO;
     }
 }
 

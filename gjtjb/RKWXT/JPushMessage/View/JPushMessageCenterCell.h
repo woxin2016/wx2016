@@ -11,5 +11,5 @@
 #define JPushMessageCenterCellHeight (65)
 
 @interface JPushMessageCenterCell : WXUITableViewCell
-
+- (void)setIfierHidYes;
 @end

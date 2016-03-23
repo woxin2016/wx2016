@@ -39,10 +39,13 @@
         UIImage *image = [UIImage imageNamed:@"unreadBg.png"];
         CGSize imgSize = image.size;
         _unreadNumberImgV = [[UIImageView alloc] initWithImage:image];
-        CGRect unreadViewRect = CGRectMake(imgSize.width * 0.3 + frame.size.width / 2.0, frame.size.height/2.0-imgSize.height*0.3-10, imgSize.width, imgSize.height);
+        CGFloat X = leftBtn.frame.size.width / 2 + imgSize.width / 3.0;
+        CGFloat Y = - (imgSize.height / 4);
+        CGRect unreadViewRect = CGRectMake(X,Y, imgSize.width, imgSize.height);
         [_unreadNumberImgV setFrame:unreadViewRect];
         [leftBtn addSubview:_unreadNumberImgV];
         [_unreadNumberImgV setHidden:_number];
+        
         
         _unreadLabel = [[WXUILabel alloc] initWithFrame:_unreadNumberImgV.frame];
         [_unreadLabel setFont:[UIFont systemFontOfSize:9.0]];
@@ -94,7 +97,7 @@
     NSString *text = [NSString stringWithFormat:@"%d",(int)number];
     
     [_unreadLabel setText:text];
-    _unreadLabel.center = _unreadNumberImgV.center;
+//    _unreadLabel.center = _unreadNumberImgV.center;
     
     
 }

@@ -71,5 +71,14 @@
     self.center = CGPointMake(self.center.x, y);
 }
 
+- (void)setCenterx:(CGFloat)centerx{
+    CGPoint center= self.center;
+    center.x = centerx;
+    self.center = center;
+}
+
+- (CGFloat)centerx{
+    return self.center.x;
+}
 
 @end

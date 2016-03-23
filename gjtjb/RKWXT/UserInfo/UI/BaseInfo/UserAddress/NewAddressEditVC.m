@@ -379,12 +379,14 @@ enum{
 
 #pragma mark submit
 -(void)submitUserInfoData{
+    
     if(self.userName.length != 0 && self.userPhone.length != 0 && self.areaStr.length != 0){
         if(![self checkUserPhoneWithString:self.userPhone]){
             return;
         }
         [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
     }else{
+        
         [UtilTool showAlertView:@"信息不完整"];
     }
 }
