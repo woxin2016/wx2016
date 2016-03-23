@@ -54,7 +54,7 @@
 -(void)createRightMoneyView{
     CGFloat xOffset = 5;
     CGFloat yOffset = 2;
-    CGFloat width = 95;
+    CGFloat width = 100;
     CGFloat height = 18;
     rightMoneyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     rightMoneyBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-width, 64-yOffset-height, width, height);
@@ -206,6 +206,9 @@
         [self unShowWaitView];
         if([[retDic objectForKey:@"error"] integerValue] == 0 && retDic){
             [UtilTool showTipView:@"兑换抽奖次数成功"];
+            
+            //本地减少话费余额
+            [self setBalanceValue];
         }else{
             NSString *errorMsg = [retDic objectForKey:@"msg"];
             if(!errorMsg){
@@ -214,6 +217,13 @@
             [UtilTool showAlertView:errorMsg];
         }
     }];
+}
+
+-(void)setBalanceValue{
+    if([_balanceModel.dataList count] > 0){
+        BalanceEntity *entity = [_balanceModel.dataList objectAtIndex:0];
+        [rightMoneyBtn setTitle:[NSString stringWithFormat:@"话费余额:%.d",(int)entity.money-luckyTimes*2] forState:UIControlStateNormal];
+    }
 }
 
 //增加兑换次数
