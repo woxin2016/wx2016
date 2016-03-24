@@ -186,6 +186,15 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
     [button.titleLabel setFont:WXFont(12.0)];
     [headView addSubview:button];
     
+    UILabel *proLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, btnWidth, btnHeight)];
+    proLabel.text = @"可提现";
+    proLabel.textColor = [UIColor colorWithHexString:@"8c8c8c"];
+    proLabel.textAlignment = NSTextAlignmentCenter;
+    proLabel.center = button.center;
+    proLabel.centerY = button.centerY + 25;
+    proLabel.font = [UIFont systemFontOfSize:13.0];
+    [headView addSubview:proLabel];
+    
     yOffset = 130;
     UILabel *line = [[UILabel alloc] init];
     line.frame = CGRectMake(0, yOffset, Size.width, 0.5);

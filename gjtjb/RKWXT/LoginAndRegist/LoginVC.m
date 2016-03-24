@@ -168,6 +168,7 @@
     [_userTextField setLeftView:leftView leftGap:leftViewGap rightGap:textGap];
     [_optShell addSubview:_userTextField];
     
+    
     yOffset += smImgHeight+10;
     WXUIImageView *downImgView = [[WXUIImageView alloc] init];
     downImgView.frame = CGRectMake(xGap, yOffset, Size.width-2*xGap, smImgHeight);
@@ -208,7 +209,7 @@
 
 - (void)hideKeyBoardDur:(CGFloat)dur{
     CGRect optShellRect = [_optShell bounds];
-    optShellRect.origin.y = kLoginBigImgViewheight;
+    optShellRect.origin.y = kLoginBigImgViewheight + 25;
     
     [UIView animateWithDuration:0.3 animations:^{
         [_optShell setFrame:optShellRect];

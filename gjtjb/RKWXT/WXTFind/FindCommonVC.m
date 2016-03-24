@@ -32,6 +32,7 @@
     }
 }
 
+
 #pragma mark webViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];

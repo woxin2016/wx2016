@@ -17,6 +17,7 @@
     WXUILabel *timesLabel;
     WXUILabel *minusLabel;
     NSInteger luckyTimes;
+    int count;
     
     BalanceModel *_balanceModel;
     LuckyTimesModel *_model;
@@ -59,6 +60,7 @@
     [self createTopBaseView];
     [self createDetailView];
     luckyTimes = 1;
+    count = 0;
 }
 
 -(void)createRightMoneyView{
@@ -223,9 +225,16 @@
 }
 
 - (void)lookUserMoney{
+    count += luckyTimes;
+    
+    if(count >= 5){
+        [UtilTool showTipView:@"每天最多兑换5次抽奖机会"];
+        return;
+    }
+    
     if([_balanceModel.dataList count] > 0){
         BalanceEntity *entity = [_balanceModel.dataList objectAtIndex:0];
-        int money = (int)entity.money - (luckyTimes * 2);
+         int  money = (int)entity.money -  (count * 2);
         [rightMoneyBtn setTitle:[NSString stringWithFormat:@"话费余额:%.d",money] forState:UIControlStateNormal];
     }
 }

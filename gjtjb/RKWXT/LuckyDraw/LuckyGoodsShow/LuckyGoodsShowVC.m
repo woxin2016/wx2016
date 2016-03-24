@@ -84,7 +84,7 @@
     [rightBtn setBackgroundColor:[UIColor clearColor]];
     [rightBtn setTitle:@"价格" forState:UIControlStateNormal];
     [rightBtn.titleLabel setFont:WXFont(14.0)];
-    [rightBtn setTitleColor:WXColorWithInteger(0x000000) forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
     [rightBtn setImage:[UIImage imageNamed:@"GoodsListUpImg.png"] forState:UIControlStateNormal];
     [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 45, 0, 0)];

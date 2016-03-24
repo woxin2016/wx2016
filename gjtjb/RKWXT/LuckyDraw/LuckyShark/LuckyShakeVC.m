@@ -20,6 +20,7 @@
 #import "WinningView.h"
 #import "WXUIViewController+WinningPopView.h"
 #import "WinningViewAnimationDrop.h"
+#import "FindCommonVC.h"
 
 #define kDuration 0.3
 #define yGap 60

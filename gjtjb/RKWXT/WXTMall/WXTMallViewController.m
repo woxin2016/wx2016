@@ -59,8 +59,9 @@
 
 -(void)createTopBtn{
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(0, 6, 60, 40);
-    [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
+    UIImage *image = [UIImage imageNamed:@"HomePageLeftBtn.png"];
+    leftBtn.frame = CGRectMake(0, 6, 40, 40);
+    [leftBtn setImage:image forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn.titleLabel setFont:WXFont(10.0)];
     [leftBtn addTarget:self action:@selector(homePageToCategaryView) forControlEvents:UIControlEventTouchUpInside];
@@ -78,7 +79,7 @@
     [self.view addSubview:_unreadView];
     
     
-     ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width- 35 * 2, 64-35, 25, 25)];
+     ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width- 35 * 2 + 4, 64-35, 25, 25)];
     [self.view addSubview:cartView];
      cartView.delegate = self;
     [cartView searchShoppingCartNumber];

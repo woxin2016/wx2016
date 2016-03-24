@@ -308,8 +308,7 @@
 		124535111AE9D0BC004198C9 /* MallSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124535091AE9D0BC004198C9 /* MallSelected@2x.png */; };
 		124535121AE9D0BC004198C9 /* UserNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245350A1AE9D0BC004198C9 /* UserNormal@2x.png */; };
 		124535131AE9D0BC004198C9 /* UserSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245350B1AE9D0BC004198C9 /* UserSelected@2x.png */; };
-		1245353B1AE9D146004198C9 /* signBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 124535151AE9D146004198C9 /* signBg.jpg */; };
-		1245353C1AE9D146004198C9 /* signBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 124535161AE9D146004198C9 /* signBg@2x.jpg */; };
+		1245353C1AE9D146004198C9 /* signBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 124535161AE9D146004198C9 /* signBg.jpg */; };
 		1245353D1AE9D146004198C9 /* signEveryDay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124535171AE9D146004198C9 /* signEveryDay@2x.png */; };
 		1245353E1AE9D146004198C9 /* sign10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124535191AE9D146004198C9 /* sign10@2x.png */; };
 		1245353F1AE9D146004198C9 /* sign11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245351A1AE9D146004198C9 /* sign11@2x.png */; };
@@ -829,6 +828,7 @@
 		77DB943B1AAFF3830021A816 /* UIView+Sizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DB943A1AAFF3830021A816 /* UIView+Sizing.m */; };
 		786155E21AC8E0CE0048B604 /* areacode in Resources */ = {isa = PBXBuildFile; fileRef = 786155E01AC8E0CE0048B604 /* areacode */; };
 		786155E31AC8E0CE0048B604 /* place.dat in Resources */ = {isa = PBXBuildFile; fileRef = 786155E11AC8E0CE0048B604 /* place.dat */; };
+		DD04C41F1CA3E91D00428FCB /* signBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DD04C41E1CA3E91D00428FCB /* signBg@2x.jpg */; };
 		DD136AA51C97FD6C0019932E /* storeCart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD136AA41C97FD6C0019932E /* storeCart@2x.png */; };
 		DD1488011C9273AF00D2632E /* LimitGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488001C9273AF00D2632E /* LimitGoodsView.m */; };
 		DD1488041C92A69500D2632E /* NewShopPingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488031C92A69500D2632E /* NewShopPingCartModel.m */; };
@@ -1528,8 +1528,7 @@
 		124535091AE9D0BC004198C9 /* MallSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MallSelected@2x.png"; sourceTree = "<group>"; };
 		1245350A1AE9D0BC004198C9 /* UserNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserNormal@2x.png"; sourceTree = "<group>"; };
 		1245350B1AE9D0BC004198C9 /* UserSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserSelected@2x.png"; sourceTree = "<group>"; };
-		124535151AE9D146004198C9 /* signBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = signBg.jpg; sourceTree = "<group>"; };
-		124535161AE9D146004198C9 /* signBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "signBg@2x.jpg"; sourceTree = "<group>"; };
+		124535161AE9D146004198C9 /* signBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = signBg.jpg; sourceTree = "<group>"; };
 		124535171AE9D146004198C9 /* signEveryDay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signEveryDay@2x.png"; sourceTree = "<group>"; };
 		124535191AE9D146004198C9 /* sign10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign10@2x.png"; sourceTree = "<group>"; };
 		1245351A1AE9D146004198C9 /* sign11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign11@2x.png"; sourceTree = "<group>"; };
@@ -2427,6 +2426,7 @@
 		77DB943A1AAFF3830021A816 /* UIView+Sizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizing.m"; sourceTree = "<group>"; };
 		786155E01AC8E0CE0048B604 /* areacode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = areacode; sourceTree = "<group>"; };
 		786155E11AC8E0CE0048B604 /* place.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = place.dat; sourceTree = "<group>"; };
+		DD04C41E1CA3E91D00428FCB /* signBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "signBg@2x.jpg"; sourceTree = "<group>"; };
 		DD136AA41C97FD6C0019932E /* storeCart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "storeCart@2x.png"; sourceTree = "<group>"; };
 		DD1487FF1C9273AF00D2632E /* LimitGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitGoodsView.h; sourceTree = "<group>"; };
 		DD1488001C9273AF00D2632E /* LimitGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitGoodsView.m; sourceTree = "<group>"; };
@@ -4206,8 +4206,8 @@
 		124535141AE9D146004198C9 /* SignImg */ = {
 			isa = PBXGroup;
 			children = (
-				124535151AE9D146004198C9 /* signBg.jpg */,
-				124535161AE9D146004198C9 /* signBg@2x.jpg */,
+				DD04C41E1CA3E91D00428FCB /* signBg@2x.jpg */,
+				124535161AE9D146004198C9 /* signBg.jpg */,
 				124535171AE9D146004198C9 /* signEveryDay@2x.png */,
 				124535181AE9D146004198C9 /* SignGifView */,
 				1245353A1AE9D146004198C9 /* SignNow@2x.png */,
@@ -6943,6 +6943,7 @@
 				12F46A3D1B20012000B8EC98 /* T_GoodsIInfoDetail@2x.png in Resources */,
 				1295C5E01B291D4F004C861D /* ResetPwdNorlImg@2x.png in Resources */,
 				124535541AE9D146004198C9 /* sign31@2x.png in Resources */,
+				DD04C41F1CA3E91D00428FCB /* signBg@2x.jpg in Resources */,
 				122D63BF1C3F4AF60086AAB8 /* HomePageSignImg@2x.png in Resources */,
 				12846A8B1B252D720021F9FE /* LoginUpSmallImg@2x.png in Resources */,
 				12F3CC7F1B1DE82C00E64DE4 /* SysSettingImg@2x.png in Resources */,
@@ -7000,7 +7001,6 @@
 				12CE11D51C50694200FF85FA /* GoodsListDownImg@2x.png in Resources */,
 				12CD08CF1C9B94E50028A629 /* AddressEmptyImg@2x.png in Resources */,
 				12D52BBA1AC2EF4400C5CE71 /* dtmf-4.aif in Resources */,
-				1245353B1AE9D146004198C9 /* signBg.jpg in Resources */,
 				120D00FB1BBB9182005CAA6C /* AlipaySDK.bundle in Resources */,
 				DD89B55F1C89794E0059F097 /* LMUserCutImg@2x.png in Resources */,
 				775C58401ABA5F31005B6B40 /* unicode_to_hanyu_pinyin.txt in Resources */,
@@ -7101,7 +7101,7 @@
 				12F46A371B20012000B8EC98 /* T_ArrowDown@2x.png in Resources */,
 				123667591C44AA04000FAF70 /* SharkBigImg.png in Resources */,
 				DD35D8741C84258400422F5B /* GoodsListUpImg@2x.png in Resources */,
-				1245353C1AE9D146004198C9 /* signBg@2x.jpg in Resources */,
+				1245353C1AE9D146004198C9 /* signBg.jpg in Resources */,
 				1241E54A1AE9D89B00811D3F /* 6S@2x.png in Resources */,
 				12F3CC761B1DE82C00E64DE4 /* MyCallMoneyImg@2x.png in Resources */,
 				124535451AE9D146004198C9 /* sign18@2x.png in Resources */,

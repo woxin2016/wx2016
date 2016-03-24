@@ -36,7 +36,7 @@
         textLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-smallWidth)/2, yOffset, smallWidth, smallHeight);
         [textLabel setBackgroundColor:[UIColor clearColor]];
         [textLabel setTextAlignment:NSTextAlignmentCenter];
-        [textLabel setText:@"提成"];
+        [textLabel setText:@"总提成"];
         [textLabel setTextColor:WXColorWithInteger(0x828282)];
         [textLabel setFont:WXFont(11.0)];
         [self.contentView addSubview:textLabel];

@@ -8,13 +8,12 @@
 
 #import "ShareBrowserView.h"
 #import "QRCodeGenerator.h"
-#import "ShareInfoModel.h"
 
 #define kAnimateDefaultDuration (0.3)
 #define kMaskShellDefaultAlpha (0.6)
 
 #define shareViewWidth (240)
-#define shareViewHeight (300)
+#define shareViewHeight (360)
 
 static NSString *shareImgArr[]={
     @"ShareQqImg.png",
@@ -76,11 +75,44 @@ static NSString *shareNameArr[]={
     [self addSubview:_shareView];
     
     
-    CGFloat yOffset = 15;
+    CGFloat textlabelWidth = 140;
+    CGFloat textLabelHeight = 22;
+    UILabel *textLabel = [[UILabel alloc] init];
+    textLabel.frame = CGRectMake((shareViewWidth-textlabelWidth)/2, 15, textlabelWidth, textLabelHeight);
+    [textLabel setBackgroundColor:[UIColor clearColor]];
+    [textLabel setText:@"推荐应用给好友"];
+    [textLabel setFont:WXFont(16.0)];
+    [textLabel setTextAlignment:NSTextAlignmentCenter];
+    [textLabel setTextColor:WXColorWithInteger(0xd9d9d9)];
+    [_shareView addSubview:textLabel];
+    
+    CGFloat yOffset = textLabelHeight+15+5;
+    UILabel *linelabel = [[UILabel alloc] init];
+    linelabel.frame = CGRectMake(0, yOffset, shareViewWidth, 0.5);
+    [linelabel setBackgroundColor:WXColorWithInteger(0xdedede)];
+    [_shareView addSubview:linelabel];
+    
     _imageView = [[UIImageView alloc] init];
     [_shareView addSubview:_imageView];
     
+    CGFloat logoWidth = 41;
+    CGFloat logoHeight = logoWidth;
+    WXUIImageView *logoView = [[WXUIImageView alloc] init];
+    logoView.frame = CGRectMake((200-logoWidth)/2, (200-logoHeight)/2, logoWidth, logoHeight);
+    [logoView setImage:[UIImage imageNamed:@"Icon.png"]];
+    //    [_imageView addSubview:logoView];
+    
     yOffset += 15+200;
+    UILabel *textLabel1 = [[UILabel alloc] init];
+    textLabel1.frame = CGRectMake((shareViewWidth-textlabelWidth)/2, yOffset, textlabelWidth, textLabelHeight);
+    [textLabel1 setBackgroundColor:[UIColor clearColor]];
+    [textLabel1 setText:kMerchantName];
+    [textLabel1 setFont:WXFont(16.0)];
+    [textLabel1 setTextAlignment:NSTextAlignmentCenter];
+    [textLabel1 setTextColor:WXColorWithInteger(0x000000)];
+    [_shareView addSubview:textLabel1];
+    
+    yOffset += textLabelHeight+12;
     [self createMoreShareBtn:yOffset];
     
     _duration = kAnimateDefaultDuration;
@@ -124,21 +156,17 @@ static NSString *shareNameArr[]={
 }
 
 -(void)showShareThumbView:(UIView *)thumbView toDestview:(UIView *)destView withImage:(UIImage *)image{
-    //获取分享信息
-    ShareInfoModel *shareInfo = [[ShareInfoModel alloc] init];
-    [shareInfo loadUserShareInfo];
-    
     self.hidden = NO;
     self.alpha = 0.0;
     
     [self setThumbView:thumbView];
     [_maskShell setFrame:destView.bounds];
     [self setFrame:destView.bounds];
-//    UIView *superView = thumbView.superview;
-//    NSAssert(superView, @"thumb view has not add to super view");
+    //    UIView *superView = thumbView.superview;
+    //    NSAssert(superView, @"thumb view has not add to super view");
     
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSString *imgUrlStr = [NSString stringWithFormat:@"%@wx_union/index.php/Register/index?sid=%@&phone=%@",WXTShareBaseUrl,userObj.sellerID,userObj.user];
+    NSString *imgUrlStr = [NSString stringWithFormat:@"http://121.201.18.130/wx_html/index.php/Public/app_download/sid/%ld/woxin_id/%@",(long)kMerchantID,userObj.wxtID];
     _imageViewSourceRect = [destView convertRect:CGRectMake(_shareView.frame.size.width/2, _shareView.frame.size.height/2, 0, 0) fromView:thumbView.superview];
     [_imageView setImage:[QRCodeGenerator qrImageForString:imgUrlStr imageSize:shareViewWidth/2]];
     [_imageView setFrame:_imageViewSourceRect];
@@ -156,10 +184,10 @@ static NSString *shareNameArr[]={
 }
 
 - (void)show{
-//    CGSize size = CGSizeMake(_imageViewDestRect.size.width, _imageViewDestRect.size.height);
+    //    CGSize size = CGSizeMake(_imageViewDestRect.size.width, _imageViewDestRect.size.height);
     CGFloat imgWidth = 200;
     CGFloat imgHeight = imgWidth;
-    [_imageView setFrame:CGRectMake((shareViewWidth-imgWidth)/2, 18, imgWidth, imgHeight)];
+    [_imageView setFrame:CGRectMake((shareViewWidth-imgWidth)/2, 50, imgWidth, imgHeight)];
     [self.thumbView setAlpha:0.0];
     [self setAlpha:1.0];
 }

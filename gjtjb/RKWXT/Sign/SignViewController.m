@@ -46,7 +46,7 @@
     [imgView setImage:[UIImage imageNamed:@"signBg.jpg"]];
     [self.view addSubview:imgView];
     
-    [self createTextLabel];
+//    [self createTextLabel];
 //    [self createActivityRule];
 //    [self createCalendar];
     [self createRewardLabel];
@@ -67,13 +67,13 @@
 //}
 
 -(void)createBackBtn{
-    CGFloat xOffset = 20;
+    CGFloat xOffset = 10;
     CGFloat yOffset = 30;
     UIImage *img = [UIImage imageNamed:@"T_Back.png"];
     WXTUIButton *backBtn = [WXTUIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(xOffset, yOffset, img.size.width, img.size.height);
-    [backBtn setImage:[UIImage imageNamed:@"T_Back.png"] forState:UIControlStateNormal];
-    [backBtn setImage:[UIImage imageNamed:@"T_BackSel.png"] forState:UIControlStateSelected];
+    [backBtn setImage:[UIImage imageNamed:@"T_BackWhite.png"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"T_Back.png"] forState:UIControlStateSelected];
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
@@ -180,6 +180,7 @@
 -(void)signBtnClicked{
     [_model signGainMoney];
     [_signBtn setEnabled:NO];
+    [_signBtn setImage:[UIImage imageNamed:@"SignSeleNow.png"] forState:UIControlStateNormal];
     
     T_SignGifView *gifView = [[T_SignGifView alloc] initWithFrame:CGRectMake(0, 0, Size.width, Size.height)];
     [self.view addSubview:gifView];
