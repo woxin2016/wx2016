@@ -60,6 +60,7 @@
     stockBtn.frame = CGRectMake(offsetX , offsetY, offsetW, 20);
     stockBtn.text = entity.stockName;
     stockBtn.textAlignment = NSTextAlignmentCenter;
+    
 }
 
 - (void)setLabelHid:(BOOL)hid{

@@ -155,7 +155,7 @@
     
     
     xOffset += btnWidth;
-   WXUIButton *limitBuyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    WXUIButton *limitBuyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     limitBuyBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
     [limitBuyBtn setBackgroundColor:[UIColor clearColor]];
     [limitBuyBtn setTag:1];
@@ -163,7 +163,7 @@
     [limitBuyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [limitBuyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [limitBuyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [limitBuyBtn setBackgroundColor:[UIColor redColor]];
+    [limitBuyBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
     [downView addSubview:limitBuyBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
@@ -325,6 +325,7 @@
         cell.stockEntity = [_model.stockArr objectAtIndex:0];
     }
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
+    [cell limitGoodsInfoHidden];
     [cell load];
     return cell;
 }

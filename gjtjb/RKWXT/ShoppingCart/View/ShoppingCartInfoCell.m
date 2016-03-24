@@ -208,6 +208,7 @@
             [_delegate cancelGoods];
         }
     }
+    
     [self setCircleBtnImgWith:selected];
 }
 

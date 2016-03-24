@@ -71,8 +71,11 @@
     [self addSubview:_tableView];
     
     [self addObs];
+    
     [[ShoppingCartModel shareShoppingCartModel] loadShoppingCartList];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@"努力加载中..."];
+    
+    
 }
 
 -(void)addObs{
@@ -252,6 +255,9 @@
     _cartList = [ShoppingCartModel shareShoppingCartModel].shoppingCartListArr;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [self addSubview:[self tableViewForFootView]];
+    
+    _selectAll = NO;
+    [self selectAllBtnClicked];
 }
 
 -(void)loadCartDataFailed:(NSNotification*)notification{

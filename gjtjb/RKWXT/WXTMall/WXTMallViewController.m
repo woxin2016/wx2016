@@ -349,49 +349,14 @@
 
 #pragma mark topimg
 -(void)clickTopGoodAtIndex:(NSInteger)index{
-//    HomePageTopEntity *entity = nil;
-//    if([_model.top.data count] > 0){
-//        entity = [_model.top.data objectAtIndex:index];
-//    }
-//    switch (entity.topAddID) {
-//        case HomePageJump_Type_Catagary:
-//        {
-//            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.linkID animated:YES];
-//        }
-//            break;
-//        case HomePageJump_Type_GoodsInfo:
-//        {
-//            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.linkID animated:YES];
-//        }
-//            break;
-//        case HomePageJump_Type_MessageCenter:  
-//        {
-//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
-//        }
-//            break;
-//        case HomePageJump_Type_MessageInfo:  //消息详情
-//        {
-//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
-//        }
-//            break;
-//        case HomePageJump_Type_UserBonus:   //红包
-//        {
-//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
-//        }
-//            break;
-//        case HomePageJump_Type_BusinessAlliance:   //商家联盟
-//        {
-//            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self  animated:YES];
-//        }
-//            break;
-//        default:
-//            break;
-//    }
-    
+    HomePageTopEntity *entity = nil;
+    if([_model.top.data count] > 0){
+        entity = [_model.top.data objectAtIndex:index];
+    }
+
     if(index > HomePageJump_Type_Invalid){
         return;
     }
-    HomePageTopEntity *entity = [_model.top.data objectAtIndex:index];
     switch (entity.topAddID) {
         case HomePageJump_Type_GoodsInfo:
         {

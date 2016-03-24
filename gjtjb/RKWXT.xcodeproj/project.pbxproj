@@ -846,6 +846,11 @@
 		DD2498BC1C88312F0079DB5A /* SearchResultEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498B01C88312F0079DB5A /* SearchResultEntity.m */; };
 		DD2498BD1C88312F0079DB5A /* ClassifyHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498B31C88312F0079DB5A /* ClassifyHistoryCell.m */; };
 		DD2498BE1C88312F0079DB5A /* ClassifySrarchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498B51C88312F0079DB5A /* ClassifySrarchListCell.m */; };
+		DD24CF621CA2306C00A5B9ED /* UserCollectionGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF611CA2306C00A5B9ED /* UserCollectionGoodsVC.m */; };
+		DD24CF671CA2397D00A5B9ED /* CollectionGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF661CA2397D00A5B9ED /* CollectionGoodsCell.m */; };
+		DD24CF6A1CA23D8100A5B9ED /* CollectionGoodsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF691CA23D8100A5B9ED /* CollectionGoodsEntity.m */; };
+		DD24CF991CA26C7200A5B9ED /* collectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF981CA26C7200A5B9ED /* collectionView.m */; };
+		DD24CF9B1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD24CF9A1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png */; };
 		DD2572051C9FA6C6008D541E /* DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2572041C9FA6C6008D541E /* DropdownMenu.m */; };
 		DD2572081C9FA7D2008D541E /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2572071C9FA7D2008D541E /* UIViewAdditions.m */; };
 		DD25720D1C9FC6AF008D541E /* searchGoods@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25720B1C9FC6AF008D541E /* searchGoods@2x.png */; };
@@ -887,6 +892,7 @@
 		DD8D0F641C9D530100882ADA /* SignSeleNow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD8D0F631C9D530100882ADA /* SignSeleNow@2x.png */; };
 		DD988A5D1B1D408500B3790B /* EScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD988A5C1B1D408500B3790B /* EScrollerView.m */; };
 		DD999F931B204C7B00086D1C /* UIButton+UIButtonImageWithLable.m in Sources */ = {isa = PBXBuildFile; fileRef = DD999F921B204C7B00086D1C /* UIButton+UIButtonImageWithLable.m */; };
+		DD9B28511CA12DC4008E5413 /* GoodsAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9B28501CA12DC4008E5413 /* GoodsAttentionModel.m */; };
 		DDA5B2C91C8EDDA4001180EE /* GoodsLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA5B2C81C8EDDA4001180EE /* GoodsLineTool.m */; };
 		DDA5B2D31C8EDFBF001180EE /* ShoppingCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA5B2D21C8EDFBF001180EE /* ShoppingCartView.m */; };
 		DDA5B2D61C8EDFE2001180EE /* ShopPingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA5B2D51C8EDFE2001180EE /* ShopPingCartModel.m */; };
@@ -2454,6 +2460,15 @@
 		DD2498B31C88312F0079DB5A /* ClassifyHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyHistoryCell.m; sourceTree = "<group>"; };
 		DD2498B41C88312F0079DB5A /* ClassifySrarchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifySrarchListCell.h; sourceTree = "<group>"; };
 		DD2498B51C88312F0079DB5A /* ClassifySrarchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifySrarchListCell.m; sourceTree = "<group>"; };
+		DD24CF601CA2306C00A5B9ED /* UserCollectionGoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionGoodsVC.h; sourceTree = "<group>"; };
+		DD24CF611CA2306C00A5B9ED /* UserCollectionGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionGoodsVC.m; sourceTree = "<group>"; };
+		DD24CF651CA2397D00A5B9ED /* CollectionGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionGoodsCell.h; sourceTree = "<group>"; };
+		DD24CF661CA2397D00A5B9ED /* CollectionGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionGoodsCell.m; sourceTree = "<group>"; };
+		DD24CF681CA23D8100A5B9ED /* CollectionGoodsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionGoodsEntity.h; sourceTree = "<group>"; };
+		DD24CF691CA23D8100A5B9ED /* CollectionGoodsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionGoodsEntity.m; sourceTree = "<group>"; };
+		DD24CF971CA26C7200A5B9ED /* collectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionView.h; sourceTree = "<group>"; };
+		DD24CF981CA26C7200A5B9ED /* collectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionView.m; sourceTree = "<group>"; };
+		DD24CF9A1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddressEmptyCollention@2x.png"; path = "../AddressEmptyCollention@2x.png"; sourceTree = "<group>"; };
 		DD2572031C9FA6C6008D541E /* DropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenu.h; sourceTree = "<group>"; };
 		DD2572041C9FA6C6008D541E /* DropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenu.m; sourceTree = "<group>"; };
 		DD2572061C9FA7D2008D541E /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
@@ -2508,6 +2523,8 @@
 		DD988A5C1B1D408500B3790B /* EScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollerView.m; sourceTree = "<group>"; };
 		DD999F911B204C7B00086D1C /* UIButton+UIButtonImageWithLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLable.h"; sourceTree = "<group>"; };
 		DD999F921B204C7B00086D1C /* UIButton+UIButtonImageWithLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLable.m"; sourceTree = "<group>"; };
+		DD9B284F1CA12DC4008E5413 /* GoodsAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsAttentionModel.h; sourceTree = "<group>"; };
+		DD9B28501CA12DC4008E5413 /* GoodsAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsAttentionModel.m; sourceTree = "<group>"; };
 		DDA5B2C71C8EDDA4001180EE /* GoodsLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsLineTool.h; sourceTree = "<group>"; };
 		DDA5B2C81C8EDDA4001180EE /* GoodsLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsLineTool.m; sourceTree = "<group>"; };
 		DDA5B2D11C8EDFBF001180EE /* ShoppingCartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartView.h; sourceTree = "<group>"; };
@@ -3153,6 +3170,8 @@
 			children = (
 				122AB8D11C3E6F8C00AC9DF5 /* GoodsInfoModel.h */,
 				122AB8D21C3E6F8C00AC9DF5 /* GoodsInfoModel.m */,
+				DD9B284F1CA12DC4008E5413 /* GoodsAttentionModel.h */,
+				DD9B28501CA12DC4008E5413 /* GoodsAttentionModel.m */,
 				DDA5B2C71C8EDDA4001180EE /* GoodsLineTool.h */,
 				DDA5B2C81C8EDDA4001180EE /* GoodsLineTool.m */,
 				122D64271C3F9AEB0086AAB8 /* GoodsInfoEntity.h */,
@@ -4987,6 +5006,7 @@
 			children = (
 				12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */,
 				12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */,
+				DD24CF9A1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png */,
 			);
 			path = UserAddress;
 			sourceTree = "<group>";
@@ -5574,6 +5594,7 @@
 		2563B3E61AAAD74000C04227 /* RKWXT */ = {
 			isa = PBXGroup;
 			children = (
+				DD24CF5F1CA2305000A5B9ED /* WXCollectionGoods */,
 				1273210F1C7AB7F300C8D1D7 /* UMeng */,
 				12BC72071C78531700FC6A1C /* NewUserCut */,
 				123DDCA91C7452B400725A40 /* baiduCount */,
@@ -6541,6 +6562,37 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		DD24CF5F1CA2305000A5B9ED /* WXCollectionGoods */ = {
+			isa = PBXGroup;
+			children = (
+				DD24CF601CA2306C00A5B9ED /* UserCollectionGoodsVC.h */,
+				DD24CF611CA2306C00A5B9ED /* UserCollectionGoodsVC.m */,
+				DD24CF641CA2308900A5B9ED /* Model */,
+				DD24CF631CA2308300A5B9ED /* View */,
+			);
+			path = WXCollectionGoods;
+			sourceTree = "<group>";
+		};
+		DD24CF631CA2308300A5B9ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD24CF651CA2397D00A5B9ED /* CollectionGoodsCell.h */,
+				DD24CF661CA2397D00A5B9ED /* CollectionGoodsCell.m */,
+				DD24CF971CA26C7200A5B9ED /* collectionView.h */,
+				DD24CF981CA26C7200A5B9ED /* collectionView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD24CF641CA2308900A5B9ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD24CF681CA23D8100A5B9ED /* CollectionGoodsEntity.h */,
+				DD24CF691CA23D8100A5B9ED /* CollectionGoodsEntity.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DD2572021C9FA69A008D541E /* DownMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -6879,6 +6931,7 @@
 				124535421AE9D146004198C9 /* sign14@2x.png in Resources */,
 				122D63AE1C3F465A0086AAB8 /* MyCutImg@2x.png in Resources */,
 				127FDD781B57A76E0059BDB6 /* CallBtnUpImg@2x.png in Resources */,
+				DD24CF9B1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png in Resources */,
 				121121101BA2775000651E4A /* MyCutTeam@2x.png in Resources */,
 				1245354F1AE9D146004198C9 /* sign27@2x.png in Resources */,
 				DD8D0F641C9D530100882ADA /* SignSeleNow@2x.png in Resources */,
@@ -7218,6 +7271,7 @@
 				775842BD1AB95A300039B129 /* WXGuidMaskView.m in Sources */,
 				7758432B1AB95A300039B129 /* WXUIScrollView.m in Sources */,
 				12F4228C1B1D61E100643DD7 /* AddressBaseInfoCell.m in Sources */,
+				DD24CF621CA2306C00A5B9ED /* UserCollectionGoodsVC.m in Sources */,
 				12BC725D1C78531700FC6A1C /* MyClientMoneyCell.m in Sources */,
 				122842091C490F6300D76A6B /* GoodsOtherSellerCell.m in Sources */,
 				123666CE1C449760000FAF70 /* UserBonusEntity.m in Sources */,
@@ -7313,6 +7367,7 @@
 				12BC72641C78531700FC6A1C /* WXJuniorListVC.m in Sources */,
 				7758431F1AB95A300039B129 /* WXUIAlertView.m in Sources */,
 				775C58D11ABA7B75005B6B40 /* WXContacterEntity.m in Sources */,
+				DD9B28511CA12DC4008E5413 /* GoodsAttentionModel.m in Sources */,
 				123667551C44AA04000FAF70 /* WinningBackgroundView.m in Sources */,
 				DD1488041C92A69500D2632E /* NewShopPingCartModel.m in Sources */,
 				775842F21AB95A300039B129 /* WXDropListView.m in Sources */,
@@ -7383,6 +7438,7 @@
 				122858691C4F9BED0089A369 /* ClassifyGoodsModel.m in Sources */,
 				123667461C44AA04000FAF70 /* LuckyOrderNumberCell.m in Sources */,
 				122AB8481C3E57DF00AC9DF5 /* HomeLimitBuyInfoCell.m in Sources */,
+				DD24CF6A1CA23D8100A5B9ED /* CollectionGoodsEntity.m in Sources */,
 				775842F11AB95A300039B129 /* WXDropListItem.m in Sources */,
 				12CE11E11C507C4D00FF85FA /* OrderInfoOrderStateCell.m in Sources */,
 				12CE11ED1C507E2200FF85FA /* OrderInfoMoneyCell.m in Sources */,
@@ -7579,6 +7635,7 @@
 				775843311AB95A300039B129 /* WXUITabBarVC.m in Sources */,
 				122EFBE51C4108FC00CE0EA0 /* AllOrderListHandleCell.m in Sources */,
 				120A2BED1AB135DD006A28B1 /* CalendarView.m in Sources */,
+				DD24CF991CA26C7200A5B9ED /* collectionView.m in Sources */,
 				DDB58F521AD3C6A2006248E9 /* StrangerEntity.m in Sources */,
 				12CD4EBD1C9A57D7003789F8 /* PersonalSexCell.m in Sources */,
 				120D01631BBB91B5005CAA6C /* openssl_wrapper.m in Sources */,
@@ -7699,6 +7756,7 @@
 				1236673E1C44AA04000FAF70 /* LuckyGoodsMakeOrderMoneyCell.m in Sources */,
 				1203C2001B3E366600C402E3 /* OrderPayMoneyCell.m in Sources */,
 				12F422981B1D8A4000643DD7 /* InsertAddress.m in Sources */,
+				DD24CF671CA2397D00A5B9ED /* CollectionGoodsCell.m in Sources */,
 				128221C71B184C3B004613BB /* ASIFormDataRequest.m in Sources */,
 				775842FA1AB95A300039B129 /* KICropImageView.m in Sources */,
 				122858481C4F828B0089A369 /* WaitPayOrderStateCell.m in Sources */,
@@ -7806,6 +7864,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = woxin;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -7842,6 +7901,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = woxin;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -7854,7 +7914,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen WoXin Network Technology Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bin Ding (9GVZ38434R)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7905,7 +7965,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ecbe3675-2996-4447-9d48-7cc4805dbe4e";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
