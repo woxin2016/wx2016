@@ -420,10 +420,10 @@ enum{
 
 -(void)gotoWebView{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    WXTMallListWebVC *webViewVC = [[WXTMallListWebVC alloc] init];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:luckyEntity.goods_id], @"goods_id",[NSNumber numberWithInteger:kMerchantID], @"sid", userObj.user, @"phone", [UtilTool newStringWithAddSomeStr:5 withOldStr:userObj.pwd], @"pwd", nil];
-    id ret = [webViewVC initWithFeedType:WXT_UrlFeed_Type_NewMall_ImgAndText paramDictionary:dic];
-    NSLog(@"ret = %@",ret);
+    NSString *urlStr = [NSString stringWithFormat:@"%@wx_union/index.php/Public/good_info?phone=%@&woxin_id=%@&goods_id=%@&pid=%@",WXTBaseUrl,userObj.user,userObj.wxtID,[NSString stringWithFormat:@"%d",luckyEntity.goods_id],@"ios"];
+    FindCommonVC *webViewVC = [[FindCommonVC alloc]init];
+    webViewVC.name = @"商品详情";
+    webViewVC.webURl = urlStr;
     [self.wxNavigationController pushViewController:webViewVC];
    
 }

@@ -18,6 +18,12 @@
     WXUIButton *carriageBtn;
     WXUIButton *redPacketBtn;
     UIView *topView;
+    
+    WXUILabel *line;
+    WXUIButton *_attentionBtn;
+    WXUILabel *_attentionLabel;
+    BOOL _isAttection;
+    CGRect rect;
 }
 @end
 
@@ -28,7 +34,7 @@
     if(self){
         CGFloat xOffset = 12;
         CGFloat yOffset = 12;
-        CGFloat desWidth = IPHONE_SCREEN_WIDTH-2*xOffset;
+        CGFloat desWidth = IPHONE_SCREEN_WIDTH-2*xOffset - 60;
         CGFloat desHeight = 35;
         desLabel = [[WXUILabel alloc] init];
         desLabel.frame = CGRectMake(xOffset, yOffset, desWidth, desHeight);
@@ -42,7 +48,6 @@
         CGFloat priceLabelWidth = 120;
         CGFloat priceLabelHeight = 20;
         shopPrice = [[WXUILabel alloc] init];
-//        shopPrice.frame = CGRectMake(IPHONE_SCREEN_WIDTH/2-20-priceLabelWidth, yOffset, priceLabelWidth, priceLabelHeight);
         shopPrice.frame = CGRectMake(xOffset, yOffset, priceLabelWidth, priceLabelHeight);
         [shopPrice setBackgroundColor:[UIColor clearColor]];
         [shopPrice setTextAlignment:NSTextAlignmentLeft];
@@ -52,7 +57,6 @@
         
         yOffset += priceLabelHeight + 3;
         marketPrice = [[WXUILabel alloc] init];
-//        marketPrice.frame = CGRectMake(IPHONE_SCREEN_WIDTH/2+20, yOffset, priceLabelWidth, priceLabelHeight);
         marketPrice.frame = CGRectMake(xOffset, yOffset, priceLabelWidth, priceLabelHeight);
         [marketPrice setBackgroundColor:[UIColor clearColor]];
         [marketPrice setTextAlignment:NSTextAlignmentLeft];
@@ -71,7 +75,6 @@
         topView.alpha = 0.2;
         [self.contentView addSubview:topView];
         
-
         
         yOffset += 10 + 20;
         CGFloat btnWidth = 70;
@@ -87,6 +90,7 @@
         [usercutBtn setHidden:YES];
         [usercutBtn addTarget:self action:@selector(userCutBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:usercutBtn];
+        rect = usercutBtn.frame;
         
         xOffset += btnWidth+10;
         carriageBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
@@ -114,6 +118,31 @@
         [redPacketBtn addTarget:self action:@selector(redPacketBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:redPacketBtn];
         
+        
+        xOffset = IPHONE_SCREEN_WIDTH-62;
+        yOffset = 10;
+        line = [[WXUILabel alloc] init];
+        line.frame = CGRectMake(xOffset, yOffset, 0.5, GoodsInfoDesCellHeight-2*yOffset);
+        [line setBackgroundColor:WXColorWithInteger(0xcacaca)];
+        [self.contentView addSubview:line];
+        
+        CGFloat btnNewWidth = 27;
+        CGFloat btnHeight = 25;
+        _attentionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _attentionBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset-btnNewWidth)/2, yOffset+(GoodsInfoDesCellHeight-yOffset-btnHeight-25)/2, btnNewWidth, btnHeight);
+        [_attentionBtn setImage:[UIImage imageNamed:@"T_Attention@2x.png"] forState:UIControlStateNormal];
+        [_attentionBtn addTarget:self action:@selector(payAttention:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_attentionBtn];
+        
+        _attentionLabel = [[WXUILabel alloc] init];
+        _attentionLabel.frame = CGRectMake(_attentionBtn.frame.origin.x-(60-btnNewWidth)/2, _attentionBtn.frame.origin.y+_attentionBtn.frame.size.height, 60, 25);
+        [_attentionLabel setBackgroundColor:[UIColor clearColor]];
+        [_attentionLabel setTextAlignment:NSTextAlignmentCenter];
+        [_attentionLabel setTextColor:WXColorWithInteger(0xcacaca)];
+        [_attentionLabel setFont:WXFont(12.0)];
+        [self.contentView addSubview:_attentionLabel];
+        
+        
     }
     return self;
 }
@@ -126,27 +155,18 @@
     [shopPrice setText:[NSString stringWithFormat:@"￥%.2f",entity.shopPrice]];
     [marketPrice setText:marketPriceString];
     
-    CGRect rect = lineLabel.frame;
+    CGRect rectl = lineLabel.frame;
     rect.size.width = [NSString widthForString:marketPriceString fontSize:14.0 andHeight:20];
-    [lineLabel setFrame:rect];
+    [lineLabel setFrame:rectl];
     
-    
-
     [self refreshCentent];
-  
 }
 
 - (void)refreshCentent{
-    
-    // 提成  包邮  使用红包
-    if (self.stockEntity.redPacket) {   // 可以使用红包
-        [redPacketBtn setHidden:NO];
-    }else{
-        [redPacketBtn setHidden:YES];
-    }
-    
+
     if (self.stockEntity.userCut) {     //有提成
         [usercutBtn setHidden:NO];
+         usercutBtn.frame = rect;
     }else{
         [usercutBtn setHidden:YES];
         carriageBtn.frame = usercutBtn.frame;
@@ -156,12 +176,23 @@
     GoodsInfoEntity *entity = self.cellInfo;
     if(entity.postage == Goods_Postage_None){  //包邮
         [carriageBtn setHidden:NO];
+        CGFloat xOffset = CGRectGetMaxX(usercutBtn.frame) + 10;
+         carriageBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
     }else{
         [carriageBtn setHidden:YES];
-        redPacketBtn.frame = carriageBtn.frame;
+         redPacketBtn.frame = carriageBtn.frame;
     }
     
-    if (!self.stockEntity.userCut && !self.stockEntity.redPacket && entity.postage == Goods_Collection_None) {
+    // 提成  包邮  使用红包
+    if (self.stockEntity.redPacket) {   // 可以使用红包
+        [redPacketBtn setHidden:NO];
+        CGFloat xOffset = CGRectGetMaxX(carriageBtn.frame) + 10;
+        redPacketBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
+    }else{
+        [redPacketBtn setHidden:YES];
+    }
+    
+    if (!self.stockEntity.userCut && !self.stockEntity.redPacket && entity.postage == Goods_Postage_Have) {
         topView.hidden = YES;
     }else{
         topView.hidden = NO;
@@ -188,7 +219,38 @@
 
 -(void)setStockEntity:(GoodsInfoEntity *)stockEntity{
     _stockEntity = stockEntity;
-  
+}
+
+- (void)payAttention:(WXUIButton*)btn{
+    if (_delegate && [_delegate respondsToSelector:@selector(goodsInfoDesAddlikeGoods:)]) {
+        [_delegate goodsInfoDesAddlikeGoods:_isAttection];
+    }
+}
+
+- (void)setLikeGoodsisAttection:(BOOL)attection{
+    _isAttection = attection;
+    if (attection) {
+        [_attentionBtn setImage:[UIImage imageNamed:@"T_AttentionSel.png"] forState:UIControlStateNormal];
+        [_attentionLabel setText:@"已收藏"];
+    }else{
+        [_attentionBtn setImage:[UIImage imageNamed:@"T_Attention.png"] forState:UIControlStateNormal];
+        [_attentionLabel setText:@"未收藏"];
+    }
+}
+
+- (void)limitGoodsInfoHidden{
+    _attentionBtn.hidden = YES;
+    _attentionLabel.hidden = YES;
+    line.hidden = YES;
+}
+
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    
+}
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    
 }
 
 @end

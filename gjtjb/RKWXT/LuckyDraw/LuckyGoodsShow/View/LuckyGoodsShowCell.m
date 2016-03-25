@@ -61,7 +61,7 @@
     [_imgView setCpxViewInfo:entity.imgUrl];
     [_imgView load];
     [_name setText:entity.name];
-    [_price setText:[NSString stringWithFormat:@"%.2f",entity.market_price]];
+    [_price setText:[NSString stringWithFormat:@"￥%.2f",entity.market_price]];
 }
 
 @end

@@ -66,12 +66,7 @@
         }
     }
     
-    //评价
-//    for(NSDictionary *evaluateDic in [dic objectForKey:@"evaluate"]){
-//        GoodsInfoEntity *evaluateEntity = [GoodsInfoEntity initEvaluteDataEntity:evaluateDic];
-//        evaluateEntity.userHeadImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,evaluateEntity.userHeadImg];
-//        [_evaluteArr addObject:evaluateEntity];
-//    }
+
     
     //推荐店铺
     GoodsInfoEntity *shopEntity = [GoodsInfoEntity initOtherShopEntity:[dic objectForKey:@"shop"]];
@@ -176,8 +171,6 @@
         dic[@"seckill_id"]= [NSNumber numberWithInteger:seckillID];
         dic[@"goods_id"]= [NSNumber numberWithInteger:goodsID];
         dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
-        
-        NSLog(@"%@",dic);
 
         __block GoodsInfoModel *blockSelf = self;
         [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_Home_LimitGoodsInfo httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {

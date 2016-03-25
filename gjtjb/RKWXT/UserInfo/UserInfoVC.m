@@ -16,6 +16,7 @@
 #import "WXRemotionImgBtn.h"
 #import "NewUserCutVC.h"
 #import "LuckyGoodsOrderList.h"
+#import "UserCollectionGoodsVC.h"
 
 #define UserBgImageViewHeight (126)
 #define Size self.view.bounds.size
@@ -441,9 +442,8 @@
         case PersonalInfo_CutAndShare:
         {
             if(row == User_Cut){
-                 [UtilTool showTipView:@"努力开发中..."];
-//                NewUserCutVC *cutVC = [[NewUserCutVC alloc] init];
-//                [self.wxNavigationController pushViewController:cutVC];
+                UserCollectionGoodsVC *collection = [[UserCollectionGoodsVC alloc]init];
+               [self.wxNavigationController pushViewController:collection];
             }
             if(row == User_Share){
                 LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];

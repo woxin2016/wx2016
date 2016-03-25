@@ -17,7 +17,7 @@
     BOOL pocket;
     NSString *shopPhone;
 //    LMGoods_Collection collection_type;
-//    LMDataCollectionModel *_collectionModel;
+    GoodsAttentionModel *attenModel;
     
     CDSideBarController *sideBar;
     WXUIButton *collectionBtn;
@@ -25,6 +25,8 @@
     
     NewGoodsStockView *goodsView; //库存页面
     BOOL _isOpen;
+    BOOL _isGoodsAttenion;
+    NSInteger _lickGoodsID;
 }
 @property (nonatomic,strong) NSIndexPath *selectedIndexPath;
 @end
@@ -59,7 +61,7 @@
         _model = [[GoodsInfoModel alloc] init];
         [_model setDelegate:self];
         _isOpen = NO;
-//        _collectionModel = [[LMDataCollectionModel alloc] init];
+        attenModel = [[GoodsAttentionModel alloc] init];
     }
     return self;
 }
@@ -78,10 +80,35 @@
     [_tableView setBackgroundColor:WXColorWithInteger(0xffffff)];
     [self.scrollView addSubview:_tableView];
     
-    [self initDropList];
-    [_model loadGoodsInfoData:self.goodsId];
     [self.view addSubview:[self baseDownView]];
     
+    [self initDropList];
+    
+    [self requestNetWork];
+}
+
+//集成刷新控件
+-(void)setupRefresh{
+    //1.下拉刷新(进入刷新状态会调用self的headerRefreshing)
+    [_tableView addHeaderWithTarget:self action:@selector(requestNetWork)];
+    [_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    //    [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+    
+    //设置文字
+    _tableView.headerPullToRefreshText = @"下拉刷新";
+    _tableView.headerReleaseToRefreshText = @"松开刷新";
+    _tableView.headerRefreshingText = @"刷新中";
+    
+    _tableView.footerPullToRefreshText = @"上拉加载";
+    _tableView.footerReleaseToRefreshText = @"松开加载";
+    _tableView.footerRefreshingText = @"加载中";
+}
+
+- (void)requestNetWork{
+    [_model loadGoodsInfoData:self.goodsId];
+    [attenModel searchGoodsPayAttention:self.goodsId shopID:0 requestType:GoodsAttentionModel_Type_isQueryGoods likeType:GoodsAttentionModel_likeType_Goods];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -91,8 +118,10 @@
     [notificationCenter addObserver:self selector:@selector(userAddShoppingCartBtnClicked) name:K_Notification_Name_UserAddShoppingCart object:nil];
     [notificationCenter addObserver:self selector:@selector(addShoppingCartSucceed:) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
     [notificationCenter addObserver:self selector:@selector(addShoppingCartFailed:) name:D_Notification_AddGoodsShoppingCart_Failed object:nil];
-//    [notificationCenter addObserver:self selector:@selector(goodsCollectionSucceed) name:K_Notification_Name_GoodsAddCollectionSucceed object:nil];
-//    [notificationCenter addObserver:self selector:@selector(goodsCancelCollectionSucceed) name:K_Notification_Name_GoodsCancelCollectionSucceed object:nil];
+    [notificationCenter addObserver:self selector:@selector(isGoodsAttention:) name:K_Notification_Name_GoodsAttentionModelIsAttention object:nil];
+     [notificationCenter addObserver:self selector:@selector(requestDeleteGoodsSucceed) name:K_Notification_Name_GoodsAttentionModelDeleteSucceed object:nil];
+    [notificationCenter addObserver:self selector:@selector(requestSucceed:) name:K_Notification_Name_GoodsAttentionModelAddGoods object:nil];
+    [notificationCenter  addObserver:self selector:@selector(requestFaild) name:K_Notification_Name_GoodsAttentionModelFailed object:nil];
     
 }
 
@@ -124,9 +153,9 @@
     WXUIButton *buyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     buyBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
     [buyBtn setBackgroundColor:[UIColor clearColor]];
-    [buyBtn setTag:1];
+    [buyBtn setTag:2];
     [buyBtn.titleLabel setFont:WXFont(14.0)];
-    [buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
+    [buyBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
     [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [buyBtn setBackgroundColor:[UIColor redColor]];
@@ -135,13 +164,13 @@
    
     WXUIButton *addBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, 0, btnWidth, DownViewHeight);
-    [addBtn setTag:2];
+    [addBtn setTag:1];
     [addBtn.titleLabel setFont:WXFont(14.0)];
     [addBtn setBackgroundColor:[UIColor clearColor]];
-    [addBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
+    [addBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [addBtn setBackgroundColor:[UIColor grayColor]];
+    [addBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
     [downView addSubview:addBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
@@ -158,25 +187,29 @@
     CGFloat xGap = 5;
     CGFloat yGap = 6;
     
-    CGFloat btnWidth = 25;
+    CGFloat btnWidth = 65;
     CGFloat btnHeight = 25;
     WXUIButton *backBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(xGap, TopNavigationViewHeight-yGap-btnHeight, btnWidth, btnHeight);
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn setImage:[UIImage imageNamed:@"CommonArrowLeft.png"] forState:UIControlStateNormal];
+    [backBtn setTitle:@"商品详情" forState:UIControlStateNormal];
+    [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backBtn.titleLabel setFont:WXFont(13.0)];
+    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, 0);
     [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:backBtn];
     
-    CGFloat labelWidth = 80;
-    CGFloat labelHeight = 30;
-    WXUILabel *titleLabel = [[WXUILabel alloc] init];
-    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight, labelWidth, labelHeight);
-    [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:WXFont(15.0)];
-    [titleLabel setText:@"商品详情"];
-    [titleLabel setTextColor:WXColorWithInteger(0xffffff)];
-    [topView addSubview:titleLabel];
+//    CGFloat labelWidth = 80;
+//    CGFloat labelHeight = 30;
+//    WXUILabel *titleLabel = [[WXUILabel alloc] init];
+//    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight, labelWidth, labelHeight);
+//    [titleLabel setBackgroundColor:[UIColor clearColor]];
+//    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+//    [titleLabel setFont:WXFont(15.0)];
+//    [titleLabel setText:@"商品详情"];
+//    [titleLabel setTextColor:WXColorWithInteger(0xffffff)];
+//    [topView addSubview:titleLabel];
 }
 
 -(UIView*)tableFooterView{
@@ -253,7 +286,6 @@
         }
             break;
         case GoodsInfo_Section_GoodsInfo:
-//            height = LMGoodsBaseInfoCellHeight;
             height = 44;
             break;
         case GoodsInfo_Section_GoodsBaseData:
@@ -264,17 +296,7 @@
             }
            
             break;
-//        case GoodsInfo_Section_OtherShop:
-//            height = GoodsSellerInfoCellHeight;
-            break;
-//        case GoodsInfo_Section_Evaluate:
-//        {
-//            if([_model.evaluteArr count] > 0){
-//                height = [LMGoodsEvaluteCell cellHeightOfInfo:[_model.evaluteArr objectAtIndex:0]];
-//            }
-//            height = 0;
-//        }
-//            break;
+
         default:
             break;
     }
@@ -378,6 +400,7 @@
         cell.stockEntity = [_model.stockArr objectAtIndex:0];
     }
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
+    [cell setLikeGoodsisAttection:_isGoodsAttenion];
     [cell load];
     return cell;
 }
@@ -558,6 +581,7 @@
 #pragma mark dataDelegate
 -(void)loadGoodsInfoDataSucceed{
     [self unShowWaitView];
+    [_tableView headerEndRefreshing];
     if([_model.evaluteArr count] == 0){
         [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     }else{
@@ -579,6 +603,7 @@
 
 -(void)loadGoodsInfoDataFailed:(NSString *)errorMsg{
     [self unShowWaitView];
+    [_tableView headerEndRefreshing];
     if(!errorMsg){
         errorMsg = @"获取数据失败";
     }
@@ -604,16 +629,6 @@
     }
     
     WXUIButton *btn = sender;
-//    goodsView = [[GoodsStockView alloc] init];
-//    if(btn.tag == 1){
-//        [goodsView setGoodsViewType:GoodsStockView_Type_Buy];
-//        
-//    }else if(btn.tag == 2){
-//        [goodsView setGoodsViewType:GoodsStockView_Type_ShoppingCart];
-//    }
-//    [goodsView loadGoodsStockInfo:_model.stockArr];
-//    [self.view addSubview:goodsView];
-    
     goodsView = [[NewGoodsStockView alloc]init];
     if (btn.tag == 1) {
         [goodsView setGoodsViewType:NewGoodsStockView_Type_Buy];
@@ -745,6 +760,42 @@
     return img;
 }
 
+#pragma mark -- 收藏
+- (void)requestFaild{
+    [self unShowWaitView];
+    [_tableView headerEndRefreshing];
+}
+
+
+- (void)isGoodsAttention:(NSNotification*)tion{
+    [self unShowWaitView];
+    [_tableView headerEndRefreshing];
+    [self lickGoodsInfo:tion];
+}
+
+- (void)requestDeleteGoodsSucceed{
+    [self unShowWaitView];
+    _isGoodsAttenion = NO;
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
+    [UtilTool showTipView:@"取消收藏"];
+}
+
+- (void)requestSucceed:(NSNotification*)tion{
+    [self unShowWaitView];
+    [self lickGoodsInfo:tion];
+     _isGoodsAttenion = YES;
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
+    [UtilTool showTipView:@"收藏成功"];
+}
+
+- (void)lickGoodsInfo:(NSNotification*)tion{
+    NSDictionary *dic = tion.object;
+    _isGoodsAttenion = [dic[@"type"] boolValue];
+    _lickGoodsID = [dic[@"store_id"] integerValue];
+    
+     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 #pragma mark desCellDelegate
 -(void)goodsInfoDesCarriageBtnClicked{
     [UtilTool showTipView:@"该商品免运费"];
@@ -756,6 +807,14 @@
 
 - (void)goodsInfoDesredPacketBtnClicked{
     [UtilTool showTipView:@"该商品可以使用红包"];
+}
+
+- (void)goodsInfoDesAddlikeGoods:(BOOL)isAttection{
+    if (isAttection) { //取消收藏
+        [attenModel deleteGoodsID:_lickGoodsID requestType:GoodsAttentionModel_Type_removeGoods likeType:GoodsAttentionModel_likeType_Goods];
+    }else{
+        [attenModel searchGoodsPayAttention:self.goodsId shopID:0 requestType:GoodsAttentionModel_Type_addGoods likeType:GoodsAttentionModel_likeType_Goods];
+    }
 }
 
 #pragma mark collection

@@ -54,6 +54,8 @@ enum{
 #import "ShoppingCartModel.h"
 #import "GoodsLineTool.h"
 #import "NewShopPingCartModel.h"
+#import "GoodsAttentionModel.h"
+#import "MJRefresh.h"
 
 #import "MakeOrderVC.h"
 #import "ShoppingCartVC.h"

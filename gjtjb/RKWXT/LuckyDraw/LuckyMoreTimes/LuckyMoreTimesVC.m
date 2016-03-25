@@ -17,6 +17,7 @@
     WXUILabel *timesLabel;
     WXUILabel *minusLabel;
     NSInteger luckyTimes;
+    int count;
     
     BalanceModel *_balanceModel;
     LuckyTimesModel *_model;
@@ -37,6 +38,16 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self addOBS];
+}
+
+- (void)addOBS{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeNumberFailed:) name:D_Notification_Name_LuckyTimesModel_Failed object:nil];
+}
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setCSTTitle:@"兑换抽奖"];
@@ -49,6 +60,7 @@
     [self createTopBaseView];
     [self createDetailView];
     luckyTimes = 1;
+    count = 0;
 }
 
 -(void)createRightMoneyView{
@@ -206,17 +218,31 @@
         [self unShowWaitView];
         if([[retDic objectForKey:@"error"] integerValue] == 0 && retDic){
             [UtilTool showTipView:@"兑换抽奖次数成功"];
-            
-            //本地减少话费余额
-            [self setBalanceValue];
-        }else{
-            NSString *errorMsg = [retDic objectForKey:@"msg"];
-            if(!errorMsg){
-                errorMsg = @"兑换抽奖次数失败";
-            }
-            [UtilTool showAlertView:errorMsg];
         }
+         [self lookUserMoney];
     }];
+
+}
+
+- (void)lookUserMoney{
+    count += luckyTimes;
+    
+    if(count >= 5){
+        [UtilTool showTipView:@"每天最多兑换5次抽奖机会"];
+        return;
+    }
+    
+    if([_balanceModel.dataList count] > 0){
+        BalanceEntity *entity = [_balanceModel.dataList objectAtIndex:0];
+         int  money = (int)entity.money -  (count * 2);
+        [rightMoneyBtn setTitle:[NSString stringWithFormat:@"话费余额:%.d",money] forState:UIControlStateNormal];
+    }
+}
+
+- (void)changeNumberFailed:(NSNotification*)tion{
+    [self unShowWaitView];
+      NSString *errorMsg = tion.object;
+     [UtilTool showAlertView:errorMsg];
 }
 
 -(void)setBalanceValue{
@@ -251,5 +277,10 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [_balanceModel setDelegate:nil];
 }
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 
 @end

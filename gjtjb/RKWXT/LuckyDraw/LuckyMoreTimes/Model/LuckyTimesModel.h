@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define D_Notification_Name_LuckyTimesModel_Failed  @"D_Notification_Name_LuckyTimesModel_Failed"
+
 typedef enum{
     LuckyTimes_ReaquestType_Number = 1,
     LuckyTimes_ReaquestType_Exchage,

@@ -103,12 +103,12 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     UIView *tableFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, 100)];
     tableFootView.backgroundColor = [UIColor whiteColor];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(40,65, width - 80,35)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20,65, width - 40,35)];
     [btn setTitle:@"清除搜索记录" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorWithHexString:@"#484848"] forState:UIControlStateNormal];
     [btn setContentMode:UIViewContentModeCenter];
     btn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [btn setBorderRadian:0 width:1 color:[UIColor colorWithRed:194 green:193 blue:194 alpha:1.0]];
+    [btn setBorderRadian:1 width:1 color:[UIColor colorWithRed:194/255.0 green:193/255.0 blue:194/255.0 alpha:1.0]];
     [btn addTarget:self action:@selector(clearData) forControlEvents:UIControlEventTouchDown];
     [tableFootView addSubview:btn];
     
