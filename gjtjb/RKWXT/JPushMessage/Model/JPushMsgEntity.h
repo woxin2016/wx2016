@@ -14,6 +14,7 @@
 @property (nonatomic,strong) NSString *msgURL;
 @property (nonatomic,assign) NSInteger push_id;
 @property (nonatomic,strong) NSString *pushTime;
+@property (nonatomic,strong) NSString  *toView; // 是否已读 0 为未读 1为已读
 
 +(JPushMsgEntity*)initWithJPushMessageWithDic:(NSDictionary*)dic;
 +(JPushMsgEntity*)initWithJPushCloseMessageWithDic:(NSDictionary*)dic;

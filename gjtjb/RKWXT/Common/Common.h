@@ -30,8 +30,10 @@ typedef enum {
 #define isIOS6     (iosVersion >= 6.0 && iosVersion < 7.0)
 #define isIOS7     (iosVersion >= 7.0)
 #define isIOS8     (iosVersion >= 8.0)
-#define IPHONE_SCREEN_WIDTH 320
-#define IPHONE_SCREEN_HEIGHT (IS_IPHONE_5 ? 568 : 480)
+//#define IPHONE_SCREEN_WIDTH 320
+//#define IPHONE_SCREEN_HEIGHT (IS_IPHONE_5 ? 568 : 480)
+#define IPHONE_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define IPHONE_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define IPHONE_STATUS_BAR_HEIGHT 20                     //状态栏高度
 #define NAVIGATION_BAR_HEGITH      (44)
 #define TAB_NAVIGATION_BAR_HEGITH  (49)

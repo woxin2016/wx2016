@@ -161,6 +161,11 @@
     }
 }
 
+- (void)changeData:(NSInteger)push_id{
+     Sql_JpushData *jpush = [[Sql_JpushData alloc] init];
+    [jpush changeToView:push_id];
+}
+
 -(void)sound{
     NSString *string = [NSString stringWithFormat:@"message"];
     NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"mp3"];

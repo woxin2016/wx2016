@@ -20,5 +20,5 @@
 -(void)initJPushWithCloseDic:(NSDictionary*)dic;
 -(void)loadJPushData;
 -(void)deleteJPushWithPushID:(NSInteger)pushID;
-
+- (void)changeData:(NSInteger)push_id;
 @end

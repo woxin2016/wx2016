@@ -85,7 +85,6 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     
     [self addOBS];
     _historyModel = [[ClassifyHistoryModel alloc] init];
-    //    [_historyModel loadClassifyHistoryList];
     [_historyModel loadClassifyHistoryNewList];
     
     _searchModel = [[CLassifySearchModel alloc] init];
@@ -143,7 +142,7 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     CGFloat width = self.view.frame.size.width - 2 * xOffset;
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, yGap - 5, width, 25)];
     backView.backgroundColor = [UIColor redColor];
-    [backView setBorderRadian:10 width:0 color:[UIColor redColor]];
+    [backView setBorderRadian:10 width:0 color:[UIColor clearColor]];
     [self addSubview:backView];
     
     CGFloat rightBtnWidth = 40;
@@ -177,7 +176,6 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     [_textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_textField setTextColor:[UIColor whiteColor]];
     [_textField setTintColor:[UIColor whiteColor]];
-    [_textField setPlaceHolder:@"搜索" color:WXColorWithInteger(0xffffff)];
     [self addSubview:_textField];
     
     
@@ -216,7 +214,7 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
 
 - (void)clickDownView{
     _menu = [self createDropListView:dropListBtn];
-    [self.view addSubview:_menu];
+//    [self.view addSubview:_menu];
 }
 
 //新的下拉菜单

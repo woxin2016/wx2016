@@ -11,5 +11,5 @@
 @interface Sql_JpushData : NSObject
 
 -(BOOL)insertData:(NSString*)content withAbs:(NSString*)abstract withImg:(NSString*)mesImg withPushID:(NSString *)pushID;
-
+- (void)changeToView:(NSInteger)push_id;
 @end

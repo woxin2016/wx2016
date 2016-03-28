@@ -31,6 +31,7 @@
         
         NSInteger pushID = [[dic objectForKey:@"push_id"] integerValue];
         [self setPush_id:pushID];
+        
     }
     return self;
 }
@@ -53,6 +54,7 @@
         
         NSInteger pushID = [[[dic objectForKey:@"extras"] objectForKey:@"push_id"] integerValue];
         [self setPush_id:pushID];
+        
     }
     return self;
 }

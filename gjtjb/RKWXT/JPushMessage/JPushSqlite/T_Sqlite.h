@@ -16,17 +16,20 @@
 #define JPushImg      @"JPushImg"
 #define JPushTime     @"JPushTime"
 #define JPushID       @"JPushID"
+#define JPushToView   @"JPushToView"
 
 @interface T_Sqlite : NSObject{
     sqlite3 *db;
     NSMutableArray *all;
 }
 @property (retain,nonatomic) NSMutableArray *all;
-
++ (instancetype)sqliteAllock;
 -(void)createOrOpendb;
 -(void)createTable;
 -(BOOL)execSql:(NSString *)sql;
 -(BOOL)deleteTestList:(NSInteger)pushID;
 -(NSMutableArray *)selectAll;
+
+- (void)changeToView:(NSInteger)push_id;
 
 @end
