@@ -224,6 +224,10 @@
 
 #pragma mark storeUserSeller
 -(void)storeUserSelectSeller{
+    if(_sellerID == 0){
+        [UtilTool showTipView:@"请先选择要切换的商家"];
+        return;
+    }
     SellerListEntity *entity = nil;
     for(SellerListEntity *ent in sellerArr){
         if(ent.sellerID == _sellerID){
