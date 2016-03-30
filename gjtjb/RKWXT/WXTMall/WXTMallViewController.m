@@ -9,11 +9,13 @@
 #import "WXTMallViewController.h"
 #import "NewHomePageCommonDef.h"
 
-@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,ShoppingCartViewDelegate>{
+@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate>{
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
     BOOL buyGoods;
+    
+    WXUIButton *titleBtn;
 }
 @end
 
@@ -42,11 +44,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setCSTTitle:kMerchantName];
-    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    if(userObj.sellerName){
-        [self setCSTTitle:userObj.sellerName];
-    }
     
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 0, Size.width, Size.height);
@@ -56,10 +53,25 @@
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self addSubview:_tableView];
     [self setupRefresh];
+    [self createTopTitleBtn];
     [self createTopBtn];
    
     [_model loadData];
     buyGoods = NO;
+}
+
+-(void)createTopTitleBtn{
+    CGFloat btnWidth = 200;
+    CGFloat btnHieght = 20;
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    titleBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    titleBtn.frame = CGRectMake((IPHONE_SCREEN_WIDTH-btnWidth)/2, NAVIGATION_BAR_HEGITH+IPHONE_STATUS_BAR_HEIGHT-btnHieght-10, btnWidth, btnHieght);
+    [titleBtn.titleLabel setFont:WXFont(15.0)];
+    [titleBtn setBackgroundColor:[UIColor clearColor]];
+    [titleBtn setTitle:userObj.sellerName forState:UIControlStateNormal];
+    [titleBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
+    [titleBtn addTarget:self action:@selector(changeSellerVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:titleBtn];
 }
 
 -(void)createTopBtn{
@@ -82,12 +94,6 @@
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
     [self.view addSubview:_unreadView];
-    
-    
-     ShoppingCartView *cartView = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width- 35 * 2 + 4, 64-35, 25, 25)];
-    [self.view addSubview:cartView];
-     cartView.delegate = self;
-    [cartView searchShoppingCartNumber];
 }
 
 //用户切换商家通知
@@ -350,9 +356,15 @@
 
 #pragma mark 导航
 - (void)toSysPushMsgView{
-//    [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
-    SellerChangeVC *vc = [[SellerChangeVC alloc] init];
-    [self.wxNavigationController pushViewController:vc];
+    [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
+}
+
+-(void)changeSellerVC{
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    if([userObj.userIentifier integerValue] == 1){
+        SellerChangeVC *vc = [[SellerChangeVC alloc] init];
+        [self.wxNavigationController pushViewController:vc];
+    }
 }
 
 -(void)homePageToCategaryView{
@@ -589,7 +601,7 @@
 -(void)userChangeSeller{
     [_model loadData];
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    [self setCSTTitle:userObj.sellerName];
+    [titleBtn setTitle:userObj.sellerName forState:UIControlStateNormal];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

@@ -8029,7 +8029,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "12e6aafe-deae-4158-bf7e-f356bd5273d3";
+				PROVISIONING_PROFILE = "46212f7e-1dd4-4270-a34a-5753d0e83e23";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;

@@ -129,9 +129,9 @@ void MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook, CFDictio
             
 			[[NSNotificationCenter defaultCenter] postNotificationOnMainThreadWithName:D_Notification_Name_AddressBookHasChanged object:nil userInfo:nil];
             
-            for(id chinese in contactList){
-                [self PYArarray:chinese];
-            }
+//            for(id chinese in contactList){
+//                [self PYArarray:chinese];
+//            }
 		}
     });
 }

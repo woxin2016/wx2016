@@ -18,15 +18,6 @@
     NSMutableArray *_callHistoryList;
     NSMutableArray *_contacterFilter;
     NSArray * _list; //通话记录
-    
-    NSMutableArray *lastSearchArr;  //临时数组
-    
-    //T9搜索
-    NSMutableDictionary *numLetters;//字母数值对应字典
-    NSMutableArray *chineseHeadArr ;//中文首字母数组
-    NSMutableArray *arrayLetters;//输入的字母组
-    NSMutableString *mutString; //
-    NSString *lastSearchString;
 }
 @end
 
@@ -41,13 +32,6 @@
     if(self = [super init]){
         _callHistoryList = [[NSMutableArray alloc] init];
         _contacterFilter = [[NSMutableArray alloc] init];
-        lastSearchArr = [[NSMutableArray alloc] init];
-        
-        numLetters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"", @"1", @"abc", @"2"
-                       , @"def", @"3", @"ghi", @"4", @"jkl", @"5", @"mno", @"6", @"pqrs", @"7", @"tuv", @"8"
-                      , @"wxyz", @"9", @"", @"0", nil];
-        chineseHeadArr = [[NSMutableArray alloc] init];
-        
         [self loadHistory];
         [self addOBS];
     }
@@ -66,7 +50,7 @@
         }
         
         if(entity.historyType == E_CallHistoryType_MakingReaded_Invalid){
-            continue;
+            //            continue;
         }
         if(entityExt){
             if([entityExt canMergeRecord:entity]){
@@ -98,169 +82,37 @@
 }
 
 - (void)searchContacter:(NSString*)searchString{
-    if([searchString isEqualToString:@""]){
-        [arrayLetters removeAllObjects];
-        mutString = nil;
-        return;
-    }
-    BOOL isPlus = NO;  //是否在按删除键
-    BOOL isLarger = NO;  //超过4位默认不再匹配名字
-    
-    if(searchString.length > 3){
-        isLarger = YES;
-    }
-    if(lastSearchString.length > searchString.length){
-        NSRange range ;
-        range.location = [mutString length]-1;
-        range.length = 1;
-        [mutString deleteCharactersInRange:range];
-        [arrayLetters removeAllObjects];
-        
-        lastSearchString = searchString;
-        for (NSInteger i = 0; i < [mutString length]; i++) {
-            char letter = [mutString characterAtIndex:i];
-            NSString *str = [NSString stringWithFormat:@"%c",letter];
-            [self SelectName:str larger:isLarger];
-            isPlus = YES;
-        }
-    }
-    
-    //如果是在删除，那么调用后面的方法
-    if(isPlus){
-        return;
-    }
-    
-    lastSearchString = searchString;
-    NSInteger length = searchString.length;
-    NSString *keyNum = [searchString substringWithRange:NSMakeRange(length-1, 1)];
     [_contacterFilter removeAllObjects];
-    if (!mutString) {
-        mutString = [[NSMutableString alloc] init];
+    if(!searchString || [searchString length] == 0){
+        return;
     }
-    if (!arrayLetters) {
-        arrayLetters = [[NSMutableArray alloc] init];
-    }
-    
-    NSString *letters = [numLetters objectForKey:keyNum];
-    if (!letters) {
-        [mutString appendString:keyNum];
-    }else{
-        if (0 == [arrayLetters count]) {
-            for (NSInteger i = 0; i < [letters length]; i++) {
-                char letter = [letters characterAtIndex:i];
-                NSString *str = [NSString stringWithFormat:@"%c",letter];
-                [arrayLetters addObject:str];
-            }
-        }else{
-            NSMutableArray *tmpArray=nil;
-            tmpArray = [self mergeArray:arrayLetters Behind:letters];
-            [arrayLetters removeAllObjects];
-            [arrayLetters addObjectsFromArray:tmpArray];
-            [tmpArray removeAllObjects];
-        }
-        [mutString appendString:keyNum];
-    }
-    
-    if(!isLarger){
-        for (id word in arrayLetters) {
-            [[AddressBook sharedAddressBook].chineceHeadArr enumerateObjectsUsingBlock:^(id chineseHead,NSUInteger idx,BOOL *stop){
-                NSRange range = [chineseHead rangeOfString:word];
-                if (range.length != 0) {//存在匹配的声母
-                    ContacterEntity *entity = [[AddressBook sharedAddressBook].contactNameDic objectForKey:chineseHead];
-                    SysContacterEntityEx *sysContacterEntityEx = [[SysContacterEntityEx alloc] init];
-                    [sysContacterEntityEx setContactEntity:entity];
-                    [sysContacterEntityEx setPhoneMatched:[entity.phoneNumbers objectAtIndex:0]];
-                    [_contacterFilter addObject:sysContacterEntityEx];
-                }
-            }];
-        }
-    }
-
     NSArray *list = [AddressBook sharedAddressBook].contactList;
     for(ContacterEntity *entity in list){
-        //针对号码搜索
         NSArray *phoneNumbers = entity.phoneNumbers;
         for(NSString *phone in phoneNumbers){
             if([phone rangeOfString:searchString].location != NSNotFound){
-                SysContacterEntityEx *sysContacterEntityEx = [[SysContacterEntityEx alloc] init];
+                SysContacterEntityEx *sysContacterEntityEx = [[SysContacterEntityEx alloc] init] ;
                 [sysContacterEntityEx setContactEntity:entity];
                 [sysContacterEntityEx setPhoneMatched:phone];
                 [_contacterFilter addObject:sysContacterEntityEx];
             }
         }
     }
-}
-
-//首字母组合数组
--(NSMutableArray*)mergeArray:(NSArray *)aheadarray Behind:(NSString*)behind{
-    NSInteger behindLen = [behind length];
-    NSMutableArray *rarray = [[NSMutableArray alloc] init];
-    for (id word in aheadarray) {
-        for (NSInteger j = 0; j<behindLen; j++) {
-            char cbehind = [behind characterAtIndex:j];
-            NSString *str = [NSString stringWithFormat:@"%@%c",word,cbehind];
-            [rarray addObject:str];
-        }
-    }
-    return rarray;
-}
-
-//删除
-//搜索算法
--(void)SelectName:(NSString*)KeyNum larger:(BOOL)isLarger{
-    if (!arrayLetters) {
-        arrayLetters = [[NSMutableArray alloc] init];
-    }
+    //    [[NSNotificationCenter defaultCenter] postNotificationOnMainThreadWithName:@"callHistoryHasLoaded" object:nil userInfo:nil];
     
-    NSString *letters = [numLetters objectForKey:KeyNum];
-    
-    if (0 == [arrayLetters count]) {
-        for (NSInteger i = 0; i < [letters length]; i++) {
-            char letter = [letters characterAtIndex:i];
-            NSString *str = [NSString stringWithFormat:@"%c",letter];
-            [arrayLetters addObject:str];
-        }
-    }else{
-        NSMutableArray *tmpArray = nil;
-        tmpArray = [self mergeArray:arrayLetters Behind:letters];
-        [arrayLetters removeAllObjects];
-        [arrayLetters addObjectsFromArray:tmpArray];
-        [tmpArray removeAllObjects];
-    }
-    [_contacterFilter removeAllObjects];
-    
-    //查找首字母匹配的记录
-    if(!isLarger){
-        for (id word in arrayLetters) {
-            for (id chineseHead in [AddressBook sharedAddressBook].chineceHeadArr) {
-                NSRange range = [chineseHead rangeOfString:word];
-                if (range.length != 0) {//存在匹配的声母
-                    ContacterEntity *entity = [[AddressBook sharedAddressBook].contactNameDic objectForKey:chineseHead];
-                    SysContacterEntityEx *sysContacterEntityEx = [[SysContacterEntityEx alloc] init];
-                    [sysContacterEntityEx setContactEntity:entity];
-                    [sysContacterEntityEx setPhoneMatched:[entity.phoneNumbers objectAtIndex:0]];
-                    [_contacterFilter addObject:sysContacterEntityEx];
-                }
-            }
-        }
-    }
-    
-    NSArray *list = [AddressBook sharedAddressBook].contactList;
-    for(ContacterEntity *entity in list){
-        //针对号码搜索
-        NSArray *phoneNumbers = entity.phoneNumbers;
-        for(NSString *phone in phoneNumbers){
-            if([phone rangeOfString:lastSearchString].location != NSNotFound){
-                SysContacterEntityEx *sysContacterEntityEx = [[SysContacterEntityEx alloc] init];
-                [sysContacterEntityEx setContactEntity:entity];
-                [sysContacterEntityEx setPhoneMatched:phone];
-                [_contacterFilter addObject:sysContacterEntityEx];
-            }
-        }
-    }
+    //    for(CallHistoryEntity *entity in _list){
+    //        NSString *phoneNumber = entity.phoneNumber;
+    //        if([phoneNumber rangeOfString:searchString].location != NSNotFound){
+    //            SysContacterEntityEx *sysContacterEntityEx = [[SysContacterEntityEx alloc] init] ;
+    //            [sysContacterEntityEx setCallHistoryEntity:entity];
+    //            [sysContacterEntityEx setPhoneMatched:phoneNumber];
+    //            [_contacterFilter addObject:sysContacterEntityEx];
+    //        }
+    //    }
 }
 
 #pragma mark 删除通话记录
+
 - (void)deleteCallRecords:(CallHistoryEntityExt*)ext{
     for(CallHistoryEntity *record in ext.recordArray){
         [[CallRecord sharedCallRecord] deleteCallRecord:record.UID];
@@ -279,10 +131,10 @@
 }
 
 - (void)clearAllRecords{
-	for (CallHistoryEntityExt *ext in _callHistoryList) {
-		[self deleteCallRecords:ext];
-	}
-	[_callHistoryList removeAllObjects];
+    for (CallHistoryEntityExt *ext in _callHistoryList) {
+        [self deleteCallRecords:ext];
+    }
+    [_callHistoryList removeAllObjects];
 }
 
 

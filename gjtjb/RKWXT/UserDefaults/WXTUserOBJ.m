@@ -155,6 +155,11 @@
     return [userDefault textValueForKey:WXT_Userdefault_ShareInfo];
 }
 
+-(NSString*)userIentifier{
+    WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
+    return [userDefault textValueForKey:WXT_Userdefault_UserIdentity];
+}
+
 - (void)removeAllUserInfo{
     WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
     [userDefault removeObjectForKey:WXT_Userdefault_WxtID];

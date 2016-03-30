@@ -76,10 +76,6 @@ enum{
 #import "LImitGoodsEntity.h"
 #import "HomeLimitGoodsEntity.h"
 
-
-#import "ShoppingCartVC.h"
-#import "ShoppingCartView.h"
-
 #pragma mark 导航跳转
 enum{
     HomePageJump_Type_GoodsInfo = 1,    //商品详情
