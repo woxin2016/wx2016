@@ -71,6 +71,11 @@
     [userDefault setObject:shareInfo forKey:WXT_Userdefault_ShareInfo];
 }
 
+-(void)setUserIdentity:(NSString *)identity{
+    WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
+    [userDefault setObject:identity forKey:WXT_Userdefault_UserIdentity];
+}
+
 -(void)setPwd:(NSString *)pwd{
     WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
     [userDefault setObject:pwd forKey:WXT_Userdefault_Pwd];

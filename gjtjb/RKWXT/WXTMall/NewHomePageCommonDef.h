@@ -68,6 +68,7 @@ enum{
 #import "NewUserCutVC.h"
 #import "FindCommonVC.h"
 #import "WXLimitGoodsInfoVC.h"
+#import "SellerChangeVC.h"
 
 #import "NewHomePageModel.h"
 #import "HomePageSurpEntity.h"

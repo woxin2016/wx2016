@@ -64,6 +64,7 @@ typedef enum {
     WXT_UrlFeed_Type_New_LoadClassifyData,
     WXT_UrlFeed_Type_New_LoadClassifyGoodsList,
     WXT_UrlFeed_Type_New_LoadLimitGoods,
+    WXT_UrlFeed_Type_New_ChangeSeller,
     //商品详情
     WXT_UrlFeed_Type_Home_GoodsInfo,
     WXT_UrlFeed_Type_Home_LimitGoodsInfo,

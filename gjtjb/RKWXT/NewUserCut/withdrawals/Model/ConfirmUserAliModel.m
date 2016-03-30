@@ -40,7 +40,7 @@
     baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     baseDic[@"woxin_id"]= userObj.wxtID;
     baseDic[@"phone"]= userObj.user;
-    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    baseDic[@"sid"]= userObj.sellerID;
     baseDic[@"account"]= userAliAcount;
     baseDic[@"username"]= userName;
     baseDic[@"type"]= [NSNumber numberWithInt:(int)aliType];
@@ -53,7 +53,7 @@
     dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     dic[@"woxin_id"]= userObj.wxtID;
     dic[@"phone"]= userObj.user;
-    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sid"]= userObj.sellerID;
     dic[@"account"]= userAliAcount;
     dic[@"username"]= userName;
     dic[@"type"]= [NSNumber numberWithInt:(int)aliType];

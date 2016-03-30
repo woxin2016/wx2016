@@ -65,8 +65,8 @@
     baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     baseDic[@"woxin_id"]= userObj.wxtID;
     baseDic[@"type"]= [NSNumber numberWithInt:(int)_searchType];
-    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
-    baseDic[@"shop_id"]= [NSNumber numberWithInt:(int)kSubShopID];
+    baseDic[@"sid"]= userObj.sellerID;
+    baseDic[@"shop_id"]= userObj.shopID;
     baseDic[@"keyword"]= searchStr;
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -75,8 +75,8 @@
     dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     dic[@"woxin_id"]= userObj.wxtID;
     dic[@"type"]= [NSNumber numberWithInt:(int)_searchType];
-    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
-    dic[@"shop_id"]= [NSNumber numberWithInt:(int)kSubShopID];
+    dic[@"sid"]= userObj.sellerID;
+    dic[@"shop_id"]= userObj.shopID;
     dic[@"keyword"]= searchStr;
     dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
     

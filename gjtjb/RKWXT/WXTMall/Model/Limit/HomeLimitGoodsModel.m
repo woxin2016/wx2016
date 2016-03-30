@@ -57,19 +57,20 @@
     baseDic[@"ver"]= [UtilTool currentVersion];
     baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     baseDic[@"shop_id"]= userObj.shopID;
-    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    baseDic[@"sid"]= userObj.sellerID;
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"pid"]= @"ios";
     dic[@"ver"]= [UtilTool currentVersion];
     dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     dic[@"shop_id"]= userObj.shopID;
-    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sid"]= userObj.sellerID;
     dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
     
     __block HomeLimitGoodsModel *blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LoadLimitGoods httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
+            [_dataList removeAllObjects];
             [blockSelf setStatus:E_ModelDataStatus_LoadFailed];
             if (_delegate && [_delegate respondsToSelector:@selector(homePageLimitGoodsFailed:)]){
                 [_delegate homePageLimitGoodsFailed:retData.errorDesc];

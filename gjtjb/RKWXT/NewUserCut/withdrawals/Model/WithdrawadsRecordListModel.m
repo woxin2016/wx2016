@@ -64,7 +64,7 @@
     baseDic[@"phone"]= userObj.user;
     baseDic[@"start_item"]= [NSNumber numberWithFloat:(int)startItem];
     baseDic[@"length"]= [NSNumber numberWithInt:(int)length];
-    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    baseDic[@"sid"]= userObj.sellerID;
     
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -73,7 +73,7 @@
     dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     dic[@"woxin_id"]= userObj.wxtID;
     dic[@"phone"]= userObj.user;
-    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sid"]= userObj.sellerID;
     dic[@"start_item"]= [NSNumber numberWithFloat:(int)startItem];
     dic[@"length"]= [NSNumber numberWithInt:(int)length];
     dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];

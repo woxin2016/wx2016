@@ -35,6 +35,11 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self addOBS];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setCSTTitle:kMerchantName];
@@ -83,7 +88,11 @@
     [self.view addSubview:cartView];
      cartView.delegate = self;
     [cartView searchShoppingCartNumber];
-    
+}
+
+//用户切换商家通知
+-(void)addOBS{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userChangeSeller) name:KNotification_Name_UserChangeSeller object:nil];
 }
 
 //集成刷新控件
@@ -341,7 +350,9 @@
 
 #pragma mark 导航
 - (void)toSysPushMsgView{
-    [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
+//    [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
+    SellerChangeVC *vc = [[SellerChangeVC alloc] init];
+    [self.wxNavigationController pushViewController:vc];
 }
 
 -(void)homePageToCategaryView{
@@ -503,7 +514,6 @@
 }
 
 #pragma mark limitbuy
-
 -(void)homePageLimitGoodsSucceed{
     [_tableView reloadData];
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_LimitBuyInfo] withRowAnimation:UITableViewRowAnimationFade];
@@ -511,7 +521,7 @@
 }
 
 -(void)homePageLimitGoodsFailed:(NSString*)errorMsg{
-    
+    [_tableView reloadData];
 }
 
 -(void)homeLimitBuyCellbtnClicked:(id)sender{
@@ -570,6 +580,21 @@
 #pragma mark --- limitBuyGoods
 - (void)limitBuyNoStartBuyGoods{
     buyGoods = YES;
+}
+
+-(void)clickClassifyBtnAtIndex:(NSInteger)index{
+}
+
+#pragma mark changeSeller
+-(void)userChangeSeller{
+    [_model loadData];
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    [self setCSTTitle:userObj.sellerName];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

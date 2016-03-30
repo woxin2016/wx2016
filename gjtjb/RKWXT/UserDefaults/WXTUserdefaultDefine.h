@@ -22,6 +22,7 @@
 #define WXT_Userdefault_ShopID @"WXT_Userdefault_ShopID"
 #define WXT_Userdefault_ShopName @"WXT_Userdefault_ShopName"
 #define WXT_Userdefault_ShareInfo @"WXT_Userdefault_ShareInfo"
+#define WXT_Userdefault_UserIdentity @"WXT_Userdefault_UserIdentity"
 
 #define WXT_Userdefault_SignDate @"WXT_Userdefault_SignDate"
 #define kV_Data                 @"v_Data"

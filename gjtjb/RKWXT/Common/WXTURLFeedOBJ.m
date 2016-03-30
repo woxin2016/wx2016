@@ -157,6 +157,9 @@
         case WXT_UrlFeed_Type_New_LoadLimitGoods:
             url = @"/seckills.php";
             break;
+        case WXT_UrlFeed_Type_New_ChangeSeller:
+            url = @"/sale.php";
+            break;
         case WXT_UrlFeed_Type_Home_GoodsInfo:
             url = @"/single_goods_info.php";
             break;

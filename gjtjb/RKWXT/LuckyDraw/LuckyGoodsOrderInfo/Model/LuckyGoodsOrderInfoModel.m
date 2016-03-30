@@ -15,7 +15,7 @@
 
 -(void)completeLuckyOrderWith:(NSInteger)orderID{
     //    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInteger:[UtilTool timeChange]], @"ts", [NSNumber numberWithInteger:orderID], @"order_id", userObj.wxtID, @"woxin_id", userObj.sellerID, @"seller_user_id", userObj.user, @"phone", [NSNumber numberWithInteger:kMerchantID], @"sid", [UtilTool newStringWithAddSomeStr:5 withOldStr:userObj.pwd], @"pwd", nil];
+    //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS", @"pid", [UtilTool currentVersion], @"ver", [NSNumber numberWithInteger:[UtilTool timeChange]], @"ts", [NSNumber numberWithInteger:orderID], @"order_id", userObj.wxtID, @"woxin_id", userObj.sellerID, @"seller_user_id", userObj.user, @"phone", userObj.sellerID, @"sid", [UtilTool newStringWithAddSomeStr:5 withOldStr:userObj.pwd], @"pwd", nil];
     //    __block LuckyGoodsInfoModel *blockSelf = self;
     //    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_CompleteLuckyOrder httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
     //        if(retData.code != 0){

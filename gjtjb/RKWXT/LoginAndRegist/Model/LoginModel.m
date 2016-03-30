@@ -28,6 +28,7 @@
             [userDefault setShopID:[[dic objectForKey:@"data"] objectForKey:@"shop_id"]]; //用户所在店铺id
             [userDefault setShopName:[[dic objectForKey:@"data"] objectForKey:@"shop_name"]]; //用户所在店铺
             [userDefault setNickname:[[dic objectForKey:@"data"] objectForKey:@"nickname"]]; //用户昵称
+            [userDefault setUserIdentity:[[dic objectForKey:@"data"] objectForKey:@"is_sale"]]; //是否为特殊用户
         }
         completion(retData.code,retData.errorDesc);
     }];

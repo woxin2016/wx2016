@@ -46,7 +46,7 @@
     baseDic[@"woxin_id"]= userObj.wxtID;
     baseDic[@"phone"]= userObj.user;
     baseDic[@"subuser_woxin_id"]= wxID;
-    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    baseDic[@"sid"]= userObj.sellerID;
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"pid"]= @"ios";
@@ -54,7 +54,7 @@
     dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
     dic[@"woxin_id"]= userObj.wxtID;
     dic[@"phone"]= userObj.user;
-    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sid"]= userObj.sellerID;
     dic[@"subuser_woxin_id"]= wxID;
     dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
     
