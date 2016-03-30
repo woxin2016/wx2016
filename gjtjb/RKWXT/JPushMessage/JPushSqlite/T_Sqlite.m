@@ -25,9 +25,10 @@
 }
 
 -(void)createTable{
-    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS JPUSHMESSAGE (ID INTEGER PRIMARY KEY AUTOINCREMENT, JPushContent TEXT, JPushAbs TEXT ,JPushImg TEXT ,JPushTime TEXT , JPushID TEXT)";
+    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS JPUSHMESSAGE (ID INTEGER PRIMARY KEY AUTOINCREMENT, JPushContent TEXT, JPushAbs TEXT ,JPushImg TEXT ,JPushTime TEXT , JPushID TEXT ,JPushToView TEXT)";
     [self execSql:sqlCreateTable];
 }
+
 
 -(NSMutableArray *)selectAll{
     NSString *sqlQuery = @"SELECT * FROM JPUSHMESSAGE";
@@ -50,6 +51,11 @@
             char *push_id = (char*)sqlite3_column_text(statement, 5);
             NSString *pushID = [[NSString alloc] initWithUTF8String:push_id];
             
+            char *to_View = (char*)sqlite3_column_text(statement, 6);
+            NSString *toView = [[NSString alloc] initWithUTF8String:to_View];
+            
+          
+            
             KFLog_Normal(YES,@"number:%@ goodsID:%@",_number,_goodsID);
             JPushMsgEntity *entity = [[JPushMsgEntity alloc] init];
             entity.content = _num;
@@ -57,10 +63,17 @@
             entity.msgURL = _colorText;
             entity.pushTime = pushTime;
             entity.push_id = [pushID integerValue];
+            
+            if (entity.toView.length == 0) {
+                entity.toView = @"notRed";
+            }else{
+                entity.toView = toView;
+            }
+            
             [all addObject:entity];
         }
     }
-    sqlite3_close(db);
+//    sqlite3_close(db);
     return all;
 }
 
@@ -89,6 +102,7 @@
     sqlite3_bind_text(statement, 3, [JPushImg UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(statement, 4, [JPushTime UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(statement, 5, [JPushTime UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(statement, 6, -1);
     success2 = sqlite3_step(statement);
     sqlite3_finalize(statement);
     if(success2 == SQLITE_ERROR){
@@ -129,6 +143,42 @@
     //执行成功后依然要关闭数据库
     sqlite3_close(db);
     return YES;
+}
+
+- (void)changeToView:(NSInteger)push_id{
+    
+    sqlite3_stmt *stmt = nil;
+    NSString *sqlStr = [NSString stringWithFormat:@"update JPUSHMESSAGE set JPushToView = 'red' where JPushID = %d",push_id];
+    int result = sqlite3_prepare_v2(db, [sqlStr UTF8String], -1, &stmt, NULL);
+    if (result == SQLITE_OK) {
+        if (sqlite3_step(stmt) == SQLITE_ROW) { //觉的应加一个判断, 若有这一行则修改
+            if (sqlite3_step(stmt) == SQLITE_DONE) {
+                sqlite3_finalize(stmt);
+            }
+        }
+    }
+    sqlite3_finalize(stmt);
+    //如果执行失败
+    if (result == SQLITE_ERROR) {
+        NSLog(@"Error: failed to delete the database with message.");
+        //关闭数据库
+        sqlite3_close(db);
+    }
+    //执行成功后依然要关闭数据库
+    sqlite3_close(db);
+    
+
+}
+
+
+
+static T_Sqlite *sql = nil;
++ (instancetype)sqliteAlloc{
+    
+    if (sql == nil) {
+        sql = [[T_Sqlite alloc]init];
+    }
+    return sql;
 }
 
 @end

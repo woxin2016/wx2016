@@ -31,7 +31,7 @@
         [self.contentView addSubview:_imgView];
         
         // 区分未读已读
-        ifier = [[UILabel alloc]initWithFrame:CGRectMake(42 - 5, -5, 10, 10)];
+        ifier = [[UILabel alloc]initWithFrame:CGRectMake(42 - 5, -5, 8, 8)];
         ifier.backgroundColor = [UIColor redColor];
         [ifier setBorderRadian:5 width:0.0 color:[UIColor clearColor]];
         [_imgView addSubview:ifier];
@@ -89,6 +89,8 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[entity.pushTime integerValue]];
     NSString *timeString = [self notionWithData:date];
     [time setText:timeString];
+    
+    [ifier setHidden:[entity.toView isEqualToString:@"red"]];
 }
 
 - (NSString*)notionWithData:(NSDate*)date{
@@ -100,6 +102,7 @@
 - (void)setIfierHidYes{
     [ifier setHidden:YES];
 }
+
 
 
 @end

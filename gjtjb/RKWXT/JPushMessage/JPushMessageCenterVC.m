@@ -13,10 +13,12 @@
 #import "WXUnreadSysMsgOBJ.h"
 #import "JPushMsgEntity.h"
 #import "JPushMessageInfoVC.h"
+#import "T_Sqlite.h"
 
 @interface JPushMessageCenterVC ()<UITableViewDataSource,UITableViewDelegate>{
     UITableView *_tableView;
     NSArray *messageArr;
+    T_Sqlite *_sqlite;
 }
 
 @end
@@ -96,6 +98,7 @@
     
     JPushMessageCenterCell *cell = (JPushMessageCenterCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell setIfierHidYes];
+    [[JPushMessageModel shareJPushModel] changeData:entity.push_id];
 }
 
 #pragma mark delete

@@ -14,13 +14,29 @@
 }
 
 -(BOOL)insertData:(NSString *)content withAbs:(NSString *)abstract withImg:(NSString *)mesImg withPushID:(NSString *)pushID{
-    NSString *sql1 = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@' , '%@' , '%@' , '%@' , '%@') VALUES ('%@' , '%@' , '%@' , '%@' , '%@')",@"JPUSHMESSAGE",JPushContent,JPushAbs,JPushImg,JPushTime,JPushID,content,abstract,mesImg,[self jpushTime],pushID];
-    fmdb = [[T_Sqlite alloc] init];
+    NSString *sql1 = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@' , '%@' , '%@' , '%@' , '%@' ,'%@') VALUES ('%@' , '%@' , '%@' , '%@' , '%@','notRed')",@"JPUSHMESSAGE",JPushContent,JPushAbs,JPushImg,JPushTime,JPushID,JPushToView,content,abstract,mesImg,[self jpushTime],pushID];
+    fmdb = [[T_Sqlite alloc]init];
     [fmdb createOrOpendb];
     [fmdb createTable];
     BOOL succeed = [fmdb execSql:sql1];
     return succeed;
 }
+
+- (void)openData{
+    fmdb = [[T_Sqlite alloc]init];
+    [fmdb createOrOpendb];
+    [fmdb createTable];
+}
+
+- (void)changeToView:(NSInteger)push_id{
+    
+    fmdb = [[T_Sqlite alloc]init];
+    [fmdb createOrOpendb];
+    [fmdb createTable];
+    
+    [fmdb changeToView:push_id];
+}
+
 
 -(NSString*)jpushTime{
     NSInteger time = [UtilTool timeChange];
