@@ -10,7 +10,7 @@
 #import "NewHomePageCommonDef.h"
 #import "HomeRecommendInfoView.h"
 
-#define xGap (10)
+#define xGap (0)
 @implementation HomeRecommendInfoCell
 
 - (NSInteger)xNumber{
@@ -22,11 +22,11 @@
 }
 
 - (CGFloat)sideGap{
-    return xGap;
+    return 0;
 }
 
 - (CGSize)cpxViewSize{
-    return CGSizeMake((IPHONE_SCREEN_WIDTH-4*xGap)/LimitBuyShow,T_HomePageRecommendHeight);
+    return CGSizeMake((IPHONE_SCREEN_WIDTH-3*xGap)/RecommendShow,T_HomePageRecommendHeight);
 }
 
 - (WXCpxBaseView *)createSubCpxView{

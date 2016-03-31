@@ -13,7 +13,7 @@
 @implementation HomeNewGuessInfoCell
 
 - (NSInteger)xNumber{
-    return 2;
+    return GuessInfoShow;
 }
 
 - (CGFloat)cellHeight{
@@ -21,11 +21,11 @@
 }
 
 - (CGFloat)sideGap{
-    return xGap;
+    return 0;
 }
 
 - (CGSize)cpxViewSize{
-    return CGSizeMake((IPHONE_SCREEN_WIDTH-3*xGap)/2+2-0.5,T_HomePageGuessInfoHeight);
+    return CGSizeMake(IPHONE_SCREEN_WIDTH/2,T_HomePageGuessInfoHeight);
 }
 
 - (WXCpxBaseView *)createSubCpxView{

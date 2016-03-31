@@ -37,9 +37,12 @@
     }
     [_dataList removeAllObjects];
     NSArray *datalist = [jsonDicData objectForKey:@"data"];
+    NSInteger index = 0;
     for(NSDictionary *dic in datalist){
+        index ++;
         HomePageRecEntity *entity = [HomePageRecEntity homePageRecEntityWithDictionary:dic];
         entity.home_img = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.home_img];
+        entity.index = index;
         [_dataList addObject:entity];
     }
 }

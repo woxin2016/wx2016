@@ -11,7 +11,7 @@
 @protocol HomeRecommendInfoCellDelegate;
 
 @interface HomeRecommendInfoCell : WXMiltiViewCell
-@property (nonatomic,assign) id<HomeRecommendInfoCellDelegate>delegate;
+@property (nonatomic,weak) id<HomeRecommendInfoCellDelegate>delegate;
 @end
 
 @protocol HomeRecommendInfoCellDelegate <NSObject>

@@ -10,15 +10,15 @@
 #define RKWXT_NewHomePageCommonDef_h
 
 #define Size self.bounds.size
-#define T_HomePageTopImgHeight          (107)
-#define T_HomePageBaseFunctionHeight    (128)
+#define T_HomePageTopImgHeight          (194)
+#define T_HomePageBaseFunctionHeight    (132)
 #define T_HomePageLimitBuyHeight        (145)
-#define T_HomePageTextSectionHeight     (30)
-#define T_HomePageRecommendHeight       (145)
-#define T_HomePageGuessInfoHeight       (195)
+#define T_HomePageTextSectionHeight     (39)
+#define T_HomePageRecommendHeight       (205)
+#define T_HomePageGuessInfoHeight       (205)
 
 #define BigTextFont   (13.0)
-#define TextFont      (15.0)
+#define TextFont      (14.0)
 #define SmallTextFont (12.0)
 
 #define BigTextColor   (0x282828)
@@ -26,7 +26,7 @@
 #define HomePageBGColor (0xffffff)
 
 #define LimitBuyShow    (3)
-#define RecommendShow   (3)
+#define RecommendShow   (2)
 #define GuessInfoShow   (2)
 
 //section

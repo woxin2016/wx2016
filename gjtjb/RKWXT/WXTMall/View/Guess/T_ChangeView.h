@@ -8,8 +8,6 @@
 
 #import "WXCpxBaseView.h"
 
-#define xGap (0.3)
-
 @interface T_ChangeView : WXCpxBaseView
 
 @end

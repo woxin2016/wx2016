@@ -16,6 +16,7 @@
     BOOL buyGoods;
     
     WXUIButton *titleBtn;
+    WXUIView *topView;
 }
 @end
 
@@ -39,6 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self setCSTNavigationViewHidden:YES animated:NO];
     [self addOBS];
 }
 
@@ -53,47 +55,56 @@
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self addSubview:_tableView];
     [self setupRefresh];
-    [self createTopTitleBtn];
     [self createTopBtn];
    
     [_model loadData];
     buyGoods = NO;
 }
 
--(void)createTopTitleBtn{
+-(void)createTopBtn{
+    topView = [[WXUIView alloc] init];
+    topView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, 60);
+    [topView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:topView];
+    
     CGFloat btnWidth = 200;
     CGFloat btnHieght = 20;
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     titleBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    titleBtn.frame = CGRectMake((IPHONE_SCREEN_WIDTH-btnWidth)/2, NAVIGATION_BAR_HEGITH+IPHONE_STATUS_BAR_HEIGHT-btnHieght-10, btnWidth, btnHieght);
-    [titleBtn.titleLabel setFont:WXFont(15.0)];
+    titleBtn.frame = CGRectMake((IPHONE_SCREEN_WIDTH-btnWidth)/2, 30, btnWidth, btnHieght);
+    [titleBtn.titleLabel setFont:WXFont(17.0)];
     [titleBtn setBackgroundColor:[UIColor clearColor]];
     [titleBtn setTitle:userObj.sellerName forState:UIControlStateNormal];
     [titleBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
     [titleBtn addTarget:self action:@selector(changeSellerVC) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:titleBtn];
-}
-
--(void)createTopBtn{
+    [topView addSubview:titleBtn];
+    
+    
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *image = [UIImage imageNamed:@"HomePageLeftBtn.png"];
-    leftBtn.frame = CGRectMake(0, 6, 40, 40);
-    [leftBtn setImage:image forState:UIControlStateNormal];
+    leftBtn.frame = CGRectMake(20, 18, 45, 40);
+    [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
+    [leftBtn setTitle:@"分类" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftBtn.titleLabel setFont:WXFont(10.0)];
     [leftBtn addTarget:self action:@selector(homePageToCategaryView) forControlEvents:UIControlEventTouchUpInside];
-    [self setLeftNavigationItem:leftBtn];
-
+    [topView addSubview:leftBtn];
     
-    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    didView.userInteractionEnabled = YES;
-    [self setRightNavigationItem:didView];
+    CGPoint buttonBoundsCenter = CGPointMake(CGRectGetMidX(leftBtn.titleLabel.bounds), CGRectGetMidY(leftBtn.titleLabel.bounds));
+    CGPoint endImageViewCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetMidY(leftBtn.imageView.bounds));
+    CGPoint endTitleLabelCenter = CGPointMake(buttonBoundsCenter.x, CGRectGetHeight(leftBtn.bounds)-CGRectGetMidY(leftBtn.titleLabel.bounds));
+    CGPoint startImageViewCenter = leftBtn.imageView.center;
+    CGPoint startTitleLabelCenter = leftBtn.titleLabel.center;
+    CGFloat imageEdgeInsetsLeft = endImageViewCenter.x - startImageViewCenter.x;
+    CGFloat imageEdgeInsetsRight = -imageEdgeInsetsLeft;
+    leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, imageEdgeInsetsLeft, 40/3, imageEdgeInsetsRight);
+    CGFloat titleEdgeInsetsLeft = endTitleLabelCenter.x - startTitleLabelCenter.x;
+    CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
+    leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
     
-    
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(self.bounds.size.width-35, 64-35, 25, 25)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-40, 18, 25, 25)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
-    [self.view addSubview:_unreadView];
+    [topView addSubview:_unreadView];
 }
 
 //用户切换商家通知
@@ -114,6 +125,19 @@
     _tableView.footerPullToRefreshText = @"上拉加载";
     _tableView.footerReleaseToRefreshText = @"松开加载";
     _tableView.footerRefreshingText = @"加载中";
+}
+
+#pragma mark scrollChangeTitle
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    UIColor *color = WXColorWithInteger(AllBaseColor);
+    CGFloat offset=scrollView.contentOffset.y;
+    if (offset < 0) {
+        [topView setHidden:YES];
+    }else {
+        [topView setHidden:NO];
+        CGFloat alpha = 1-((T_HomePageTopImgHeight-60-offset)/(T_HomePageTopImgHeight-60));
+        topView.backgroundColor = [color colorWithAlphaComponent:alpha];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -137,7 +161,7 @@
             }
             break;
         case T_HomePage_RecomendInfo:
-            row = [_model.recommend.data count]/3+([_model.recommend.data count]%3>0?1:0);
+            row = [_model.recommend.data count]/RecommendShow+([_model.recommend.data count]%RecommendShow>0?1:0);
             break;
         case T_HomePage_GuessInfo:
             row = [_model.surprise.data count]/2+([_model.surprise.data count]%2>0?1:0);
@@ -146,6 +170,26 @@
             break;
     }
     return row;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == T_HomePage_TopImg || section == T_HomePage_BaseFunction){
+        return 0;
+    }
+    if([_model.limitGoods.data count] == 0 && (section==T_HomePage_LimitBuyInfo || section==T_HomePage_LimitBuyTitle)){
+        return 0;
+    }
+    if(section == T_HomePage_LimitBuyInfo || section == T_HomePage_RecomendInfo || section == T_HomePage_GuessInfo){
+        return 0;
+    }
+    return 7;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    WXUIView *backgroundView = [[[WXUIView alloc] init] autorelease];
+    backgroundView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, 7);
+    [backgroundView setBackgroundColor:WXColorWithInteger(0xeeeeee)];
+    return backgroundView;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -225,7 +269,7 @@
     static NSString *identifier = @"limitBuyCell";
     HomeLimitBuyCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
-        cell = [[HomeLimitBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[[HomeLimitBuyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     
@@ -250,7 +294,7 @@
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     [cell.textLabel setText:@"为我推荐"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
-    [cell.textLabel setTextColor:[UIColor redColor]];
+    [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
     return cell;
 }
 
@@ -258,7 +302,7 @@
     static NSString *identifier = @"recommendInfoCell";
     HomeRecommendInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
-        cell = [[HomeRecommendInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[[HomeRecommendInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
@@ -273,7 +317,6 @@
     }
     [cell setDelegate:self];
     [cell loadCpxViewInfos:rowArray];
-    [cell load];
     return cell;
 }
 
@@ -289,7 +332,7 @@
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     [cell.textLabel setText:@"猜你喜欢"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
-    [cell.textLabel setTextColor:[UIColor redColor]];
+    [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
     return cell;
 }
 
@@ -300,6 +343,7 @@
     if(!cell){
         cell = [[[HomeNewGuessInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     NSMutableArray *rowArray = [NSMutableArray array];
     NSInteger max = (row+1)*2;

@@ -14,8 +14,10 @@
 @property (nonatomic,strong) NSString *goods_name;
 @property (nonatomic,strong) NSString *home_img;
 @property (nonatomic,strong) NSString *goods_intro;
-//@property (nonatomic,assign) CGFloat market_price;
 @property (nonatomic,assign) CGFloat shop_price;
+@property (nonatomic,assign) NSInteger hotNum; //热度
+@property (nonatomic,assign) NSInteger likeNum;  //收藏
+@property (nonatomic,assign) NSInteger index;
 
 +(HomePageSurpEntity*)homePageSurpEntityWithDictionary:(NSDictionary*)dic;
 

@@ -22,10 +22,9 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-
         NSArray *textArr = @[@"免费抽奖",@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟"];
         NSArray *imgArr = @[@"HomePageSharkImg.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
-        NSInteger rowCount = 4;
+        NSInteger rowCount = 3;
         CGFloat width = self.frame.size.width  / rowCount;
         CGFloat baseHeight = ImgBtnHeight/2;
         
@@ -61,14 +60,6 @@
             commonBtn.titleEdgeInsets = UIEdgeInsetsMake(ImgBtnHeight/2-12, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
             
         }
-
-        
-        
-        
-        WXUILabel *lineLabel = [[WXUILabel alloc] init];
-        lineLabel.frame = CGRectMake(0, T_HomePageBaseFunctionHeight-0.1, Size.width, 0.1);
-        [lineLabel setBackgroundColor:WXColorWithInteger(0x999999)];
-        [self.contentView addSubview:lineLabel];
     }
     return self;
 }

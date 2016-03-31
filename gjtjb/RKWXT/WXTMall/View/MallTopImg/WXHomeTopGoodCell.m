@@ -38,7 +38,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
         CGRect rect = self.bounds;
-        rect.size.height = IPHONE_SCREEN_WIDTH/3;
+        rect.size.height = T_HomePageTopImgHeight;
         _browser = [[CSTScrollBrowser alloc] initWithFrame:rect];
         [_browser setScrollDelegate:self];
         [_browser setGap:0];
@@ -65,10 +65,9 @@
 -(void)load{
     NSArray *goodEntityArray = self.cellInfo;
     [self toInit];
-    CGRect rect = [self bounds];
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     for(HomePageTopEntity *topADVEntity in goodEntityArray){
-        WXRemotionImgBtn *imgView = [[[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, rect.size.width/3)] autorelease];
+        WXRemotionImgBtn *imgView = [[[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, T_HomePageTopImgHeight)] autorelease];
         [imgView setCpxViewInfo:topADVEntity.topImg];
         [imgView load];
         [imgView setDelegate:self];

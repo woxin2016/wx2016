@@ -524,6 +524,7 @@
 		12C069191B7C743600C05D42 /* FindUnionImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C069171B7C743600C05D42 /* FindUnionImg@2x.png */; };
 		12C0691A1B7C743600C05D42 /* FindWeatherImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C069181B7C743600C05D42 /* FindWeatherImg@2x.png */; };
 		12C46EBC1C71B02500745787 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C46EBB1C71B02500745787 /* libz.tbd */; };
+		12C875631CACC5FC00DF0B5C /* UserLikeImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12C875621CACC5FC00DF0B5C /* UserLikeImg@2x.png */; };
 		12CCD7ED1AC0184400A5BDF0 /* defaultContactIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CCD7EC1AC0184400A5BDF0 /* defaultContactIcon@2x.png */; };
 		12CD08CF1C9B94E50028A629 /* AddressEmptyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */; };
 		12CD08D01C9B94E50028A629 /* AddressEmptyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */; };
@@ -1874,6 +1875,7 @@
 		12C069171B7C743600C05D42 /* FindUnionImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FindUnionImg@2x.png"; sourceTree = "<group>"; };
 		12C069181B7C743600C05D42 /* FindWeatherImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FindWeatherImg@2x.png"; sourceTree = "<group>"; };
 		12C46EBB1C71B02500745787 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		12C875621CACC5FC00DF0B5C /* UserLikeImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserLikeImg@2x.png"; sourceTree = "<group>"; };
 		12CCD7EC1AC0184400A5BDF0 /* defaultContactIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultContactIcon@2x.png"; sourceTree = "<group>"; };
 		12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEmptyImg@2x.png"; sourceTree = "<group>"; };
 		12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEmptyLogo@2x.png"; sourceTree = "<group>"; };
@@ -4611,6 +4613,7 @@
 		128221CD1B184E83004613BB /* NewHomePage */ = {
 			isa = PBXGroup;
 			children = (
+				12C875621CACC5FC00DF0B5C /* UserLikeImg@2x.png */,
 				122D63B81C3F4AF60086AAB8 /* HomePageCutImg@2x.png */,
 				122D63B91C3F4AF60086AAB8 /* HomePageShareImg@2x.png */,
 				122D63BA1C3F4AF60086AAB8 /* HomePageSharkImg@2x.png */,
@@ -7120,6 +7123,7 @@
 				128766F71B50F1D200A79320 /* TwoDimension@2x.png in Resources */,
 				1285850C1B3AA7E5005E240E /* MakeOrderLinImg@2x.png in Resources */,
 				12D52BBC1AC2EF4400C5CE71 /* dtmf-6.aif in Resources */,
+				12C875631CACC5FC00DF0B5C /* UserLikeImg@2x.png in Resources */,
 				DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */,
 				127321261C7ABDE100C8D1D7 /* UserThirdClientImg@2x.png in Resources */,
 				DD89B55E1C89794E0059F097 /* LMCarriageImg@2x.png in Resources */,

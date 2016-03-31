@@ -15,6 +15,9 @@
 @property (nonatomic,strong) NSString *home_img;
 @property (nonatomic,assign) CGFloat shopPrice;
 @property (nonatomic,assign) CGFloat marketPrice;
+@property (nonatomic,assign) NSInteger hotNum; //热度
+@property (nonatomic,assign) NSInteger likeNum;  //收藏
+@property (nonatomic,assign) NSInteger index;
 
 +(HomePageRecEntity*)homePageRecEntityWithDictionary:(NSDictionary*)dic;
 
