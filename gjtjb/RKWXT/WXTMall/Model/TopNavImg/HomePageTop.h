@@ -13,6 +13,8 @@
 
 @interface HomePageTop : T_HPSubBaseModel
 @property (nonatomic,assign) id<HomePageTopDelegate>delegate;
+@property (nonatomic,strong) NSArray *centerImgArr;
+@property (nonatomic,strong) NSArray *downImgArr;
 @end
 
 @protocol HomePageTopDelegate <NSObject>

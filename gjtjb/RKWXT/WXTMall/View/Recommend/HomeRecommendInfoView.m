@@ -130,8 +130,8 @@
     [_imgView load];
     [_newPriceLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.shopPrice]];
     [_nameLabel setText:entity.goods_name];
-    [likeNumLabel setText:@"50"];
-    [hotNumLabel setText:@"10"];
+    [likeNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.likeNum]];
+    [hotNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.hotNum]];
     
     if(entity.index%2==0){
         CGRect rect = bgBtn.frame;

@@ -9,7 +9,7 @@
 #import "WXTMallViewController.h"
 #import "NewHomePageCommonDef.h"
 
-@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate>{
+@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,HomePageCommonImgCellDelegate>{
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
@@ -160,11 +160,31 @@
             row = 1;
             }
             break;
+        case T_HomePage_CenterImg:
+            if([_model.top.centerImgArr count] == 1){
+                row = 1;
+            }
+            break;
+        case T_HomePage_DownImg:
+            if([_model.top.downImgArr count] == 1){
+                row = 1;
+            }
+            break;
+        case T_HomePage_ClassifyTitle:
+            if([_model.classify.data count] > 0){
+                row = 1;
+            }
+            break;
+        case T_HomePage_ClassifyInfo:
+            if([_model.classify.data count] > 0){
+                row = [_model.classify.data count]/ClassifyShow+([_model.classify.data count]%ClassifyShow>0?1:0);
+            }
+            break;
         case T_HomePage_RecomendInfo:
             row = [_model.recommend.data count]/RecommendShow+([_model.recommend.data count]%RecommendShow>0?1:0);
             break;
         case T_HomePage_GuessInfo:
-            row = [_model.surprise.data count]/2+([_model.surprise.data count]%2>0?1:0);
+            row = [_model.surprise.data count]/GuessInfoShow+([_model.surprise.data count]%GuessInfoShow>0?1:0);
             break;
         default:
             break;
@@ -180,6 +200,12 @@
         return 0;
     }
     if(section == T_HomePage_LimitBuyInfo || section == T_HomePage_RecomendInfo || section == T_HomePage_GuessInfo){
+        return 0;
+    }
+    if(section == T_HomePage_CenterImg && [_model.top.centerImgArr count] == 0){
+        return 0;
+    }
+    if(section == T_HomePage_DownImg && [_model.top.downImgArr count] == 0){
         return 0;
     }
     return 7;
@@ -205,13 +231,21 @@
         case T_HomePage_LimitBuyTitle:
         case T_HomePage_RecomendTitle:
         case T_HomePage_GuessTitle:
+        case T_HomePage_ClassifyTitle:
             height = T_HomePageTextSectionHeight;
             break;
         case T_HomePage_LimitBuyInfo:
             height = T_HomePageLimitBuyHeight;
             break;
+        case T_HomePage_CenterImg:
+        case T_HomePage_DownImg:
+            height = T_HomePageCommonImgHeight;
+            break;
         case T_HomePage_RecomendInfo:
             height = T_HomePageRecommendHeight;
+            break;
+        case T_HomePage_ClassifyInfo:
+            height = T_HomePageClassifyInfoHeight;
             break;
         case T_HomePage_GuessInfo:
             height = T_HomePageGuessInfoHeight;
@@ -232,6 +266,36 @@
     }
     [cell setDelegate:self];
     [cell setCellInfo:_model.top.data];
+    [cell load];
+    return cell;
+}
+
+//中间
+-(WXUITableViewCell*)commonCenterImgCell{
+    static NSString *identifier = @"centerImg";
+    HomePageCommonImgCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[[HomePageCommonImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    [cell setDelegate:self];
+    if([_model.top.centerImgArr count] > 0){
+        [cell setCellInfo:[_model.top.centerImgArr objectAtIndex:0]];
+    }
+    [cell load];
+    return cell;
+}
+
+//底部
+-(WXUITableViewCell*)commonDownImgCell{
+    static NSString *identifier = @"downImg";
+    HomePageCommonImgCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[[HomePageCommonImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    [cell setDelegate:self];
+    if([_model.top.downImgArr count] > 0){
+        [cell setCellInfo:[_model.top.downImgArr objectAtIndex:0]];
+    }
     [cell load];
     return cell;
 }
@@ -320,6 +384,17 @@
     return cell;
 }
 
+//分类
+-(WXUITableViewCell*)tableViewForClassifyTitleCell{
+    static NSString *identifier = @"ClassifyTitleCell";
+    HomeClassifyTitleCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[[HomeClassifyTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_None];
+    return cell;
+}
+
 //猜你喜欢
 -(WXUITableViewCell*)tableViewForGuessCell{
     static NSString *identifier = @"guessTitleCell";
@@ -376,11 +451,20 @@
         case T_HomePage_LimitBuyInfo:
             cell = [self tableViewForLimitBuy:row];
             break;
+        case T_HomePage_CenterImg:
+            cell = [self commonCenterImgCell];
+            break;
+        case T_HomePage_DownImg:
+            cell = [self commonDownImgCell];
+            break;
         case T_HomePage_RecomendTitle:
             cell = [self tableViewForMeCell];
             break;
         case T_HomePage_RecomendInfo:
             cell = [self tableViewForRecommendCell:row];
+            break;
+        case T_HomePage_ClassifyTitle:
+            cell = [self tableViewForClassifyTitleCell];
             break;
         case T_HomePage_GuessTitle:
             cell = [self tableViewForGuessCell];
@@ -425,15 +509,19 @@
     if(index > HomePageJump_Type_Invalid){
         return;
     }
-    switch (entity.topAddID) {
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID];
+}
+
+-(void)homePageClickJump:(NSInteger)addID withLinkID:(NSInteger)linkID{
+    switch (addID) {
         case HomePageJump_Type_GoodsInfo:
         {
-            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.linkID animated:YES];
+            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:linkID animated:YES];
         }
             break;
         case HomePageJump_Type_Catagary:
         {
-            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.linkID animated:YES];
+            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:linkID animated:YES];
         }
             break;
         case HomePageJump_Type_MessageCenter:
@@ -443,7 +531,7 @@
             break;
         case HomePageJump_Type_MessageInfo:
         {
-            [[CoordinateController sharedCoordinateController] toJPushMessageInfoVC:self messageID:entity.linkID animated:YES];
+            [[CoordinateController sharedCoordinateController] toJPushMessageInfoVC:self messageID:linkID animated:YES];
         }
             break;
         case HomePageJump_Type_UserBonus:
@@ -460,6 +548,11 @@
         default:
             break;
     }
+}
+
+-(void)homepageCommonImgCellClicked:(id)sender{
+    HomePageTopEntity *entity = sender;
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID];
 }
 
 #pragma mark baseFunction
@@ -559,6 +652,8 @@
 -(void)homePageTopLoadedSucceed{
     [_tableView headerEndRefreshing];
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_TopImg] withRowAnimation:UITableViewRowAnimationFade];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_CenterImg] withRowAnimation:UITableViewRowAnimationFade];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_DownImg] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void)homePageTopLoadedFailed:(NSString *)error{

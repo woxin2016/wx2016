@@ -33,6 +33,12 @@
         
         CGFloat shop = [[dic objectForKey:@"shop_price"] floatValue];
         [self setShopPrice:shop];
+        
+        NSInteger hot = [[dic objectForKey:@"hot"] integerValue];
+        [self setHotNum:hot];
+        
+        NSInteger store = [[dic objectForKey:@"stores"] integerValue];
+        [self setLikeNum:store];
     }
     return self;
 }

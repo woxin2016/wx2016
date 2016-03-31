@@ -30,6 +30,9 @@
         
         NSInteger sort_order = [[dic objectForKey:@"sort_order"] integerValue];
         [self setSortID:sort_order];
+        
+        NSInteger position = [[dic objectForKey:@"show_position" ] integerValue];
+        [self setPosition:position];
     }
     return self;
 }

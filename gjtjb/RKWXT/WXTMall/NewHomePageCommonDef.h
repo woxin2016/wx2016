@@ -14,8 +14,10 @@
 #define T_HomePageBaseFunctionHeight    (132)
 #define T_HomePageLimitBuyHeight        (145)
 #define T_HomePageTextSectionHeight     (39)
+#define T_HomePageCommonImgHeight       (80)
 #define T_HomePageRecommendHeight       (205)
 #define T_HomePageGuessInfoHeight       (205)
+#define T_HomePageClassifyInfoHeight    (92)
 
 #define BigTextFont   (13.0)
 #define TextFont      (14.0)
@@ -27,6 +29,7 @@
 
 #define LimitBuyShow    (3)
 #define RecommendShow   (2)
+#define ClassifyShow    (4)
 #define GuessInfoShow   (2)
 
 //section
@@ -35,9 +38,13 @@ enum{
     T_HomePage_BaseFunction,   //基础功能模块
     T_HomePage_LimitBuyTitle,  //秒杀
     T_HomePage_LimitBuyInfo,   //
+    T_HomePage_CenterImg,      //中间图片
     T_HomePage_RecomendTitle,  //为我推荐
     T_HomePage_RecomendInfo,   //
-    T_HomePage_GuessTitle,     //换一批
+    T_HomePage_DownImg,        //底部图片
+    T_HomePage_ClassifyTitle,  //分类
+    T_HomePage_ClassifyInfo,
+    T_HomePage_GuessTitle,     //猜你喜欢
     T_HomePage_GuessInfo,      //
     
     T_HomePage_Invalid,
@@ -56,6 +63,8 @@ enum{
 #import "HomeRecommendInfoCell.h"
 #import "HomeGuessInfoCell.h"
 #import "HomeNewGuessInfoCell.h"
+#import "HomeClassifyTitleCell.h"
+#import "HomePageCommonImgCell.h"
 
 #import "WXWeiXinOBJ.h"
 #import <TencentOpenAPI/QQApiInterface.h>

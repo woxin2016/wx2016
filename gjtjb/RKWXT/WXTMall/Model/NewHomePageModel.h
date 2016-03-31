@@ -11,13 +11,15 @@
 #import "HomePageRecModel.h"
 #import "HomePageSurpModel.h"
 #import "HomeLimitGoodsModel.h"
+#import "HomePageClassifyModel.h"
 
 @interface NewHomePageModel : NSObject
-@property (nonatomic,assign) id<HomePageTopDelegate,HomePageRecDelegate,HomeLimitGoodsDelegate>delegate;
+@property (nonatomic,assign) id<HomePageTopDelegate,HomePageRecDelegate,HomeLimitGoodsDelegate,HomePageClassifyModelDelegate>delegate;
 
 @property (nonatomic,readonly) HomePageTop *top;
 @property (nonatomic,readonly) HomePageRecModel *recommend;
 @property (nonatomic,readonly) HomePageSurpModel *surprise;
+@property (nonatomic,readonly) HomePageClassifyModel *classify;
 @property (nonatomic,readonly) HomeLimitGoodsModel *limitGoods;
 
 -(BOOL)isSomeDataNeedReload;

@@ -13,6 +13,7 @@
 @property (nonatomic,assign) NSInteger linkID; //链接地址
 @property (nonatomic,strong) NSString *topImg; //图片URL
 @property (nonatomic,assign) NSInteger sortID; //排序
+@property (nonatomic,assign) NSInteger position;  //显示位置
 
 +(HomePageTopEntity*)homePageTopEntityWithDictionary:(NSDictionary*)dic;
 

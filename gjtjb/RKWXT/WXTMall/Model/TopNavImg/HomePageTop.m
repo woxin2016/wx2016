@@ -12,16 +12,22 @@
 
 @interface HomePageTop(){
     NSMutableArray *_dataList;
+    NSMutableArray *_centerImgArr;
+    NSMutableArray *_downImgArr;
 }
 @end
 
 @implementation HomePageTop
 @synthesize data = _dataList;
+@synthesize centerImgArr = _centerImgArr;
+@synthesize downImgArr = _downImgArr;
 
 -(id)init{
     self = [super init];
     if(self){
         _dataList = [[NSMutableArray alloc] init];
+        _centerImgArr = [[NSMutableArray alloc] init];
+        _downImgArr = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -29,6 +35,8 @@
 -(void)toInit{
     [super toInit];
     [_dataList removeAllObjects];
+    [_centerImgArr removeAllObjects];
+    [_downImgArr removeAllObjects];
 }
 
 -(void)fillDataWithJsonData:(NSDictionary *)jsonDicData{
@@ -36,11 +44,21 @@
         return;
     }
     [_dataList removeAllObjects];
+    [_downImgArr removeAllObjects];
+    [_centerImgArr removeAllObjects];
     NSArray *datalist = [jsonDicData objectForKey:@"data"];
     for(NSDictionary *dic in datalist){
         HomePageTopEntity *entity = [HomePageTopEntity homePageTopEntityWithDictionary:dic];
         entity.topImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.topImg];
-        [_dataList addObject:entity];
+        if(entity.position == 1){
+            [_dataList addObject:entity];
+        }
+        if(entity.position == 2){
+            [_centerImgArr addObject:entity];
+        }
+        if(entity.position == 3){
+            [_downImgArr addObject:entity];
+        }
     }
     _dataList = [NSMutableArray arrayWithArray:[self recordDataClassifyTypeUpSort]];
 }
