@@ -54,7 +54,7 @@
         
         yOffset += nameHeight+10;
         addressLabel = [[WXUILabel alloc] init];
-        addressLabel.frame = CGRectMake(xOffset, yOffset, IPHONE_SCREEN_WIDTH-xOffset-15, 25);
+        addressLabel.frame = CGRectMake(xOffset, yOffset, IPHONE_SCREEN_WIDTH-xOffset-15, 30);
         [addressLabel setBackgroundColor:[UIColor clearColor]];
         [addressLabel setTextAlignment:NSTextAlignmentLeft];
         [addressLabel setTextColor:WXColorWithInteger(0x9b9b9b)];

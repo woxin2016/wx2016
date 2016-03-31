@@ -259,7 +259,7 @@
             }
             break;
         case GoodsInfo_Section_GoodsInfo:
-            row = [_model.attrArr count];
+            row = 1;
             break;
         default:
             break;
