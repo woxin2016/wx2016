@@ -9,7 +9,7 @@
 #import "WXTMallViewController.h"
 #import "NewHomePageCommonDef.h"
 
-@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,HomePageCommonImgCellDelegate>{
+@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,HomePageCommonImgCellDelegate,HomePageClassifyModelDelegate,HomeClassifyInfoCellDelegate,HomeClassifyTitleCellDelegate>{
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
@@ -193,7 +193,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == T_HomePage_TopImg || section == T_HomePage_BaseFunction){
+    if(section == T_HomePage_TopImg || section == T_HomePage_BaseFunction || section == T_HomePage_ClassifyInfo){
         return 0;
     }
     if([_model.limitGoods.data count] == 0 && (section==T_HomePage_LimitBuyInfo || section==T_HomePage_LimitBuyTitle)){
@@ -206,6 +206,9 @@
         return 0;
     }
     if(section == T_HomePage_DownImg && [_model.top.downImgArr count] == 0){
+        return 0;
+    }
+    if(section == T_HomePage_DownImg && [_model.top.downImgArr count] == 1){
         return 0;
     }
     return 7;
@@ -234,6 +237,9 @@
         case T_HomePage_ClassifyTitle:
             height = T_HomePageTextSectionHeight;
             break;
+        case T_HomePage_ClassifyInfo:
+            height = T_HomePageClassifyInfoHeight;
+            break;
         case T_HomePage_LimitBuyInfo:
             height = T_HomePageLimitBuyHeight;
             break;
@@ -243,9 +249,6 @@
             break;
         case T_HomePage_RecomendInfo:
             height = T_HomePageRecommendHeight;
-            break;
-        case T_HomePage_ClassifyInfo:
-            height = T_HomePageClassifyInfoHeight;
             break;
         case T_HomePage_GuessInfo:
             height = T_HomePageGuessInfoHeight;
@@ -392,6 +395,28 @@
         cell = [[[HomeClassifyTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_None];
+    [cell setDelegate:self];
+    return cell;
+}
+
+-(WXUITableViewCell*)tableViewForClassInfoCell:(NSInteger)row{
+    static NSString *identifier = @"HomeNewClassifyInfoCell";
+    HomeClassifyInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[[HomeClassifyInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    NSMutableArray *rowArray = [NSMutableArray array];
+    NSInteger max = (row+1)*ClassifyShow;
+    NSInteger count = [_model.classify.data count];
+    if(max > count){
+        max = count;
+    }
+    for(NSInteger i = row*ClassifyShow; i < max; i++){
+        [rowArray addObject:[_model.classify.data objectAtIndex:i]];
+    }
+    [cell setDelegate:self];
+    [cell loadCpxViewInfos:rowArray];
     return cell;
 }
 
@@ -466,6 +491,9 @@
         case T_HomePage_ClassifyTitle:
             cell = [self tableViewForClassifyTitleCell];
             break;
+        case T_HomePage_ClassifyInfo:
+            cell = [self tableViewForClassInfoCell:row];
+            break;
         case T_HomePage_GuessTitle:
             cell = [self tableViewForGuessCell];
             break;
@@ -506,7 +534,7 @@
         entity = [_model.top.data objectAtIndex:index];
     }
 
-    if(index > HomePageJump_Type_Invalid){
+    if(index >= HomePageJump_Type_Invalid){
         return;
     }
     [self homePageClickJump:entity.topAddID withLinkID:entity.linkID];
@@ -651,9 +679,10 @@
 #pragma mark HomePageTopDelegate
 -(void)homePageTopLoadedSucceed{
     [_tableView headerEndRefreshing];
-    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_TopImg] withRowAnimation:UITableViewRowAnimationFade];
-    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_CenterImg] withRowAnimation:UITableViewRowAnimationFade];
-    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_DownImg] withRowAnimation:UITableViewRowAnimationFade];
+    [_tableView reloadData];
+//    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_TopImg] withRowAnimation:UITableViewRowAnimationFade];
+//    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_CenterImg] withRowAnimation:UITableViewRowAnimationFade];
+//    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:T_HomePage_DownImg] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void)homePageTopLoadedFailed:(NSString *)error{
@@ -662,6 +691,23 @@
         error = @"获取置顶图片失败";
     }
     [UtilTool showAlertView:error];
+}
+
+#pragma mark classify
+-(void)homePageClassifyLoadedSucceed{
+    [_tableView reloadData];
+}
+
+-(void)homePageClassifyLoadedFailed:(NSString *)errorMsg{
+}
+
+-(void)homeClassifyMoreBtnClicked{
+    [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:0 animated:YES];
+}
+
+-(void)homeClassifyInfoBtnClicked:(id)sender{
+    HomePageClassifyEntity *entity = sender;
+    [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.catID animated:YES];
 }
 
 #pragma mark limitbuy

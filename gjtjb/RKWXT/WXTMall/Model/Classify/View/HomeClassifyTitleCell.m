@@ -26,8 +26,9 @@
         [nameLabel setFont:WXFont(14.0)];
         [self.contentView addSubview:nameLabel];
         
+        CGFloat btnWidth = 50;
         WXUIButton *moreBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-        moreBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-nameWidth, (T_HomePageTextSectionHeight-nameHeight)/2, nameWidth, nameHeight);
+        moreBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-btnWidth, (T_HomePageTextSectionHeight-nameHeight)/2, btnWidth, nameHeight);
         [moreBtn setBackgroundColor:[UIColor clearColor]];
         [moreBtn setTitle:@"|更多" forState:UIControlStateNormal];
         [moreBtn setTitleColor:WXColorWithInteger(0x707070) forState:UIControlStateNormal];

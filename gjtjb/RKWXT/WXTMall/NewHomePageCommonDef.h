@@ -10,14 +10,14 @@
 #define RKWXT_NewHomePageCommonDef_h
 
 #define Size self.bounds.size
-#define T_HomePageTopImgHeight          (194)
+#define T_HomePageTopImgHeight          IPHONE_SCREEN_WIDTH/2
 #define T_HomePageBaseFunctionHeight    (132)
 #define T_HomePageLimitBuyHeight        (145)
 #define T_HomePageTextSectionHeight     (39)
 #define T_HomePageCommonImgHeight       (80)
-#define T_HomePageRecommendHeight       (205)
-#define T_HomePageGuessInfoHeight       (205)
-#define T_HomePageClassifyInfoHeight    (92)
+#define T_HomePageRecommendHeight       (208)
+#define T_HomePageGuessInfoHeight       (208)
+#define T_HomePageClassifyInfoHeight    (88)
 
 #define BigTextFont   (13.0)
 #define TextFont      (14.0)
@@ -65,6 +65,7 @@ enum{
 #import "HomeNewGuessInfoCell.h"
 #import "HomeClassifyTitleCell.h"
 #import "HomePageCommonImgCell.h"
+#import "HomeClassifyInfoCell.h"
 
 #import "WXWeiXinOBJ.h"
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -84,6 +85,7 @@ enum{
 #import "HomePageRecEntity.h"
 #import "LImitGoodsEntity.h"
 #import "HomeLimitGoodsEntity.h"
+#import "HomePageClassifyEntity.h"
 
 #pragma mark 导航跳转
 enum{

@@ -587,6 +587,8 @@
 		12D52BBF1AC2EF4400C5CE71 /* dtmf-9.aif in Resources */ = {isa = PBXBuildFile; fileRef = 12D52BB31AC2EF4400C5CE71 /* dtmf-9.aif */; };
 		12D52BC11AC2EFA000C5CE71 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D52BC01AC2EFA000C5CE71 /* AudioToolbox.framework */; };
 		12D55A451AC2BD8800F51F97 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D55A441AC2BD8800F51F97 /* CoreTelephony.framework */; };
+		12D5C4841CAE00680090BD5F /* HomeClassifyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D5C4831CAE00680090BD5F /* HomeClassifyInfoCell.m */; };
+		12D5C4871CAE0A2C0090BD5F /* HomeClassifyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D5C4861CAE0A2C0090BD5F /* HomeClassifyInfoView.m */; };
 		12F180AB1B44D54900B9A80D /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F180AA1B44D54900B9A80D /* PushConfig.plist */; };
 		12F180B91B45190800B9A80D /* Sql_JpushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180B81B45190800B9A80D /* Sql_JpushData.m */; };
 		12F180BF1B45219300B9A80D /* JPushMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180BC1B45219300B9A80D /* JPushMessageModel.m */; };
@@ -1977,6 +1979,10 @@
 		12D52BB31AC2EF4400C5CE71 /* dtmf-9.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dtmf-9.aif"; sourceTree = "<group>"; };
 		12D52BC01AC2EFA000C5CE71 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		12D55A441AC2BD8800F51F97 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		12D5C4821CAE00680090BD5F /* HomeClassifyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeClassifyInfoCell.h; sourceTree = "<group>"; };
+		12D5C4831CAE00680090BD5F /* HomeClassifyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeClassifyInfoCell.m; sourceTree = "<group>"; };
+		12D5C4851CAE0A2C0090BD5F /* HomeClassifyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeClassifyInfoView.h; sourceTree = "<group>"; };
+		12D5C4861CAE0A2C0090BD5F /* HomeClassifyInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeClassifyInfoView.m; sourceTree = "<group>"; };
 		12F180AA1B44D54900B9A80D /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		12F180B71B45190800B9A80D /* Sql_JpushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sql_JpushData.h; sourceTree = "<group>"; };
 		12F180B81B45190800B9A80D /* Sql_JpushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sql_JpushData.m; sourceTree = "<group>"; };
@@ -5059,6 +5065,10 @@
 			children = (
 				12C8756D1CAD0F1800DF0B5C /* HomeClassifyTitleCell.h */,
 				12C8756E1CAD0F1800DF0B5C /* HomeClassifyTitleCell.m */,
+				12D5C4821CAE00680090BD5F /* HomeClassifyInfoCell.h */,
+				12D5C4831CAE00680090BD5F /* HomeClassifyInfoCell.m */,
+				12D5C4851CAE0A2C0090BD5F /* HomeClassifyInfoView.h */,
+				12D5C4861CAE0A2C0090BD5F /* HomeClassifyInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7615,6 +7625,7 @@
 				120EC7801BB8F31800538637 /* qrencode.c in Sources */,
 				DD2E63E61C9177150037632F /* LImitGoodsEntity.m in Sources */,
 				12F963361B3D4BDF00FF6A3E /* SBJsonStreamWriterAccumulator.m in Sources */,
+				12D5C4871CAE0A2C0090BD5F /* HomeClassifyInfoView.m in Sources */,
 				127329131B5CDDF4002AD4AE /* AboutVC.m in Sources */,
 				12BC72631C78531700FC6A1C /* WXJuniorListCell.m in Sources */,
 				77DB93F01AAFE70D0021A816 /* RecentData.m in Sources */,
@@ -7725,6 +7736,7 @@
 				12C875691CAD0BBF00DF0B5C /* HomePageClassifyModel.m in Sources */,
 				12F3B8801C9CFCDE0082B5CA /* LuckyMoreTimesVC.m in Sources */,
 				12BD30F51B3E78CA00170316 /* OrderWechatCell.m in Sources */,
+				12D5C4841CAE00680090BD5F /* HomeClassifyInfoCell.m in Sources */,
 				12F571691B42253800128294 /* payRequsestHandler.mm in Sources */,
 				12F9162D1B19B0AA00C94717 /* BaseInfoVC.m in Sources */,
 				12BC72591C78531700FC6A1C /* MyClientPersonModel.m in Sources */,

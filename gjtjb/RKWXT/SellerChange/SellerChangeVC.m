@@ -48,18 +48,18 @@
     [self setCSTTitle:@"商家选择"];
     
     _tableView = [[UITableView alloc] init];
-    _tableView.frame = CGRectMake(0, 64+kSearchBarHeight, Size.width, Size.height-kSearchBarHeight);
+    _tableView.frame = CGRectMake(0, kSearchBarHeight, Size.width, Size.height-kSearchBarHeight);
     [_tableView setBackgroundColor:WXColorWithInteger(0xffffff)];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
-    [self.view addSubview:_tableView];
+    [self addSubview:_tableView];
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
-    _searchBar = [[WXUISearchBar alloc] initWithFrame:CGRectMake(0, 64, Size.width, kSearchBarHeight)];
+    _searchBar = [[WXUISearchBar alloc] initWithFrame:CGRectMake(0, 0, Size.width, kSearchBarHeight)];
     [_searchBar setPlaceholder:@"搜索商家"];
     [_searchBar sizeToFit];
     _searchBar.delegate = self;
-    [self.view addSubview:_searchBar];
+    [self addSubview:_searchBar];
     
     _searchDisplayController = [[UISearchDisplayController alloc]
                                 initWithSearchBar:_searchBar contentsController:self];

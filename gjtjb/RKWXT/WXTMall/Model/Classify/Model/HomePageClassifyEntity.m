@@ -20,7 +20,17 @@
 -(id)initWithDic:(NSDictionary*)dic{
     self = [super init];
     if(self){
+        NSInteger cat_id = [[dic objectForKey:@"cat_id"] integerValue];
+        [self setCatID:cat_id];
         
+        NSString *catImg = [dic objectForKey:@"cat_img"];
+        [self setCatImg:catImg];
+        
+        NSString *catName = [dic objectForKey:@"cat_name"];
+        [self setCatName:catName];
+        
+        NSInteger flag = [[dic objectForKey:@"flag"] integerValue];
+        [self setFlag:flag];
     }
     return self;
 }

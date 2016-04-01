@@ -47,7 +47,7 @@
         [_imgView setUserInteractionEnabled:NO];
         [bgBtn addSubview:_imgView];
         
-        yOffset += imgHeight;
+        yOffset += imgHeight+3;
         CGFloat nameLabelHeight = 30;
         _nameLabel = [[WXUILabel alloc] init];
         _nameLabel.frame = CGRectMake(xOffset, yOffset, imgWidth-xOffset, nameLabelHeight);
@@ -75,7 +75,7 @@
         [imgView setImage:likeImg];
         [bgBtn addSubview:imgView];
         
-        xOffset += likeImg.size.width;
+        xOffset += likeImg.size.width+5;
         CGFloat numberWidth = 20;
         likeNumLabel = [[WXUILabel alloc] init];
         likeNumLabel.frame = CGRectMake(xOffset, yOffset, numberWidth, nameLabelHeight/2);
@@ -136,7 +136,7 @@
     
     if(entity.index%2==0){
         CGRect rect = bgBtn.frame;
-        rect.origin.x = 4;
+        rect.origin.x = 3;
         [bgBtn setFrame:rect];
     }
 }
