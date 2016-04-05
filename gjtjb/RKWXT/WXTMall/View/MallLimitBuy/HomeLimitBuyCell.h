@@ -7,10 +7,11 @@
 //
 
 #import "WXUITableViewCell.h"
+#import "WXMiltiViewCell.h"
 
 
 @protocol HomeLimitBuyCellDelegate;
-@interface HomeLimitBuyCell : WXUITableViewCell
+@interface HomeLimitBuyCell : WXMiltiViewCell
 @property (nonatomic,assign)id<HomeLimitBuyCellDelegate>delegate;
 @end
 

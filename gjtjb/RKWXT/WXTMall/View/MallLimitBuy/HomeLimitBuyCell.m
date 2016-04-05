@@ -7,7 +7,6 @@
 //
 
 #import "HomeLimitBuyCell.h"
-#import "WXRemotionImgBtn.h"
 #import "NewHomePageCommonDef.h"
 #import "HomeLimitGoodsEntity.h"
 #import "LImitGoodsEntity.h"
@@ -15,7 +14,8 @@
 
 #define kTimerInterval (5.0)
 #define kOneCellShowNumber (5)
-@interface HomeLimitBuyCell ()<UIScrollViewDelegate,WXRemotionImgBtnDelegate>{
+#define xGap (10)
+@interface HomeLimitBuyCell ()<UIScrollViewDelegate>{
     UIScrollView *_browser;
     NSArray *classifyArr;
     NSInteger count;
@@ -34,17 +34,17 @@
         _browser = [[UIScrollView alloc] initWithFrame:rect];
         [_browser setDelegate:self];
         [_browser setShowsHorizontalScrollIndicator:NO];
+        [_browser setShowsVerticalScrollIndicator:NO];
+        _browser.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_browser];
-        
     }
     return self;
 }
 
-
-
--(void)load{
+-(void)setCellInfo:(id)cellInfo{
+    [_browser.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    HomeLimitGoodsEntity *goodsEntity = self.cellInfo;
+    HomeLimitGoodsEntity *goodsEntity = cellInfo;
     CGRect rect = self.frame;
     rect.size.height = T_HomePageLimitBuyHeight;
     self.frame = rect;
@@ -62,9 +62,16 @@
         view.entity = entity;
         [_browser addSubview:view];
         
+        CGFloat marH = 80;
+        UILabel *marLabel = [[UILabel alloc]initWithFrame:CGRectMake(width + 4.5, 8, 0.5, marH)];
+        marLabel.backgroundColor = [UIColor colorWithHexString:@"9b9b9b"];
+        [_browser addSubview:marLabel];
+        
     }
     [_browser setContentSize:CGSizeMake((xOffset + width ) * [goodsEntity.goodsArray count], T_HomePageLimitBuyHeight)];
 }
+
+
 
 -(void)buttonImageClicked:(id)sender{
     if(_delegate && [_delegate respondsToSelector:@selector(clickClassifyBtnAtIndex:)]){

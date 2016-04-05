@@ -12,7 +12,7 @@
 #define Size self.bounds.size
 #define T_HomePageTopImgHeight          IPHONE_SCREEN_WIDTH/2
 #define T_HomePageBaseFunctionHeight    (132)
-#define T_HomePageLimitBuyHeight        (145)
+#define T_HomePageLimitBuyHeight        (170)
 #define T_HomePageTextSectionHeight     (39)
 #define T_HomePageCommonImgHeight       (80)
 #define T_HomePageRecommendHeight       (208)
@@ -27,7 +27,7 @@
 #define SmallTextColor (0xa5a3a3)
 #define HomePageBGColor (0xffffff)
 
-#define LimitBuyShow    (3)
+#define LimitBuyShow    (3.5)
 #define RecommendShow   (2)
 #define ClassifyShow    (4)
 #define GuessInfoShow   (2)
