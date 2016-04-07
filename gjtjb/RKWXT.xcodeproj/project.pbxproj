@@ -607,6 +607,8 @@
 		12DDE7381CB5E908006BBB1E /* CloudTicketImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */; };
 		12DDE7391CB5E908006BBB1E /* UserMoneyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */; };
 		12DDE73B1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */; };
+		12DDE73E1CB6319E006BBB1E /* RechargeCTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DDE73D1CB6319E006BBB1E /* RechargeCTModel.m */; };
+		12DDE7411CB63D32006BBB1E /* UserAliAccountStateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DDE7401CB63D32006BBB1E /* UserAliAccountStateCell.m */; };
 		12F180AB1B44D54900B9A80D /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F180AA1B44D54900B9A80D /* PushConfig.plist */; };
 		12F180B91B45190800B9A80D /* Sql_JpushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180B81B45190800B9A80D /* Sql_JpushData.m */; };
 		12F180BF1B45219300B9A80D /* JPushMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180BC1B45219300B9A80D /* JPushMessageModel.m */; };
@@ -2034,6 +2036,10 @@
 		12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloudTicketImg@2x.png"; sourceTree = "<group>"; };
 		12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserMoneyImg@2x.png"; sourceTree = "<group>"; };
 		12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserAliAccountFailed@2x.png"; sourceTree = "<group>"; };
+		12DDE73C1CB6319E006BBB1E /* RechargeCTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCTModel.h; sourceTree = "<group>"; };
+		12DDE73D1CB6319E006BBB1E /* RechargeCTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCTModel.m; sourceTree = "<group>"; };
+		12DDE73F1CB63D32006BBB1E /* UserAliAccountStateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAliAccountStateCell.h; sourceTree = "<group>"; };
+		12DDE7401CB63D32006BBB1E /* UserAliAccountStateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAliAccountStateCell.m; sourceTree = "<group>"; };
 		12F180AA1B44D54900B9A80D /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		12F180B71B45190800B9A80D /* Sql_JpushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sql_JpushData.h; sourceTree = "<group>"; };
 		12F180B81B45190800B9A80D /* Sql_JpushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sql_JpushData.m; sourceTree = "<group>"; };
@@ -4965,6 +4971,8 @@
 		12BBED5F1CB4A47700EF6906 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				12DDE73C1CB6319E006BBB1E /* RechargeCTModel.h */,
+				12DDE73D1CB6319E006BBB1E /* RechargeCTModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5003,6 +5011,8 @@
 				12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */,
 				12BBED6D1CB4BD8100EF6906 /* UserMoneyInfoCell.h */,
 				12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */,
+				12DDE73F1CB63D32006BBB1E /* UserAliAccountStateCell.h */,
+				12DDE7401CB63D32006BBB1E /* UserAliAccountStateCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7711,6 +7721,7 @@
 				12BC72651C78531700FC6A1C /* UserCutMoneyCell.m in Sources */,
 				12BC726A1C78531700FC6A1C /* MyClientInfoCell.m in Sources */,
 				120A2BF21AB135DE006A28B1 /* UserInfoCommonCell.m in Sources */,
+				12DDE73E1CB6319E006BBB1E /* RechargeCTModel.m in Sources */,
 				12CE12031C50AF2600FF85FA /* WaitSendOrderStateCell.m in Sources */,
 				775843C11AB971CF0039B129 /* UIImage+Render.m in Sources */,
 				122D64241C3F99C80086AAB8 /* MakeOrderAllGoodsMoneyCell.m in Sources */,
@@ -7908,6 +7919,7 @@
 				775843111AB95A300039B129 /* WXMutiScanViewCell.m in Sources */,
 				12BC726E1C78531700FC6A1C /* AliSendMsgModel.m in Sources */,
 				122AB8C01C3E6D5500AC9DF5 /* UIImageView+WebCache.m in Sources */,
+				12DDE7411CB63D32006BBB1E /* UserAliAccountStateCell.m in Sources */,
 				122D64211C3F99C80086AAB8 /* MakeOrderBananceSwitchCell.m in Sources */,
 				12B1F6901B788961009FBA6D /* RechargeTypeVC.m in Sources */,
 				12CFE6511AC1A210009C710B /* CallHistoryEntity.m in Sources */,

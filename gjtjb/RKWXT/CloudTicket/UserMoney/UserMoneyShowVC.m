@@ -10,6 +10,7 @@
 #import "CloudTicketListVC.h"
 #import "UserMoneyInfoCell.h"
 #import "UserMoneyShowCell.h"
+#import "UserAliAccountStateCell.h"
 
 #import "ConfirmUserAliPayVC.h"
 #import "UserMoneyDrawVC.h"
@@ -18,8 +19,15 @@
 #import "UserAliEntity.h"
 
 #define Size self.bounds.size
+enum{
+    Row_UserMoneyShow = 0,
+    Row_UserMoneyHistory,
+    Row_UserAliAccountState,
+    
+    Row_UserMoneyInvalid,
+};
 
-@interface UserMoneyShowVC()<UITableViewDataSource,UITableViewDelegate,SearchUserAliAccountModelDelegate>{
+@interface UserMoneyShowVC()<UITableViewDataSource,UITableViewDelegate,SearchUserAliAccountModelDelegate,UserAliAccountStateCellDelegate>{
     UITableView *_tableView;
     SearchUserAliAccountModel *_model;
     UserAliEntity *entity;
@@ -55,9 +63,11 @@
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [self addSubview:_tableView];
-    [_tableView setTableFooterView:[self createFooterView]];
+    [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [_model searchUserAliPayAccount];
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 -(WXUIButton*)rightBtn{
@@ -75,127 +85,26 @@
     return rightBtn;
 }
 
--(UIView*)createFooterView{
-    CGFloat footHeight = 240;
-    UIView *footerView = [[UIView alloc] init];
-    footerView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, footHeight);
-    [footerView setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
-    
-    CGFloat btnWidth = IPHONE_SCREEN_WIDTH-2*20;
-    CGFloat btnHeight = 40;
-    WXUIButton *submitBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    submitBtn.frame = CGRectMake((IPHONE_SCREEN_WIDTH-btnWidth)/2, footHeight-btnHeight-10, btnWidth, btnHeight);
-    [submitBtn setBackgroundColor:WXColorWithInteger(0xf74f35)];
-    [submitBtn setTitle:@"绑定提现账户" forState:UIControlStateNormal];
-    [submitBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
-    [submitBtn addTarget:self action:@selector(submitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:submitBtn];
-    
-    if([_model.userAliAcountArr count] > 0){
-        entity = [_model.userAliAcountArr objectAtIndex:0];
-    }
-    
-    CGFloat imgWidth = 60;
-    CGFloat imgHeight = imgWidth;
-    CGFloat commonLabelWidth = 140;
-    CGFloat commonLabelHeight = 22;
-    if(entity.userali_type == UserAliCount_Type_Submit && entity){
-        CGFloat yOffset = 35;
-        WXUIImageView *imgView = [[WXUIImageView alloc] init];
-        imgView.frame = CGRectMake((IPHONE_SCREEN_WIDTH-imgWidth)/2, yOffset, imgWidth, imgHeight);
-        [imgView setImage:[UIImage imageNamed:@"UserWithdrawals.png"]];
-        [footerView addSubview:imgView];
-        
-        yOffset += imgHeight+18;
-        WXUILabel *nameLabel = [[WXUILabel alloc] init];
-        nameLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-commonLabelWidth)/2, yOffset, commonLabelWidth, commonLabelHeight);
-        [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setText:@"正在审核中..."];
-        [nameLabel setTextAlignment:NSTextAlignmentCenter];
-        [nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [nameLabel setFont:WXFont(17.0)];
-        [footerView addSubview:nameLabel];
-        
-        [submitBtn setEnabled:NO];
-    }
-    
-    if(entity.userali_type == UserAliCount_Type_Failed){
-        CGFloat yOffset = 35;
-        WXUIImageView *imgView = [[WXUIImageView alloc] init];
-        imgView.frame = CGRectMake((IPHONE_SCREEN_WIDTH-imgWidth)/2, yOffset, imgWidth, imgHeight);
-        [imgView setImage:[UIImage imageNamed:@"UserAliAccountFailed.png"]];
-        [footerView addSubview:imgView];
-        
-        yOffset += imgHeight+18;
-        WXUILabel *nameLabel = [[WXUILabel alloc] init];
-        nameLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-commonLabelWidth)/2, yOffset, commonLabelWidth, commonLabelHeight);
-        [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setText:@"审核失败..."];
-        [nameLabel setTextAlignment:NSTextAlignmentCenter];
-        [nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [nameLabel setFont:WXFont(17.0)];
-        [footerView addSubview:nameLabel];
-        
-        [submitBtn setEnabled:YES];
-    }
-    
-    if(entity.userali_type == UserAliCount_Type_Succeed && entity){
-        CGFloat yOffset = 25;
-        CGFloat xOffset = 8;
-        CGFloat labelWidth = IPHONE_SCREEN_WIDTH-2*xOffset;
-        CGFloat labelHeight = commonLabelHeight;
-        WXUILabel *accountName = [[WXUILabel alloc] init];
-        accountName.frame = CGRectMake(xOffset, yOffset, labelWidth, labelHeight);
-        [accountName setBackgroundColor:[UIColor clearColor]];
-        [accountName setText:[NSString stringWithFormat:@"账户名:%@",entity.aliName]];
-        [accountName setTextAlignment:NSTextAlignmentLeft];
-        [accountName setTextColor:WXColorWithInteger(0x5c615d)];
-        [accountName setFont:WXFont(14.0)];
-        [footerView addSubview:accountName];
-        
-        yOffset += labelHeight+10;
-        WXUILabel *accountType = [[WXUILabel alloc] init];
-        accountType.frame = CGRectMake(xOffset, yOffset, labelWidth, labelHeight);
-        [accountType setBackgroundColor:[UIColor clearColor]];
-        [accountType setText:@"账户类型:支付宝"];
-        [accountType setTextAlignment:NSTextAlignmentLeft];
-        [accountType setTextColor:WXColorWithInteger(0x5c615d)];
-        [accountType setFont:WXFont(14.0)];
-        [footerView addSubview:accountType];
-        
-        yOffset += labelHeight+10;
-        WXUILabel *accountInfo = [[WXUILabel alloc] init];
-        accountInfo.frame = CGRectMake(xOffset, yOffset, labelWidth, labelHeight);
-        [accountInfo setBackgroundColor:[UIColor clearColor]];
-        [accountInfo setText:[NSString stringWithFormat:@"收款账户:%@",entity.aliCount]];
-        [accountInfo setTextAlignment:NSTextAlignmentLeft];
-        [accountInfo setTextColor:WXColorWithInteger(0x5c615d)];
-        [accountInfo setFont:WXFont(14.0)];
-        [footerView addSubview:accountInfo];
-        
-        [submitBtn setEnabled:YES];
-        [submitBtn setTitle:@"重新绑定账户" forState:UIControlStateNormal];
-    }
-    
-    return footerView;
-}
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return Row_UserMoneyInvalid;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = UserMoneyShowCellHeight;
-    if(indexPath.row == 1){
+    if(indexPath.row == Row_UserMoneyHistory){
         height = UserMoneyInfoCellHeight;
+    }
+    if(indexPath.row == Row_UserAliAccountState){
+        height = UserAliAccountStateCellHeight;
     }
     return height;
 }
 
+//账户提现
 -(WXUITableViewCell*)tableViewForUserMoneyShowCell{
     static NSString *identfier = @"userMoneyShowCell";
     UserMoneyShowCell *cell = [_tableView dequeueReusableCellWithIdentifier:identfier];
@@ -206,7 +115,7 @@
     [cell load];
     return cell;
 }
-
+//提现记录
 -(WXUITableViewCell*)tableViewForUserMoneyInfoCell{
     static NSString *identfier = @"userMoneyInfoCell";
     UserMoneyInfoCell *cell = [_tableView dequeueReusableCellWithIdentifier:identfier];
@@ -217,16 +126,32 @@
     [cell load];
     return cell;
 }
+//支付宝状态
+-(WXUITableViewCell*)tableViewForAliAccountStateCell{
+    static NSString *identfier = @"aliAccountStateCell";
+    UserAliAccountStateCell *cell = [_tableView dequeueReusableCellWithIdentifier:identfier];
+    if(!cell){
+        cell = [[UserAliAccountStateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identfier];
+    }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setCellInfo:entity];
+    [cell load];
+    [cell setDelegate:self];
+    return cell;
+}
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXUITableViewCell *cell = nil;
     NSInteger row = indexPath.row;
     switch (row) {
-        case 0:
+        case Row_UserMoneyShow:
             cell = [self tableViewForUserMoneyShowCell];
             break;
-        case 1:
+        case Row_UserMoneyHistory:
             cell = [self tableViewForUserMoneyInfoCell];
+            break;
+        case Row_UserAliAccountState:
+            cell = [self tableViewForAliAccountStateCell];
             break;
         default:
             break;
@@ -236,13 +161,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UserMoneyDrawVC *moneyVC = [[UserMoneyDrawVC alloc] init];
-    [self.wxNavigationController pushViewController:moneyVC];
+    if(indexPath.row == Row_UserMoneyShow){
+        UserMoneyDrawVC *moneyVC = [[UserMoneyDrawVC alloc] init];
+        [self.wxNavigationController pushViewController:moneyVC];
+    }
 }
 
 #pragma mark aliaccount
 -(void)searchUserAliPayAccountSucceed{
     [self unShowWaitView];
+    if([_model.userAliAcountArr count] > 0){
+        entity = [_model.userAliAcountArr objectAtIndex:0];
+    }
     [_tableView reloadData];
 }
 
@@ -266,10 +196,28 @@
     [self.wxNavigationController pushViewController:cloudVC];
 }
 
--(void)submitBtnClicked{
-    ConfirmUserAliPayVC *comfirmVC = [[ConfirmUserAliPayVC alloc] init];
-    comfirmVC.titleString = @"验证信息";
-    [self.wxNavigationController pushViewController:comfirmVC];
+-(void)userSubmitAliAccountBtnClicked:(id)sender{
+    UserAliEntity *ent = sender;
+    if(ent && ent.userali_type == UserAliCount_Type_Failed){
+        ConfirmUserAliPayVC *comfirmVC = [[ConfirmUserAliPayVC alloc] init];
+        comfirmVC.titleString = @"验证信息";
+        comfirmVC.aliAcount = ent.aliCount;
+        comfirmVC.userName = ent.aliName;
+        comfirmVC.confirmType = Confirm_Type_Change;
+        [self.wxNavigationController pushViewController:comfirmVC];
+    }
+    if(!ent){
+        ConfirmUserAliPayVC *comfirmVC = [[ConfirmUserAliPayVC alloc] init];
+        comfirmVC.titleString = @"验证信息";
+        [self.wxNavigationController pushViewController:comfirmVC];
+    }
+    if(ent && ent.userali_type == UserAliCount_Type_Succeed){
+        ConfirmUserAliPayVC *comfirmVC = [[ConfirmUserAliPayVC alloc] init];
+        comfirmVC.titleString = @"修改账户信息";
+        comfirmVC.aliAcount = ent.aliCount;
+        comfirmVC.userName = ent.aliName;
+        [self.wxNavigationController pushViewController:comfirmVC];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

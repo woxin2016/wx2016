@@ -24,11 +24,10 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setCSTTitle:@"提现"];
-    [self setBackgroundColor:[UIColor grayColor]];
     
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 0, Size.width, Size.height);
-    [_tableView setBackgroundColor:[UIColor grayColor]];
+    [_tableView setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
     [_tableView setDataSource:self];
     [_tableView setDelegate:self];
     [self addSubview:_tableView];
@@ -39,7 +38,7 @@
     CGFloat height = 240;
     UIView *footerView = [[UIView alloc] init];
     footerView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, height);
-    [footerView setBackgroundColor:[UIColor grayColor]];
+    [footerView setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
     
     CGFloat yOffset = 10;
     CGFloat xOffset = 12;
@@ -49,28 +48,36 @@
     [nameLabel setBackgroundColor:[UIColor clearColor]];
     [nameLabel setText:@"温馨提示:"];
     [nameLabel setTextAlignment:NSTextAlignmentLeft];
-    [nameLabel setTextColor:WXColorWithInteger(0x000000)];
-    [nameLabel setFont:WXFont(18.0)];
+    [nameLabel setTextColor:WXColorWithInteger(0xf74f35)];
+    [nameLabel setFont:WXFont(14.0)];
     [footerView addSubview:nameLabel];
     
-    yOffset += nameHeight;
-    CGFloat infoHeight = 120;
+    yOffset += nameHeight+7;
+    CGFloat infoHeight = 100;
+    NSString *infoString = @"1.每次提现金额需≥20元,否则不能提现。\n2.在收到您的提现申请后，我们会在1-3个工作日内将您的提现金额转到您的提现账户，如遇节假日，则顺延。\n3.如果您在提现过程中出现任何问题，请致电我们的客服: 0755-61665888";
     WXUILabel *infoLabel = [[WXUILabel alloc] init];
     infoLabel.frame = CGRectMake(xOffset, yOffset, IPHONE_SCREEN_WIDTH-2*xOffset, infoHeight);
     [infoLabel setBackgroundColor:[UIColor clearColor]];
-    [infoLabel setText:@"1.每次提现金额需≥20元,否则不能提现。\n2.在收到您的提现申请后，我们会在1-3个工作日内将您的提现金额转到您的提现账户，如遇节假日，则顺延。\n3.如果您在提现过程中出现任何问题，请致电我们的客服: 0755-61665888"];
+    [infoLabel setText:infoString];
     [infoLabel setTextAlignment: NSTextAlignmentLeft];
     [infoLabel setTextColor:WXColorWithInteger(0x000000)];
     [infoLabel setFont:WXFont(12.0)];
     [infoLabel setNumberOfLines:0];
     [footerView addSubview:infoLabel];
+    //行间距
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:infoString];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:3];//调整行间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [infoString length])];
+    infoLabel.attributedText = attributedString;
+    [infoLabel sizeToFit];
     
     yOffset += infoHeight+35;
     CGFloat btnWidth = IPHONE_SCREEN_WIDTH*3/4;
     CGFloat btnHeight = 40;
     WXUIButton *submitBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     submitBtn.frame = CGRectMake((IPHONE_SCREEN_WIDTH-btnWidth)/2, yOffset, btnWidth, btnHeight);
-    [submitBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
+    [submitBtn setBackgroundColor:WXColorWithInteger(AllBaseColor)];
     [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
     [submitBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
     [submitBtn addTarget:self action:@selector(submitUserDrawMoney) forControlEvents:UIControlEventTouchUpInside];

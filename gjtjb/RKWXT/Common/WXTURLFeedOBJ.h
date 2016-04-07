@@ -100,6 +100,9 @@ typedef enum {
     //收藏
     WXT_UrlFeed_Type_New_PayAttention,
     
+    //云票
+    WXT_UrlFeed_Type_New_RechargeCt,  //云票充值
+    
     WXT_UrlFeed_Type_Invalid,
 }WXT_UrlFeed_Type;
 

@@ -8,13 +8,12 @@
 
 #import "WXUITableViewCell.h"
 
-#define UserMoneyDrawCellHeight (40)
+#define UserMoneyDrawCellHeight (42)
 
 @protocol UserMoneyDrawCellDelegate;
 @interface UserMoneyDrawCell : WXUITableViewCell
 //默认为100
 @property (nonatomic,readonly) WXUITextField *textField;
-@property (nonatomic,strong) NSString *alertText;
 @property (nonatomic,weak) id<UserMoneyDrawCellDelegate>delegate;
 @end
 

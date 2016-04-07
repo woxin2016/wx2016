@@ -38,6 +38,11 @@
         [label setTextColor:WXColorWithInteger(0x9c9c9c)];
         [label setFont:WXFont(12.0)];
         [self.contentView addSubview:label];
+        
+        WXUILabel *lineLable = [[WXUILabel alloc] init];
+        lineLable.frame = CGRectMake(0, UserMoneyShowCellHeight-0.5, IPHONE_SCREEN_WIDTH, 0.5);
+        [lineLable setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
+        [self.contentView addSubview:lineLable];
     }
     return self;
 }

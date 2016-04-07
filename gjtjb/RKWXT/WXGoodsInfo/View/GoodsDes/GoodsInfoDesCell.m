@@ -209,33 +209,8 @@
         }
     }
 
-//    if (self.stockEntity.userCut) {     //有提成
-//        [usercutBtn setHidden:NO];
-//         usercutBtn.frame = rect;
-//    }else{
-//        [usercutBtn setHidden:YES];
-//        carriageBtn.frame = usercutBtn.frame;
-//        redPacketBtn.frame = carriageBtn.frame;
-//    }
-//    
-//    GoodsInfoEntity *entity = self.cellInfo;
-//    if(entity.postage == Goods_Postage_None){  //包邮
-//        [carriageBtn setHidden:NO];
-//        CGFloat xOffset = CGRectGetMaxX(usercutBtn.frame) + 10;
-//         carriageBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
-//    }else{
-//        [carriageBtn setHidden:YES];
-//         redPacketBtn.frame = carriageBtn.frame;
-//    }
-//    
-//    // 提成  包邮  使用红包
-//    if (self.stockEntity.redPacket) {   // 可以使用红包
-//        [redPacketBtn setHidden:NO];
-//        CGFloat xOffset = CGRectGetMaxX(carriageBtn.frame) + 10;
-//        redPacketBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
-//    }else{
-//        [redPacketBtn setHidden:YES];
-//    }
+
+
     
     if (!self.stockEntity.userCut && !self.stockEntity.redPacket && entity.postage == Goods_Postage_Have) {
         topView.hidden = YES;

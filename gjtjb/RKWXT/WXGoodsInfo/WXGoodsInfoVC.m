@@ -259,7 +259,7 @@
             }
             break;
         case GoodsInfo_Section_GoodsInfo:
-            row = [_model.attrArr count];
+            row = 1;
             break;
         default:
             break;
@@ -646,7 +646,6 @@
     if ([_model.sellerArr  count] > 0) {
         entity = [_model.sellerArr objectAtIndex:0];
     }
-    
     shopPhone = entity.sellerPhone;
     [self showAlertView:shopPhone];
 }

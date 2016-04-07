@@ -29,7 +29,7 @@
         [nameLabel setBackgroundColor:[UIColor clearColor]];
         [nameLabel setTextAlignment:NSTextAlignmentCenter];
         [nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [nameLabel setFont:WXFont(14.0)];
+        [nameLabel setFont:WXFont(13.0)];
         [self.contentView addSubview:nameLabel];
         
         timeLabel = [[WXUILabel alloc] init];
@@ -37,7 +37,7 @@
         [timeLabel setBackgroundColor:[UIColor clearColor]];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
         [timeLabel setTextColor:WXColorWithInteger(0x000000)];
-        [timeLabel setFont:WXFont(12.0)];
+        [timeLabel setFont:WXFont(13.0)];
         [self.contentView addSubview:timeLabel];
         
         moneyLabel = [[WXUILabel alloc] init];
@@ -45,7 +45,7 @@
         [moneyLabel setBackgroundColor:[UIColor clearColor]];
         [moneyLabel setTextAlignment:NSTextAlignmentCenter];
         [moneyLabel setTextColor:WXColorWithInteger(0x000000)];
-        [moneyLabel setFont:WXFont(15.0)];
+        [moneyLabel setFont:WXFont(18.0)];
         [self.contentView addSubview:moneyLabel];
     }
     return self;

@@ -82,7 +82,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0;
     if(indexPath.section == 0){
-        height = IPHONE_SCREEN_WIDTH/3;
+        height = IPHONE_SCREEN_WIDTH/2;
     }else{
         height = ([commonImgArr count]/3+([commonImgArr count]%3>0?1:0))*IPHONE_SCREEN_WIDTH/3;
     }

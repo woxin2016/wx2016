@@ -26,17 +26,18 @@
         [nameLabel setBackgroundColor:[UIColor clearColor]];
         [nameLabel setText:@"提现:"];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
-        [nameLabel setTextColor:WXColorWithInteger(0x484848)];
+        [nameLabel setTextColor:WXColorWithInteger(0x5c615d)];
         [nameLabel setFont:WXFont(14.0)];
         [self.contentView addSubview:nameLabel];
         
         xOffset += nameWidth;
-        _textField = [[WXUITextField alloc] initWithFrame:CGRectMake(xOffset, (UserMoneyDrawCellHeight-30)/2+5, IPHONE_SCREEN_WIDTH-xOffset, height)];
+        _textField = [[WXUITextField alloc] init];
+        _textField.frame = CGRectMake(xOffset, (UserMoneyDrawCellHeight-height)/2, 200, height);
         [_textField setTextAlignment:NSTextAlignmentLeft];
         [_textField setReturnKeyType:UIReturnKeyDone];
-        [_textField setTextColor:WXColorWithInteger(0x484848)];
+        [_textField setTextColor:WXColorWithInteger(0x9c9c9c)];
         [_textField setFont:WXFont(14.0)];
-        [_textField setPlaceHolder:@"请输入您需要提现的金额" color:WXColorWithInteger(0x484848)];
+        [_textField setPlaceHolder:@"请输入您需要提现的金额" color:WXColorWithInteger(0x9c9c9c)];
         [_textField addTarget:self action:@selector(textFieldDone:)  forControlEvents:UIControlEventEditingDidEndOnExit];
         [_textField addTarget:self action:@selector(textValueDidChanged:) forControlEvents:UIControlEventEditingChanged];
         [_textField setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
@@ -46,7 +47,6 @@
 }
 
 -(void)load{
-    [_textField setPlaceholder:_alertText];
     NSString *phone = self.cellInfo;
     if(phone){
         [_textField setText:phone];

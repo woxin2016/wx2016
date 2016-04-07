@@ -253,6 +253,9 @@
         case WXT_UrlFeed_Type_New_PayAttention:
             url = @"/stores.php";
             break;
+        case WXT_UrlFeed_Type_New_RechargeCt:
+            url = @"/xnb_card.php";
+            break;
         default:
             break;
     }
