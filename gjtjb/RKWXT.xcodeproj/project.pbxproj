@@ -483,6 +483,21 @@
 		12B1F6961B789138009FBA6D /* RechargeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F6951B789138009FBA6D /* RechargeListVC.m */; };
 		12B1F6991B789372009FBA6D /* RechargeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F6981B789372009FBA6D /* RechargeListCell.m */; };
 		12B3FE311BB10807001A45E6 /* PersonalInfoBgViewImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12B3FE301BB10807001A45E6 /* PersonalInfoBgViewImg@2x.png */; };
+		12BBED4B1CB4992200EF6906 /* CloudTicketListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED4A1CB4992200EF6906 /* CloudTicketListVC.m */; };
+		12BBED4E1CB499A700EF6906 /* WeekCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED4D1CB499A700EF6906 /* WeekCTListVC.m */; };
+		12BBED511CB499BD00EF6906 /* MonthCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED501CB499BD00EF6906 /* MonthCTListVC.m */; };
+		12BBED541CB499CC00EF6906 /* AllCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED531CB499CC00EF6906 /* AllCTListVC.m */; };
+		12BBED571CB49B7A00EF6906 /* UserCloudTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED561CB49B7A00EF6906 /* UserCloudTicketModel.m */; };
+		12BBED5A1CB49BF900EF6906 /* UserCloudTicketEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED591CB49BF900EF6906 /* UserCloudTicketEntity.m */; };
+		12BBED5D1CB4A04C00EF6906 /* UserCloudTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED5C1CB4A04C00EF6906 /* UserCloudTicketCell.m */; };
+		12BBED631CB4A4BC00EF6906 /* RechargeCloudTicketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED621CB4A4BC00EF6906 /* RechargeCloudTicketVC.m */; };
+		12BBED691CB4BB2700EF6906 /* UserMoneyShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED681CB4BB2700EF6906 /* UserMoneyShowVC.m */; };
+		12BBED6C1CB4BD7500EF6906 /* UserMoneyShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */; };
+		12BBED6F1CB4BD8100EF6906 /* UserMoneyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */; };
+		12BBED751CB4DE6B00EF6906 /* UserMoneyDrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED741CB4DE6B00EF6906 /* UserMoneyDrawVC.m */; };
+		12BBED781CB4E07500EF6906 /* UserMoneyDrawShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED771CB4E07500EF6906 /* UserMoneyDrawShowCell.m */; };
+		12BBED7B1CB4E10A00EF6906 /* UserMoneyDrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED7A1CB4E10A00EF6906 /* UserMoneyDrawCell.m */; };
+		12BBED7F1CB4E9EB00EF6906 /* UserCommonShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED7E1CB4E9EB00EF6906 /* UserCommonShowCell.m */; };
 		12BC72571C78531700FC6A1C /* MyClientEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BC720B1C78531700FC6A1C /* MyClientEntity.m */; };
 		12BC72581C78531700FC6A1C /* MyClientInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BC720D1C78531700FC6A1C /* MyClientInfoModel.m */; };
 		12BC72591C78531700FC6A1C /* MyClientPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BC720F1C78531700FC6A1C /* MyClientPersonModel.m */; };
@@ -589,6 +604,9 @@
 		12D55A451AC2BD8800F51F97 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D55A441AC2BD8800F51F97 /* CoreTelephony.framework */; };
 		12D5C4841CAE00680090BD5F /* HomeClassifyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D5C4831CAE00680090BD5F /* HomeClassifyInfoCell.m */; };
 		12D5C4871CAE0A2C0090BD5F /* HomeClassifyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D5C4861CAE0A2C0090BD5F /* HomeClassifyInfoView.m */; };
+		12DDE7381CB5E908006BBB1E /* CloudTicketImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */; };
+		12DDE7391CB5E908006BBB1E /* UserMoneyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */; };
+		12DDE73B1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */; };
 		12F180AB1B44D54900B9A80D /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F180AA1B44D54900B9A80D /* PushConfig.plist */; };
 		12F180B91B45190800B9A80D /* Sql_JpushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180B81B45190800B9A80D /* Sql_JpushData.m */; };
 		12F180BF1B45219300B9A80D /* JPushMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180BC1B45219300B9A80D /* JPushMessageModel.m */; };
@@ -1804,6 +1822,36 @@
 		12B1F6971B789372009FBA6D /* RechargeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeListCell.h; sourceTree = "<group>"; };
 		12B1F6981B789372009FBA6D /* RechargeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeListCell.m; sourceTree = "<group>"; };
 		12B3FE301BB10807001A45E6 /* PersonalInfoBgViewImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PersonalInfoBgViewImg@2x.png"; sourceTree = "<group>"; };
+		12BBED491CB4992200EF6906 /* CloudTicketListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudTicketListVC.h; sourceTree = "<group>"; };
+		12BBED4A1CB4992200EF6906 /* CloudTicketListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudTicketListVC.m; sourceTree = "<group>"; };
+		12BBED4C1CB499A700EF6906 /* WeekCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCTListVC.h; sourceTree = "<group>"; };
+		12BBED4D1CB499A700EF6906 /* WeekCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCTListVC.m; sourceTree = "<group>"; };
+		12BBED4F1CB499BD00EF6906 /* MonthCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCTListVC.h; sourceTree = "<group>"; };
+		12BBED501CB499BD00EF6906 /* MonthCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCTListVC.m; sourceTree = "<group>"; };
+		12BBED521CB499CC00EF6906 /* AllCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCTListVC.h; sourceTree = "<group>"; };
+		12BBED531CB499CC00EF6906 /* AllCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCTListVC.m; sourceTree = "<group>"; };
+		12BBED551CB49B7A00EF6906 /* UserCloudTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketModel.h; sourceTree = "<group>"; };
+		12BBED561CB49B7A00EF6906 /* UserCloudTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketModel.m; sourceTree = "<group>"; };
+		12BBED581CB49BF900EF6906 /* UserCloudTicketEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketEntity.h; sourceTree = "<group>"; };
+		12BBED591CB49BF900EF6906 /* UserCloudTicketEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketEntity.m; sourceTree = "<group>"; };
+		12BBED5B1CB4A04C00EF6906 /* UserCloudTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketCell.h; sourceTree = "<group>"; };
+		12BBED5C1CB4A04C00EF6906 /* UserCloudTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketCell.m; sourceTree = "<group>"; };
+		12BBED611CB4A4BC00EF6906 /* RechargeCloudTicketVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCloudTicketVC.h; sourceTree = "<group>"; };
+		12BBED621CB4A4BC00EF6906 /* RechargeCloudTicketVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCloudTicketVC.m; sourceTree = "<group>"; };
+		12BBED671CB4BB2700EF6906 /* UserMoneyShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowVC.h; sourceTree = "<group>"; };
+		12BBED681CB4BB2700EF6906 /* UserMoneyShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowVC.m; sourceTree = "<group>"; };
+		12BBED6A1CB4BD7500EF6906 /* UserMoneyShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowCell.h; sourceTree = "<group>"; };
+		12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowCell.m; sourceTree = "<group>"; };
+		12BBED6D1CB4BD8100EF6906 /* UserMoneyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoCell.h; sourceTree = "<group>"; };
+		12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoCell.m; sourceTree = "<group>"; };
+		12BBED731CB4DE6B00EF6906 /* UserMoneyDrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawVC.h; sourceTree = "<group>"; };
+		12BBED741CB4DE6B00EF6906 /* UserMoneyDrawVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawVC.m; sourceTree = "<group>"; };
+		12BBED761CB4E07500EF6906 /* UserMoneyDrawShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawShowCell.h; sourceTree = "<group>"; };
+		12BBED771CB4E07500EF6906 /* UserMoneyDrawShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawShowCell.m; sourceTree = "<group>"; };
+		12BBED791CB4E10A00EF6906 /* UserMoneyDrawCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawCell.h; sourceTree = "<group>"; };
+		12BBED7A1CB4E10A00EF6906 /* UserMoneyDrawCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawCell.m; sourceTree = "<group>"; };
+		12BBED7D1CB4E9EB00EF6906 /* UserCommonShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommonShowCell.h; sourceTree = "<group>"; };
+		12BBED7E1CB4E9EB00EF6906 /* UserCommonShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommonShowCell.m; sourceTree = "<group>"; };
 		12BC720A1C78531700FC6A1C /* MyClientEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientEntity.h; sourceTree = "<group>"; };
 		12BC720B1C78531700FC6A1C /* MyClientEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientEntity.m; sourceTree = "<group>"; };
 		12BC720C1C78531700FC6A1C /* MyClientInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientInfoModel.h; sourceTree = "<group>"; };
@@ -1983,6 +2031,9 @@
 		12D5C4831CAE00680090BD5F /* HomeClassifyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeClassifyInfoCell.m; sourceTree = "<group>"; };
 		12D5C4851CAE0A2C0090BD5F /* HomeClassifyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeClassifyInfoView.h; sourceTree = "<group>"; };
 		12D5C4861CAE0A2C0090BD5F /* HomeClassifyInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeClassifyInfoView.m; sourceTree = "<group>"; };
+		12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloudTicketImg@2x.png"; sourceTree = "<group>"; };
+		12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserMoneyImg@2x.png"; sourceTree = "<group>"; };
+		12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserAliAccountFailed@2x.png"; sourceTree = "<group>"; };
 		12F180AA1B44D54900B9A80D /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		12F180B71B45190800B9A80D /* Sql_JpushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sql_JpushData.h; sourceTree = "<group>"; };
 		12F180B81B45190800B9A80D /* Sql_JpushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sql_JpushData.m; sourceTree = "<group>"; };
@@ -2798,6 +2849,7 @@
 		120A2BD41AB135DD006A28B1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				12BBED7C1CB4E9D500EF6906 /* UserMoney */,
 				12F5722B1B42745700128294 /* NewSystemSetting */,
 				12F3CC831B1DF74600E64DE4 /* CallCell */,
 				12F3CC841B1DF74600E64DE4 /* MoneyCell */,
@@ -4547,6 +4599,7 @@
 		127321131C7ABDE100C8D1D7 /* withdrawals */ = {
 			isa = PBXGroup;
 			children = (
+				12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */,
 				127321141C7ABDE100C8D1D7 /* JuniorListUserHeadImg@2x.png */,
 				127321151C7ABDE100C8D1D7 /* JuniorNumChampion@2x.png */,
 				127321161C7ABDE100C8D1D7 /* JuniorNumSecond@2x.png */,
@@ -4850,6 +4903,146 @@
 				12989F8C1B900F0100D0AA9F /* FTPManager.m */,
 			);
 			path = Ftp;
+			sourceTree = "<group>";
+		};
+		12BBED451CB498B100EF6906 /* CloudTicket */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED701CB4DE3200EF6906 /* MoneyDraw */,
+				12BBED641CB4BAE400EF6906 /* UserMoney */,
+				12BBED5E1CB4A46200EF6906 /* RechargeCloudTicket */,
+				12BBED461CB498F700EF6906 /* CloudTicketList */,
+			);
+			path = CloudTicket;
+			sourceTree = "<group>";
+		};
+		12BBED461CB498F700EF6906 /* CloudTicketList */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED491CB4992200EF6906 /* CloudTicketListVC.h */,
+				12BBED4A1CB4992200EF6906 /* CloudTicketListVC.m */,
+				12BBED471CB4990800EF6906 /* Model */,
+				12BBED481CB4990800EF6906 /* View */,
+			);
+			path = CloudTicketList;
+			sourceTree = "<group>";
+		};
+		12BBED471CB4990800EF6906 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED551CB49B7A00EF6906 /* UserCloudTicketModel.h */,
+				12BBED561CB49B7A00EF6906 /* UserCloudTicketModel.m */,
+				12BBED581CB49BF900EF6906 /* UserCloudTicketEntity.h */,
+				12BBED591CB49BF900EF6906 /* UserCloudTicketEntity.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12BBED481CB4990800EF6906 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED4C1CB499A700EF6906 /* WeekCTListVC.h */,
+				12BBED4D1CB499A700EF6906 /* WeekCTListVC.m */,
+				12BBED4F1CB499BD00EF6906 /* MonthCTListVC.h */,
+				12BBED501CB499BD00EF6906 /* MonthCTListVC.m */,
+				12BBED521CB499CC00EF6906 /* AllCTListVC.h */,
+				12BBED531CB499CC00EF6906 /* AllCTListVC.m */,
+				12BBED5B1CB4A04C00EF6906 /* UserCloudTicketCell.h */,
+				12BBED5C1CB4A04C00EF6906 /* UserCloudTicketCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12BBED5E1CB4A46200EF6906 /* RechargeCloudTicket */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED5F1CB4A47700EF6906 /* Model */,
+				12BBED601CB4A47700EF6906 /* View */,
+			);
+			path = RechargeCloudTicket;
+			sourceTree = "<group>";
+		};
+		12BBED5F1CB4A47700EF6906 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12BBED601CB4A47700EF6906 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED611CB4A4BC00EF6906 /* RechargeCloudTicketVC.h */,
+				12BBED621CB4A4BC00EF6906 /* RechargeCloudTicketVC.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12BBED641CB4BAE400EF6906 /* UserMoney */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED671CB4BB2700EF6906 /* UserMoneyShowVC.h */,
+				12BBED681CB4BB2700EF6906 /* UserMoneyShowVC.m */,
+				12BBED651CB4BAF500EF6906 /* Model */,
+				12BBED661CB4BAF500EF6906 /* View */,
+			);
+			path = UserMoney;
+			sourceTree = "<group>";
+		};
+		12BBED651CB4BAF500EF6906 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12BBED661CB4BAF500EF6906 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED6A1CB4BD7500EF6906 /* UserMoneyShowCell.h */,
+				12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */,
+				12BBED6D1CB4BD8100EF6906 /* UserMoneyInfoCell.h */,
+				12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12BBED701CB4DE3200EF6906 /* MoneyDraw */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED731CB4DE6B00EF6906 /* UserMoneyDrawVC.h */,
+				12BBED741CB4DE6B00EF6906 /* UserMoneyDrawVC.m */,
+				12BBED711CB4DE4100EF6906 /* Model */,
+				12BBED721CB4DE4100EF6906 /* View */,
+			);
+			path = MoneyDraw;
+			sourceTree = "<group>";
+		};
+		12BBED711CB4DE4100EF6906 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12BBED721CB4DE4100EF6906 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED761CB4E07500EF6906 /* UserMoneyDrawShowCell.h */,
+				12BBED771CB4E07500EF6906 /* UserMoneyDrawShowCell.m */,
+				12BBED791CB4E10A00EF6906 /* UserMoneyDrawCell.h */,
+				12BBED7A1CB4E10A00EF6906 /* UserMoneyDrawCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12BBED7C1CB4E9D500EF6906 /* UserMoney */ = {
+			isa = PBXGroup;
+			children = (
+				12BBED7D1CB4E9EB00EF6906 /* UserCommonShowCell.h */,
+				12BBED7E1CB4E9EB00EF6906 /* UserCommonShowCell.m */,
+			);
+			path = UserMoney;
 			sourceTree = "<group>";
 		};
 		12BC72071C78531700FC6A1C /* NewUserCut */ = {
@@ -5344,6 +5537,8 @@
 		12F3CC671B1DE82C00E64DE4 /* PersonImg */ = {
 			isa = PBXGroup;
 			children = (
+				12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */,
+				12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */,
 				122D63AA1C3F465A0086AAB8 /* MyCollectionImg@2x.png */,
 				122D63AB1C3F465A0086AAB8 /* MyCutImg@2x.png */,
 				122D63AC1C3F465A0086AAB8 /* MyQuestionImg@2x.png */,
@@ -5715,6 +5910,7 @@
 		2563B3E61AAAD74000C04227 /* RKWXT */ = {
 			isa = PBXGroup;
 			children = (
+				12BBED451CB498B100EF6906 /* CloudTicket */,
 				12CEB55F1CAA0D4000276119 /* SellerChange */,
 				DD24CF5F1CA2305000A5B9ED /* WXCollectionGoods */,
 				1273210F1C7AB7F300C8D1D7 /* UMeng */,
@@ -6987,6 +7183,7 @@
 				DD136AA51C97FD6C0019932E /* storeCart@2x.png in Resources */,
 				1241E53B1AE9D89B00811D3F /* *N.png in Resources */,
 				1241E5381AE9D89B00811D3F /* HangupCall@2x.png in Resources */,
+				12DDE7381CB5E908006BBB1E /* CloudTicketImg@2x.png in Resources */,
 				DD35D8601C841AF700422F5B /* T_BackWhite@2x.png in Resources */,
 				124535571AE9D146004198C9 /* sign34@2x.png in Resources */,
 				12F4227E1B1D5A2900643DD7 /* AddressCircle@2x.png in Resources */,
@@ -7073,6 +7270,7 @@
 				12D52BB91AC2EF4400C5CE71 /* dtmf-3.aif in Resources */,
 				1241E5611AE9D91400811D3F /* LoadDataLogo@2x.png in Resources */,
 				DD35D8731C84258400422F5B /* GoodsListDownImg@2x.png in Resources */,
+				12DDE73B1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png in Resources */,
 				1241E54C1AE9D89B00811D3F /* 7S@2x.png in Resources */,
 				124535411AE9D146004198C9 /* sign13@2x.png in Resources */,
 				1241E5321AE9D89B00811D3F /* CallBackBgImg.jpg in Resources */,
@@ -7188,6 +7386,7 @@
 				12C875631CACC5FC00DF0B5C /* UserLikeImg@2x.png in Resources */,
 				DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */,
 				127321261C7ABDE100C8D1D7 /* UserThirdClientImg@2x.png in Resources */,
+				12DDE7391CB5E908006BBB1E /* UserMoneyImg@2x.png in Resources */,
 				DD89B55E1C89794E0059F097 /* LMCarriageImg@2x.png in Resources */,
 				12BD30F81B3E79D700170316 /* OrderAlipayImg@2x.png in Resources */,
 				DD2572151C9FCC62008D541E /* popover_background@2x.png in Resources */,
@@ -7349,6 +7548,7 @@
 				12CE12061C50AF5D00FF85FA /* WaitReceiveOrderStateCell.m in Sources */,
 				775843131AB95A300039B129 /* WXSingleSelectVC.m in Sources */,
 				12F422861B1D5CC500643DD7 /* AddressEntity.m in Sources */,
+				12BBED751CB4DE6B00EF6906 /* UserMoneyDrawVC.m in Sources */,
 				12F3CC8E1B1E020300E64DE4 /* PersonalMoneyCell.m in Sources */,
 				12F3CC8B1B1E00AF00E64DE4 /* PersonalOrderInfoCell.m in Sources */,
 				77D197621ABC246000FAA4CE /* RootViewController.m in Sources */,
@@ -7361,6 +7561,7 @@
 				DDA5B2D31C8EDFBF001180EE /* ShoppingCartView.m in Sources */,
 				122D63C21C3F567D0086AAB8 /* WXTFindCommonCell.m in Sources */,
 				775842FB1AB95A300039B129 /* UIImage+KIAdditions.m in Sources */,
+				12BBED5D1CB4A04C00EF6906 /* UserCloudTicketCell.m in Sources */,
 				120D015E1BBB91B5005CAA6C /* base64.m in Sources */,
 				775843281AB95A300039B129 /* WXUINavigationController.m in Sources */,
 				12F180BF1B45219300B9A80D /* JPushMessageModel.m in Sources */,
@@ -7399,6 +7600,7 @@
 				775842BD1AB95A300039B129 /* WXGuidMaskView.m in Sources */,
 				7758432B1AB95A300039B129 /* WXUIScrollView.m in Sources */,
 				12F4228C1B1D61E100643DD7 /* AddressBaseInfoCell.m in Sources */,
+				12BBED511CB499BD00EF6906 /* MonthCTListVC.m in Sources */,
 				DD24CF621CA2306C00A5B9ED /* UserCollectionGoodsVC.m in Sources */,
 				12BC725D1C78531700FC6A1C /* MyClientMoneyCell.m in Sources */,
 				122842091C490F6300D76A6B /* GoodsOtherSellerCell.m in Sources */,
@@ -7443,6 +7645,7 @@
 				128672161B6A1857006391B2 /* WechatPayModel.m in Sources */,
 				775C58381ABA5F31005B6B40 /* KFLoger.m in Sources */,
 				122AB8341C3E384C00AC9DF5 /* UIScrollView+MJRefresh.m in Sources */,
+				12BBED5A1CB49BF900EF6906 /* UserCloudTicketEntity.m in Sources */,
 				12F963311B3D4BDF00FF6A3E /* SBJsonStreamParser.m in Sources */,
 				7758430E1AB95A300039B129 /* WXError.m in Sources */,
 				776CFFA81AB1257B000A1D84 /* ARLabel.m in Sources */,
@@ -7451,6 +7654,7 @@
 				775843551AB95FAC0039B129 /* NetTipDelay.m in Sources */,
 				12CE11F01C507E6100FF85FA /* OrderInfoContactShopCell.m in Sources */,
 				775843101AB95A300039B129 /* WXMutiScanView.m in Sources */,
+				12BBED6C1CB4BD7500EF6906 /* UserMoneyShowCell.m in Sources */,
 				122D64231C3F99C80086AAB8 /* MakeOrderUserInfoCell.m in Sources */,
 				775843C81AB9830F0039B129 /* WXBaseRemotImageView.m in Sources */,
 				775843C31AB971CF0039B129 /* WXTUIButton.m in Sources */,
@@ -7551,6 +7755,7 @@
 				775842B01AB95A300039B129 /* CustomMadeOBJ.m in Sources */,
 				126CA3F51AB2B74800E08A0B /* WXTUITabBarController.m in Sources */,
 				12F180C71B4524A800B9A80D /* JPushMessageCenterCell.m in Sources */,
+				12BBED691CB4BB2700EF6906 /* UserMoneyShowVC.m in Sources */,
 				12F5716A1B42253800128294 /* TenpayUtil.mm in Sources */,
 				123667581C44AA04000FAF70 /* WXUIViewController+WinningPopView.m in Sources */,
 				DD2498BB1C88312F0079DB5A /* CLassifySearchModel.m in Sources */,
@@ -7583,6 +7788,7 @@
 				12CE11E41C507D0600FF85FA /* OrderInfoUserAddressCell.m in Sources */,
 				12BC72621C78531700FC6A1C /* WXJuniorListModel.m in Sources */,
 				12F3B8851C9D35410082B5CA /* LuckyTimesModel.m in Sources */,
+				12BBED4E1CB499A700EF6906 /* WeekCTListVC.m in Sources */,
 				122AB8601C3E67EC00AC9DF5 /* GoodsStockView.m in Sources */,
 				123667431C44AA04000FAF70 /* LuckyOrderContactSellerCell.m in Sources */,
 				12F963351B3D4BDF00FF6A3E /* SBJsonStreamWriter.m in Sources */,
@@ -7615,6 +7821,7 @@
 				12CE12181C50B49000FF85FA /* HasDoneOrderMoneyCell.m in Sources */,
 				128221C41B184C3B004613BB /* ASIDataCompressor.m in Sources */,
 				775842F51AB95A300039B129 /* MessageInterceptor.m in Sources */,
+				12BBED4B1CB4992200EF6906 /* CloudTicketListVC.m in Sources */,
 				1228586C1C4F9C420089A369 /* ClassifyGoodsListCell.m in Sources */,
 				775843341AB95A300039B129 /* WXUITableViewController.m in Sources */,
 				12F3CC881B1DF77500E64DE4 /* PersonalInfoOrderListCell.m in Sources */,
@@ -7671,6 +7878,7 @@
 				122EFBDC1C4103D200CE0EA0 /* AllOrderListModel.m in Sources */,
 				121804321ACB90C7009DB7E7 /* FindCommonVC.m in Sources */,
 				77DB94381AAFF35F0021A816 /* ColorLabel.m in Sources */,
+				12BBED7F1CB4E9EB00EF6906 /* UserCommonShowCell.m in Sources */,
 				122EFBCE1C40FDD800CE0EA0 /* WaitReceiveOrderVC.m in Sources */,
 				12F572321B42766D00128294 /* T_SettingSwitchCell.m in Sources */,
 				DDB58F501AD3C6A2006248E9 /* WXTCallHistoryCell.m in Sources */,
@@ -7716,6 +7924,7 @@
 				77DB943B1AAFF3830021A816 /* UIView+Sizing.m in Sources */,
 				12CEB56F1CAA1CEA00276119 /* SellerChangeModel.m in Sources */,
 				775843141AB95A300039B129 /* WXButton.m in Sources */,
+				12BBED631CB4A4BC00EF6906 /* RechargeCloudTicketVC.m in Sources */,
 				DDA5B2D61C8EDFE2001180EE /* ShopPingCartModel.m in Sources */,
 				1228584E1C4F83950089A369 /* WaitPayOrderMoneyCell.m in Sources */,
 				122AB8321C3E384C00AC9DF5 /* MJRefreshHeaderView.m in Sources */,
@@ -7752,7 +7961,9 @@
 				12F963691C857B17000972E6 /* ShareInfoModel.m in Sources */,
 				120A2C121AB17038006A28B1 /* RechargeModel.m in Sources */,
 				122D63C81C3F8E460086AAB8 /* AllAreaDataModel.m in Sources */,
+				12BBED541CB499CC00EF6906 /* AllCTListVC.m in Sources */,
 				12F422891B1D5D8100643DD7 /* ManagerAddressVC.m in Sources */,
+				12BBED571CB49B7A00EF6906 /* UserCloudTicketModel.m in Sources */,
 				775842DF1AB95A300039B129 /* UIResponder+FirstResponder.m in Sources */,
 				12F180C01B45219300B9A80D /* JPushMsgEntity.m in Sources */,
 				12C8756F1CAD0F1800DF0B5C /* HomeClassifyTitleCell.m in Sources */,
@@ -7822,6 +8033,7 @@
 				775842BA1AB95A300039B129 /* WXUserDefault.m in Sources */,
 				122EFBD91C41034300CE0EA0 /* AllOrderListGoodsCell.m in Sources */,
 				122CD59C1CAA635C00A8366C /* SellerListEntity.m in Sources */,
+				12BBED781CB4E07500EF6906 /* UserMoneyDrawShowCell.m in Sources */,
 				122AB8CD1C3E6E9B00AC9DF5 /* MerchantImageCell.m in Sources */,
 				122D64261C3F99C80086AAB8 /* MakeOrderUserMsgTextFieldCell.m in Sources */,
 				122842051C48EF3500D76A6B /* HomePageSurpModel.m in Sources */,
@@ -7851,6 +8063,7 @@
 				775842EC1AB95A300039B129 /* CrystalNavigationView.m in Sources */,
 				7758430F1AB95A300039B129 /* WXMultiGuideView.m in Sources */,
 				1236674E1C44AA04000FAF70 /* LuckyGoodsEntity.m in Sources */,
+				12BBED7B1CB4E10A00EF6906 /* UserMoneyDrawCell.m in Sources */,
 				122875EB1C3CBB580058C86D /* T_Sqlite.m in Sources */,
 				128241481B60D062001EE0BD /* DownSheetModel.m in Sources */,
 				775842BF1AB95A300039B129 /* WXTapGuideView.m in Sources */,
@@ -7890,6 +8103,7 @@
 				12F963321B3D4BDF00FF6A3E /* SBJsonStreamParserAccumulator.m in Sources */,
 				775842E31AB95A300039B129 /* WXCpxBtnImgView.m in Sources */,
 				1236673E1C44AA04000FAF70 /* LuckyGoodsMakeOrderMoneyCell.m in Sources */,
+				12BBED6F1CB4BD8100EF6906 /* UserMoneyInfoCell.m in Sources */,
 				1203C2001B3E366600C402E3 /* OrderPayMoneyCell.m in Sources */,
 				12F422981B1D8A4000643DD7 /* InsertAddress.m in Sources */,
 				DD24CF671CA2397D00A5B9ED /* CollectionGoodsCell.m in Sources */,

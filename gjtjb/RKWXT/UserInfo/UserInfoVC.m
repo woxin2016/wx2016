@@ -209,6 +209,9 @@
         case PersonalInfo_SharkOrder:
             number = Address_Invalid;
             break;
+        case PersonalInfo_UserMoney:
+            number = UserMoneyInvalid;
+            break;
         case PersonalInfo_CutAndShare:
             number = User_Invalid;
             break;
@@ -341,16 +344,40 @@
             [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
         }
             break;
-        case User_Share:
-        {
-            [cell.imageView setImage:[UIImage imageNamed:@"SharkNewImg.png"]];
-            [cell.textLabel setText:@"我的奖品"];
-            [cell.textLabel setFont:WXFont(15.0)];
-            [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
-        }
-            break;
+//        case User_Share:
+//        {
+//            [cell.imageView setImage:[UIImage imageNamed:@"SharkNewImg.png"]];
+//            [cell.textLabel setText:@"我的奖品"];
+//            [cell.textLabel setFont:WXFont(15.0)];
+//            [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+//        }
+//            break;
         default:
             break;
+    }
+    return cell;
+}
+
+//云票
+-(WXTUITableViewCell*)tableViewForUserCloudTicketCell:(NSInteger)row{
+    static NSString *identifier = @"userCommonCell";
+    UserCommonShowCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[UserCommonShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
+    [cell.textLabel setFont:WXFont(15.0)];
+    [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+    if(row == UserCloudTicket){
+        [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
+        [cell.textLabel setText:@"我的云票"];
+        [cell setCellInfo:[NSString stringWithFormat:@"10000"]];
+        [cell load];
+    }else{
+        [cell.imageView setImage:[UIImage imageNamed:@"UserMoneyImg.png"]];
+        [cell.textLabel setText:@"我的现金"];
+        [cell setCellInfo:[NSString stringWithFormat:@"￥100"]];
+        [cell load];
     }
     return cell;
 }
@@ -405,6 +432,9 @@
         case PersonalInfo_SharkOrder:
             cell = [self tableViewForSharkOrderCell:row];
             break;
+        case PersonalInfo_UserMoney:
+            cell = [self tableViewForUserCloudTicketCell:row];
+            break;
         case PersonalInfo_CutAndShare:
             cell = [self tableViewForUserCutCellAtRow:row];
             break;
@@ -439,16 +469,28 @@
             }
         }
             break;
+        case PersonalInfo_UserMoney:
+        {
+            if(row == UserCloudTicket){
+                CloudTicketListVC *cloudVC = [[CloudTicketListVC alloc] init];
+                [self.wxNavigationController pushViewController:cloudVC];
+            }
+            if(row == UserAccountMoney){
+                UserMoneyShowVC *moneyVC = [[UserMoneyShowVC alloc] init];
+                [self.wxNavigationController pushViewController:moneyVC];
+            }
+        }
+            break;
         case PersonalInfo_CutAndShare:
         {
             if(row == User_Cut){
                 UserCollectionGoodsVC *collection = [[UserCollectionGoodsVC alloc]init];
                [self.wxNavigationController pushViewController:collection];
             }
-            if(row == User_Share){
-                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
-                [self.wxNavigationController pushViewController:orderListVC];
-            }
+//            if(row == User_Share){
+//                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
+//                [self.wxNavigationController pushViewController:orderListVC];
+//            }
         }
             break;
         case PersonalInfo_System:

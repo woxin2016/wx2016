@@ -14,6 +14,7 @@
 #import "PersonalMoneyCell.h"
 #import "PersonalCallCell.h"
 #import "UserInfoCommonCell.h"
+#import "UserCommonShowCell.h"
 
 #import "UserBalanceVC.h"
 #import "SignViewController.h"
@@ -24,10 +25,13 @@
 #import "WXHomeOrderListVC.h"
 #import "ShoppingCartVC.h"
 #import "ManagerAddressVC.h"
+#import "CloudTicketListVC.h"
+#import "UserMoneyShowVC.h"
 
 enum{
     PersonalInfo_Order = 0,
     PersonalInfo_SharkOrder,
+    PersonalInfo_UserMoney,
     PersonalInfo_CutAndShare,
     PersonalInfo_System,
     
@@ -46,6 +50,14 @@ enum{
 enum{
    Address_userShopping = 0,
    Address_Invalid,
+};
+
+//我的云票
+enum{
+    UserCloudTicket = 0,
+    UserAccountMoney,
+    
+    UserMoneyInvalid,
 };
 
 //钱包
@@ -75,7 +87,7 @@ enum{
 //提成
 enum{
     User_Cut = 0,
-    User_Share,
+//    User_Share,
     
     User_Invalid
 };
