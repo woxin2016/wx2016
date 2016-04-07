@@ -341,9 +341,8 @@
     [cell setBackgroundColor:WXColorWithInteger(HomePageBGColor)];
     
     if ([_model.limitGoods.data count ] > 0) {
-        [cell setCellInfo:_model.limitGoods.data[0]];
+        [cell setCellInfo:[_model.limitGoods.data lastObject]];
         [cell setDelegate:self];
-        [cell load];
     }
    
     return cell;

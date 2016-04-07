@@ -34,8 +34,7 @@
         nameLabel.frame = CGRectMake(xOffset, (T_HomePageTextSectionHeight-nameHeight)/2, nameWidth, nameHeight);
         [nameLabel setBackgroundColor:[UIColor clearColor]];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
-//        [nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [nameLabel setTextColor:[UIColor redColor]];
+        [nameLabel setTextColor:WXColorWithInteger(0xf74f35)];
         [nameLabel setFont:WXFont(15.0)];
         [nameLabel setText:@"秒杀"];
         [self.contentView addSubview:nameLabel];
@@ -45,9 +44,10 @@
         secondLabel = [[WXUILabel alloc] init];
         secondLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-timeLabelWidth, (T_HomePageTextSectionHeight-timeLabelHeight)/2, timeLabelWidth, timeLabelHeight);
         [secondLabel setBackgroundColor:[UIColor clearColor]];
-        [secondLabel setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0x999999)];
+//        [secondLabel setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0x999999)];
         [secondLabel setTextAlignment:NSTextAlignmentCenter];
         [secondLabel setFont:WXFont(12.0)];
+        [secondLabel setTextColor:WXColorWithInteger(0xf74f35)];
         [self.contentView addSubview:secondLabel];
         
         xOffset += timeLabelWidth+1;
@@ -59,15 +59,17 @@
         [markLabel setTextColor:WXColorWithInteger(0x000000)];
         [markLabel setTextAlignment:NSTextAlignmentCenter];
         [markLabel setFont:WXFont(12.0)];
+        [markLabel setTextColor:WXColorWithInteger(0xf74f35)];
         [self.contentView addSubview:markLabel];
         
         xOffset += markLabelWidth+1;
         minuteLabel = [[WXUILabel alloc] init];
         minuteLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-timeLabelWidth, (T_HomePageTextSectionHeight-timeLabelHeight)/2, timeLabelWidth, timeLabelHeight);
         [minuteLabel setBackgroundColor:[UIColor clearColor]];
-        [minuteLabel setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0x999999)];
+//        [minuteLabel setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0x999999)];
         [minuteLabel setTextAlignment:NSTextAlignmentCenter];
         [minuteLabel setFont:WXFont(12.0)];
+        [minuteLabel setTextColor:WXColorWithInteger(0xf74f35)];
         [self.contentView addSubview:minuteLabel];
         
         xOffset += timeLabelWidth+1;
@@ -78,15 +80,17 @@
         [markLabel1 setTextColor:WXColorWithInteger(0x000000)];
         [markLabel1 setTextAlignment:NSTextAlignmentCenter];
         [markLabel1 setFont:WXFont(12.0)];
+        [markLabel1 setTextColor:WXColorWithInteger(0xf74f35)];
         [self.contentView addSubview:markLabel1];
         
         xOffset += markLabelWidth+1;
         hoursLabel = [[WXUILabel alloc] init];
         hoursLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-timeLabelWidth, (T_HomePageTextSectionHeight-timeLabelHeight)/2, timeLabelWidth, timeLabelHeight);
         [hoursLabel setBackgroundColor:[UIColor clearColor]];
-        [hoursLabel setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0x999999)];
+//        [hoursLabel setBorderRadian:1.0 width:0.5 color:WXColorWithInteger(0x999999)];
         [hoursLabel setTextAlignment:NSTextAlignmentCenter];
         [hoursLabel setFont:WXFont(12.0)];
+        [hoursLabel setTextColor:WXColorWithInteger(0xf74f35)];
         [self.contentView addSubview:hoursLabel];
         
         xOffset += timeLabelWidth+3;
@@ -118,12 +122,12 @@
     if ([self isStartDate:goodsEntity.startTime]) { // 现在时间 大于 开始时间
         
         com = [self conversionStr:goodsEntity.endTime];
-        str = @"距离结束时间:";
+        str = @"距结束时间:";
 
     }else{ //  现在时间 小于 开始时间
         
         com = [self conversionStr:goodsEntity.startTime];
-        str = @"距离开始时间:";
+        str = @"距开始时间:";
         
     }
     if (![self isStartDate:goodsEntity.endTime]) { // 现在时间小于结束时间

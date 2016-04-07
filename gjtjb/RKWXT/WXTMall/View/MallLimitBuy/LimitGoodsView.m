@@ -25,9 +25,9 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-        CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-4*10)/3;
+        CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-4*10)/3.5;
         CGFloat bgHeight = T_HomePageRecommendHeight;
-        WXUIButton *bgBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         bgBtn.frame = CGRectMake(0, 0, bgWidth, bgHeight);
         [bgBtn setBackgroundColor:[UIColor whiteColor]];
         [bgBtn addTarget:self action:@selector(recommendBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -40,6 +40,8 @@
         _imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset, yOffset, imgWidth, imgHeight)];
         [_imgView setUserInteractionEnabled:NO];
         [bgBtn addSubview:_imgView];
+        
+      
         
         yOffset += imgHeight+7;
         CGFloat nameLabelHeight = 10;
@@ -74,6 +76,17 @@
         [_nameLabel setFont:[UIFont systemFontOfSize:12.0]];
         [bgBtn addSubview:_nameLabel];
         
+        
+        yOffset += nameLabelHeight + 5;
+        CGFloat buyH = 20;
+        UILabel *buyLabel = [[UILabel alloc]initWithFrame:CGRectMake(7.5, yOffset, bgWidth - 15, buyH)];
+        [buyLabel setBorderRadian:buyH / 2 width:0.5 color:[UIColor colorWithHexString:@"f74f35"]];
+        buyLabel.font = WXFont(14.0);
+        buyLabel.textColor = [UIColor colorWithHexString:@"f74f35"];
+        buyLabel.text = @"立即抢";
+        buyLabel.textAlignment = NSTextAlignmentCenter;
+        [bgBtn addSubview:buyLabel];
+        
     }
     return self;
 }
@@ -102,6 +115,16 @@
     [_newPriceLabel setText:[NSString stringWithFormat:@"￥%.2f",[entity.goodsLowPic floatValue]]];
     [_oldPriceLabel setText:[NSString stringWithFormat:@"原价:￥%.2f",[entity.goodsPrice floatValue]]];
     [_nameLabel setText:entity.goodsName];
+}
+
+-(void)load{
+    _entity = self.cpxViewInfo;
+    
+    [_imgView setCpxViewInfo:_entity.goodsImg];
+    [_imgView load];
+    [_newPriceLabel setText:[NSString stringWithFormat:@"￥%.2f",[_entity.goodsLowPic floatValue]]];
+    [_oldPriceLabel setText:[NSString stringWithFormat:@"原价:￥%.2f",[_entity.goodsPrice floatValue]]];
+    [_nameLabel setText:_entity.goodsName];
 }
 
 

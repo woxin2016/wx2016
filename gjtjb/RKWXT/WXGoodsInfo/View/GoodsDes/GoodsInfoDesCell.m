@@ -23,7 +23,9 @@
     WXUIButton *_attentionBtn;
     WXUILabel *_attentionLabel;
     BOOL _isAttection;
-    CGRect rect;
+    CGRect redRect;
+    CGRect cutRect;
+    CGRect carRect;
 }
 @end
 
@@ -90,7 +92,7 @@
         [usercutBtn setHidden:YES];
         [usercutBtn addTarget:self action:@selector(userCutBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:usercutBtn];
-        rect = usercutBtn.frame;
+        cutRect = usercutBtn.frame;
         
         xOffset += btnWidth+10;
         carriageBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
@@ -104,6 +106,7 @@
         [carriageBtn setTitleColor:WXColorWithInteger(0x000000) forState:UIControlStateNormal];
         [carriageBtn addTarget:self action:@selector(carriageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:carriageBtn];
+        carRect = carriageBtn.frame;
         
         xOffset += btnWidth+10;
         redPacketBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
@@ -117,6 +120,7 @@
         [redPacketBtn setTitleColor:WXColorWithInteger(0x000000) forState:UIControlStateNormal];
         [redPacketBtn addTarget:self action:@selector(redPacketBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:redPacketBtn];
+        redRect = redPacketBtn.frame;
         
         
         xOffset = IPHONE_SCREEN_WIDTH-62;
@@ -156,46 +160,95 @@
     [marketPrice setText:marketPriceString];
     
     CGRect rectl = lineLabel.frame;
-    rect.size.width = [NSString widthForString:marketPriceString fontSize:14.0 andHeight:20];
+    rectl.size.width = [NSString widthForString:marketPriceString fontSize:14.0 andHeight:20];
     [lineLabel setFrame:rectl];
     
     [self refreshCentent];
 }
 
 - (void)refreshCentent{
-
-    if (self.stockEntity.userCut) {     //有提成
-        [usercutBtn setHidden:NO];
-         usercutBtn.frame = rect;
-    }else{
-        [usercutBtn setHidden:YES];
-        carriageBtn.frame = usercutBtn.frame;
-        redPacketBtn.frame = carriageBtn.frame;
-    }
     
     GoodsInfoEntity *entity = self.cellInfo;
-    if(entity.postage == Goods_Postage_None){  //包邮
-        [carriageBtn setHidden:NO];
-        CGFloat xOffset = CGRectGetMaxX(usercutBtn.frame) + 10;
-         carriageBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
-    }else{
-        [carriageBtn setHidden:YES];
-         redPacketBtn.frame = carriageBtn.frame;
+    if (self.stockEntity.userCut){ // 有提成
+        [usercutBtn setHidden:NO];
+        
+        if (entity.postage == Goods_Postage_None) { //包邮
+            [carriageBtn setHidden:NO];
+            
+            [self useRed];
+            
+        }else{
+            [carriageBtn setHidden:YES];
+            
+            if (self.stockEntity.redPacket) { //红包
+                [redPacketBtn setHidden:NO];
+                redPacketBtn.frame = carRect;
+            }
+        }
+        
+    }else{ // 没有提成
+        [usercutBtn setHidden:YES];
+        
+        if (entity.postage == Goods_Postage_None) { //包邮
+            [carriageBtn setHidden:NO];
+            carriageBtn.frame = cutRect;
+            
+            if (self.stockEntity.redPacket) { // 红包
+                [redPacketBtn setHidden:NO];
+                redPacketBtn.frame = carRect;
+            }
+            
+        }else{ // 不包邮
+            [carriageBtn setHidden:YES];
+            
+            if (self.stockEntity.redPacket) { //红包
+                [redPacketBtn setHidden:NO];
+                redPacketBtn.frame = cutRect;
+            }
+            
+        }
     }
-    
-    // 提成  包邮  使用红包
-    if (self.stockEntity.redPacket) {   // 可以使用红包
-        [redPacketBtn setHidden:NO];
-        CGFloat xOffset = CGRectGetMaxX(carriageBtn.frame) + 10;
-        redPacketBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
-    }else{
-        [redPacketBtn setHidden:YES];
-    }
+
+//    if (self.stockEntity.userCut) {     //有提成
+//        [usercutBtn setHidden:NO];
+//         usercutBtn.frame = rect;
+//    }else{
+//        [usercutBtn setHidden:YES];
+//        carriageBtn.frame = usercutBtn.frame;
+//        redPacketBtn.frame = carriageBtn.frame;
+//    }
+//    
+//    GoodsInfoEntity *entity = self.cellInfo;
+//    if(entity.postage == Goods_Postage_None){  //包邮
+//        [carriageBtn setHidden:NO];
+//        CGFloat xOffset = CGRectGetMaxX(usercutBtn.frame) + 10;
+//         carriageBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
+//    }else{
+//        [carriageBtn setHidden:YES];
+//         redPacketBtn.frame = carriageBtn.frame;
+//    }
+//    
+//    // 提成  包邮  使用红包
+//    if (self.stockEntity.redPacket) {   // 可以使用红包
+//        [redPacketBtn setHidden:NO];
+//        CGFloat xOffset = CGRectGetMaxX(carriageBtn.frame) + 10;
+//        redPacketBtn.frame = CGRectMake(xOffset, rect.origin.y, rect.size.width, rect.size.height);
+//    }else{
+//        [redPacketBtn setHidden:YES];
+//    }
     
     if (!self.stockEntity.userCut && !self.stockEntity.redPacket && entity.postage == Goods_Postage_Have) {
         topView.hidden = YES;
     }else{
         topView.hidden = NO;
+    }
+}
+
+- (void)useRed{
+    if (self.stockEntity.redPacket) { //红包
+        [redPacketBtn setHidden:NO];
+    }else{
+        [redPacketBtn setHidden:YES];
     }
 }
 
