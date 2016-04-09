@@ -156,7 +156,7 @@
         [UtilTool showTipView:@"请输入提现金额"];
         return;
     }
-    if(drawMoney < 0){
+    if(drawMoney < 20){
         [UtilTool showTipView:@"提现金额需大于20元"];
         return;
     }
@@ -183,6 +183,11 @@
         errorMsg = @"申请提现失败";
     }
     [UtilTool showAlertView:errorMsg];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [_model setDelegate:nil];
 }
 
 @end
