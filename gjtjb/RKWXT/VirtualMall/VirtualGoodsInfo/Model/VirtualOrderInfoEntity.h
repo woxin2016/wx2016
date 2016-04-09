@@ -16,4 +16,6 @@
 @property (nonatomic,assign)CGFloat backMoney;
 @property (nonatomic,assign)NSInteger stockID;
 @property (nonatomic,assign)CGFloat xnbPrice;
+@property (nonatomic,strong) NSString *goodsImg;
+@property (nonatomic,strong) NSString *stockName;
 @end

@@ -73,8 +73,9 @@ typedef enum{
 @property (nonatomic,assign) NSInteger stockID;
 @property (nonatomic,strong) NSString *stockName;
 @property (nonatomic,assign) NSInteger redPacket;
-@property (nonatomic,assign) CGFloat canVirtual;
-
+@property (nonatomic,assign) CGFloat canVirtual;  // 虚拟币
+@property (nonatomic,assign) BOOL isDefault;
+@property (nonatomic,assign) CGFloat backMoney;
 
 
 //秒杀

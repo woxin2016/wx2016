@@ -253,11 +253,26 @@
         case WXT_UrlFeed_Type_New_PayAttention:
             url = @"/stores.php";
             break;
+        case WXT_UrlFeed_Type_New_RechargeCt:
+            url = @"/xnb_card.php";
+            break;
         case WXT_UrlFeed_Type_VirtualGoods:
             url = @"/list_exchange_goods.php";
             break;
+        case WXT_UrlFeed_Type_New_MoreMoneyInfo:
+            url = @"/balance.php";
+            break;
+        case WXT_UrlFeed_Type_New_UserCTRecord:
+            url = @"/xnb_log.php";
+            break;
         case WXT_UrlFeed_Type_VirtualGoodsInfo:
             url = @"/exchange_goods_detail.php";
+            break;
+        case WXT_UrlFeed_Type_New_UserMoneyForm:
+            url = @"/withdraw_info_count.php";
+            break;
+        case WXT_UrlFeed_Type_New_UserMoneyInfo:
+            url = @"/cash_log.php";
             break;
         default:
             break;

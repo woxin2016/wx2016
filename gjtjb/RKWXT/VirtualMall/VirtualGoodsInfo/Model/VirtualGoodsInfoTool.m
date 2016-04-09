@@ -10,6 +10,7 @@
 #import "VirtualGoodsInfoEntity.h"
 #import "VirtualGoodsInfoModel.h"
 #import "VirtualOrderInfoEntity.h"
+#import "VirtualStockGoodsView.h"
 
 
 
@@ -65,10 +66,29 @@
     return [NSString stringWithFormat:@"%.2f",entity.pastVirtual];
 }
 
-+ (VirtualOrderInfoEntity*)buyGoodsInfo:(NewGoodsStockView*)model{
+
++ (VirtualOrderInfoEntity*)buyGoodsInfo:(VirtualStockGoodsView*)view{
     VirtualOrderInfoEntity *entity = [[VirtualOrderInfoEntity alloc] init];
-    
+    entity.buyNumber = view.buyNum;
+    entity.goodsPrice = view.stockPrice;
+    entity.postage = view.postage;
+    entity.backMoney = view.backMoney;
+    entity.stockID = view.stockID;
+    entity.xnbPrice = view.xnbPrice;
+    entity.goodsImg = view.goodsImg;
+    entity.stockName = view.stockName;
     return entity;
+}
+
++ (CGFloat)backMoney:(VirtualGoodsInfoModel*)model{
+    if ([model.stockArr count] == 0) return 0.0;
+    CGFloat money = 0.0;
+    for (VirtualGoodsInfoEntity *entity in model.stockArr) {
+        if (entity.isDefault) {
+            money =  entity.backMoney;
+        }
+    }
+    return money;
 }
 
 @end

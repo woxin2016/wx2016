@@ -18,7 +18,6 @@
     BOOL _isApper; // 是否显示包邮 红包等
     NSString *shopPhone;
     VirtualStockGoodsView *stockView;
-    NewGoodsStockView *goodsView;
 }
 @property (nonatomic,strong)NSIndexPath *seleIndexPath;
 @end
@@ -306,6 +305,7 @@
     if ([_model.goodsInfoArr count] > 0) {
         [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
     }
+    [cell backMoney:[VirtualGoodsInfoTool backMoney:_model]];
     [cell load];
     return cell;
 }
@@ -450,14 +450,10 @@
 
 #pragma mark -- DownView
 - (void)buyBtnVirtual{
-//    stockView = [[VirtualStockGoodsView alloc]init];
-//    [stockView VirtualGoodsStockInfo:_model.stockArr GoodsInfoArr:_model.goodsInfoArr];
-//    [self.view addSubview:stockView];
-    
-    goodsView = [[NewGoodsStockView alloc]init];
-    [goodsView setGoodsViewType:NewGoodsStockView_Type_ShoppingCart];
-    [goodsView loadGoodsStockInfo:_model.stockArr GoodsInfoArr:_model.goodsInfoArr];
-    [self.view addSubview:goodsView];
+    stockView = [[VirtualStockGoodsView alloc]init];
+     [stockView setType:VirtualStockView_Type_Buy];
+    [stockView VirtualGoodsStockInfo:_model.stockArr GoodsInfoArr:_model.goodsInfoArr];
+    [self.view addSubview:stockView];
 }
 
 - (void)contactSeller{
@@ -560,8 +556,10 @@
 
 #pragma mark --  NSNotificationCenter
 - (void)userBuyBtnClicked{
+   
+    
         VirtualGoodsOrderVC *orderVC = [[VirtualGoodsOrderVC alloc]init];
-        orderVC.goodsList = _model.goodsInfoArr[0];
+        orderVC.goodsList = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
         [self.wxNavigationController pushViewController:orderVC];
 }
 

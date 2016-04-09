@@ -9,6 +9,7 @@
 #import "VirtualGoodsListCell.h"
 #import "WXRemotionImgBtn.h"
 #import "VirtualGoodsInfoEntity.h"
+#import "VirtualOrderInfoEntity.h"
 
 @interface VirtualGoodsListCell(){
     WXRemotionImgBtn *_imgView;
@@ -76,12 +77,11 @@
 }
 
 - (void)load{
-    VirtualGoodsInfoEntity *entity = self.cellInfo;
-    [_imgView setCpxViewInfo:entity.virtualImg];
+    VirtualOrderInfoEntity *entity = self.cellInfo;
+    [_imgView setCpxViewInfo:entity.goodsImg];
     [_imgView load];
-    [_nameLabel setText:entity.goodsName];
-//    [_stockName setText:entity.stockName];
-    CGFloat price = entity.buyNumber * entity.stockPrice;
+    [_nameLabel setText:entity.stockName];
+    CGFloat price = entity.buyNumber * entity.goodsPrice;
     [_priceLabel setText:[NSString stringWithFormat:@"￥%.2f",price]];
 }
 

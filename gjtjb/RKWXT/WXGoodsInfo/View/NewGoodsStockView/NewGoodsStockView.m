@@ -53,6 +53,7 @@
     [_maskShell setAlpha:kMaskShellDefaultAlpha];
     [self addSubview:_maskShell];
   
+    
     tableViews = [[UITableView alloc]initWithFrame:CGRectMake(0,Size.height - DownViewHeight - buyBtnH, Size.width, DownViewHeight) style:UITableViewStylePlain];
     tableViews.delegate = self;
     tableViews.dataSource = self;

@@ -211,6 +211,12 @@
         
         CGFloat canVirtual = [[dic objectForKey:@"goods_number"] integerValue];
         [self setCanVirtual:canVirtual];
+        
+        BOOL isDefult = [[dic objectForKey:@"is_default"] boolValue];
+        [self setIsDefault:isDefult];
+        
+        CGFloat backMoney = [[dic objectForKey:@"back_money"] floatValue];
+        [self setBackMoney:backMoney];
     }
     return self;
 }

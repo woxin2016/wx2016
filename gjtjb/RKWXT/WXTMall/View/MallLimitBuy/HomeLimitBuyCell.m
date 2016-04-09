@@ -62,6 +62,7 @@
         view.entity = entity;
         [_browser addSubview:view];
         
+        CGFloat marH = 80;
         CGFloat Nmar = xOffset - (speace - 0.5) / 2;
         CGFloat maelX = i > 0 ? Nmar + ((width + speace) * i) : -100;
         UILabel *marLabel = [[UILabel alloc]initWithFrame:CGRectMake(maelX, 8, 0.5, view.frame.size.width)];

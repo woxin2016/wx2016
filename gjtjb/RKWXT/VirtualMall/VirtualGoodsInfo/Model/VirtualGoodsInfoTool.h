@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class VirtualGoodsInfoModel,VirtualOrderInfoEntity,NewGoodsStockView;
+@class VirtualGoodsInfoModel,VirtualOrderInfoEntity,VirtualStockGoodsView;
 @interface VirtualGoodsInfoTool : NSObject
 @property (nonatomic,assign)NSInteger red;
 @property (nonatomic,assign)NSInteger cut;
@@ -21,6 +21,9 @@
 // 已经兑换
 + (NSString*)pastVirtual:(VirtualGoodsInfoModel*)model;
 
+// 设置返现金额
++ (CGFloat)backMoney:(VirtualGoodsInfoModel*)model;
+
 // 返回订单信息
-+ (VirtualOrderInfoEntity*)buyGoodsInfo:(NewGoodsStockView*)model;
++ (VirtualOrderInfoEntity*)buyGoodsInfo:(VirtualStockGoodsView*)view;
 @end
