@@ -18,6 +18,9 @@
 #import "SearchUserAliAccountModel.h"
 #import "UserAliEntity.h"
 
+#import "UserMoneyFormModel.h"
+#import "UserMoneyFormEntity.h"
+
 #define Size self.bounds.size
 enum{
     Row_UserMoneyShow = 0,
@@ -27,10 +30,13 @@ enum{
     Row_UserMoneyInvalid,
 };
 
-@interface UserMoneyShowVC()<UITableViewDataSource,UITableViewDelegate,SearchUserAliAccountModelDelegate,UserAliAccountStateCellDelegate>{
+@interface UserMoneyShowVC()<UITableViewDataSource,UITableViewDelegate,SearchUserAliAccountModelDelegate,UserAliAccountStateCellDelegate,UserMoneyFormModelDelegate>{
     UITableView *_tableView;
     SearchUserAliAccountModel *_model;
     UserAliEntity *entity;
+    
+    UserMoneyFormModel *_moneyModel;
+    UserMoneyFormEntity *_moneyEntity;
 }
 
 @end
@@ -48,6 +54,9 @@ enum{
     if(self){
         _model = [[SearchUserAliAccountModel alloc] init];
         [_model setDelegate:self];
+        
+        _moneyModel = [[UserMoneyFormModel alloc] init];
+        [_moneyModel setDelegate:self];
     }
     return self;
 }
@@ -68,6 +77,7 @@ enum{
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [_model searchUserAliPayAccount];
+    [_moneyModel loadUserMoneyFormData];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -113,6 +123,7 @@ enum{
         cell = [[UserMoneyShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identfier];
     }
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
+    [cell setCellInfo:_moneyEntity];
     [cell load];
     return cell;
 }
@@ -124,6 +135,7 @@ enum{
         cell = [[UserMoneyInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identfier];
     }
     [cell setUserInteractionEnabled:NO];
+    [cell setCellInfo:_moneyEntity];
     [cell load];
     return cell;
 }
@@ -163,7 +175,11 @@ enum{
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == Row_UserMoneyShow){
+        if(_moneyEntity.balance == 0){
+            return;
+        }
         UserMoneyDrawVC *moneyVC = [[UserMoneyDrawVC alloc] init];
+        moneyVC.userMoney = _moneyEntity.balance;
         [self.wxNavigationController pushViewController:moneyVC];
     }
 }
@@ -181,6 +197,19 @@ enum{
     [self unShowWaitView];
 }
 
+#pragma mark userMoneyForm
+-(void)loadUserMoneyFormDataSucceed{
+    [self unShowWaitView];
+    if([_moneyModel.moneyFormArr count] > 0){
+        _moneyEntity = [_moneyModel.moneyFormArr objectAtIndex:0];
+        [_tableView reloadData];
+    }
+}
+
+-(void)loadUserMoneyFormDataFailed:(NSString *)errorMsg{
+    [self unShowWaitView];
+}
+
 #pragma mark 提现成功后的通知
 -(void)applyAliSucceed{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -188,9 +217,9 @@ enum{
     
     if(moneyValue > 0){
         [UtilTool showAlertView:@"申请提现成功，系统将自动转到您的支付宝账户，请注意查收"];
-//        MyRefereeEntity *entity = [myCutArr objectAtIndex:0];
-//        [_bigMoney setText:[NSString stringWithFormat:@"%.2f",entity.balance-moneyValue]];
-//        [_tableView reloadData];
+        _moneyEntity.balance -= moneyValue;
+        _moneyEntity.onGoingMoney += moneyValue;
+        [_tableView reloadData];
     }
 }
 
@@ -238,6 +267,7 @@ enum{
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:NO forKey:ConfirmSign];
+    [userDefaults setFloat:0 forKey:UserApplyMoneySucceed];
 }
 
 @end

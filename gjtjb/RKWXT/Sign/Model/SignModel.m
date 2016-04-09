@@ -10,6 +10,7 @@
 #import "WXTURLFeedOBJ+NewData.h"
 #import "WXTURLFeedOBJ.h"
 #import "SignEntity.h"
+#import "MoreMoneyInfoModel.h"
 
 @interface SignModel(){
     NSMutableArray *_signArr;
@@ -40,6 +41,10 @@
     NSString *message = [NSString stringWithFormat:@"今日签到领取了%.2f元",entity.money];
     if(entity.type == 2){
         message = [NSString stringWithFormat:@"今日签到领取了%.2f云票",entity.money];
+        
+        //通知云票数量已经发生变化
+        [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += entity.money;
+        [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
     }
     NSUserDefaults *userDefault1 = [NSUserDefaults standardUserDefaults];
     [userDefault1 setObject:message forKey:userObj.user];

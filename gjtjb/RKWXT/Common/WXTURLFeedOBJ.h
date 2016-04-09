@@ -102,7 +102,10 @@ typedef enum {
     
     //云票
     WXT_UrlFeed_Type_New_RechargeCt,  //云票充值
+    WXT_UrlFeed_Type_New_UserCTRecord,
     WXT_UrlFeed_Type_New_MoreMoneyInfo,
+    WXT_UrlFeed_Type_New_UserMoneyForm,  //现金组成
+    WXT_UrlFeed_Type_New_UserMoneyInfo,
     
     WXT_UrlFeed_Type_Invalid,
 }WXT_UrlFeed_Type;

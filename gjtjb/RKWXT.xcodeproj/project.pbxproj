@@ -647,6 +647,8 @@
 		12F41A281CB8A6A300F954F6 /* UserMoneyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A271CB8A6A300F954F6 /* UserMoneyInfoModel.m */; };
 		12F41A2B1CB8A75A00F954F6 /* UserMoneyInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A2A1CB8A75A00F954F6 /* UserMoneyInfoEntity.m */; };
 		12F41A2F1CB8AB7900F954F6 /* MoreMoneyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A2E1CB8AB7900F954F6 /* MoreMoneyInfoModel.m */; };
+		12F41A321CB8E02300F954F6 /* UserMoneyFormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A311CB8E02300F954F6 /* UserMoneyFormModel.m */; };
+		12F41A351CB8E2C100F954F6 /* UserMoneyFormEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A341CB8E2C100F954F6 /* UserMoneyFormEntity.m */; };
 		12F4227E1B1D5A2900643DD7 /* AddressCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F4227A1B1D5A2900643DD7 /* AddressCircle@2x.png */; };
 		12F4227F1B1D5A2900643DD7 /* AddressDel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F4227B1B1D5A2900643DD7 /* AddressDel@2x.png */; };
 		12F422801B1D5A2900643DD7 /* AddressEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F4227C1B1D5A2900643DD7 /* AddressEdit@2x.png */; };
@@ -2110,6 +2112,10 @@
 		12F41A2A1CB8A75A00F954F6 /* UserMoneyInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoEntity.m; sourceTree = "<group>"; };
 		12F41A2D1CB8AB7900F954F6 /* MoreMoneyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMoneyInfoModel.h; sourceTree = "<group>"; };
 		12F41A2E1CB8AB7900F954F6 /* MoreMoneyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreMoneyInfoModel.m; sourceTree = "<group>"; };
+		12F41A301CB8E02300F954F6 /* UserMoneyFormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyFormModel.h; sourceTree = "<group>"; };
+		12F41A311CB8E02300F954F6 /* UserMoneyFormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyFormModel.m; sourceTree = "<group>"; };
+		12F41A331CB8E2C100F954F6 /* UserMoneyFormEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyFormEntity.h; sourceTree = "<group>"; };
+		12F41A341CB8E2C100F954F6 /* UserMoneyFormEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyFormEntity.m; sourceTree = "<group>"; };
 		12F4227A1B1D5A2900643DD7 /* AddressCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressCircle@2x.png"; sourceTree = "<group>"; };
 		12F4227B1B1D5A2900643DD7 /* AddressDel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressDel@2x.png"; sourceTree = "<group>"; };
 		12F4227C1B1D5A2900643DD7 /* AddressEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEdit@2x.png"; sourceTree = "<group>"; };
@@ -5026,6 +5032,10 @@
 				12F41A271CB8A6A300F954F6 /* UserMoneyInfoModel.m */,
 				12F41A291CB8A75A00F954F6 /* UserMoneyInfoEntity.h */,
 				12F41A2A1CB8A75A00F954F6 /* UserMoneyInfoEntity.m */,
+				12F41A301CB8E02300F954F6 /* UserMoneyFormModel.h */,
+				12F41A311CB8E02300F954F6 /* UserMoneyFormModel.m */,
+				12F41A331CB8E2C100F954F6 /* UserMoneyFormEntity.h */,
+				12F41A341CB8E2C100F954F6 /* UserMoneyFormEntity.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7960,6 +7970,7 @@
 				123667561C44AA04000FAF70 /* WinningView.m in Sources */,
 				122AB8631C3E684400AC9DF5 /* GoodsStockNameCell.m in Sources */,
 				12BC725A1C78531700FC6A1C /* MyCutRefereeModel.m in Sources */,
+				12F41A351CB8E2C100F954F6 /* UserMoneyFormEntity.m in Sources */,
 				DDB58F4E1AD3C6A2006248E9 /* CallHistoryCell.m in Sources */,
 				1284CC851B54ADB900D98F79 /* PaySucceedModel.m in Sources */,
 				122AB8301C3E384C00AC9DF5 /* MJRefreshConst.m in Sources */,
@@ -8021,6 +8032,7 @@
 				12BC72591C78531700FC6A1C /* MyClientPersonModel.m in Sources */,
 				12CE11D91C506E7500FF85FA /* UserQuestionModel.m in Sources */,
 				12F380351B3BEF6F00E9690C /* UserAddressModel.m in Sources */,
+				12F41A321CB8E02300F954F6 /* UserMoneyFormModel.m in Sources */,
 				120B754E1B1C19EA00B8746C /* PersonSexVC.m in Sources */,
 				122AB83A1C3E3E2C00AC9DF5 /* WXHomeTopGoodCell.m in Sources */,
 				7758430D1AB95A300039B129 /* WXCheckMenu.m in Sources */,

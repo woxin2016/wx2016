@@ -7,6 +7,7 @@
 //
 
 #import "UserMoneyInfoCell.h"
+#import "UserMoneyFormEntity.h"
 
 @interface UserMoneyInfoCell(){
     WXUILabel *leftMoney;
@@ -48,6 +49,7 @@
         [leftMoney setTextAlignment:NSTextAlignmentCenter];
         [leftMoney setTextColor:WXColorWithInteger(0x000000)];
         [leftMoney setFont:WXFont(14.0)];
+        [leftMoney setText:@"￥0"];
         [self.contentView addSubview:leftMoney];
         
         rightMoney = [[WXUILabel alloc] init];
@@ -56,14 +58,16 @@
         [rightMoney setTextAlignment:NSTextAlignmentCenter];
         [rightMoney setTextColor:WXColorWithInteger(0x000000)];
         [rightMoney setFont:WXFont(14.0)];
+        [rightMoney setText:@"￥0"];
         [self.contentView addSubview:rightMoney];
     }
     return self;
 }
 
 -(void)load{
-    [leftMoney setText:@"￥100"];
-    [rightMoney setText:@"￥20"];
+    UserMoneyFormEntity *entity = self.cellInfo;
+    [leftMoney setText:[NSString stringWithFormat:@"￥%.2f",entity.completeMoney]];
+    [rightMoney setText:[NSString stringWithFormat:@"￥%.2f",entity.onGoingMoney]];
 }
 
 @end

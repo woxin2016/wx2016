@@ -8,19 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum{
-    UserMoneyInfo_Type_Week = 0,
-    UserMoneyInfo_Type_Month,
-    UserMoneyInfo_Type_All,
-}UserMoneyInfo_Type;
-
 @protocol UserMoneyInfoModelDelegate;
 
 @interface UserMoneyInfoModel : NSObject
 @property (nonatomic,weak) id<UserMoneyInfoModelDelegate>delegate;
 @property (nonatomic,strong) NSArray *userMoneyInfoArr;
 
--(void)loadUserMoneyInfoData:(NSInteger)startItem length:(NSInteger)length type:(UserMoneyInfo_Type)type;
+-(void)loadUserMoneyInfoData:(NSInteger)startItem length:(NSInteger)length days:(NSInteger)days;
 @end
 
 @protocol UserMoneyInfoModelDelegate <NSObject>

@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 
 #define EveryTimeLoad (10)
+#define LoadDaysType (30)
 
 @interface MonthMoneyListVC()<UITableViewDataSource,UITableViewDelegate,UserMoneyInfoModelDelegate>{
     UITableView *_tableView;
@@ -70,6 +71,27 @@
     _tableView.footerRefreshingText = @"加载中";
 }
 
+//改变cell分割线置顶
+-(void)viewDidLayoutSubviews{
+    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [monthMoneyInfoArr count];
 }
@@ -105,15 +127,15 @@
 -(void)headerRefreshing{
     isRefresh = YES;
     if([monthMoneyInfoArr count] == 0){
-        [_model loadUserMoneyInfoData:0 length:EveryTimeLoad type:UserMoneyInfo_Type_Month];
+        [_model loadUserMoneyInfoData:0 length:EveryTimeLoad days:LoadDaysType];
     }else{
-        [_model loadUserMoneyInfoData:0 length:[monthMoneyInfoArr count] type:UserMoneyInfo_Type_Month];
+        [_model loadUserMoneyInfoData:0 length:[monthMoneyInfoArr count] days:LoadDaysType];
     }
 }
 
 -(void)footerRefreshing{
     isRefresh = NO;
-    [_model loadUserMoneyInfoData:[monthMoneyInfoArr count] length:EveryTimeLoad type:UserMoneyInfo_Type_Month];
+    [_model loadUserMoneyInfoData:[monthMoneyInfoArr count] length:EveryTimeLoad days:LoadDaysType];
 }
 
 -(void)loadUserCloudTicketDataSucceed{

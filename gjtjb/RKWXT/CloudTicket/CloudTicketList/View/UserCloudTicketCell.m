@@ -22,10 +22,10 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        CGFloat labelWidth = IPHONE_SCREEN_WIDTH/3;
         CGFloat labelHeight = 20;
+        CGFloat nameWidth = IPHONE_SCREEN_WIDTH/3-15;
         nameLabel = [[WXUILabel alloc] init];
-        nameLabel.frame = CGRectMake(0, (UserCloudTicketCellHeight-labelHeight)/2, labelWidth, labelHeight);
+        nameLabel.frame = CGRectMake(0, (UserCloudTicketCellHeight-labelHeight)/2, nameWidth, labelHeight);
         [nameLabel setBackgroundColor:[UIColor clearColor]];
         [nameLabel setTextAlignment:NSTextAlignmentCenter];
         [nameLabel setTextColor:WXColorWithInteger(0x000000)];
@@ -33,7 +33,7 @@
         [self.contentView addSubview:nameLabel];
         
         timeLabel = [[WXUILabel alloc] init];
-        timeLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH/3, (UserCloudTicketCellHeight-labelHeight)/2, labelWidth, labelHeight);
+        timeLabel.frame = CGRectMake(nameWidth, (UserCloudTicketCellHeight-labelHeight)/2, IPHONE_SCREEN_WIDTH-2*nameWidth, labelHeight);
         [timeLabel setBackgroundColor:[UIColor clearColor]];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
         [timeLabel setTextColor:WXColorWithInteger(0x000000)];
@@ -41,7 +41,7 @@
         [self.contentView addSubview:timeLabel];
         
         moneyLabel = [[WXUILabel alloc] init];
-        moneyLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH*2/3, (UserCloudTicketCellHeight-labelHeight)/2, labelWidth, labelHeight);
+        moneyLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-nameWidth, (UserCloudTicketCellHeight-labelHeight)/2, nameWidth, labelHeight);
         [moneyLabel setBackgroundColor:[UIColor clearColor]];
         [moneyLabel setTextAlignment:NSTextAlignmentCenter];
         [moneyLabel setTextColor:WXColorWithInteger(0x000000)];
@@ -52,7 +52,10 @@
 }
 
 -(void)load{
-    
+    UserCloudTicketEntity *entity = self.cellInfo;
+    [nameLabel setText:entity.title];
+    [timeLabel setText:[NSString stringWithFormat:@"%@",[UtilTool getDateTimeFor:entity.addTime type:4]]];
+    [moneyLabel setText:entity.cloudTicket];
 }
 
 @end

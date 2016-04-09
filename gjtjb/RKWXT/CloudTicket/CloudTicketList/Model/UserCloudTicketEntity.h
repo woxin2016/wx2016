@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface UserCloudTicketEntity : NSObject
+@property (nonatomic,strong) NSString *cloudTicket;
+@property (nonatomic,assign) NSInteger addTime;
+@property (nonatomic,strong) NSString *title;
 
 +(UserCloudTicketEntity*)initUserCloudTicketEntityWith:(NSDictionary*)dic;
 

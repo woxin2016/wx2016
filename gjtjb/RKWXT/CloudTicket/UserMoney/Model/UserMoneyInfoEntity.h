@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface UserMoneyInfoEntity : NSObject
+@property (nonatomic,strong) NSString *moneyInfo;
+@property (nonatomic,assign) NSInteger addTime;
+@property (nonatomic,strong) NSString *title;
 
 +(UserMoneyInfoEntity*)initUserMoneyInfoEntity:(NSDictionary*)dic;
 

@@ -49,6 +49,8 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     else if(type == 3 )
         [dateFormatter setDateFormat:@"HH:mm:ss"];
+    else if (type == 4)
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *curDateTime = [dateFormatter stringFromDate:date];
     return curDateTime;
 }

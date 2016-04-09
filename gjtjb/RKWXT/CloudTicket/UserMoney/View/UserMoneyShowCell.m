@@ -7,6 +7,7 @@
 //
 
 #import "UserMoneyShowCell.h"
+#import "UserMoneyFormEntity.h"
 
 @interface UserMoneyShowCell(){
     WXUILabel *nameLabel;
@@ -27,6 +28,7 @@
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setTextColor:WXColorWithInteger(0x5c615d)];
         [nameLabel setFont:WXFont(14.0)];
+        [nameLabel setText:@"可提现 (￥100)"];
         [self.contentView addSubview:nameLabel];
         
         CGFloat labelWidth = 35;
@@ -48,7 +50,8 @@
 }
 
 -(void)load{
-    [nameLabel setText:@"可提现 (￥100)"];
+    UserMoneyFormEntity *entity = self.cellInfo;
+    [nameLabel setText:[NSString stringWithFormat:@"可提现 (￥%.2f)",entity.balance]];
 }
 
 @end

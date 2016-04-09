@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 
 #define EveryTimeLoad (10)
+#define LoadDaysType (7)
 
 @interface WeekMoneyListVC()<UITableViewDataSource,UITableViewDelegate,UserMoneyInfoModelDelegate>{
     UITableView *_tableView;
@@ -70,6 +71,27 @@
     _tableView.footerRefreshingText = @"加载中";
 }
 
+//改变cell分割线置顶
+-(void)viewDidLayoutSubviews{
+    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [weekMoneyInfoArr count];
 }
@@ -105,15 +127,15 @@
 -(void)headerRefreshing{
     isRefresh = YES;
     if([weekMoneyInfoArr count] == 0){
-        [_model loadUserMoneyInfoData:0 length:EveryTimeLoad type:UserMoneyInfo_Type_Week];
+        [_model loadUserMoneyInfoData:0 length:EveryTimeLoad days:LoadDaysType];
     }else{
-        [_model loadUserMoneyInfoData:0 length:[weekMoneyInfoArr count] type:UserMoneyInfo_Type_Week];
+        [_model loadUserMoneyInfoData:0 length:[weekMoneyInfoArr count] days:LoadDaysType];
     }
 }
 
 -(void)footerRefreshing{
     isRefresh = NO;
-    [_model loadUserMoneyInfoData:[weekMoneyInfoArr count] length:EveryTimeLoad type:UserMoneyInfo_Type_Week];
+    [_model loadUserMoneyInfoData:[weekMoneyInfoArr count] length:EveryTimeLoad days:LoadDaysType];
 }
 
 -(void)loadUserCloudTicketDataSucceed{
