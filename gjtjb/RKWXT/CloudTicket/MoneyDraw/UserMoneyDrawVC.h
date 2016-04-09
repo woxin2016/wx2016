@@ -8,6 +8,8 @@
 
 #import "WXUIViewController.h"
 
+#define UserApplyMoneySucceed @"UserApplyMoneySucceed"
+
 @interface UserMoneyDrawVC : WXUIViewController
 @property (nonatomic,assign) CGFloat userMoney;
 

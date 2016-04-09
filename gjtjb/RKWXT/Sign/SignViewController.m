@@ -7,21 +7,25 @@
 //
 
 #import "SignViewController.h"
-#import "CalendarView.h"
-//#import "MaskView.h"
 #import "T_SignGifView.h"
 #import "SignModel.h"
 #import "SignEntity.h"
 #import "NSDate+Compare.h"
 
+enum{
+    Sign_Type_None = 0,
+    Sign_Type_Phone,
+    Sign_Type_Cloud,
+    
+    Sign_Type_Invalid,
+};
+
 #define kAnimatedDur (0.3)
 #define kMaskMaxAlpha (1.0)
 #define Size self.view.bounds.size
 
-@interface SignViewController()<CalendarDelegate,SignDelegate>{
-    CalendarView *_sampleView;
+@interface SignViewController()<SignDelegate>{
     UIButton *_closeBtn;
-//    MaskView *_maskView;
     UIButton *_signBtn;
     SignModel *_model;
     UILabel *_textLabel;
@@ -43,28 +47,17 @@
     
     UIImageView *imgView = [[UIImageView alloc] init];
     imgView.frame = CGRectMake(0, 0, Size.width, Size.height);
-    [imgView setImage:[UIImage imageNamed:@"signBg.jpg"]];
+    [imgView setImage:[UIImage imageNamed:@"signBg.png"]];
     [self.view addSubview:imgView];
     
-//    [self createTextLabel];
-//    [self createActivityRule];
-//    [self createCalendar];
     [self createRewardLabel];
     [self createSignBtn];
-//    [self createView];
     [self createBackBtn];
     
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backToLastPage)];
     [swip setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swip];
 }
-
-//-(void)createView{
-//    _maskView = [[MaskView alloc] initWithFrame:self.bounds];
-//    [_maskView setBackgroundColor:[UIColor blackColor]];
-//    [_maskView setAlpha:0.0];
-//    [self addSubview:_maskView];
-//}
 
 -(void)createBackBtn{
     CGFloat xOffset = 10;
@@ -77,37 +70,6 @@
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
-}
-
--(void)createTextLabel{
-    CGFloat yOffset = 60;
-    UIImage *img = [UIImage imageNamed:@"signEveryDay.png"];
-    UIImageView *imgView = [[UIImageView alloc] init];
-    imgView.frame = CGRectMake((Size.width-img.size.width)/2, yOffset, img.size.width,
-                               img.size.height);
-    [imgView setImage:img];
-    [self.view addSubview:imgView];
-}
-
--(void)createActivityRule{
-    CGFloat yOffset = 65;
-    CGFloat width = 110;
-    CGFloat height = 30;
-    UIButton *ruleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    ruleBtn.frame = CGRectMake((Size.width-width)/2, yOffset, width, height);
-    [ruleBtn setImage:[UIImage imageNamed:@"activityRule.png"] forState:UIControlStateNormal];
-    [self.view addSubview:ruleBtn];
-}
-
--(void)createCalendar{
-    CGFloat yOffset = 75;
-    CGFloat xOffset = 10;
-    UIImage *img = [UIImage imageNamed:@"kalendarIcon.png"];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(Size.width-xOffset-img.size.width, yOffset, img.size.width, img.size.height);
-    [btn setImage:img forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(showCalendar) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
 }
 
 -(void)createRewardLabel{
@@ -140,42 +102,11 @@
     NSString *timeString = [date YMDHMString:E_YMD];
     if([timeString isEqualToString:@"今天"]){
         NSUserDefaults *userDefaults1 = [NSUserDefaults standardUserDefaults];
-        CGFloat money = [userDefaults1 floatForKey:userObj.user];
+        NSString *message = [userDefaults1 objectForKey:userObj.user];
         [_signBtn setEnabled:NO];
-        [_textLabel setText:[NSString stringWithFormat:@"今日签到领取了%.2f元",money]];
+        [_textLabel setText:message];
     }
 }
-
-//-(void)showCalendar{
-//    CGFloat yOffset = 40;
-////    [self setDexterity:E_Slide_Dexterity_None];
-//    [UIView animateWithDuration:kAnimatedDur animations:^{
-//        _sampleView = [[CalendarView alloc] initWithFrame:CGRectMake(10, yOffset, Size.width-2*10, 350)];
-//        [_sampleView setAlpha:0.9];
-//        _sampleView.calendarDate = [NSDate date];
-//        [self.view addSubview:_sampleView];
-//        [_maskView setAlpha:0.6];
-//    }completion:^(BOOL finished){
-//    }];
-//    
-//    CGFloat closeBtnWidth = 25;
-//    CGFloat closeBtnHeight = 25;
-//    _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _closeBtn.frame = CGRectMake(Size.width-closeBtnWidth, yOffset-10, closeBtnWidth, closeBtnHeight);
-//    [_closeBtn setImage:[UIImage imageNamed:@"closeKalen.png"] forState:UIControlStateNormal];
-//    [_closeBtn addTarget:self action:@selector(closeCalendarView) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_closeBtn];
-//}
-
-//-(void)closeCalendarView{
-//    [self setDexterity:E_Slide_Dexterity_Normal];
-//    [UIView animateWithDuration:kAnimatedDur animations:^{
-//        [_closeBtn removeFromSuperview];
-//        [_sampleView removeFromSuperview];
-//        [_maskView setAlpha:0.0];
-//    }completion:^(BOOL finished) {
-//    }];
-//}
 
 -(void)signBtnClicked{
     [_model signGainMoney];
@@ -184,8 +115,6 @@
     
     T_SignGifView *gifView = [[T_SignGifView alloc] initWithFrame:CGRectMake(0, 0, Size.width, Size.height)];
     [self.view addSubview:gifView];
-    
-//    [self performSelector:@selector(showAlert) withObject:nil afterDelay:kAnimateDuration];
 }
 
 -(void)showAlert{
@@ -198,9 +127,10 @@
     
     if([_model.signArr count] > 0){
         SignEntity *signEntity = [_model.signArr objectAtIndex:0];
-        NSString *message = [NSString stringWithFormat:@"签到奖励:%.2f",signEntity.money];
-        [UtilTool showAlertView:message];
-        [_textLabel setText:[NSString stringWithFormat:@"我的奖励:%.2f元",signEntity.money]];
+        [_textLabel setText:[NSString stringWithFormat:@"签到奖励:%.2f元",signEntity.money]];
+        if(signEntity.type == Sign_Type_Cloud){
+            [_textLabel setText:[NSString stringWithFormat:@"签到奖励:%.2f云票",signEntity.money]];
+        }
     }
 }
 
@@ -215,9 +145,6 @@
 -(void)backToLastPage{
     [self.wxNavigationController popViewControllerAnimated:YES completion:^{
     }];
-}
-
--(void)tappedOnDate:(NSDate *)selectedDate{
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

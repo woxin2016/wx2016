@@ -9,23 +9,33 @@
 #import "MonthCTListVC.h"
 #import "UserCloudTicketCell.h"
 #import "UserCloudTicketModel.h"
+#import "MJRefresh.h"
 
-@interface MonthCTListVC()<UITableViewDataSource,UITableViewDelegate>{
+#define EveryTimeLoad (10)
+
+@interface MonthCTListVC()<UITableViewDataSource,UITableViewDelegate,UserCloudTicketModelDelegate>{
     UITableView *_tableView;
     NSArray *monthCTArr;
+    UserCloudTicketModel *_model;
+    BOOL isRefresh;
 }
 
 @end
 
 @implementation MonthCTListVC
 
+-(id)init{
+    self = [super init];
+    if(self){
+        _model = [[UserCloudTicketModel alloc] init];
+        [_model setDelegate:self];
+    }
+    return self;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self addOBS];
-    monthCTArr = [UserCloudTicketModel sharedUserCloudTicket].monthCTListArr;
-    if(_tableView){
-        [_tableView reloadData];
-    }
+    [self setupRefresh];
 }
 
 -(void)viewDidLoad{
@@ -41,10 +51,23 @@
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
--(void)addOBS{
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(loadCloudTicketSucceed) name:K_Notification_Name_LoadUserCloudTicketSucceed object:nil];
-    [notificationCenter addObserver:self selector:@selector(loadCloudTicketFailed:) name:K_Notification_Name_LoadUserCloudTicketFailed object:nil];
+//集成刷新控件
+-(void)setupRefresh{
+    //1.下拉刷新(进入刷新状态会调用self的headerRefreshing)
+    [_tableView addHeaderWithTarget:self action:@selector(headerRefreshing)];
+    [_tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+    
+    //设置文字
+    _tableView.headerPullToRefreshText = @"下拉刷新";
+    _tableView.headerReleaseToRefreshText = @"松开刷新";
+    _tableView.headerRefreshingText = @"刷新中";
+    
+    _tableView.footerPullToRefreshText = @"上拉加载";
+    _tableView.footerReleaseToRefreshText = @"松开加载";
+    _tableView.footerRefreshingText = @"加载中";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -55,7 +78,7 @@
     return UserCloudTicketCellHeight;
 }
 
--(WXUITableViewCell *)tableViewUserMonthCTCell:(NSInteger)row{
+-(WXUITableViewCell *)tableViewUserWeekCTCell:(NSInteger)row{
     static NSString *identifier = @"Cell";
     UserCloudTicketCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
@@ -70,7 +93,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXUITableViewCell *cell = nil;
     NSInteger row = indexPath.row;
-    cell = [self tableViewUserMonthCTCell:row];
+    cell = [self tableViewUserWeekCTCell:row];
     return cell;
 }
 
@@ -78,24 +101,44 @@
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark userCTNotification
--(void)loadCloudTicketSucceed{
-    [self unShowWaitView];
-    monthCTArr = [UserCloudTicketModel sharedUserCloudTicket].monthCTListArr;
+#pragma mark mjRefresh
+-(void)headerRefreshing{
+    isRefresh = YES;
+    if([monthCTArr count] == 0){
+        [_model loadUserCloudTicketData:0 length:EveryTimeLoad type:UserCloudTicket_Type_Month];
+    }else{
+        [_model loadUserCloudTicketData:0 length:[monthCTArr count] type:UserCloudTicket_Type_Month];
+    }
+}
+
+-(void)footerRefreshing{
+    isRefresh = NO;
+    [_model loadUserCloudTicketData:[monthCTArr count] length:EveryTimeLoad type:UserCloudTicket_Type_Month];
+}
+
+-(void)loadUserCloudTicketDataSucceed{
+    monthCTArr = _model.userCloudArr;
+    
+    if(isRefresh){
+        [_tableView headerEndRefreshing];
+    }else{
+        [_tableView footerEndRefreshing];
+    }
     [_tableView reloadData];
 }
 
--(void)loadCloudTicketFailed:(NSNotification*)notification{
-    [self unShowWaitView];
-    NSString *message = notification.object;
-    if(!message){
-        message = @"获取数据失败";
+-(void)loadUserCloudTicketDataFailed:(NSString *)errorMsg{
+    if(!errorMsg){
+        errorMsg = @"获取数据失败";
     }
-    [UtilTool showAlertView:message];
+    [UtilTool showAlertView:errorMsg];
+    
+    if(isRefresh){
+        [_tableView headerEndRefreshing];
+    }
+    if(!isRefresh){
+        [_tableView footerEndRefreshing];
+    }
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 @end

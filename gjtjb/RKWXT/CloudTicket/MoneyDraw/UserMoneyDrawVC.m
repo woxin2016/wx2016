@@ -9,12 +9,14 @@
 #import "UserMoneyDrawVC.h"
 #import "UserMoneyDrawCell.h"
 #import "UserMoneyDrawShowCell.h"
+#import "ApplyAliModel.h"
 
 #define Size self.bounds.size
 
-@interface UserMoneyDrawVC()<UITableViewDataSource,UITableViewDelegate,UserMoneyDrawCellDelegate>{
+@interface UserMoneyDrawVC()<UITableViewDataSource,UITableViewDelegate,UserMoneyDrawCellDelegate,ApplyAliModelDelegate>{
     UITableView *_tableView;
     CGFloat drawMoney;
+    ApplyAliModel *_model;
 }
 
 @end
@@ -32,6 +34,9 @@
     [_tableView setDelegate:self];
     [self addSubview:_tableView];
     [_tableView setTableFooterView:[self tableFooterView]];
+    
+    _model = [[ApplyAliModel alloc] init];
+    [_model setDelegate:self];
 }
 
 -(UIView*)tableFooterView{
@@ -155,6 +160,29 @@
         [UtilTool showTipView:@"提现金额需大于20元"];
         return;
     }
+    if(drawMoney > _userMoney){
+        [UtilTool showTipView:@"对不起，账户余额不足"];
+        return;
+    }
+    [_model applyAliMoney:drawMoney];
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+}
+
+-(void)applyAliMoneySucceed{
+    [self unShowWaitView];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setFloat:drawMoney forKey:UserApplyMoneySucceed];
+    
+    [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+    }];
+}
+
+-(void)applyAliMoneyFailed:(NSString *)errorMsg{
+    [self unShowWaitView];
+    if(!errorMsg){
+        errorMsg = @"申请提现失败";
+    }
+    [UtilTool showAlertView:errorMsg];
 }
 
 @end

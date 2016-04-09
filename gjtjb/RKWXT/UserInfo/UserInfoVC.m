@@ -13,6 +13,7 @@
 #import "ShareBrowserView.h"
 #import "ShareSucceedModel.h"
 #import "UserHeaderModel.h"
+#import "MoreMoneyInfoModel.h"
 #import "WXRemotionImgBtn.h"
 #import "NewUserCutVC.h"
 #import "LuckyGoodsOrderList.h"
@@ -48,6 +49,10 @@
     
     if([self userIconImage]){
         [iconImageView setImage:[self userIconImage]];
+    }
+    
+    if(![MoreMoneyInfoModel shareUserMoreMoneyInfo].isLoaded){
+        [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
     }
 }
 
@@ -93,6 +98,11 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(uploadUserIconSucceed) name:D_Notification_Name_UploadUserIcon object:nil];
     [notificationCenter addObserver:self selector:@selector(uploadUserInfoSucceed) name:D_Notification_Name_UploadUserInfo object:nil];
+    
+    //云票和现金相关
+    [notificationCenter addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_LoadUserMoreMoneyInfoSucceed object:nil];
+    [notificationCenter addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_UserCloudTicketChanged object:nil];
+    [notificationCenter addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_UserMoneyBalanceChanged object:nil];
 }
 
 -(void)removeOBS{
@@ -122,6 +132,10 @@
             [namelabel setText:user.nickname];
         }
     }
+}
+
+-(void)uploadUserMoreMoneyInfo{
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:PersonalInfo_UserMoney] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(UIView *)viewForTableHeadView{
@@ -371,12 +385,12 @@
     if(row == UserCloudTicket){
         [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
         [cell.textLabel setText:@"我的云票"];
-        [cell setCellInfo:[NSString stringWithFormat:@"10000"]];
+        [cell setCellInfo:[NSString stringWithFormat:@"%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance]];
         [cell load];
     }else{
         [cell.imageView setImage:[UIImage imageNamed:@"UserMoneyImg.png"]];
         [cell.textLabel setText:@"我的现金"];
-        [cell setCellInfo:[NSString stringWithFormat:@"￥100"]];
+        [cell setCellInfo:[NSString stringWithFormat:@"￥%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance]];
         [cell load];
     }
     return cell;

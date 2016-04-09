@@ -7,7 +7,7 @@
 //
 
 #import "UserMoneyShowVC.h"
-#import "CloudTicketListVC.h"
+#import "UserMoneyInfoListVC.h"
 #import "UserMoneyInfoCell.h"
 #import "UserMoneyShowCell.h"
 #import "UserAliAccountStateCell.h"
@@ -40,6 +40,7 @@ enum{
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self changeUserWithdrawalsInfoSucceed];
+    [self applyAliSucceed];
 }
 
 -(id)init{
@@ -180,6 +181,19 @@ enum{
     [self unShowWaitView];
 }
 
+#pragma mark 提现成功后的通知
+-(void)applyAliSucceed{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    CGFloat moneyValue = [userDefaults floatForKey:UserApplyMoneySucceed];
+    
+    if(moneyValue > 0){
+        [UtilTool showAlertView:@"申请提现成功，系统将自动转到您的支付宝账户，请注意查收"];
+//        MyRefereeEntity *entity = [myCutArr objectAtIndex:0];
+//        [_bigMoney setText:[NSString stringWithFormat:@"%.2f",entity.balance-moneyValue]];
+//        [_tableView reloadData];
+    }
+}
+
 #pragma mark 添加或修改支付宝成功
 -(void)changeUserWithdrawalsInfoSucceed{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -191,9 +205,8 @@ enum{
 
 #pragma mark nextPage
 -(void)gotoAccountInfoVC{
-    CloudTicketListVC *cloudVC = [[CloudTicketListVC alloc] init];
-    cloudVC.ctType = CloudTicket_Type_Info;
-    [self.wxNavigationController pushViewController:cloudVC];
+    UserMoneyInfoListVC *moneyVC = [[UserMoneyInfoListVC alloc] init];
+    [self.wxNavigationController pushViewController:moneyVC];
 }
 
 -(void)userSubmitAliAccountBtnClicked:(id)sender{

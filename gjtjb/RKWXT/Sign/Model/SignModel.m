@@ -37,8 +37,12 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault setInteger:[UtilTool timeChange] forKey:userObj.wxtID];
     
+    NSString *message = [NSString stringWithFormat:@"今日签到领取了%.2f元",entity.money];
+    if(entity.type == 2){
+        message = [NSString stringWithFormat:@"今日签到领取了%.2f云票",entity.money];
+    }
     NSUserDefaults *userDefault1 = [NSUserDefaults standardUserDefaults];
-    [userDefault1 setFloat:entity.money forKey:userObj.user];
+    [userDefault1 setObject:message forKey:userObj.user];
 }
 
 -(void)signGainMoney{

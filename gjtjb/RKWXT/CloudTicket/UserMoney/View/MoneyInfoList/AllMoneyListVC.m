@@ -1,33 +1,33 @@
 //
-//  WeekCTListVC.m
+//  AllMoneyListVC.m
 //  RKWXT
 //
-//  Created by SHB on 16/4/6.
+//  Created by SHB on 16/4/9.
 //  Copyright © 2016年 roderick. All rights reserved.
 //
 
-#import "WeekCTListVC.h"
-#import "UserCloudTicketCell.h"
-#import "UserCloudTicketModel.h"
+#import "AllMoneyListVC.h"
+#import "UserMoneyInfoListCell.h"
+#import "UserMoneyInfoModel.h"
 #import "MJRefresh.h"
 
 #define EveryTimeLoad (10)
 
-@interface WeekCTListVC()<UITableViewDataSource,UITableViewDelegate,UserCloudTicketModelDelegate>{
+@interface AllMoneyListVC()<UITableViewDataSource,UITableViewDelegate,UserMoneyInfoModelDelegate>{
     UITableView *_tableView;
-    NSArray *weekCTArr;
-    UserCloudTicketModel *_model;
+    NSArray *allMoneyInfoArr;
+    UserMoneyInfoModel *_model;
     BOOL isRefresh;
 }
 
 @end
 
-@implementation WeekCTListVC
+@implementation AllMoneyListVC
 
 -(id)init{
     self = [super init];
     if(self){
-        _model = [[UserCloudTicketModel alloc] init];
+        _model = [[UserMoneyInfoModel alloc] init];
         [_model setDelegate:self];
     }
     return self;
@@ -71,21 +71,21 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [weekCTArr count];
+    return [allMoneyInfoArr count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UserCloudTicketCellHeight;
+    return UserMoneyInfoListCellHeight;
 }
 
 -(WXUITableViewCell *)tableViewUserWeekCTCell:(NSInteger)row{
     static NSString *identifier = @"Cell";
-    UserCloudTicketCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    UserMoneyInfoListCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
-        cell = [[UserCloudTicketCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UserMoneyInfoListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setCellInfo:[weekCTArr objectAtIndex:row]];
+    [cell setCellInfo:[allMoneyInfoArr objectAtIndex:row]];
     [cell load];
     return cell;
 }
@@ -104,20 +104,20 @@
 #pragma mark mjRefresh
 -(void)headerRefreshing{
     isRefresh = YES;
-    if([weekCTArr count] == 0){
-        [_model loadUserCloudTicketData:0 length:EveryTimeLoad type:UserCloudTicket_Type_Week];
+    if([allMoneyInfoArr count] == 0){
+        [_model loadUserMoneyInfoData:0 length:EveryTimeLoad type:UserMoneyInfo_Type_All];
     }else{
-        [_model loadUserCloudTicketData:0 length:[weekCTArr count] type:UserCloudTicket_Type_Week];
+        [_model loadUserMoneyInfoData:0 length:[allMoneyInfoArr count] type:UserMoneyInfo_Type_All];
     }
 }
 
 -(void)footerRefreshing{
     isRefresh = NO;
-    [_model loadUserCloudTicketData:[weekCTArr count] length:EveryTimeLoad type:UserCloudTicket_Type_Week];
+    [_model loadUserMoneyInfoData:[allMoneyInfoArr count] length:EveryTimeLoad type:UserMoneyInfo_Type_All];
 }
 
 -(void)loadUserCloudTicketDataSucceed{
-    weekCTArr = _model.userCloudArr;
+    allMoneyInfoArr = _model.userMoneyInfoArr;
     
     if(isRefresh){
         [_tableView headerEndRefreshing];

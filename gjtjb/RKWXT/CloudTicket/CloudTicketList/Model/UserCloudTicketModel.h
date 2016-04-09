@@ -8,15 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-#define K_Notification_Name_LoadUserCloudTicketSucceed @"K_Notification_Name_LoadUserCloudTicketSucceed"
-#define K_Notification_Name_LoadUserCloudTicketFailed  @"K_Notification_Name_LoadUserCloudTicketFailed"
+typedef enum{
+    UserCloudTicket_Type_Week = 0,
+    UserCloudTicket_Type_Month,
+    UserCloudTicket_Type_All,
+}UserCloudTicket_Type;
+
+@protocol UserCloudTicketModelDelegate;
 
 @interface UserCloudTicketModel : NSObject
-@property (nonatomic,strong) NSArray *weekCTListArr;
-@property (nonatomic,strong) NSArray *monthCTListArr;
-@property (nonatomic,strong) NSArray *allCTListArr;
+@property (nonatomic,weak) id<UserCloudTicketModelDelegate>delegate;
+@property (nonatomic,strong) NSArray *userCloudArr;
 
-+(UserCloudTicketModel*)sharedUserCloudTicket;
--(void)loadUserCloudTicketData;
+-(void)loadUserCloudTicketData:(NSInteger)startItem length:(NSInteger)length type:(UserCloudTicket_Type)type;
+@end
+
+@protocol UserCloudTicketModelDelegate <NSObject>
+-(void)loadUserCloudTicketDataSucceed;
+-(void)loadUserCloudTicketDataFailed:(NSString*)errorMsg;
 
 @end
