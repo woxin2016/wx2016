@@ -1,0 +1,28 @@
+//
+//  ViteualGoodsModel.h
+//  RKWXT
+//
+//  Created by app on 16/4/5.
+//  Copyright (c) 2016年 roderick. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef enum{
+    ModelType_Store = 1,
+    ModelType_Exchange
+}ModelType;
+
+
+
+@protocol viteualGoodsModelDelegate;
+@interface ViteualGoodsModel : NSObject
+@property (nonatomic,weak)id<viteualGoodsModelDelegate> delegate;
+@property (nonatomic,strong)NSArray *goodsArray;
+- (void)viteualGoodsModelRequeatNetWork:(ModelType)type start:(NSInteger)start length:(NSInteger)length;
+@end
+
+@protocol viteualGoodsModelDelegate <NSObject>
+-(void)viteualGoodsModelSucceed;
+-(void)viteualGoodsModelFailed:(NSString*)errorMsg;
+@end

@@ -253,6 +253,12 @@
         case WXT_UrlFeed_Type_New_PayAttention:
             url = @"/stores.php";
             break;
+        case WXT_UrlFeed_Type_VirtualGoods:
+            url = @"/list_exchange_goods.php";
+            break;
+        case WXT_UrlFeed_Type_VirtualGoodsInfo:
+            url = @"/exchange_goods_detail.php";
+            break;
         default:
             break;
     }

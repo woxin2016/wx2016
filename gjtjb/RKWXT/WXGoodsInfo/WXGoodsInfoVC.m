@@ -259,7 +259,7 @@
             }
             break;
         case GoodsInfo_Section_GoodsInfo:
-            row = [_model.attrArr count];
+            row = 1;
             break;
         default:
             break;
@@ -314,7 +314,6 @@
     }
     return height;
 }
-
 -(void)viewDidLayoutSubviews {
     
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -336,6 +335,8 @@
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
 }
+
+
 
 -(void)initWebView{
     //初始化图文详情页面，方便上拉加载数据

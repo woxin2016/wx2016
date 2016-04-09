@@ -199,7 +199,7 @@
             }
             break;
         case GoodsInfo_Section_GoodsInfo:
-            row = [_model.attrArr count];
+            row = 1;
             break;
         default:
             break;
@@ -702,6 +702,12 @@
     }
     return new;
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 
 @end

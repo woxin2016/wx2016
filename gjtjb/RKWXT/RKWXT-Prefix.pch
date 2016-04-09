@@ -18,8 +18,8 @@
 
 //测试服务器地址: oldyun.67call.com
 //线上地址 ：api.woxinyun.com
-#define AllImgPrefixUrlString @"http://api.woxinyun.com/wx10/Public/Uploads/"  //所有网络获取图片皆拼接此字符串前缀
-#define WXTBaseUrl @"http://api.woxinyun.com/"  //基地址
+#define AllImgPrefixUrlString @"http://oldyun.67call.com/wx10/Public/Uploads/"  //所有网络获取图片皆拼接此字符串前缀
+#define WXTBaseUrl @"http://oldyun.67call.com/"  //基地址
 #define WXTShareBaseUrl @"http://api.woxinyun.com/"  //分享的基地址
 
 #define KTabBarHeight (45.0)

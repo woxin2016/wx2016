@@ -68,10 +68,12 @@
     return self;
 }
 
+
 -(void)load{
     LuckyGoodsInfoEntity *entity = self.cellInfo;
     [_imgView setCpxViewInfo:entity.smallImg];
     [_imgView load];
+    
     [_nameLabel setText:entity.intro];
     [_stockName setText:entity.stockName];
     CGFloat price = entity.buyNumber*entity.stockPrice;

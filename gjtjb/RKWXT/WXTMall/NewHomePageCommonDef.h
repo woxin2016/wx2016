@@ -55,6 +55,7 @@ enum{
 #import "MJRefresh.h"
 #import "ShareBrowserView.h"
 #import "WXGoodsInfoVC.h"
+#import "VirtualGoodsListVC.h"
 
 #import "WXHomeTopGoodCell.h"
 #import "WXHomeBaseFunctionCell.h"
