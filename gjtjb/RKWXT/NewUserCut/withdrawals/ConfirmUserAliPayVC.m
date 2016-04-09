@@ -349,8 +349,17 @@
     
     if(_aliAcount.length != 0 && _userName.length != 0){
         [UtilTool showAlertView:@"提现账号修改成功，请等待审核"];
+        UIViewController *userCutVC = nil;
         WXUINavigationController *navigationController = [CoordinateController sharedNavigationController];
-        UIViewController *userCutVC = [navigationController lastViewControllerOfClass:NSClassFromString(@"NewUserCutVC")];
+        if([navigationController lastViewControllerOfClass:NSClassFromString(@"NewUserCutVC")]){
+            userCutVC = [navigationController lastViewControllerOfClass:NSClassFromString(@"NewUserCutVC")];
+        }
+        if([navigationController lastViewControllerOfClass:NSClassFromString(@"UserMoneyShowVC")]){
+            userCutVC = [navigationController lastViewControllerOfClass:NSClassFromString(@"UserMoneyShowVC")];
+            [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+            }];
+            return;
+        }
         [self.wxNavigationController popToViewController:userCutVC animated:YES Completion:^{
         }];
     }else{

@@ -517,10 +517,11 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
 #pragma mark withdrawals
 -(void)gotoUserWithdrawalsVC{
     //添加帐号
-    if(userAliEntity.userali_type == UserAliCount_Type_None){
+    if(userAliEntity.userali_type == UserAliCount_Type_Submit && !userAliEntity.aliCount){
         ConfirmUserAliPayVC *comfirmVC = [[ConfirmUserAliPayVC alloc] init];
         comfirmVC.titleString = @"验证信息";
         [self.wxNavigationController pushViewController:comfirmVC];
+        return;
     }
     //审核中
     if(userAliEntity.userali_type == UserAliCount_Type_Submit){

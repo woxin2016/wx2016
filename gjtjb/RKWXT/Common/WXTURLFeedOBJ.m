@@ -85,7 +85,7 @@
             url = @"/callback.php";
             break;
         case WXT_UrlFeed_Type_New_Sign:
-            url = @"/sign_in.php";
+            url = @"/sgin_in_xnb.php";
             break;
         case WXT_UrlFeed_Type_New_PersonalInfo:
             url = @"/userinfo.php";

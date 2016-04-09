@@ -19,8 +19,11 @@
 
 -(id)initWithDic:(NSDictionary*)dic{
     if(self = [super init]){
-        CGFloat money = [[dic objectForKey:@"telephone_fare"] floatValue];
+        CGFloat money = [[dic objectForKey:@"number"] floatValue];
         [self setMoney:money];
+        
+        NSInteger type = [[dic objectForKey:@"type"] integerValue];
+        [self setType:type];
     }
     return self;
 }

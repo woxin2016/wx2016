@@ -13,6 +13,7 @@
 #import "ShareBrowserView.h"
 #import "ShareSucceedModel.h"
 #import "UserHeaderModel.h"
+#import "MoreMoneyInfoModel.h"
 #import "WXRemotionImgBtn.h"
 #import "NewUserCutVC.h"
 #import "LuckyGoodsOrderList.h"
@@ -48,6 +49,10 @@
     
     if([self userIconImage]){
         [iconImageView setImage:[self userIconImage]];
+    }
+    
+    if(![MoreMoneyInfoModel shareUserMoreMoneyInfo].isLoaded){
+        [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
     }
 }
 
@@ -93,6 +98,11 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(uploadUserIconSucceed) name:D_Notification_Name_UploadUserIcon object:nil];
     [notificationCenter addObserver:self selector:@selector(uploadUserInfoSucceed) name:D_Notification_Name_UploadUserInfo object:nil];
+    
+    //云票和现金相关
+    [notificationCenter addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_LoadUserMoreMoneyInfoSucceed object:nil];
+    [notificationCenter addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_UserCloudTicketChanged object:nil];
+    [notificationCenter addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_UserMoneyBalanceChanged object:nil];
 }
 
 -(void)removeOBS{
@@ -122,6 +132,10 @@
             [namelabel setText:user.nickname];
         }
     }
+}
+
+-(void)uploadUserMoreMoneyInfo{
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:PersonalInfo_UserMoney] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(UIView *)viewForTableHeadView{
@@ -208,6 +222,9 @@
             break;
         case PersonalInfo_SharkOrder:
             number = Address_Invalid;
+            break;
+        case PersonalInfo_UserMoney:
+            number = UserMoneyInvalid;
             break;
         case PersonalInfo_CutAndShare:
             number = User_Invalid;
@@ -341,16 +358,40 @@
             [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
         }
             break;
-        case User_Share:
-        {
-            [cell.imageView setImage:[UIImage imageNamed:@"SharkNewImg.png"]];
-            [cell.textLabel setText:@"我的奖品"];
-            [cell.textLabel setFont:WXFont(15.0)];
-            [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
-        }
-            break;
+//        case User_Share:
+//        {
+//            [cell.imageView setImage:[UIImage imageNamed:@"SharkNewImg.png"]];
+//            [cell.textLabel setText:@"我的奖品"];
+//            [cell.textLabel setFont:WXFont(15.0)];
+//            [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+//        }
+//            break;
         default:
             break;
+    }
+    return cell;
+}
+
+//云票
+-(WXTUITableViewCell*)tableViewForUserCloudTicketCell:(NSInteger)row{
+    static NSString *identifier = @"userCommonCell";
+    UserCommonShowCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[UserCommonShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
+    [cell.textLabel setFont:WXFont(15.0)];
+    [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+    if(row == UserCloudTicket){
+        [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
+        [cell.textLabel setText:@"我的云票"];
+        [cell setCellInfo:[NSString stringWithFormat:@"%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance]];
+        [cell load];
+    }else{
+        [cell.imageView setImage:[UIImage imageNamed:@"UserMoneyImg.png"]];
+        [cell.textLabel setText:@"我的现金"];
+        [cell setCellInfo:[NSString stringWithFormat:@"￥%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance]];
+        [cell load];
     }
     return cell;
 }
@@ -405,6 +446,9 @@
         case PersonalInfo_SharkOrder:
             cell = [self tableViewForSharkOrderCell:row];
             break;
+        case PersonalInfo_UserMoney:
+            cell = [self tableViewForUserCloudTicketCell:row];
+            break;
         case PersonalInfo_CutAndShare:
             cell = [self tableViewForUserCutCellAtRow:row];
             break;
@@ -439,16 +483,28 @@
             }
         }
             break;
+        case PersonalInfo_UserMoney:
+        {
+            if(row == UserCloudTicket){
+                CloudTicketListVC *cloudVC = [[CloudTicketListVC alloc] init];
+                [self.wxNavigationController pushViewController:cloudVC];
+            }
+            if(row == UserAccountMoney){
+                UserMoneyShowVC *moneyVC = [[UserMoneyShowVC alloc] init];
+                [self.wxNavigationController pushViewController:moneyVC];
+            }
+        }
+            break;
         case PersonalInfo_CutAndShare:
         {
             if(row == User_Cut){
                 UserCollectionGoodsVC *collection = [[UserCollectionGoodsVC alloc]init];
                [self.wxNavigationController pushViewController:collection];
             }
-            if(row == User_Share){
-                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
-                [self.wxNavigationController pushViewController:orderListVC];
-            }
+//            if(row == User_Share){
+//                LuckyGoodsOrderList *orderListVC = [[LuckyGoodsOrderList alloc] init];
+//                [self.wxNavigationController pushViewController:orderListVC];
+//            }
         }
             break;
         case PersonalInfo_System:

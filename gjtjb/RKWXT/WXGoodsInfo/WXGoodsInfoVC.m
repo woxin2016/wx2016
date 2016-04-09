@@ -647,7 +647,6 @@
     if ([_model.sellerArr  count] > 0) {
         entity = [_model.sellerArr objectAtIndex:0];
     }
-    
     shopPhone = entity.sellerPhone;
     [self showAlertView:shopPhone];
 }

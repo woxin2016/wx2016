@@ -51,8 +51,11 @@
             char *push_id = (char*)sqlite3_column_text(statement, 5);
             NSString *pushID = [[NSString alloc] initWithUTF8String:push_id];
             
+            NSString *toView = nil;
             char *to_View = (char*)sqlite3_column_text(statement, 6);
-            NSString *toView = [[NSString alloc] initWithUTF8String:to_View];
+            if (to_View) {
+                toView = [[NSString alloc] initWithUTF8String:to_View];
+            }
             
           
             
