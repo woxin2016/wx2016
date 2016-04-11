@@ -125,6 +125,7 @@
     if(!cell){
         cell = [[UserMoneyDrawCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setDelegate:self];
     [cell load];
     return cell;

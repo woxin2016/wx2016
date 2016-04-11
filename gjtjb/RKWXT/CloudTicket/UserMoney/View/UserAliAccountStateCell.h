@@ -14,6 +14,7 @@
 
 @interface UserAliAccountStateCell : WXUITableViewCell
 @property (nonatomic,weak) id<UserAliAccountStateCellDelegate>delegate;
+@property (nonatomic,assign) BOOL isAdded;
 @end
 
 @protocol UserAliAccountStateCellDelegate <NSObject>

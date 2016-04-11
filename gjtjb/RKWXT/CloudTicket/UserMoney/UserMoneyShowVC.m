@@ -227,6 +227,7 @@ enum{
 -(void)changeUserWithdrawalsInfoSucceed{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if([userDefaults boolForKey:ConfirmSign]){
+        entity = [[UserAliEntity alloc] init];
         entity.userali_type = UserAliCount_Type_Submit;
         [_tableView reloadData];
     }
