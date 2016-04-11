@@ -25,7 +25,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-        CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-4*10)/3.5;
+//        CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-4*10)/3.5;
+        CGFloat bgWidth = frame.size.width;
         CGFloat bgHeight = T_HomePageRecommendHeight;
         UIButton *bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         bgBtn.frame = CGRectMake(0, 0, bgWidth, bgHeight);
@@ -34,7 +35,7 @@
         [self addSubview:bgBtn];
         
         CGFloat yOffset = 8;
-        CGFloat imgWidth = 80;
+        CGFloat imgWidth = bgWidth;
         CGFloat imgHeight = imgWidth;
         CGFloat xOffset = (bgWidth-imgWidth)/2;
         _imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset, yOffset, imgWidth, imgHeight)];

@@ -50,7 +50,7 @@
     self.frame = rect;
     
     CGFloat xOffset = 10;
-    CGFloat speace = 4.5;
+    CGFloat speace = 9.5;
     CGFloat width = self.frame.size.width / 3.5;
     CGFloat Height = self.frame.size.height;
     for(NSInteger i = 0; i < [goodsEntity.goodsArray count]; i++){
@@ -64,11 +64,11 @@
         
         CGFloat marH = 80;
         CGFloat Nmar = xOffset - (speace - 0.5) / 2;
-        CGFloat maelX = i > 0 ? Nmar + ((width + speace) * i) : 0;
-        UILabel *marLabel = [[UILabel alloc]initWithFrame:CGRectMake(maelX, 8, 0.5, marH)];
+        CGFloat maelX = i > 0 ? Nmar + ((width + speace) * i) : -100;
+        UILabel *marLabel = [[UILabel alloc]initWithFrame:CGRectMake(maelX, 8, 0.5, view.frame.size.width)];
         marLabel.backgroundColor = [UIColor colorWithHexString:@"9b9b9b"];
         [_browser addSubview:marLabel];
-    }
+       }
     [_browser setContentSize:CGSizeMake((xOffset + width ) * [goodsEntity.goodsArray count], T_HomePageLimitBuyHeight)];
 }
 

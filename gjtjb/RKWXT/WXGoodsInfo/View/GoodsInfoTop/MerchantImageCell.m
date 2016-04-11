@@ -21,7 +21,7 @@
 
 @implementation MerchantImageCell
 
--(id)initWithReuseIdentifier:(NSString *)reuseIdentifier imageArray:(NSArray *)imageArray{
+-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier imageArray:(NSArray *)imageArray{
     if(self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]){
         CGRect rect = [self bounds];
         rect.size.height = IPHONE_SCREEN_WIDTH;
@@ -44,6 +44,7 @@
     }
     return self;
 }
+
 
 -(void)load{
     NSInteger pageCount = [_subPageViews count];

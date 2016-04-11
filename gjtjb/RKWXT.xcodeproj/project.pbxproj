@@ -482,20 +482,6 @@
 		12B1F6961B789138009FBA6D /* RechargeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F6951B789138009FBA6D /* RechargeListVC.m */; };
 		12B1F6991B789372009FBA6D /* RechargeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F6981B789372009FBA6D /* RechargeListCell.m */; };
 		12B3FE311BB10807001A45E6 /* PersonalInfoBgViewImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12B3FE301BB10807001A45E6 /* PersonalInfoBgViewImg@2x.png */; };
-		12BBED4B1CB4992200EF6906 /* CloudTicketListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED4A1CB4992200EF6906 /* CloudTicketListVC.m */; };
-		12BBED4E1CB499A700EF6906 /* WeekCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED4D1CB499A700EF6906 /* WeekCTListVC.m */; };
-		12BBED511CB499BD00EF6906 /* MonthCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED501CB499BD00EF6906 /* MonthCTListVC.m */; };
-		12BBED541CB499CC00EF6906 /* AllCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED531CB499CC00EF6906 /* AllCTListVC.m */; };
-		12BBED571CB49B7A00EF6906 /* UserCloudTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED561CB49B7A00EF6906 /* UserCloudTicketModel.m */; };
-		12BBED5A1CB49BF900EF6906 /* UserCloudTicketEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED591CB49BF900EF6906 /* UserCloudTicketEntity.m */; };
-		12BBED5D1CB4A04C00EF6906 /* UserCloudTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED5C1CB4A04C00EF6906 /* UserCloudTicketCell.m */; };
-		12BBED631CB4A4BC00EF6906 /* RechargeCloudTicketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED621CB4A4BC00EF6906 /* RechargeCloudTicketVC.m */; };
-		12BBED691CB4BB2700EF6906 /* UserMoneyShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED681CB4BB2700EF6906 /* UserMoneyShowVC.m */; };
-		12BBED6C1CB4BD7500EF6906 /* UserMoneyShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */; };
-		12BBED6F1CB4BD8100EF6906 /* UserMoneyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */; };
-		12BBED751CB4DE6B00EF6906 /* UserMoneyDrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED741CB4DE6B00EF6906 /* UserMoneyDrawVC.m */; };
-		12BBED781CB4E07500EF6906 /* UserMoneyDrawShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED771CB4E07500EF6906 /* UserMoneyDrawShowCell.m */; };
-		12BBED7B1CB4E10A00EF6906 /* UserMoneyDrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED7A1CB4E10A00EF6906 /* UserMoneyDrawCell.m */; };
 		12BBED7F1CB4E9EB00EF6906 /* UserCommonShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BBED7E1CB4E9EB00EF6906 /* UserCommonShowCell.m */; };
 		12BC72571C78531700FC6A1C /* MyClientEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BC720B1C78531700FC6A1C /* MyClientEntity.m */; };
 		12BC72581C78531700FC6A1C /* MyClientInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BC720D1C78531700FC6A1C /* MyClientInfoModel.m */; };
@@ -606,8 +592,6 @@
 		12DDE7381CB5E908006BBB1E /* CloudTicketImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */; };
 		12DDE7391CB5E908006BBB1E /* UserMoneyImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */; };
 		12DDE73B1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */; };
-		12DDE73E1CB6319E006BBB1E /* RechargeCTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DDE73D1CB6319E006BBB1E /* RechargeCTModel.m */; };
-		12DDE7411CB63D32006BBB1E /* UserAliAccountStateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DDE7401CB63D32006BBB1E /* UserAliAccountStateCell.m */; };
 		12F180AB1B44D54900B9A80D /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F180AA1B44D54900B9A80D /* PushConfig.plist */; };
 		12F180B91B45190800B9A80D /* Sql_JpushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180B81B45190800B9A80D /* Sql_JpushData.m */; };
 		12F180BF1B45219300B9A80D /* JPushMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F180BC1B45219300B9A80D /* JPushMessageModel.m */; };
@@ -639,16 +623,6 @@
 		12F3CC8E1B1E020300E64DE4 /* PersonalMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CC8D1B1E020300E64DE4 /* PersonalMoneyCell.m */; };
 		12F3CC911B1E026C00E64DE4 /* PersonalCallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F3CC901B1E026C00E64DE4 /* PersonalCallCell.m */; };
 		12F41A151CB897D600F954F6 /* signBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F41A141CB897D600F954F6 /* signBg@2x.png */; };
-		12F41A191CB89D3C00F954F6 /* UserMoneyInfoListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A181CB89D3C00F954F6 /* UserMoneyInfoListVC.m */; };
-		12F41A1C1CB89D9C00F954F6 /* WeekMoneyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A1B1CB89D9C00F954F6 /* WeekMoneyListVC.m */; };
-		12F41A1F1CB89DAE00F954F6 /* MonthMoneyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A1E1CB89DAE00F954F6 /* MonthMoneyListVC.m */; };
-		12F41A221CB89DBF00F954F6 /* AllMoneyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A211CB89DBF00F954F6 /* AllMoneyListVC.m */; };
-		12F41A251CB89DE900F954F6 /* UserMoneyInfoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A241CB89DE900F954F6 /* UserMoneyInfoListCell.m */; };
-		12F41A281CB8A6A300F954F6 /* UserMoneyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A271CB8A6A300F954F6 /* UserMoneyInfoModel.m */; };
-		12F41A2B1CB8A75A00F954F6 /* UserMoneyInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A2A1CB8A75A00F954F6 /* UserMoneyInfoEntity.m */; };
-		12F41A2F1CB8AB7900F954F6 /* MoreMoneyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A2E1CB8AB7900F954F6 /* MoreMoneyInfoModel.m */; };
-		12F41A321CB8E02300F954F6 /* UserMoneyFormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A311CB8E02300F954F6 /* UserMoneyFormModel.m */; };
-		12F41A351CB8E2C100F954F6 /* UserMoneyFormEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F41A341CB8E2C100F954F6 /* UserMoneyFormEntity.m */; };
 		12F4227E1B1D5A2900643DD7 /* AddressCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F4227A1B1D5A2900643DD7 /* AddressCircle@2x.png */; };
 		12F4227F1B1D5A2900643DD7 /* AddressDel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F4227B1B1D5A2900643DD7 /* AddressDel@2x.png */; };
 		12F422801B1D5A2900643DD7 /* AddressEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F4227C1B1D5A2900643DD7 /* AddressEdit@2x.png */; };
@@ -871,9 +845,59 @@
 		77DB943B1AAFF3830021A816 /* UIView+Sizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DB943A1AAFF3830021A816 /* UIView+Sizing.m */; };
 		786155E21AC8E0CE0048B604 /* areacode in Resources */ = {isa = PBXBuildFile; fileRef = 786155E01AC8E0CE0048B604 /* areacode */; };
 		786155E31AC8E0CE0048B604 /* place.dat in Resources */ = {isa = PBXBuildFile; fileRef = 786155E11AC8E0CE0048B604 /* place.dat */; };
+		DD0766051CB3A60B0015D070 /* VietualHeardView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0766041CB3A60B0015D070 /* VietualHeardView.m */; };
+		DD0766081CB3AF630015D070 /* ViteualStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0766071CB3AF630015D070 /* ViteualStoreCell.m */; };
+		DD07660B1CB3AF7A0015D070 /* ViteualExchangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD07660A1CB3AF7A0015D070 /* ViteualExchangeCell.m */; };
+		DD07660E1CB3B6890015D070 /* ViteualGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD07660D1CB3B6890015D070 /* ViteualGoodsModel.m */; };
+		DD0766111CB3B7C40015D070 /* ViteualGoodsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0766101CB3B7C40015D070 /* ViteualGoodsEntity.m */; };
+		DD0766141CB3BB450015D070 /* VietualTopImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0766131CB3BB450015D070 /* VietualTopImgCell.m */; };
+		DD126D8B1CB5F7A00021E0E1 /* VirtualGoodsInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DD126D8A1CB5F7A00021E0E1 /* VirtualGoodsInfoTool.m */; };
+		DD126D8E1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD126D8D1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.m */; };
+		DD126DC91CB6523C0021E0E1 /* VirtualGoodsOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD126DC81CB6523C0021E0E1 /* VirtualGoodsOrderVC.m */; };
+		DD126DCC1CB6685F0021E0E1 /* VirtualGoodsOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD126DCB1CB6685F0021E0E1 /* VirtualGoodsOrderModel.m */; };
 		DD136AA51C97FD6C0019932E /* storeCart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD136AA41C97FD6C0019932E /* storeCart@2x.png */; };
+		DD146AB61CB8DAAF00BB438E /* VirtualOrderNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AB51CB8DAAF00BB438E /* VirtualOrderNumberCell.m */; };
+		DD146AB91CB8E0C900BB438E /* VirtualOrderInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AB81CB8E0C900BB438E /* VirtualOrderInfoEntity.m */; };
+		DD146AC01CB8E60E00BB438E /* VirtualStockGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146ABF1CB8E60E00BB438E /* VirtualStockGoodsView.m */; };
+		DD146B031CB8F27E00BB438E /* CloudTicketListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AC41CB8F27E00BB438E /* CloudTicketListVC.m */; };
+		DD146B041CB8F27E00BB438E /* UserCloudTicketEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AC71CB8F27E00BB438E /* UserCloudTicketEntity.m */; };
+		DD146B051CB8F27E00BB438E /* UserCloudTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AC91CB8F27E00BB438E /* UserCloudTicketModel.m */; };
+		DD146B061CB8F27E00BB438E /* AllCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146ACC1CB8F27E00BB438E /* AllCTListVC.m */; };
+		DD146B071CB8F27E00BB438E /* MonthCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146ACE1CB8F27E00BB438E /* MonthCTListVC.m */; };
+		DD146B081CB8F27E00BB438E /* UserCloudTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AD01CB8F27E00BB438E /* UserCloudTicketCell.m */; };
+		DD146B091CB8F27E00BB438E /* WeekCTListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AD21CB8F27E00BB438E /* WeekCTListVC.m */; };
+		DD146B0A1CB8F27E00BB438E /* UserMoneyDrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AD51CB8F27E00BB438E /* UserMoneyDrawVC.m */; };
+		DD146B0B1CB8F27E00BB438E /* UserMoneyDrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AD81CB8F27E00BB438E /* UserMoneyDrawCell.m */; };
+		DD146B0C1CB8F27E00BB438E /* UserMoneyDrawShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146ADA1CB8F27E00BB438E /* UserMoneyDrawShowCell.m */; };
+		DD146B0D1CB8F27E00BB438E /* MoreMoneyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146ADD1CB8F27E00BB438E /* MoreMoneyInfoModel.m */; };
+		DD146B0E1CB8F27E00BB438E /* RechargeCTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AE11CB8F27E00BB438E /* RechargeCTModel.m */; };
+		DD146B0F1CB8F27E00BB438E /* RechargeCloudTicketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AE41CB8F27E00BB438E /* RechargeCloudTicketVC.m */; };
+		DD146B101CB8F27E00BB438E /* UserMoneyFormEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AE81CB8F27E00BB438E /* UserMoneyFormEntity.m */; };
+		DD146B111CB8F27E00BB438E /* UserMoneyFormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AEA1CB8F27E00BB438E /* UserMoneyFormModel.m */; };
+		DD146B121CB8F27E00BB438E /* UserMoneyInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AEC1CB8F27E00BB438E /* UserMoneyInfoEntity.m */; };
+		DD146B131CB8F27E00BB438E /* UserMoneyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AEE1CB8F27E00BB438E /* UserMoneyInfoModel.m */; };
+		DD146B141CB8F27E00BB438E /* UserMoneyShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AF01CB8F27E00BB438E /* UserMoneyShowVC.m */; };
+		DD146B151CB8F27E00BB438E /* AllMoneyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AF41CB8F27E00BB438E /* AllMoneyListVC.m */; };
+		DD146B161CB8F27E00BB438E /* MonthMoneyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AF61CB8F27E00BB438E /* MonthMoneyListVC.m */; };
+		DD146B171CB8F27E00BB438E /* UserMoneyInfoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AF81CB8F27E00BB438E /* UserMoneyInfoListCell.m */; };
+		DD146B181CB8F27E00BB438E /* UserMoneyInfoListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AFA1CB8F27E00BB438E /* UserMoneyInfoListVC.m */; };
+		DD146B191CB8F27E00BB438E /* WeekMoneyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AFC1CB8F27E00BB438E /* WeekMoneyListVC.m */; };
+		DD146B1A1CB8F27E00BB438E /* UserAliAccountStateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AFE1CB8F27E00BB438E /* UserAliAccountStateCell.m */; };
+		DD146B1B1CB8F27E00BB438E /* UserMoneyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */; };
+		DD146B1C1CB8F27E00BB438E /* UserMoneyShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */; };
+		DD146B1F1CB8F99400BB438E /* AllMoneyListVC.h in Sources */ = {isa = PBXBuildFile; fileRef = DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */; };
 		DD1488011C9273AF00D2632E /* LimitGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488001C9273AF00D2632E /* LimitGoodsView.m */; };
 		DD1488041C92A69500D2632E /* NewShopPingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488031C92A69500D2632E /* NewShopPingCartModel.m */; };
+		DD17106D1CB49B9C0085713D /* VirtualGoodsInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17106C1CB49B9C0085713D /* VirtualGoodsInfoVC.m */; };
+		DD1710731CB49DE20085713D /* VirtualTopImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1710721CB49DE20085713D /* VirtualTopImgCell.m */; };
+		DD1710761CB49E210085713D /* VietualInfoDesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1710751CB49E210085713D /* VietualInfoDesCell.m */; };
+		DD1710791CB4A0EA0085713D /* VirtualGoodsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1710781CB4A0EA0085713D /* VirtualGoodsInfoModel.m */; };
+		DD17107D1CB4AA770085713D /* VirtualInfoBDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17107C1CB4AA770085713D /* VirtualInfoBDCell.m */; };
+		DD1710801CB4AAA50085713D /* VirtualInfoDownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17107F1CB4AAA50085713D /* VirtualInfoDownCell.m */; };
+		DD1710831CB4AAFE0085713D /* VirtualGoodsInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1710821CB4AAFE0085713D /* VirtualGoodsInfoEntity.m */; };
+		DD1710881CB4AD700085713D /* VirtualInfoExplainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1710871CB4AD700085713D /* VirtualInfoExplainCell.m */; };
+		DD17108B1CB4AD8C0085713D /* VirtualInfoIntegralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17108A1CB4AD8C0085713D /* VirtualInfoIntegralCell.m */; };
+		DD1710C31CB4E2710085713D /* VirtualSubGoodsInfoWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1710C21CB4E2710085713D /* VirtualSubGoodsInfoWebVC.m */; };
 		DD1D29AC1C9A944100F81D9A /* UserDefaultSiteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1D29AB1C9A944100F81D9A /* UserDefaultSiteCell.m */; };
 		DD207CC81C9B991400A2F342 /* WXLimitGoodsInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD207CC71C9B991400A2F342 /* WXLimitGoodsInfoVC.m */; };
 		DD207D011C9BB2DF00A2F342 /* NewGoodsStockView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD207D001C9BB2DF00A2F342 /* NewGoodsStockView.m */; };
@@ -902,6 +926,13 @@
 		DD2572191C9FD3C0008D541E /* searchShopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2572181C9FD3C0008D541E /* searchShopIcon@2x.png */; };
 		DD25721B1C9FD3C5008D541E /* searchGoodsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721A1C9FD3C5008D541E /* searchGoodsIcon@2x.png */; };
 		DD25721D1C9FE39D008D541E /* NewinitImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */; };
+		DD2D89C41CB73C8300474820 /* VirtualUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89C31CB73C8300474820 /* VirtualUserInfoCell.m */; };
+		DD2D89C71CB73CA300474820 /* VirtualCompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89C61CB73CA300474820 /* VirtualCompanyCell.m */; };
+		DD2D89CA1CB73FA900474820 /* VirtualGoodsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89C91CB73FA900474820 /* VirtualGoodsListCell.m */; };
+		DD2D89CD1CB73FC800474820 /* VirtualPayStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89CC1CB73FC800474820 /* VirtualPayStatusCell.m */; };
+		DD2D89D01CB740BA00474820 /* VirtualAllMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89CF1CB740BA00474820 /* VirtualAllMoneyCell.m */; };
+		DD2D89D31CB740D500474820 /* VirtualForDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89D21CB740D500474820 /* VirtualForDateCell.m */; };
+		DD2D8A431CB7BBF400474820 /* ViteualTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D8A421CB7BBF400474820 /* ViteualTopModel.m */; };
 		DD2E63D81C915CF70037632F /* SharkImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2E63D71C915CF70037632F /* SharkImg@2x.png */; };
 		DD2E63DA1C915FEC0037632F /* userCollection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2E63D91C915FEC0037632F /* userCollection@2x.png */; };
 		DD2E63DC1C9161660037632F /* SharkNewImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2E63DB1C9161660037632F /* SharkNewImg@2x.png */; };
@@ -909,6 +940,7 @@
 		DD2E63E31C916CB40037632F /* HomeLimitGoodsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E63E21C916CB40037632F /* HomeLimitGoodsEntity.m */; };
 		DD2E63E61C9177150037632F /* LImitGoodsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E63E51C9177150037632F /* LImitGoodsEntity.m */; };
 		DD351C581AD8B85000DF0C7E /* libPods-CocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */; };
+		DD35B5A41CB398BE00B1C867 /* VirtualGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */; };
 		DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D85D1C841A7900422F5B /* T_Back@2x.png */; };
 		DD35D8601C841AF700422F5B /* T_BackWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D85F1C841AF700422F5B /* T_BackWhite@2x.png */; };
 		DD35D86F1C84258400422F5B /* ClassifySearchBtnImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D8671C84258400422F5B /* ClassifySearchBtnImg@2x.png */; };
@@ -1832,34 +1864,6 @@
 		12B1F6971B789372009FBA6D /* RechargeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeListCell.h; sourceTree = "<group>"; };
 		12B1F6981B789372009FBA6D /* RechargeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeListCell.m; sourceTree = "<group>"; };
 		12B3FE301BB10807001A45E6 /* PersonalInfoBgViewImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PersonalInfoBgViewImg@2x.png"; sourceTree = "<group>"; };
-		12BBED491CB4992200EF6906 /* CloudTicketListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudTicketListVC.h; sourceTree = "<group>"; };
-		12BBED4A1CB4992200EF6906 /* CloudTicketListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudTicketListVC.m; sourceTree = "<group>"; };
-		12BBED4C1CB499A700EF6906 /* WeekCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCTListVC.h; sourceTree = "<group>"; };
-		12BBED4D1CB499A700EF6906 /* WeekCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCTListVC.m; sourceTree = "<group>"; };
-		12BBED4F1CB499BD00EF6906 /* MonthCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCTListVC.h; sourceTree = "<group>"; };
-		12BBED501CB499BD00EF6906 /* MonthCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCTListVC.m; sourceTree = "<group>"; };
-		12BBED521CB499CC00EF6906 /* AllCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCTListVC.h; sourceTree = "<group>"; };
-		12BBED531CB499CC00EF6906 /* AllCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCTListVC.m; sourceTree = "<group>"; };
-		12BBED551CB49B7A00EF6906 /* UserCloudTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketModel.h; sourceTree = "<group>"; };
-		12BBED561CB49B7A00EF6906 /* UserCloudTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketModel.m; sourceTree = "<group>"; };
-		12BBED581CB49BF900EF6906 /* UserCloudTicketEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketEntity.h; sourceTree = "<group>"; };
-		12BBED591CB49BF900EF6906 /* UserCloudTicketEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketEntity.m; sourceTree = "<group>"; };
-		12BBED5B1CB4A04C00EF6906 /* UserCloudTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketCell.h; sourceTree = "<group>"; };
-		12BBED5C1CB4A04C00EF6906 /* UserCloudTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketCell.m; sourceTree = "<group>"; };
-		12BBED611CB4A4BC00EF6906 /* RechargeCloudTicketVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCloudTicketVC.h; sourceTree = "<group>"; };
-		12BBED621CB4A4BC00EF6906 /* RechargeCloudTicketVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCloudTicketVC.m; sourceTree = "<group>"; };
-		12BBED671CB4BB2700EF6906 /* UserMoneyShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowVC.h; sourceTree = "<group>"; };
-		12BBED681CB4BB2700EF6906 /* UserMoneyShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowVC.m; sourceTree = "<group>"; };
-		12BBED6A1CB4BD7500EF6906 /* UserMoneyShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowCell.h; sourceTree = "<group>"; };
-		12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowCell.m; sourceTree = "<group>"; };
-		12BBED6D1CB4BD8100EF6906 /* UserMoneyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoCell.h; sourceTree = "<group>"; };
-		12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoCell.m; sourceTree = "<group>"; };
-		12BBED731CB4DE6B00EF6906 /* UserMoneyDrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawVC.h; sourceTree = "<group>"; };
-		12BBED741CB4DE6B00EF6906 /* UserMoneyDrawVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawVC.m; sourceTree = "<group>"; };
-		12BBED761CB4E07500EF6906 /* UserMoneyDrawShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawShowCell.h; sourceTree = "<group>"; };
-		12BBED771CB4E07500EF6906 /* UserMoneyDrawShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawShowCell.m; sourceTree = "<group>"; };
-		12BBED791CB4E10A00EF6906 /* UserMoneyDrawCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawCell.h; sourceTree = "<group>"; };
-		12BBED7A1CB4E10A00EF6906 /* UserMoneyDrawCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawCell.m; sourceTree = "<group>"; };
 		12BBED7D1CB4E9EB00EF6906 /* UserCommonShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommonShowCell.h; sourceTree = "<group>"; };
 		12BBED7E1CB4E9EB00EF6906 /* UserCommonShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommonShowCell.m; sourceTree = "<group>"; };
 		12BC720A1C78531700FC6A1C /* MyClientEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientEntity.h; sourceTree = "<group>"; };
@@ -2044,10 +2048,6 @@
 		12DDE7361CB5E908006BBB1E /* CloudTicketImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloudTicketImg@2x.png"; sourceTree = "<group>"; };
 		12DDE7371CB5E908006BBB1E /* UserMoneyImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserMoneyImg@2x.png"; sourceTree = "<group>"; };
 		12DDE73A1CB5F30F006BBB1E /* UserAliAccountFailed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserAliAccountFailed@2x.png"; sourceTree = "<group>"; };
-		12DDE73C1CB6319E006BBB1E /* RechargeCTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCTModel.h; sourceTree = "<group>"; };
-		12DDE73D1CB6319E006BBB1E /* RechargeCTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCTModel.m; sourceTree = "<group>"; };
-		12DDE73F1CB63D32006BBB1E /* UserAliAccountStateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAliAccountStateCell.h; sourceTree = "<group>"; };
-		12DDE7401CB63D32006BBB1E /* UserAliAccountStateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAliAccountStateCell.m; sourceTree = "<group>"; };
 		12F180AA1B44D54900B9A80D /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		12F180B71B45190800B9A80D /* Sql_JpushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sql_JpushData.h; sourceTree = "<group>"; };
 		12F180B81B45190800B9A80D /* Sql_JpushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sql_JpushData.m; sourceTree = "<group>"; };
@@ -2096,26 +2096,6 @@
 		12F3CC8F1B1E026C00E64DE4 /* PersonalCallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCallCell.h; sourceTree = "<group>"; };
 		12F3CC901B1E026C00E64DE4 /* PersonalCallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCallCell.m; sourceTree = "<group>"; };
 		12F41A141CB897D600F954F6 /* signBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signBg@2x.png"; sourceTree = "<group>"; };
-		12F41A171CB89D3C00F954F6 /* UserMoneyInfoListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoListVC.h; sourceTree = "<group>"; };
-		12F41A181CB89D3C00F954F6 /* UserMoneyInfoListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoListVC.m; sourceTree = "<group>"; };
-		12F41A1A1CB89D9C00F954F6 /* WeekMoneyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekMoneyListVC.h; sourceTree = "<group>"; };
-		12F41A1B1CB89D9C00F954F6 /* WeekMoneyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekMoneyListVC.m; sourceTree = "<group>"; };
-		12F41A1D1CB89DAE00F954F6 /* MonthMoneyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthMoneyListVC.h; sourceTree = "<group>"; };
-		12F41A1E1CB89DAE00F954F6 /* MonthMoneyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthMoneyListVC.m; sourceTree = "<group>"; };
-		12F41A201CB89DBF00F954F6 /* AllMoneyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllMoneyListVC.h; sourceTree = "<group>"; };
-		12F41A211CB89DBF00F954F6 /* AllMoneyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMoneyListVC.m; sourceTree = "<group>"; };
-		12F41A231CB89DE900F954F6 /* UserMoneyInfoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoListCell.h; sourceTree = "<group>"; };
-		12F41A241CB89DE900F954F6 /* UserMoneyInfoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoListCell.m; sourceTree = "<group>"; };
-		12F41A261CB8A6A300F954F6 /* UserMoneyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoModel.h; sourceTree = "<group>"; };
-		12F41A271CB8A6A300F954F6 /* UserMoneyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoModel.m; sourceTree = "<group>"; };
-		12F41A291CB8A75A00F954F6 /* UserMoneyInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoEntity.h; sourceTree = "<group>"; };
-		12F41A2A1CB8A75A00F954F6 /* UserMoneyInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoEntity.m; sourceTree = "<group>"; };
-		12F41A2D1CB8AB7900F954F6 /* MoreMoneyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMoneyInfoModel.h; sourceTree = "<group>"; };
-		12F41A2E1CB8AB7900F954F6 /* MoreMoneyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreMoneyInfoModel.m; sourceTree = "<group>"; };
-		12F41A301CB8E02300F954F6 /* UserMoneyFormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyFormModel.h; sourceTree = "<group>"; };
-		12F41A311CB8E02300F954F6 /* UserMoneyFormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyFormModel.m; sourceTree = "<group>"; };
-		12F41A331CB8E2C100F954F6 /* UserMoneyFormEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyFormEntity.h; sourceTree = "<group>"; };
-		12F41A341CB8E2C100F954F6 /* UserMoneyFormEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyFormEntity.m; sourceTree = "<group>"; };
 		12F4227A1B1D5A2900643DD7 /* AddressCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressCircle@2x.png"; sourceTree = "<group>"; };
 		12F4227B1B1D5A2900643DD7 /* AddressDel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressDel@2x.png"; sourceTree = "<group>"; };
 		12F4227C1B1D5A2900643DD7 /* AddressEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEdit@2x.png"; sourceTree = "<group>"; };
@@ -2548,11 +2528,112 @@
 		77DB943A1AAFF3830021A816 /* UIView+Sizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizing.m"; sourceTree = "<group>"; };
 		786155E01AC8E0CE0048B604 /* areacode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = areacode; sourceTree = "<group>"; };
 		786155E11AC8E0CE0048B604 /* place.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = place.dat; sourceTree = "<group>"; };
+		DD0766031CB3A60B0015D070 /* VietualHeardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VietualHeardView.h; sourceTree = "<group>"; };
+		DD0766041CB3A60B0015D070 /* VietualHeardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VietualHeardView.m; sourceTree = "<group>"; };
+		DD0766061CB3AF630015D070 /* ViteualStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViteualStoreCell.h; sourceTree = "<group>"; };
+		DD0766071CB3AF630015D070 /* ViteualStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViteualStoreCell.m; sourceTree = "<group>"; };
+		DD0766091CB3AF7A0015D070 /* ViteualExchangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViteualExchangeCell.h; sourceTree = "<group>"; };
+		DD07660A1CB3AF7A0015D070 /* ViteualExchangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViteualExchangeCell.m; sourceTree = "<group>"; };
+		DD07660C1CB3B6890015D070 /* ViteualGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViteualGoodsModel.h; sourceTree = "<group>"; };
+		DD07660D1CB3B6890015D070 /* ViteualGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViteualGoodsModel.m; sourceTree = "<group>"; };
+		DD07660F1CB3B7C40015D070 /* ViteualGoodsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViteualGoodsEntity.h; sourceTree = "<group>"; };
+		DD0766101CB3B7C40015D070 /* ViteualGoodsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViteualGoodsEntity.m; sourceTree = "<group>"; };
+		DD0766121CB3BB450015D070 /* VietualTopImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VietualTopImgCell.h; sourceTree = "<group>"; };
+		DD0766131CB3BB450015D070 /* VietualTopImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VietualTopImgCell.m; sourceTree = "<group>"; };
+		DD126D891CB5F7A00021E0E1 /* VirtualGoodsInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsInfoTool.h; sourceTree = "<group>"; };
+		DD126D8A1CB5F7A00021E0E1 /* VirtualGoodsInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsInfoTool.m; sourceTree = "<group>"; };
+		DD126D8C1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsRedCutCell.h; sourceTree = "<group>"; };
+		DD126D8D1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsRedCutCell.m; sourceTree = "<group>"; };
+		DD126DC71CB6523C0021E0E1 /* VirtualGoodsOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsOrderVC.h; sourceTree = "<group>"; };
+		DD126DC81CB6523C0021E0E1 /* VirtualGoodsOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsOrderVC.m; sourceTree = "<group>"; };
+		DD126DCA1CB6685F0021E0E1 /* VirtualGoodsOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsOrderModel.h; sourceTree = "<group>"; };
+		DD126DCB1CB6685F0021E0E1 /* VirtualGoodsOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsOrderModel.m; sourceTree = "<group>"; };
 		DD136AA41C97FD6C0019932E /* storeCart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "storeCart@2x.png"; sourceTree = "<group>"; };
+		DD146AB41CB8DAAF00BB438E /* VirtualOrderNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualOrderNumberCell.h; sourceTree = "<group>"; };
+		DD146AB51CB8DAAF00BB438E /* VirtualOrderNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderNumberCell.m; sourceTree = "<group>"; };
+		DD146AB71CB8E0C900BB438E /* VirtualOrderInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualOrderInfoEntity.h; sourceTree = "<group>"; };
+		DD146AB81CB8E0C900BB438E /* VirtualOrderInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderInfoEntity.m; sourceTree = "<group>"; };
+		DD146ABE1CB8E60E00BB438E /* VirtualStockGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualStockGoodsView.h; sourceTree = "<group>"; };
+		DD146ABF1CB8E60E00BB438E /* VirtualStockGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualStockGoodsView.m; sourceTree = "<group>"; };
+		DD146AC31CB8F27E00BB438E /* CloudTicketListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudTicketListVC.h; sourceTree = "<group>"; };
+		DD146AC41CB8F27E00BB438E /* CloudTicketListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudTicketListVC.m; sourceTree = "<group>"; };
+		DD146AC61CB8F27E00BB438E /* UserCloudTicketEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketEntity.h; sourceTree = "<group>"; };
+		DD146AC71CB8F27E00BB438E /* UserCloudTicketEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketEntity.m; sourceTree = "<group>"; };
+		DD146AC81CB8F27E00BB438E /* UserCloudTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketModel.h; sourceTree = "<group>"; };
+		DD146AC91CB8F27E00BB438E /* UserCloudTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketModel.m; sourceTree = "<group>"; };
+		DD146ACB1CB8F27E00BB438E /* AllCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCTListVC.h; sourceTree = "<group>"; };
+		DD146ACC1CB8F27E00BB438E /* AllCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCTListVC.m; sourceTree = "<group>"; };
+		DD146ACD1CB8F27E00BB438E /* MonthCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCTListVC.h; sourceTree = "<group>"; };
+		DD146ACE1CB8F27E00BB438E /* MonthCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCTListVC.m; sourceTree = "<group>"; };
+		DD146ACF1CB8F27E00BB438E /* UserCloudTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCloudTicketCell.h; sourceTree = "<group>"; };
+		DD146AD01CB8F27E00BB438E /* UserCloudTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCloudTicketCell.m; sourceTree = "<group>"; };
+		DD146AD11CB8F27E00BB438E /* WeekCTListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCTListVC.h; sourceTree = "<group>"; };
+		DD146AD21CB8F27E00BB438E /* WeekCTListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCTListVC.m; sourceTree = "<group>"; };
+		DD146AD41CB8F27E00BB438E /* UserMoneyDrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawVC.h; sourceTree = "<group>"; };
+		DD146AD51CB8F27E00BB438E /* UserMoneyDrawVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawVC.m; sourceTree = "<group>"; };
+		DD146AD71CB8F27E00BB438E /* UserMoneyDrawCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawCell.h; sourceTree = "<group>"; };
+		DD146AD81CB8F27E00BB438E /* UserMoneyDrawCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawCell.m; sourceTree = "<group>"; };
+		DD146AD91CB8F27E00BB438E /* UserMoneyDrawShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyDrawShowCell.h; sourceTree = "<group>"; };
+		DD146ADA1CB8F27E00BB438E /* UserMoneyDrawShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyDrawShowCell.m; sourceTree = "<group>"; };
+		DD146ADC1CB8F27E00BB438E /* MoreMoneyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreMoneyInfoModel.h; sourceTree = "<group>"; };
+		DD146ADD1CB8F27E00BB438E /* MoreMoneyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreMoneyInfoModel.m; sourceTree = "<group>"; };
+		DD146AE01CB8F27E00BB438E /* RechargeCTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCTModel.h; sourceTree = "<group>"; };
+		DD146AE11CB8F27E00BB438E /* RechargeCTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCTModel.m; sourceTree = "<group>"; };
+		DD146AE31CB8F27E00BB438E /* RechargeCloudTicketVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCloudTicketVC.h; sourceTree = "<group>"; };
+		DD146AE41CB8F27E00BB438E /* RechargeCloudTicketVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCloudTicketVC.m; sourceTree = "<group>"; };
+		DD146AE71CB8F27E00BB438E /* UserMoneyFormEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyFormEntity.h; sourceTree = "<group>"; };
+		DD146AE81CB8F27E00BB438E /* UserMoneyFormEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyFormEntity.m; sourceTree = "<group>"; };
+		DD146AE91CB8F27E00BB438E /* UserMoneyFormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyFormModel.h; sourceTree = "<group>"; };
+		DD146AEA1CB8F27E00BB438E /* UserMoneyFormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyFormModel.m; sourceTree = "<group>"; };
+		DD146AEB1CB8F27E00BB438E /* UserMoneyInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoEntity.h; sourceTree = "<group>"; };
+		DD146AEC1CB8F27E00BB438E /* UserMoneyInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoEntity.m; sourceTree = "<group>"; };
+		DD146AED1CB8F27E00BB438E /* UserMoneyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoModel.h; sourceTree = "<group>"; };
+		DD146AEE1CB8F27E00BB438E /* UserMoneyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoModel.m; sourceTree = "<group>"; };
+		DD146AEF1CB8F27E00BB438E /* UserMoneyShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowVC.h; sourceTree = "<group>"; };
+		DD146AF01CB8F27E00BB438E /* UserMoneyShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowVC.m; sourceTree = "<group>"; };
+		DD146AF31CB8F27E00BB438E /* AllMoneyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllMoneyListVC.h; sourceTree = "<group>"; };
+		DD146AF41CB8F27E00BB438E /* AllMoneyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMoneyListVC.m; sourceTree = "<group>"; };
+		DD146AF51CB8F27E00BB438E /* MonthMoneyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthMoneyListVC.h; sourceTree = "<group>"; };
+		DD146AF61CB8F27E00BB438E /* MonthMoneyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthMoneyListVC.m; sourceTree = "<group>"; };
+		DD146AF71CB8F27E00BB438E /* UserMoneyInfoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoListCell.h; sourceTree = "<group>"; };
+		DD146AF81CB8F27E00BB438E /* UserMoneyInfoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoListCell.m; sourceTree = "<group>"; };
+		DD146AF91CB8F27E00BB438E /* UserMoneyInfoListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoListVC.h; sourceTree = "<group>"; };
+		DD146AFA1CB8F27E00BB438E /* UserMoneyInfoListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoListVC.m; sourceTree = "<group>"; };
+		DD146AFB1CB8F27E00BB438E /* WeekMoneyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekMoneyListVC.h; sourceTree = "<group>"; };
+		DD146AFC1CB8F27E00BB438E /* WeekMoneyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekMoneyListVC.m; sourceTree = "<group>"; };
+		DD146AFD1CB8F27E00BB438E /* UserAliAccountStateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAliAccountStateCell.h; sourceTree = "<group>"; };
+		DD146AFE1CB8F27E00BB438E /* UserAliAccountStateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAliAccountStateCell.m; sourceTree = "<group>"; };
+		DD146AFF1CB8F27E00BB438E /* UserMoneyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyInfoCell.h; sourceTree = "<group>"; };
+		DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoCell.m; sourceTree = "<group>"; };
+		DD146B011CB8F27E00BB438E /* UserMoneyShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowCell.h; sourceTree = "<group>"; };
+		DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowCell.m; sourceTree = "<group>"; };
+		DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AllMoneyListVC.h; path = RKWXT/CloudTicket/UserMoney/View/MoneyInfoList/AllMoneyListVC.h; sourceTree = "<group>"; };
+		DD146B1E1CB8F99400BB438E /* AllMoneyListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AllMoneyListVC.m; path = RKWXT/CloudTicket/UserMoney/View/MoneyInfoList/AllMoneyListVC.m; sourceTree = "<group>"; };
 		DD1487FF1C9273AF00D2632E /* LimitGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitGoodsView.h; sourceTree = "<group>"; };
 		DD1488001C9273AF00D2632E /* LimitGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitGoodsView.m; sourceTree = "<group>"; };
 		DD1488021C92A69500D2632E /* NewShopPingCartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShopPingCartModel.h; sourceTree = "<group>"; };
 		DD1488031C92A69500D2632E /* NewShopPingCartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewShopPingCartModel.m; sourceTree = "<group>"; };
+		DD17106B1CB49B9C0085713D /* VirtualGoodsInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsInfoVC.h; sourceTree = "<group>"; };
+		DD17106C1CB49B9C0085713D /* VirtualGoodsInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsInfoVC.m; sourceTree = "<group>"; };
+		DD17106E1CB49BD70085713D /* VirtualGoods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirtualGoods.h; sourceTree = "<group>"; };
+		DD1710711CB49DE20085713D /* VirtualTopImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualTopImgCell.h; sourceTree = "<group>"; };
+		DD1710721CB49DE20085713D /* VirtualTopImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualTopImgCell.m; sourceTree = "<group>"; };
+		DD1710741CB49E210085713D /* VietualInfoDesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VietualInfoDesCell.h; sourceTree = "<group>"; };
+		DD1710751CB49E210085713D /* VietualInfoDesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VietualInfoDesCell.m; sourceTree = "<group>"; };
+		DD1710771CB4A0EA0085713D /* VirtualGoodsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsInfoModel.h; sourceTree = "<group>"; };
+		DD1710781CB4A0EA0085713D /* VirtualGoodsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsInfoModel.m; sourceTree = "<group>"; };
+		DD17107B1CB4AA770085713D /* VirtualInfoBDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualInfoBDCell.h; sourceTree = "<group>"; };
+		DD17107C1CB4AA770085713D /* VirtualInfoBDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualInfoBDCell.m; sourceTree = "<group>"; };
+		DD17107E1CB4AAA50085713D /* VirtualInfoDownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualInfoDownCell.h; sourceTree = "<group>"; };
+		DD17107F1CB4AAA50085713D /* VirtualInfoDownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualInfoDownCell.m; sourceTree = "<group>"; };
+		DD1710811CB4AAFE0085713D /* VirtualGoodsInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsInfoEntity.h; sourceTree = "<group>"; };
+		DD1710821CB4AAFE0085713D /* VirtualGoodsInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsInfoEntity.m; sourceTree = "<group>"; };
+		DD1710861CB4AD700085713D /* VirtualInfoExplainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualInfoExplainCell.h; sourceTree = "<group>"; };
+		DD1710871CB4AD700085713D /* VirtualInfoExplainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualInfoExplainCell.m; sourceTree = "<group>"; };
+		DD1710891CB4AD8C0085713D /* VirtualInfoIntegralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualInfoIntegralCell.h; sourceTree = "<group>"; };
+		DD17108A1CB4AD8C0085713D /* VirtualInfoIntegralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualInfoIntegralCell.m; sourceTree = "<group>"; };
+		DD1710C11CB4E2710085713D /* VirtualSubGoodsInfoWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualSubGoodsInfoWebVC.h; sourceTree = "<group>"; };
+		DD1710C21CB4E2710085713D /* VirtualSubGoodsInfoWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualSubGoodsInfoWebVC.m; sourceTree = "<group>"; };
 		DD1D29AA1C9A944100F81D9A /* UserDefaultSiteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultSiteCell.h; sourceTree = "<group>"; };
 		DD1D29AB1C9A944100F81D9A /* UserDefaultSiteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultSiteCell.m; sourceTree = "<group>"; };
 		DD207CC61C9B991400A2F342 /* WXLimitGoodsInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXLimitGoodsInfoVC.h; sourceTree = "<group>"; };
@@ -2602,6 +2683,20 @@
 		DD2572181C9FD3C0008D541E /* searchShopIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchShopIcon@2x.png"; sourceTree = "<group>"; };
 		DD25721A1C9FD3C5008D541E /* searchGoodsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchGoodsIcon@2x.png"; sourceTree = "<group>"; };
 		DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewinitImage@2x.png"; sourceTree = "<group>"; };
+		DD2D89C21CB73C8300474820 /* VirtualUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualUserInfoCell.h; path = ../VirtualUserInfoCell.h; sourceTree = "<group>"; };
+		DD2D89C31CB73C8300474820 /* VirtualUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualUserInfoCell.m; path = ../VirtualUserInfoCell.m; sourceTree = "<group>"; };
+		DD2D89C51CB73CA300474820 /* VirtualCompanyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualCompanyCell.h; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualCompanyCell.h; sourceTree = SOURCE_ROOT; };
+		DD2D89C61CB73CA300474820 /* VirtualCompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualCompanyCell.m; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualCompanyCell.m; sourceTree = SOURCE_ROOT; };
+		DD2D89C81CB73FA900474820 /* VirtualGoodsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualGoodsListCell.h; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualGoodsListCell.h; sourceTree = SOURCE_ROOT; };
+		DD2D89C91CB73FA900474820 /* VirtualGoodsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualGoodsListCell.m; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualGoodsListCell.m; sourceTree = SOURCE_ROOT; };
+		DD2D89CB1CB73FC800474820 /* VirtualPayStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualPayStatusCell.h; sourceTree = "<group>"; };
+		DD2D89CC1CB73FC800474820 /* VirtualPayStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualPayStatusCell.m; sourceTree = "<group>"; };
+		DD2D89CE1CB740BA00474820 /* VirtualAllMoneyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualAllMoneyCell.h; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualAllMoneyCell.h; sourceTree = SOURCE_ROOT; };
+		DD2D89CF1CB740BA00474820 /* VirtualAllMoneyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualAllMoneyCell.m; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualAllMoneyCell.m; sourceTree = SOURCE_ROOT; };
+		DD2D89D11CB740D500474820 /* VirtualForDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualForDateCell.h; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualForDateCell.h; sourceTree = SOURCE_ROOT; };
+		DD2D89D21CB740D500474820 /* VirtualForDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualForDateCell.m; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualForDateCell.m; sourceTree = SOURCE_ROOT; };
+		DD2D8A411CB7BBF400474820 /* ViteualTopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViteualTopModel.h; sourceTree = "<group>"; };
+		DD2D8A421CB7BBF400474820 /* ViteualTopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViteualTopModel.m; sourceTree = "<group>"; };
 		DD2E63D71C915CF70037632F /* SharkImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SharkImg@2x.png"; sourceTree = "<group>"; };
 		DD2E63D91C915FEC0037632F /* userCollection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userCollection@2x.png"; sourceTree = "<group>"; };
 		DD2E63DB1C9161660037632F /* SharkNewImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SharkNewImg@2x.png"; sourceTree = "<group>"; };
@@ -2612,6 +2707,8 @@
 		DD2E63E41C9177150037632F /* LImitGoodsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LImitGoodsEntity.h; sourceTree = "<group>"; };
 		DD2E63E51C9177150037632F /* LImitGoodsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LImitGoodsEntity.m; sourceTree = "<group>"; };
 		DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CocoaLumberjack.a"; path = "Pods/../build/Release-iphoneos/libPods-CocoaLumberjack.a"; sourceTree = "<group>"; };
+		DD35B5A21CB398BE00B1C867 /* VirtualGoodsListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsListVC.h; sourceTree = "<group>"; };
+		DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsListVC.m; sourceTree = "<group>"; };
 		DD35D85D1C841A7900422F5B /* T_Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_Back@2x.png"; sourceTree = "<group>"; };
 		DD35D85F1C841AF700422F5B /* T_BackWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_BackWhite@2x.png"; sourceTree = "<group>"; };
 		DD35D8671C84258400422F5B /* ClassifySearchBtnImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ClassifySearchBtnImg@2x.png"; sourceTree = "<group>"; };
@@ -4938,151 +5035,6 @@
 			path = Ftp;
 			sourceTree = "<group>";
 		};
-		12BBED451CB498B100EF6906 /* CloudTicket */ = {
-			isa = PBXGroup;
-			children = (
-				12F41A2C1CB8AADF00F954F6 /* MoreMoney */,
-				12BBED701CB4DE3200EF6906 /* MoneyDraw */,
-				12BBED641CB4BAE400EF6906 /* UserMoney */,
-				12BBED5E1CB4A46200EF6906 /* RechargeCloudTicket */,
-				12BBED461CB498F700EF6906 /* CloudTicketList */,
-			);
-			path = CloudTicket;
-			sourceTree = "<group>";
-		};
-		12BBED461CB498F700EF6906 /* CloudTicketList */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED491CB4992200EF6906 /* CloudTicketListVC.h */,
-				12BBED4A1CB4992200EF6906 /* CloudTicketListVC.m */,
-				12BBED471CB4990800EF6906 /* Model */,
-				12BBED481CB4990800EF6906 /* View */,
-			);
-			path = CloudTicketList;
-			sourceTree = "<group>";
-		};
-		12BBED471CB4990800EF6906 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED551CB49B7A00EF6906 /* UserCloudTicketModel.h */,
-				12BBED561CB49B7A00EF6906 /* UserCloudTicketModel.m */,
-				12BBED581CB49BF900EF6906 /* UserCloudTicketEntity.h */,
-				12BBED591CB49BF900EF6906 /* UserCloudTicketEntity.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		12BBED481CB4990800EF6906 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED4C1CB499A700EF6906 /* WeekCTListVC.h */,
-				12BBED4D1CB499A700EF6906 /* WeekCTListVC.m */,
-				12BBED4F1CB499BD00EF6906 /* MonthCTListVC.h */,
-				12BBED501CB499BD00EF6906 /* MonthCTListVC.m */,
-				12BBED521CB499CC00EF6906 /* AllCTListVC.h */,
-				12BBED531CB499CC00EF6906 /* AllCTListVC.m */,
-				12BBED5B1CB4A04C00EF6906 /* UserCloudTicketCell.h */,
-				12BBED5C1CB4A04C00EF6906 /* UserCloudTicketCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		12BBED5E1CB4A46200EF6906 /* RechargeCloudTicket */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED5F1CB4A47700EF6906 /* Model */,
-				12BBED601CB4A47700EF6906 /* View */,
-			);
-			path = RechargeCloudTicket;
-			sourceTree = "<group>";
-		};
-		12BBED5F1CB4A47700EF6906 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				12DDE73C1CB6319E006BBB1E /* RechargeCTModel.h */,
-				12DDE73D1CB6319E006BBB1E /* RechargeCTModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		12BBED601CB4A47700EF6906 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED611CB4A4BC00EF6906 /* RechargeCloudTicketVC.h */,
-				12BBED621CB4A4BC00EF6906 /* RechargeCloudTicketVC.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		12BBED641CB4BAE400EF6906 /* UserMoney */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED671CB4BB2700EF6906 /* UserMoneyShowVC.h */,
-				12BBED681CB4BB2700EF6906 /* UserMoneyShowVC.m */,
-				12BBED651CB4BAF500EF6906 /* Model */,
-				12BBED661CB4BAF500EF6906 /* View */,
-			);
-			path = UserMoney;
-			sourceTree = "<group>";
-		};
-		12BBED651CB4BAF500EF6906 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				12F41A261CB8A6A300F954F6 /* UserMoneyInfoModel.h */,
-				12F41A271CB8A6A300F954F6 /* UserMoneyInfoModel.m */,
-				12F41A291CB8A75A00F954F6 /* UserMoneyInfoEntity.h */,
-				12F41A2A1CB8A75A00F954F6 /* UserMoneyInfoEntity.m */,
-				12F41A301CB8E02300F954F6 /* UserMoneyFormModel.h */,
-				12F41A311CB8E02300F954F6 /* UserMoneyFormModel.m */,
-				12F41A331CB8E2C100F954F6 /* UserMoneyFormEntity.h */,
-				12F41A341CB8E2C100F954F6 /* UserMoneyFormEntity.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		12BBED661CB4BAF500EF6906 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				12F41A161CB89CF900F954F6 /* MoneyInfoList */,
-				12BBED6A1CB4BD7500EF6906 /* UserMoneyShowCell.h */,
-				12BBED6B1CB4BD7500EF6906 /* UserMoneyShowCell.m */,
-				12BBED6D1CB4BD8100EF6906 /* UserMoneyInfoCell.h */,
-				12BBED6E1CB4BD8100EF6906 /* UserMoneyInfoCell.m */,
-				12DDE73F1CB63D32006BBB1E /* UserAliAccountStateCell.h */,
-				12DDE7401CB63D32006BBB1E /* UserAliAccountStateCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		12BBED701CB4DE3200EF6906 /* MoneyDraw */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED731CB4DE6B00EF6906 /* UserMoneyDrawVC.h */,
-				12BBED741CB4DE6B00EF6906 /* UserMoneyDrawVC.m */,
-				12BBED711CB4DE4100EF6906 /* Model */,
-				12BBED721CB4DE4100EF6906 /* View */,
-			);
-			path = MoneyDraw;
-			sourceTree = "<group>";
-		};
-		12BBED711CB4DE4100EF6906 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		12BBED721CB4DE4100EF6906 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				12BBED761CB4E07500EF6906 /* UserMoneyDrawShowCell.h */,
-				12BBED771CB4E07500EF6906 /* UserMoneyDrawShowCell.m */,
-				12BBED791CB4E10A00EF6906 /* UserMoneyDrawCell.h */,
-				12BBED7A1CB4E10A00EF6906 /* UserMoneyDrawCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		12BBED7C1CB4E9D500EF6906 /* UserMoney */ = {
 			isa = PBXGroup;
 			children = (
@@ -5633,32 +5585,6 @@
 			path = OrderCell;
 			sourceTree = "<group>";
 		};
-		12F41A161CB89CF900F954F6 /* MoneyInfoList */ = {
-			isa = PBXGroup;
-			children = (
-				12F41A171CB89D3C00F954F6 /* UserMoneyInfoListVC.h */,
-				12F41A181CB89D3C00F954F6 /* UserMoneyInfoListVC.m */,
-				12F41A1A1CB89D9C00F954F6 /* WeekMoneyListVC.h */,
-				12F41A1B1CB89D9C00F954F6 /* WeekMoneyListVC.m */,
-				12F41A1D1CB89DAE00F954F6 /* MonthMoneyListVC.h */,
-				12F41A1E1CB89DAE00F954F6 /* MonthMoneyListVC.m */,
-				12F41A201CB89DBF00F954F6 /* AllMoneyListVC.h */,
-				12F41A211CB89DBF00F954F6 /* AllMoneyListVC.m */,
-				12F41A231CB89DE900F954F6 /* UserMoneyInfoListCell.h */,
-				12F41A241CB89DE900F954F6 /* UserMoneyInfoListCell.m */,
-			);
-			path = MoneyInfoList;
-			sourceTree = "<group>";
-		};
-		12F41A2C1CB8AADF00F954F6 /* MoreMoney */ = {
-			isa = PBXGroup;
-			children = (
-				12F41A2D1CB8AB7900F954F6 /* MoreMoneyInfoModel.h */,
-				12F41A2E1CB8AB7900F954F6 /* MoreMoneyInfoModel.m */,
-			);
-			path = MoreMoney;
-			sourceTree = "<group>";
-		};
 		12F422821B1D5C2800643DD7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5964,6 +5890,8 @@
 		2563B3DB1AAAD74000C04227 = {
 			isa = PBXGroup;
 			children = (
+				DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */,
+				DD146B1E1CB8F99400BB438E /* AllMoneyListVC.m */,
 				128083D51B61D21D00260B9F /* TencentOpenApi_IOS_Bundle.bundle */,
 				2563B3E61AAAD74000C04227 /* RKWXT */,
 				2563B3E51AAAD74000C04227 /* Products */,
@@ -5983,7 +5911,8 @@
 		2563B3E61AAAD74000C04227 /* RKWXT */ = {
 			isa = PBXGroup;
 			children = (
-				12BBED451CB498B100EF6906 /* CloudTicket */,
+				DD146AC11CB8F27E00BB438E /* CloudTicket */,
+				DD35B5A01CB3983900B1C867 /* VirtualMall */,
 				12CEB55F1CAA0D4000276119 /* SellerChange */,
 				DD24CF5F1CA2305000A5B9ED /* WXCollectionGoods */,
 				1273210F1C7AB7F300C8D1D7 /* UMeng */,
@@ -6889,6 +6818,351 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD126DC41CB652150021E0E1 /* VirtualGoodsOrder */ = {
+			isa = PBXGroup;
+			children = (
+				DD126DC71CB6523C0021E0E1 /* VirtualGoodsOrderVC.h */,
+				DD126DC81CB6523C0021E0E1 /* VirtualGoodsOrderVC.m */,
+				DD126DC51CB652150021E0E1 /* Model */,
+				DD126DC61CB652150021E0E1 /* View */,
+			);
+			path = VirtualGoodsOrder;
+			sourceTree = "<group>";
+		};
+		DD126DC51CB652150021E0E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD126DCA1CB6685F0021E0E1 /* VirtualGoodsOrderModel.h */,
+				DD126DCB1CB6685F0021E0E1 /* VirtualGoodsOrderModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD126DC61CB652150021E0E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD1E731B1CB90C91005BDACC /* VirtualForDate */,
+				DD1E731A1CB90C7A005BDACC /* VirtualAllMoney */,
+				DD1E73191CB90C59005BDACC /* VirtualGoodsList */,
+				DD1E73181CB90C30005BDACC /* VirtualCompany */,
+				DD1E73171CB90C15005BDACC /* VirtualUserInfoCell */,
+				DD2D89CB1CB73FC800474820 /* VirtualPayStatusCell.h */,
+				DD2D89CC1CB73FC800474820 /* VirtualPayStatusCell.m */,
+				DD146AB41CB8DAAF00BB438E /* VirtualOrderNumberCell.h */,
+				DD146AB51CB8DAAF00BB438E /* VirtualOrderNumberCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD146ABD1CB8E56600BB438E /* VirtualGoodsStock */ = {
+			isa = PBXGroup;
+			children = (
+				DD146ABE1CB8E60E00BB438E /* VirtualStockGoodsView.h */,
+				DD146ABF1CB8E60E00BB438E /* VirtualStockGoodsView.m */,
+			);
+			path = VirtualGoodsStock;
+			sourceTree = "<group>";
+		};
+		DD146AC11CB8F27E00BB438E /* CloudTicket */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AC21CB8F27E00BB438E /* CloudTicketList */,
+				DD146AD31CB8F27E00BB438E /* MoneyDraw */,
+				DD146ADB1CB8F27E00BB438E /* MoreMoney */,
+				DD146ADE1CB8F27E00BB438E /* RechargeCloudTicket */,
+				DD146AE51CB8F27E00BB438E /* UserMoney */,
+			);
+			path = CloudTicket;
+			sourceTree = "<group>";
+		};
+		DD146AC21CB8F27E00BB438E /* CloudTicketList */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AC31CB8F27E00BB438E /* CloudTicketListVC.h */,
+				DD146AC41CB8F27E00BB438E /* CloudTicketListVC.m */,
+				DD146AC51CB8F27E00BB438E /* Model */,
+				DD146ACA1CB8F27E00BB438E /* View */,
+			);
+			path = CloudTicketList;
+			sourceTree = "<group>";
+		};
+		DD146AC51CB8F27E00BB438E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AC61CB8F27E00BB438E /* UserCloudTicketEntity.h */,
+				DD146AC71CB8F27E00BB438E /* UserCloudTicketEntity.m */,
+				DD146AC81CB8F27E00BB438E /* UserCloudTicketModel.h */,
+				DD146AC91CB8F27E00BB438E /* UserCloudTicketModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD146ACA1CB8F27E00BB438E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD146ACB1CB8F27E00BB438E /* AllCTListVC.h */,
+				DD146ACC1CB8F27E00BB438E /* AllCTListVC.m */,
+				DD146ACD1CB8F27E00BB438E /* MonthCTListVC.h */,
+				DD146ACE1CB8F27E00BB438E /* MonthCTListVC.m */,
+				DD146ACF1CB8F27E00BB438E /* UserCloudTicketCell.h */,
+				DD146AD01CB8F27E00BB438E /* UserCloudTicketCell.m */,
+				DD146AD11CB8F27E00BB438E /* WeekCTListVC.h */,
+				DD146AD21CB8F27E00BB438E /* WeekCTListVC.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD146AD31CB8F27E00BB438E /* MoneyDraw */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AD41CB8F27E00BB438E /* UserMoneyDrawVC.h */,
+				DD146AD51CB8F27E00BB438E /* UserMoneyDrawVC.m */,
+				DD146AD61CB8F27E00BB438E /* View */,
+			);
+			path = MoneyDraw;
+			sourceTree = "<group>";
+		};
+		DD146AD61CB8F27E00BB438E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AD71CB8F27E00BB438E /* UserMoneyDrawCell.h */,
+				DD146AD81CB8F27E00BB438E /* UserMoneyDrawCell.m */,
+				DD146AD91CB8F27E00BB438E /* UserMoneyDrawShowCell.h */,
+				DD146ADA1CB8F27E00BB438E /* UserMoneyDrawShowCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD146ADB1CB8F27E00BB438E /* MoreMoney */ = {
+			isa = PBXGroup;
+			children = (
+				DD146ADC1CB8F27E00BB438E /* MoreMoneyInfoModel.h */,
+				DD146ADD1CB8F27E00BB438E /* MoreMoneyInfoModel.m */,
+			);
+			path = MoreMoney;
+			sourceTree = "<group>";
+		};
+		DD146ADE1CB8F27E00BB438E /* RechargeCloudTicket */ = {
+			isa = PBXGroup;
+			children = (
+				DD146ADF1CB8F27E00BB438E /* Model */,
+				DD146AE21CB8F27E00BB438E /* View */,
+			);
+			path = RechargeCloudTicket;
+			sourceTree = "<group>";
+		};
+		DD146ADF1CB8F27E00BB438E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AE01CB8F27E00BB438E /* RechargeCTModel.h */,
+				DD146AE11CB8F27E00BB438E /* RechargeCTModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD146AE21CB8F27E00BB438E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AE31CB8F27E00BB438E /* RechargeCloudTicketVC.h */,
+				DD146AE41CB8F27E00BB438E /* RechargeCloudTicketVC.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD146AE51CB8F27E00BB438E /* UserMoney */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AE61CB8F27E00BB438E /* Model */,
+				DD146AEF1CB8F27E00BB438E /* UserMoneyShowVC.h */,
+				DD146AF01CB8F27E00BB438E /* UserMoneyShowVC.m */,
+				DD146AF11CB8F27E00BB438E /* View */,
+			);
+			path = UserMoney;
+			sourceTree = "<group>";
+		};
+		DD146AE61CB8F27E00BB438E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AE71CB8F27E00BB438E /* UserMoneyFormEntity.h */,
+				DD146AE81CB8F27E00BB438E /* UserMoneyFormEntity.m */,
+				DD146AE91CB8F27E00BB438E /* UserMoneyFormModel.h */,
+				DD146AEA1CB8F27E00BB438E /* UserMoneyFormModel.m */,
+				DD146AEB1CB8F27E00BB438E /* UserMoneyInfoEntity.h */,
+				DD146AEC1CB8F27E00BB438E /* UserMoneyInfoEntity.m */,
+				DD146AED1CB8F27E00BB438E /* UserMoneyInfoModel.h */,
+				DD146AEE1CB8F27E00BB438E /* UserMoneyInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD146AF11CB8F27E00BB438E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AF21CB8F27E00BB438E /* MoneyInfoList */,
+				DD146AFD1CB8F27E00BB438E /* UserAliAccountStateCell.h */,
+				DD146AFE1CB8F27E00BB438E /* UserAliAccountStateCell.m */,
+				DD146AFF1CB8F27E00BB438E /* UserMoneyInfoCell.h */,
+				DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */,
+				DD146B011CB8F27E00BB438E /* UserMoneyShowCell.h */,
+				DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD146AF21CB8F27E00BB438E /* MoneyInfoList */ = {
+			isa = PBXGroup;
+			children = (
+				DD146AF31CB8F27E00BB438E /* AllMoneyListVC.h */,
+				DD146AF41CB8F27E00BB438E /* AllMoneyListVC.m */,
+				DD146AF51CB8F27E00BB438E /* MonthMoneyListVC.h */,
+				DD146AF61CB8F27E00BB438E /* MonthMoneyListVC.m */,
+				DD146AF71CB8F27E00BB438E /* UserMoneyInfoListCell.h */,
+				DD146AF81CB8F27E00BB438E /* UserMoneyInfoListCell.m */,
+				DD146AF91CB8F27E00BB438E /* UserMoneyInfoListVC.h */,
+				DD146AFA1CB8F27E00BB438E /* UserMoneyInfoListVC.m */,
+				DD146AFB1CB8F27E00BB438E /* WeekMoneyListVC.h */,
+				DD146AFC1CB8F27E00BB438E /* WeekMoneyListVC.m */,
+			);
+			path = MoneyInfoList;
+			sourceTree = "<group>";
+		};
+		DD1710651CB49B040085713D /* VirtualGoodsInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DD17106E1CB49BD70085713D /* VirtualGoods.h */,
+				DD17106B1CB49B9C0085713D /* VirtualGoodsInfoVC.h */,
+				DD17106C1CB49B9C0085713D /* VirtualGoodsInfoVC.m */,
+				DD1710C11CB4E2710085713D /* VirtualSubGoodsInfoWebVC.h */,
+				DD1710C21CB4E2710085713D /* VirtualSubGoodsInfoWebVC.m */,
+				DD1710661CB49B160085713D /* Model */,
+				DD1710671CB49B160085713D /* View */,
+			);
+			path = VirtualGoodsInfo;
+			sourceTree = "<group>";
+		};
+		DD1710661CB49B160085713D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD1710771CB4A0EA0085713D /* VirtualGoodsInfoModel.h */,
+				DD1710781CB4A0EA0085713D /* VirtualGoodsInfoModel.m */,
+				DD126D891CB5F7A00021E0E1 /* VirtualGoodsInfoTool.h */,
+				DD126D8A1CB5F7A00021E0E1 /* VirtualGoodsInfoTool.m */,
+				DD1710811CB4AAFE0085713D /* VirtualGoodsInfoEntity.h */,
+				DD1710821CB4AAFE0085713D /* VirtualGoodsInfoEntity.m */,
+				DD146AB71CB8E0C900BB438E /* VirtualOrderInfoEntity.h */,
+				DD146AB81CB8E0C900BB438E /* VirtualOrderInfoEntity.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD1710671CB49B160085713D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD146ABD1CB8E56600BB438E /* VirtualGoodsStock */,
+				DD1710851CB4AD4C0085713D /* Integral */,
+				DD1710841CB4AD3B0085713D /* Explain */,
+				DD17107A1CB4AA400085713D /* VirtualBasecell */,
+				DD1710701CB49C8C0085713D /* VirtualInfoDes */,
+				DD17106F1CB49C740085713D /* VirtualInfoTop */,
+				DD126D8C1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.h */,
+				DD126D8D1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD17106F1CB49C740085713D /* VirtualInfoTop */ = {
+			isa = PBXGroup;
+			children = (
+				DD1710711CB49DE20085713D /* VirtualTopImgCell.h */,
+				DD1710721CB49DE20085713D /* VirtualTopImgCell.m */,
+			);
+			path = VirtualInfoTop;
+			sourceTree = "<group>";
+		};
+		DD1710701CB49C8C0085713D /* VirtualInfoDes */ = {
+			isa = PBXGroup;
+			children = (
+				DD1710741CB49E210085713D /* VietualInfoDesCell.h */,
+				DD1710751CB49E210085713D /* VietualInfoDesCell.m */,
+			);
+			path = VirtualInfoDes;
+			sourceTree = "<group>";
+		};
+		DD17107A1CB4AA400085713D /* VirtualBasecell */ = {
+			isa = PBXGroup;
+			children = (
+				DD17107B1CB4AA770085713D /* VirtualInfoBDCell.h */,
+				DD17107C1CB4AA770085713D /* VirtualInfoBDCell.m */,
+				DD17107E1CB4AAA50085713D /* VirtualInfoDownCell.h */,
+				DD17107F1CB4AAA50085713D /* VirtualInfoDownCell.m */,
+			);
+			path = VirtualBasecell;
+			sourceTree = "<group>";
+		};
+		DD1710841CB4AD3B0085713D /* Explain */ = {
+			isa = PBXGroup;
+			children = (
+				DD1710861CB4AD700085713D /* VirtualInfoExplainCell.h */,
+				DD1710871CB4AD700085713D /* VirtualInfoExplainCell.m */,
+			);
+			path = Explain;
+			sourceTree = "<group>";
+		};
+		DD1710851CB4AD4C0085713D /* Integral */ = {
+			isa = PBXGroup;
+			children = (
+				DD1710891CB4AD8C0085713D /* VirtualInfoIntegralCell.h */,
+				DD17108A1CB4AD8C0085713D /* VirtualInfoIntegralCell.m */,
+			);
+			path = Integral;
+			sourceTree = "<group>";
+		};
+		DD1E73171CB90C15005BDACC /* VirtualUserInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				DD2D89C21CB73C8300474820 /* VirtualUserInfoCell.h */,
+				DD2D89C31CB73C8300474820 /* VirtualUserInfoCell.m */,
+			);
+			name = VirtualUserInfoCell;
+			path = userInfoCell;
+			sourceTree = "<group>";
+		};
+		DD1E73181CB90C30005BDACC /* VirtualCompany */ = {
+			isa = PBXGroup;
+			children = (
+				DD2D89C51CB73CA300474820 /* VirtualCompanyCell.h */,
+				DD2D89C61CB73CA300474820 /* VirtualCompanyCell.m */,
+			);
+			path = VirtualCompany;
+			sourceTree = "<group>";
+		};
+		DD1E73191CB90C59005BDACC /* VirtualGoodsList */ = {
+			isa = PBXGroup;
+			children = (
+				DD2D89C81CB73FA900474820 /* VirtualGoodsListCell.h */,
+				DD2D89C91CB73FA900474820 /* VirtualGoodsListCell.m */,
+			);
+			path = VirtualGoodsList;
+			sourceTree = "<group>";
+		};
+		DD1E731A1CB90C7A005BDACC /* VirtualAllMoney */ = {
+			isa = PBXGroup;
+			children = (
+				DD2D89CE1CB740BA00474820 /* VirtualAllMoneyCell.h */,
+				DD2D89CF1CB740BA00474820 /* VirtualAllMoneyCell.m */,
+			);
+			path = VirtualAllMoney;
+			sourceTree = "<group>";
+		};
+		DD1E731B1CB90C91005BDACC /* VirtualForDate */ = {
+			isa = PBXGroup;
+			children = (
+				DD2D89D11CB740D500474820 /* VirtualForDateCell.h */,
+				DD2D89D21CB740D500474820 /* VirtualForDateCell.m */,
+			);
+			path = VirtualForDate;
+			sourceTree = "<group>";
+		};
 		DD207CFE1C9BB2BD00A2F342 /* NewGoodsStockView */ = {
 			isa = PBXGroup;
 			children = (
@@ -7019,6 +7293,55 @@
 				DD2E63E51C9177150037632F /* LImitGoodsEntity.m */,
 			);
 			path = Limit;
+			sourceTree = "<group>";
+		};
+		DD35B5A01CB3983900B1C867 /* VirtualMall */ = {
+			isa = PBXGroup;
+			children = (
+				DD126DC41CB652150021E0E1 /* VirtualGoodsOrder */,
+				DD1710651CB49B040085713D /* VirtualGoodsInfo */,
+				DD35B5A11CB3988E00B1C867 /* VirtualGoodsList */,
+			);
+			path = VirtualMall;
+			sourceTree = "<group>";
+		};
+		DD35B5A11CB3988E00B1C867 /* VirtualGoodsList */ = {
+			isa = PBXGroup;
+			children = (
+				DD35B5A21CB398BE00B1C867 /* VirtualGoodsListVC.h */,
+				DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */,
+				DD35B5AB1CB39B4B00B1C867 /* View */,
+				DD35B5AC1CB39B4B00B1C867 /* Model */,
+			);
+			path = VirtualGoodsList;
+			sourceTree = "<group>";
+		};
+		DD35B5AB1CB39B4B00B1C867 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD0766031CB3A60B0015D070 /* VietualHeardView.h */,
+				DD0766041CB3A60B0015D070 /* VietualHeardView.m */,
+				DD0766121CB3BB450015D070 /* VietualTopImgCell.h */,
+				DD0766131CB3BB450015D070 /* VietualTopImgCell.m */,
+				DD0766061CB3AF630015D070 /* ViteualStoreCell.h */,
+				DD0766071CB3AF630015D070 /* ViteualStoreCell.m */,
+				DD0766091CB3AF7A0015D070 /* ViteualExchangeCell.h */,
+				DD07660A1CB3AF7A0015D070 /* ViteualExchangeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD35B5AC1CB39B4B00B1C867 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD07660C1CB3B6890015D070 /* ViteualGoodsModel.h */,
+				DD07660D1CB3B6890015D070 /* ViteualGoodsModel.m */,
+				DD07660F1CB3B7C40015D070 /* ViteualGoodsEntity.h */,
+				DD0766101CB3B7C40015D070 /* ViteualGoodsEntity.m */,
+				DD2D8A411CB7BBF400474820 /* ViteualTopModel.h */,
+				DD2D8A421CB7BBF400474820 /* ViteualTopModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD35D8661C84258400422F5B /* ClassifyImg */ = {
@@ -7562,6 +7885,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD146B1F1CB8F99400BB438E /* AllMoneyListVC.h in Sources */,
+				DD146B151CB8F27E00BB438E /* AllMoneyListVC.m in Sources */,
 				DD2498B91C88312F0079DB5A /* ClassifySql.m in Sources */,
 				DD4723DD1ADE128800278A5C /* KeychainItemWrapper.m in Sources */,
 				775C583C1ABA5F31005B6B40 /* pinyin.c in Sources */,
@@ -7601,11 +7926,12 @@
 				12963B3A1B663DBB007418DE /* WXTGuideVC.m in Sources */,
 				122858631C4F9BB70089A369 /* ClassifyGoodsListVC.m in Sources */,
 				12F180B91B45190800B9A80D /* Sql_JpushData.m in Sources */,
+				DD146B0A1CB8F27E00BB438E /* UserMoneyDrawVC.m in Sources */,
 				7758431D1AB95A300039B129 /* WXUIActionSheet.m in Sources */,
 				12CE12001C50AF2600FF85FA /* WaitSendOrderGoodsCell.m in Sources */,
 				128B456F1B6B24F100591137 /* WechatEntity.m in Sources */,
+				DD17108B1CB4AD8C0085713D /* VirtualInfoIntegralCell.m in Sources */,
 				122AB89A1C3E6D0D00AC9DF5 /* DDProgressView.m in Sources */,
-				12F41A221CB89DBF00F954F6 /* AllMoneyListVC.m in Sources */,
 				124607D51C4E2DC1001C703D /* ClassifyDownCell.m in Sources */,
 				12F9635A1C85733B000972E6 /* EvaluteGoodsCell.m in Sources */,
 				DDEA9EE01B1BFD5D00530C1C /* WXSysMsgUnreadV.m in Sources */,
@@ -7621,9 +7947,9 @@
 				12CE12061C50AF5D00FF85FA /* WaitReceiveOrderStateCell.m in Sources */,
 				775843131AB95A300039B129 /* WXSingleSelectVC.m in Sources */,
 				12F422861B1D5CC500643DD7 /* AddressEntity.m in Sources */,
-				12BBED751CB4DE6B00EF6906 /* UserMoneyDrawVC.m in Sources */,
 				12F3CC8E1B1E020300E64DE4 /* PersonalMoneyCell.m in Sources */,
 				12F3CC8B1B1E00AF00E64DE4 /* PersonalOrderInfoCell.m in Sources */,
+				DD0766081CB3AF630015D070 /* ViteualStoreCell.m in Sources */,
 				77D197621ABC246000FAA4CE /* RootViewController.m in Sources */,
 				775842B71AB95A300039B129 /* WXTipMaskOBJ.m in Sources */,
 				775842B31AB95A300039B129 /* UtilTool.m in Sources */,
@@ -7634,18 +7960,20 @@
 				DDA5B2D31C8EDFBF001180EE /* ShoppingCartView.m in Sources */,
 				122D63C21C3F567D0086AAB8 /* WXTFindCommonCell.m in Sources */,
 				775842FB1AB95A300039B129 /* UIImage+KIAdditions.m in Sources */,
-				12BBED5D1CB4A04C00EF6906 /* UserCloudTicketCell.m in Sources */,
 				120D015E1BBB91B5005CAA6C /* base64.m in Sources */,
 				775843281AB95A300039B129 /* WXUINavigationController.m in Sources */,
 				12F180BF1B45219300B9A80D /* JPushMessageModel.m in Sources */,
+				DD146B031CB8F27E00BB438E /* CloudTicketListVC.m in Sources */,
 				122AB84B1C3E592000AC9DF5 /* HomeLimitBuyInfoView.m in Sources */,
 				122AB89E1C3E6D0D00AC9DF5 /* RoundButton.m in Sources */,
 				1273291E1B5CFFEE002AD4AE /* PersonalInfoEntity.m in Sources */,
+				DD146B131CB8F27E00BB438E /* UserMoneyInfoModel.m in Sources */,
 				122D63D81C3F93250086AAB8 /* NewAddressInfoCell.m in Sources */,
 				12F963371B3D4BDF00FF6A3E /* SBJsonStreamWriterState.m in Sources */,
 				122D63CB1C3F8FA40086AAB8 /* LoadAreaModel.m in Sources */,
 				128221CC1B184CF4004613BB /* URLNetOperation.m in Sources */,
 				122EFBAE1C40F34400CE0EA0 /* DLFixedTabbarView.m in Sources */,
+				DD1710C31CB4E2710085713D /* VirtualSubGoodsInfoWebVC.m in Sources */,
 				775843391AB95A300039B129 /* WXUIWebView.m in Sources */,
 				12CEB5641CAA0D8E00276119 /* SellerChangeVC.m in Sources */,
 				124607CC1C4E2D87001C703D /* ClassifyRightListView.m in Sources */,
@@ -7673,14 +8001,15 @@
 				775842BD1AB95A300039B129 /* WXGuidMaskView.m in Sources */,
 				7758432B1AB95A300039B129 /* WXUIScrollView.m in Sources */,
 				12F4228C1B1D61E100643DD7 /* AddressBaseInfoCell.m in Sources */,
-				12BBED511CB499BD00EF6906 /* MonthCTListVC.m in Sources */,
 				DD24CF621CA2306C00A5B9ED /* UserCollectionGoodsVC.m in Sources */,
 				12BC725D1C78531700FC6A1C /* MyClientMoneyCell.m in Sources */,
 				122842091C490F6300D76A6B /* GoodsOtherSellerCell.m in Sources */,
 				123666CE1C449760000FAF70 /* UserBonusEntity.m in Sources */,
+				DD146B071CB8F27E00BB438E /* MonthCTListVC.m in Sources */,
 				1236673C1C44AA04000FAF70 /* LuckyGoodsMakeOrderCell.m in Sources */,
 				120A2BEB1AB135DD006A28B1 /* RechargeView.m in Sources */,
 				DD2498BC1C88312F0079DB5A /* SearchResultEntity.m in Sources */,
+				DD146B1C1CB8F27E00BB438E /* UserMoneyShowCell.m in Sources */,
 				775842B91AB95A300039B129 /* WXUserOBJ.m in Sources */,
 				775843231AB95A300039B129 /* WXUIButton.m in Sources */,
 				122EFBAF1C40F34400CE0EA0 /* DLScrollTabbarView.m in Sources */,
@@ -7692,13 +8021,16 @@
 				DDB58F541AD3C6A2006248E9 /* WXKeyPadModel.m in Sources */,
 				12B1F6991B789372009FBA6D /* RechargeListCell.m in Sources */,
 				775842F81AB95A300039B129 /* PSCollectionView.m in Sources */,
+				DD2D89C71CB73CA300474820 /* VirtualCompanyCell.m in Sources */,
 				122EFBB41C40F37900CE0EA0 /* WXHomeOrderListVC.m in Sources */,
 				7758433A1AB95A300039B129 /* WXUIWindow.m in Sources */,
 				122D641C1C3F99C80086AAB8 /* MakeOrderGoodsListCell.m in Sources */,
 				124607C51C4E2CB8001C703D /* ClassifyModel.m in Sources */,
 				12BC725F1C78531700FC6A1C /* NewMyClientVC.m in Sources */,
 				120D01651BBB91B5005CAA6C /* RSADataVerifier.m in Sources */,
+				DD146B0E1CB8F27E00BB438E /* RechargeCTModel.m in Sources */,
 				7758435B1AB95FAC0039B129 /* WXService+UserInfo.m in Sources */,
+				DD146B051CB8F27E00BB438E /* UserCloudTicketModel.m in Sources */,
 				775C58CE1ABA7B75005B6B40 /* ContacterEntity+Detail.m in Sources */,
 				DD89B5561C895CDD0059F097 /* HomeNewGuessInfoCell.m in Sources */,
 				775C58D21ABA7B75005B6B40 /* WXContactMonitor.m in Sources */,
@@ -7718,16 +8050,16 @@
 				128672161B6A1857006391B2 /* WechatPayModel.m in Sources */,
 				775C58381ABA5F31005B6B40 /* KFLoger.m in Sources */,
 				122AB8341C3E384C00AC9DF5 /* UIScrollView+MJRefresh.m in Sources */,
-				12BBED5A1CB49BF900EF6906 /* UserCloudTicketEntity.m in Sources */,
 				12F963311B3D4BDF00FF6A3E /* SBJsonStreamParser.m in Sources */,
 				7758430E1AB95A300039B129 /* WXError.m in Sources */,
+				DD126D8E1CB6103C0021E0E1 /* VirtualGoodsRedCutCell.m in Sources */,
+				DD1710801CB4AAA50085713D /* VirtualInfoDownCell.m in Sources */,
 				776CFFA81AB1257B000A1D84 /* ARLabel.m in Sources */,
 				120EC77E1BB8F31800538637 /* bitstream.c in Sources */,
 				1236673B1C44AA04000FAF70 /* LuckyGoodsMakeOrderModel.m in Sources */,
 				775843551AB95FAC0039B129 /* NetTipDelay.m in Sources */,
 				12CE11F01C507E6100FF85FA /* OrderInfoContactShopCell.m in Sources */,
 				775843101AB95A300039B129 /* WXMutiScanView.m in Sources */,
-				12BBED6C1CB4BD7500EF6906 /* UserMoneyShowCell.m in Sources */,
 				122D64231C3F99C80086AAB8 /* MakeOrderUserInfoCell.m in Sources */,
 				775843C81AB9830F0039B129 /* WXBaseRemotImageView.m in Sources */,
 				775843C31AB971CF0039B129 /* WXTUIButton.m in Sources */,
@@ -7746,6 +8078,7 @@
 				122D63F01C3F99250086AAB8 /* MakeOrderVC.m in Sources */,
 				DDEA9F111B1C3A1800530C1C /* StrechyParallaxScrollView.m in Sources */,
 				12BC72751C78531700FC6A1C /* UserWithdrawalsVC.m in Sources */,
+				DD146B161CB8F27E00BB438E /* MonthMoneyListVC.m in Sources */,
 				775842F41AB95A300039B129 /* LoadMoreTableFooterView.m in Sources */,
 				7758432D1AB95A300039B129 /* WXUISearchDisplayController.m in Sources */,
 				DDB58F491AD3C6A2006248E9 /* ContactBaseEntity.m in Sources */,
@@ -7756,9 +8089,12 @@
 				12BC72571C78531700FC6A1C /* MyClientEntity.m in Sources */,
 				120A2BEE1AB135DD006A28B1 /* T_SignGifView.m in Sources */,
 				1282218E1B1847E7004613BB /* RemotionFileEntity.m in Sources */,
+				DD07660E1CB3B6890015D070 /* ViteualGoodsModel.m in Sources */,
 				122EFBD61C41010E00CE0EA0 /* AllOrderListStateCell.m in Sources */,
 				12BC72681C78531700FC6A1C /* UserCutSourceListVC.m in Sources */,
+				DD146AB91CB8E0C900BB438E /* VirtualOrderInfoEntity.m in Sources */,
 				DD207D7D1C9C233F00A2F342 /* GoodsStockStyleCell.m in Sources */,
+				DD146B081CB8F27E00BB438E /* UserCloudTicketCell.m in Sources */,
 				775843151AB95A300039B129 /* WXTouchEventView.m in Sources */,
 				7758431C1AB95A300039B129 /* WXMFMessageComposeVC.m in Sources */,
 				DD2E63E31C916CB40037632F /* HomeLimitGoodsEntity.m in Sources */,
@@ -7784,7 +8120,6 @@
 				12BC72651C78531700FC6A1C /* UserCutMoneyCell.m in Sources */,
 				12BC726A1C78531700FC6A1C /* MyClientInfoCell.m in Sources */,
 				120A2BF21AB135DE006A28B1 /* UserInfoCommonCell.m in Sources */,
-				12DDE73E1CB6319E006BBB1E /* RechargeCTModel.m in Sources */,
 				12CE12031C50AF2600FF85FA /* WaitSendOrderStateCell.m in Sources */,
 				775843C11AB971CF0039B129 /* UIImage+Render.m in Sources */,
 				122D64241C3F99C80086AAB8 /* MakeOrderAllGoodsMoneyCell.m in Sources */,
@@ -7805,6 +8140,7 @@
 				DDB58F551AD3C6A2006248E9 /* WXContacterCell.m in Sources */,
 				12F963381B3D4BDF00FF6A3E /* SBJsonTokeniser.m in Sources */,
 				12BC72701C78531700FC6A1C /* ConfirmUserAliModel.m in Sources */,
+				DD1710881CB4AD700085713D /* VirtualInfoExplainCell.m in Sources */,
 				122D64201C3F99C80086AAB8 /* MakeOrderUseBonusCell.m in Sources */,
 				122EFBAC1C40F34400CE0EA0 /* DLCustomSlideView.m in Sources */,
 				775C58421ABA5F31005B6B40 /* Tools.m in Sources */,
@@ -7815,6 +8151,7 @@
 				12BC72721C78531700FC6A1C /* UserAliEntity.m in Sources */,
 				1218042E1ACB899B009DB7E7 /* DBImageView.m in Sources */,
 				12C875741CAD17C400DF0B5C /* HomePageCommonImgCell.m in Sources */,
+				DD146B0B1CB8F27E00BB438E /* UserMoneyDrawCell.m in Sources */,
 				122EFBD31C40FE0300CE0EA0 /* WaitSendOrderVC.m in Sources */,
 				DDB58F4F1AD3C6A2006248E9 /* SimpleContacterCell.m in Sources */,
 				775842B11AB95A300039B129 /* WXColorConfig.m in Sources */,
@@ -7823,14 +8160,12 @@
 				DDB58F4D1AD3C6A2006248E9 /* BaseCallHistoryCell.m in Sources */,
 				775842D61AB95A300039B129 /* NSString+HTML.m in Sources */,
 				12CE12151C50B45A00FF85FA /* HasDoneOrderGoodsCell.m in Sources */,
-				12F41A1F1CB89DAE00F954F6 /* MonthMoneyListVC.m in Sources */,
 				1236673F1C44AA04000FAF70 /* LuckyMakeOrderCompanyCell.m in Sources */,
 				122AB8451C3E509600AC9DF5 /* HomeLimitBuyTitleCell.m in Sources */,
 				DDB58F4A1AD3C6A2006248E9 /* WXContacterModel.m in Sources */,
 				775842B01AB95A300039B129 /* CustomMadeOBJ.m in Sources */,
 				126CA3F51AB2B74800E08A0B /* WXTUITabBarController.m in Sources */,
 				12F180C71B4524A800B9A80D /* JPushMessageCenterCell.m in Sources */,
-				12BBED691CB4BB2700EF6906 /* UserMoneyShowVC.m in Sources */,
 				12F5716A1B42253800128294 /* TenpayUtil.mm in Sources */,
 				123667581C44AA04000FAF70 /* WXUIViewController+WinningPopView.m in Sources */,
 				DD2498BB1C88312F0079DB5A /* CLassifySearchModel.m in Sources */,
@@ -7843,8 +8178,11 @@
 				123667471C44AA04000FAF70 /* LuckyOrderStatusCell.m in Sources */,
 				122AB8861C3E6CA600AC9DF5 /* NLPullDownRefreshView.m in Sources */,
 				12BD30FF1B3E9ADF00170316 /* NewWXTLiDB.m in Sources */,
+				DD1710791CB4A0EA0085713D /* VirtualGoodsInfoModel.m in Sources */,
+				DD146AB61CB8DAAF00BB438E /* VirtualOrderNumberCell.m in Sources */,
 				122D641D1C3F99C80086AAB8 /* MakeOrderPayStatusCell.m in Sources */,
 				122858691C4F9BED0089A369 /* ClassifyGoodsModel.m in Sources */,
+				DD0766051CB3A60B0015D070 /* VietualHeardView.m in Sources */,
 				123667461C44AA04000FAF70 /* LuckyOrderNumberCell.m in Sources */,
 				122AB8481C3E57DF00AC9DF5 /* HomeLimitBuyInfoCell.m in Sources */,
 				DD24CF6A1CA23D8100A5B9ED /* CollectionGoodsEntity.m in Sources */,
@@ -7863,17 +8201,14 @@
 				12CE11E41C507D0600FF85FA /* OrderInfoUserAddressCell.m in Sources */,
 				12BC72621C78531700FC6A1C /* WXJuniorListModel.m in Sources */,
 				12F3B8851C9D35410082B5CA /* LuckyTimesModel.m in Sources */,
-				12BBED4E1CB499A700EF6906 /* WeekCTListVC.m in Sources */,
 				122AB8601C3E67EC00AC9DF5 /* GoodsStockView.m in Sources */,
 				123667431C44AA04000FAF70 /* LuckyOrderContactSellerCell.m in Sources */,
 				12F963351B3D4BDF00FF6A3E /* SBJsonStreamWriter.m in Sources */,
 				122EFB8E1C40A59C00CE0EA0 /* WXUserQuestionVC.m in Sources */,
 				2563B3EA1AAAD74000C04227 /* main.m in Sources */,
 				120A2BE91AB135DD006A28B1 /* RechargeVC.m in Sources */,
-				12F41A191CB89D3C00F954F6 /* UserMoneyInfoListVC.m in Sources */,
 				123667621C44AAAD000FAF70 /* NewGoodsInfoBDCell.m in Sources */,
 				775842D41AB95A300039B129 /* NSNotificationAdditions.m in Sources */,
-				12F41A2B1CB8A75A00F954F6 /* UserMoneyInfoEntity.m in Sources */,
 				775842FD1AB95A300039B129 /* WXImageClipOBJ.m in Sources */,
 				12CD4EB61C9A4F92003789F8 /* PersonalNickNameCell.m in Sources */,
 				1236674A1C44AA04000FAF70 /* LuckyOrderEntity.m in Sources */,
@@ -7885,7 +8220,6 @@
 				122EFBDF1C4103E000CE0EA0 /* AllOrderListEntity.m in Sources */,
 				12B1F6931B788A20009FBA6D /* RechargeTypeCell.m in Sources */,
 				775842E61AB95A300039B129 /* CountryCode.m in Sources */,
-				12F41A2F1CB8AB7900F954F6 /* MoreMoneyInfoModel.m in Sources */,
 				120D015F1BBB91B5005CAA6C /* DataSigner.m in Sources */,
 				124607901C4DD6B0001C703D /* ShoppingCartEntity.m in Sources */,
 				12F9635B1C85733B000972E6 /* EvaluteUserHandleCell.m in Sources */,
@@ -7899,28 +8233,31 @@
 				12CE12181C50B49000FF85FA /* HasDoneOrderMoneyCell.m in Sources */,
 				128221C41B184C3B004613BB /* ASIDataCompressor.m in Sources */,
 				775842F51AB95A300039B129 /* MessageInterceptor.m in Sources */,
-				12BBED4B1CB4992200EF6906 /* CloudTicketListVC.m in Sources */,
 				1228586C1C4F9C420089A369 /* ClassifyGoodsListCell.m in Sources */,
 				775843341AB95A300039B129 /* WXUITableViewController.m in Sources */,
 				12F3CC881B1DF77500E64DE4 /* PersonalInfoOrderListCell.m in Sources */,
 				122EFB911C40B76200CE0EA0 /* NewForgetPwdVC.m in Sources */,
 				120A2BEA1AB135DD006A28B1 /* RechargeCell.m in Sources */,
 				12F9163B1B19B90B00C94717 /* BaseInfoCommonCell.m in Sources */,
+				DD2D89CD1CB73FC800474820 /* VirtualPayStatusCell.m in Sources */,
 				122EFBBF1C40F56900CE0EA0 /* AllOrderListVC.m in Sources */,
 				120EC7801BB8F31800538637 /* qrencode.c in Sources */,
 				DD2E63E61C9177150037632F /* LImitGoodsEntity.m in Sources */,
 				12F963361B3D4BDF00FF6A3E /* SBJsonStreamWriterAccumulator.m in Sources */,
 				12D5C4871CAE0A2C0090BD5F /* HomeClassifyInfoView.m in Sources */,
 				127329131B5CDDF4002AD4AE /* AboutVC.m in Sources */,
+				DD2D89D31CB740D500474820 /* VirtualForDateCell.m in Sources */,
 				12BC72631C78531700FC6A1C /* WXJuniorListCell.m in Sources */,
 				77DB93F01AAFE70D0021A816 /* RecentData.m in Sources */,
 				126CA3D21AB2744600E08A0B /* WXTUserDefault.m in Sources */,
 				120D01741BBB9465005CAA6C /* APAuthV2Info.m in Sources */,
+				DD1710761CB49E210085713D /* VietualInfoDesCell.m in Sources */,
 				122841F11C48D35800D76A6B /* HomePageTop.m in Sources */,
 				775842C01AB95A300039B129 /* WXGuideMaskControl.m in Sources */,
 				1277D00E1AC50E4F0008D9B6 /* WXTResetPwdVC.m in Sources */,
 				7758432F1AB95A300039B129 /* WXUITabBar.m in Sources */,
 				122841F71C48D58E00D76A6B /* NewHomePageModel.m in Sources */,
+				DD146B111CB8F27E00BB438E /* UserMoneyFormModel.m in Sources */,
 				122858511C4F83D60089A369 /* WaitPayOrderHandleCell.m in Sources */,
 				1236673D1C44AA04000FAF70 /* LuckyGoodsMakeOrderDateCell.m in Sources */,
 				775843241AB95A300039B129 /* WXUIImagePickerController.m in Sources */,
@@ -7936,9 +8273,11 @@
 				775C583D1ABA5F31005B6B40 /* PinyinFormatter.m in Sources */,
 				1228584B1C4F83290089A369 /* WaitPayOrderGoodsCell.m in Sources */,
 				120D01641BBB91B5005CAA6C /* RSADataSigner.m in Sources */,
+				DD146B041CB8F27E00BB438E /* UserCloudTicketEntity.m in Sources */,
 				775842B21AB95A300039B129 /* URLFeedData.m in Sources */,
 				12F9633A1B3D4BDF00FF6A3E /* SBJsonWriter.m in Sources */,
 				120A2BF01AB135DE006A28B1 /* BalanceModel.m in Sources */,
+				DD17106D1CB49B9C0085713D /* VirtualGoodsInfoVC.m in Sources */,
 				124607D71C4E2DC1001C703D /* ClassifyRightView.m in Sources */,
 				1246078A1C4DD62F001C703D /* ShoppingCartVC.m in Sources */,
 				12F2CCE01B4CB9570085F78F /* ForgetPwdVC.m in Sources */,
@@ -7952,6 +8291,8 @@
 				122875EE1C3CC0D70058C86D /* CSTScrollBrowser.m in Sources */,
 				122AB8A01C3E6D0D00AC9DF5 /* UIImage+Category.m in Sources */,
 				12F963111B3D4B3800FF6A3E /* AliPayControl.m in Sources */,
+				DD146B121CB8F27E00BB438E /* UserMoneyInfoEntity.m in Sources */,
+				DD146B191CB8F27E00BB438E /* WeekMoneyListVC.m in Sources */,
 				120B75511B1C36BE00B8746C /* PersonDatePickerVC.m in Sources */,
 				122EFBDC1C4103D200CE0EA0 /* AllOrderListModel.m in Sources */,
 				121804321ACB90C7009DB7E7 /* FindCommonVC.m in Sources */,
@@ -7960,35 +8301,39 @@
 				122EFBCE1C40FDD800CE0EA0 /* WaitReceiveOrderVC.m in Sources */,
 				12F572321B42766D00128294 /* T_SettingSwitchCell.m in Sources */,
 				DDB58F501AD3C6A2006248E9 /* WXTCallHistoryCell.m in Sources */,
+				DD2D89C41CB73C8300474820 /* VirtualUserInfoCell.m in Sources */,
+				DD35B5A41CB398BE00B1C867 /* VirtualGoodsListVC.m in Sources */,
 				7758435C1AB95FAC0039B129 /* WXService.m in Sources */,
 				12BC72771C78531700FC6A1C /* WithdrawalsRecordListVC.m in Sources */,
 				122AB8D01C3E6F2C00AC9DF5 /* NewGoodsInfoWebViewViewController.m in Sources */,
 				122D63DB1C3F93760086AAB8 /* NewAddressTextfieldCell.m in Sources */,
 				122AB8BF1C3E6D5500AC9DF5 /* UIButton+WebCache.m in Sources */,
 				DD2498BA1C88312F0079DB5A /* ClassifySqlEntity.m in Sources */,
+				DD126DCC1CB6685F0021E0E1 /* VirtualGoodsOrderModel.m in Sources */,
 				122841FE1C48E05C00D76A6B /* HomePageRecEntity.m in Sources */,
 				123667561C44AA04000FAF70 /* WinningView.m in Sources */,
 				122AB8631C3E684400AC9DF5 /* GoodsStockNameCell.m in Sources */,
 				12BC725A1C78531700FC6A1C /* MyCutRefereeModel.m in Sources */,
-				12F41A351CB8E2C100F954F6 /* UserMoneyFormEntity.m in Sources */,
 				DDB58F4E1AD3C6A2006248E9 /* CallHistoryCell.m in Sources */,
+				DD2D89D01CB740BA00474820 /* VirtualAllMoneyCell.m in Sources */,
 				1284CC851B54ADB900D98F79 /* PaySucceedModel.m in Sources */,
 				122AB8301C3E384C00AC9DF5 /* MJRefreshConst.m in Sources */,
-				12F41A251CB89DE900F954F6 /* UserMoneyInfoListCell.m in Sources */,
 				1218042F1ACB899B009DB7E7 /* DBImageViewCache.m in Sources */,
 				123666D01C449760000FAF70 /* BonusOverdueVC.m in Sources */,
 				775842FC1AB95A300039B129 /* WXImageClipVC.m in Sources */,
 				77DB93EF1AAFE70D0021A816 /* PhoneData.m in Sources */,
+				DD07660B1CB3AF7A0015D070 /* ViteualExchangeCell.m in Sources */,
 				124C10611C4CB45600740561 /* HomeLimitBuyCell.m in Sources */,
 				775842DA1AB95A300039B129 /* UIDevice+screenType.m in Sources */,
 				120D01601BBB91B5005CAA6C /* DataVerifier.m in Sources */,
 				1261F0141AE6596A00693710 /* CallModel.m in Sources */,
 				1236674F1C44AA04000FAF70 /* LuckyGoodsModel.m in Sources */,
+				DD1710731CB49DE20085713D /* VirtualTopImgCell.m in Sources */,
+				DD146B061CB8F27E00BB438E /* AllCTListVC.m in Sources */,
 				12F5722F1B4274DB00128294 /* NewSystemSettingVC.m in Sources */,
 				775843111AB95A300039B129 /* WXMutiScanViewCell.m in Sources */,
 				12BC726E1C78531700FC6A1C /* AliSendMsgModel.m in Sources */,
 				122AB8C01C3E6D5500AC9DF5 /* UIImageView+WebCache.m in Sources */,
-				12DDE7411CB63D32006BBB1E /* UserAliAccountStateCell.m in Sources */,
 				122D64211C3F99C80086AAB8 /* MakeOrderBananceSwitchCell.m in Sources */,
 				12B1F6901B788961009FBA6D /* RechargeTypeVC.m in Sources */,
 				12CFE6511AC1A210009C710B /* CallHistoryEntity.m in Sources */,
@@ -8005,7 +8350,6 @@
 				77DB943B1AAFF3830021A816 /* UIView+Sizing.m in Sources */,
 				12CEB56F1CAA1CEA00276119 /* SellerChangeModel.m in Sources */,
 				775843141AB95A300039B129 /* WXButton.m in Sources */,
-				12BBED631CB4A4BC00EF6906 /* RechargeCloudTicketVC.m in Sources */,
 				DDA5B2D61C8EDFE2001180EE /* ShopPingCartModel.m in Sources */,
 				1228584E1C4F83950089A369 /* WaitPayOrderMoneyCell.m in Sources */,
 				122AB8321C3E384C00AC9DF5 /* MJRefreshHeaderView.m in Sources */,
@@ -8030,9 +8374,9 @@
 				12F571691B42253800128294 /* payRequsestHandler.mm in Sources */,
 				12F9162D1B19B0AA00C94717 /* BaseInfoVC.m in Sources */,
 				12BC72591C78531700FC6A1C /* MyClientPersonModel.m in Sources */,
+				DD146B1B1CB8F27E00BB438E /* UserMoneyInfoCell.m in Sources */,
 				12CE11D91C506E7500FF85FA /* UserQuestionModel.m in Sources */,
 				12F380351B3BEF6F00E9690C /* UserAddressModel.m in Sources */,
-				12F41A321CB8E02300F954F6 /* UserMoneyFormModel.m in Sources */,
 				120B754E1B1C19EA00B8746C /* PersonSexVC.m in Sources */,
 				122AB83A1C3E3E2C00AC9DF5 /* WXHomeTopGoodCell.m in Sources */,
 				7758430D1AB95A300039B129 /* WXCheckMenu.m in Sources */,
@@ -8043,17 +8387,17 @@
 				12F963691C857B17000972E6 /* ShareInfoModel.m in Sources */,
 				120A2C121AB17038006A28B1 /* RechargeModel.m in Sources */,
 				122D63C81C3F8E460086AAB8 /* AllAreaDataModel.m in Sources */,
-				12BBED541CB499CC00EF6906 /* AllCTListVC.m in Sources */,
 				12F422891B1D5D8100643DD7 /* ManagerAddressVC.m in Sources */,
-				12BBED571CB49B7A00EF6906 /* UserCloudTicketModel.m in Sources */,
 				775842DF1AB95A300039B129 /* UIResponder+FirstResponder.m in Sources */,
 				12F180C01B45219300B9A80D /* JPushMsgEntity.m in Sources */,
 				12C8756F1CAD0F1800DF0B5C /* HomeClassifyTitleCell.m in Sources */,
 				775C58CF1ABA7B75005B6B40 /* ContacterEntity.m in Sources */,
+				DD0766111CB3B7C40015D070 /* ViteualGoodsEntity.m in Sources */,
 				1236674C1C44AA04000FAF70 /* LuckyGoodsOrderListCell.m in Sources */,
 				126CA4121AB2FC9400E08A0B /* GainModel.m in Sources */,
 				122AB8331C3E384C00AC9DF5 /* UIScrollView+MJExtension.m in Sources */,
 				775842FF1AB95A300039B129 /* LoadingEntity.m in Sources */,
+				DD0766141CB3BB450015D070 /* VietualTopImgCell.m in Sources */,
 				775C58411ABA5F31005B6B40 /* PinYinSearchOBJ.m in Sources */,
 				120B75541B1C3B7100B8746C /* PersonNicknameVC.m in Sources */,
 				122D64221C3F99C80086AAB8 /* MakeOrderUserBalanceCell.m in Sources */,
@@ -8062,7 +8406,6 @@
 				775842E21AB95A300039B129 /* WXCpxBaseView.m in Sources */,
 				775843311AB95A300039B129 /* WXUITabBarVC.m in Sources */,
 				122EFBE51C4108FC00CE0EA0 /* AllOrderListHandleCell.m in Sources */,
-				12F41A1C1CB89D9C00F954F6 /* WeekMoneyListVC.m in Sources */,
 				120A2BED1AB135DD006A28B1 /* CalendarView.m in Sources */,
 				DD24CF991CA26C7200A5B9ED /* collectionView.m in Sources */,
 				DDB58F521AD3C6A2006248E9 /* StrangerEntity.m in Sources */,
@@ -8073,6 +8416,7 @@
 				1218042C1ACB899B009DB7E7 /* DBImage.m in Sources */,
 				123667541C44AA04000FAF70 /* LuckySharkNumberModel.m in Sources */,
 				122EFBB11C40F34400CE0EA0 /* DLUtility.m in Sources */,
+				DD146B0C1CB8F27E00BB438E /* UserMoneyDrawShowCell.m in Sources */,
 				775843321AB95A300039B129 /* WXUITableView.m in Sources */,
 				12D0C8721AB685250039A197 /* AboutWxtInfoVC.m in Sources */,
 				128083DA1B62147E00260B9F /* ShareBrowserView.m in Sources */,
@@ -8081,8 +8425,11 @@
 				12CE12011C50AF2600FF85FA /* WaitSendOrderHandleCell.m in Sources */,
 				122841F41C48D37200D76A6B /* HomePageTopEntity.m in Sources */,
 				122D63E71C3F95F30086AAB8 /* NewUserAddressPhoneCell.m in Sources */,
+				DD146AC01CB8E60E00BB438E /* VirtualStockGoodsView.m in Sources */,
 				126CA3CE1AB2709D00E08A0B /* WXTUserOBJ.m in Sources */,
 				122AB89B1C3E6D0D00AC9DF5 /* GoodsInfoImageZoomView.m in Sources */,
+				DD126DC91CB6523C0021E0E1 /* VirtualGoodsOrderVC.m in Sources */,
+				DD146B101CB8F27E00BB438E /* UserMoneyFormEntity.m in Sources */,
 				775C583E1ABA5F31005B6B40 /* PinYinForObjc.m in Sources */,
 				122D641E1C3F99C80086AAB8 /* MakeOrderShopCell.m in Sources */,
 				12F1D64F1B2692DA003924DF /* RFSegmentView.m in Sources */,
@@ -8099,6 +8446,7 @@
 				124607D61C4E2DC1001C703D /* ClassifyRightCell.m in Sources */,
 				120EC77F1BB8F31800538637 /* mask.c in Sources */,
 				2563B48B1AAAFF6B00C04227 /* HttpNetUtils.m in Sources */,
+				DD2D8A431CB7BBF400474820 /* ViteualTopModel.m in Sources */,
 				775843381AB95A300039B129 /* WXUIViewController.m in Sources */,
 				2563B3F01AAAD74000C04227 /* RKWXT.xcdatamodeld in Sources */,
 				12BD30F21B3E78B400170316 /* OrderAlipayCell.m in Sources */,
@@ -8116,7 +8464,6 @@
 				775842BA1AB95A300039B129 /* WXUserDefault.m in Sources */,
 				122EFBD91C41034300CE0EA0 /* AllOrderListGoodsCell.m in Sources */,
 				122CD59C1CAA635C00A8366C /* SellerListEntity.m in Sources */,
-				12BBED781CB4E07500EF6906 /* UserMoneyDrawShowCell.m in Sources */,
 				122AB8CD1C3E6E9B00AC9DF5 /* MerchantImageCell.m in Sources */,
 				122D64261C3F99C80086AAB8 /* MakeOrderUserMsgTextFieldCell.m in Sources */,
 				122842051C48EF3500D76A6B /* HomePageSurpModel.m in Sources */,
@@ -8125,6 +8472,7 @@
 				775842D81AB95A300039B129 /* NSString+Size.m in Sources */,
 				775C583B1ABA5F31005B6B40 /* NSString+PinYin4Cocoa.m in Sources */,
 				1236674B1C44AA04000FAF70 /* LuckyOrderListModel.m in Sources */,
+				DD146B0D1CB8F27E00BB438E /* MoreMoneyInfoModel.m in Sources */,
 				12CE120C1C50B05D00FF85FA /* WaitReceiveOrderMoneyCell.m in Sources */,
 				120EC7811BB8F31800538637 /* qrinput.c in Sources */,
 				122AB8C21C3E6D5500AC9DF5 /* SDWebImageDecoder.m in Sources */,
@@ -8138,15 +8486,17 @@
 				775842E41AB95A300039B129 /* WXMiltiViewCell.m in Sources */,
 				775843C01AB971CF0039B129 /* UIFont+WXT.m in Sources */,
 				12CE121B1C50B4D800FF85FA /* HasDoneOrderHandleCell.m in Sources */,
+				DD146B091CB8F27E00BB438E /* WeekCTListVC.m in Sources */,
 				12F963611C857397000972E6 /* OrderEvaluteVC.m in Sources */,
 				1282413E1B60C605001EE0BD /* WXWeiXinOBJ.m in Sources */,
+				DD146B1A1CB8F27E00BB438E /* UserAliAccountStateCell.m in Sources */,
 				775C583A1ABA5F31005B6B40 /* HanyuPinyinOutputFormat.m in Sources */,
 				122EFBAB1C40F34400CE0EA0 /* DLLRUCache.m in Sources */,
+				DD146B181CB8F27E00BB438E /* UserMoneyInfoListVC.m in Sources */,
 				775842E51AB95A300039B129 /* WXRemotionImgBtn.m in Sources */,
 				775842EC1AB95A300039B129 /* CrystalNavigationView.m in Sources */,
 				7758430F1AB95A300039B129 /* WXMultiGuideView.m in Sources */,
 				1236674E1C44AA04000FAF70 /* LuckyGoodsEntity.m in Sources */,
-				12BBED7B1CB4E10A00EF6906 /* UserMoneyDrawCell.m in Sources */,
 				122875EB1C3CBB580058C86D /* T_Sqlite.m in Sources */,
 				128241481B60D062001EE0BD /* DownSheetModel.m in Sources */,
 				775842BF1AB95A300039B129 /* WXTapGuideView.m in Sources */,
@@ -8154,7 +8504,9 @@
 				12D0C8801AB6C0E60039A197 /* VersionEntity.m in Sources */,
 				122EFB941C40BC3D00CE0EA0 /* NewResetPwdVC.m in Sources */,
 				120D01621BBB91B5005CAA6C /* NSDataEx.m in Sources */,
+				DD126D8B1CB5F7A00021E0E1 /* VirtualGoodsInfoTool.m in Sources */,
 				775843C41AB971CF0039B129 /* WXTUITableViewCell.m in Sources */,
+				DD1710831CB4AAFE0085713D /* VirtualGoodsInfoEntity.m in Sources */,
 				12A0B43C1B8DBB47005682EA /* FTPHelper.m in Sources */,
 				1243CCB91AE7C31B003E0943 /* WXTUITabbarVC.m in Sources */,
 				DD207D421C9BEDF300A2F342 /* GoodsInfoStockCell.m in Sources */,
@@ -8169,16 +8521,17 @@
 				775842F91AB95A300039B129 /* PSCollectionViewCell.m in Sources */,
 				128221EC1B18716E004613BB /* T_HPSubBaseModel.m in Sources */,
 				122D63D51C3F92ED0086AAB8 /* NewAddressAreaCell.m in Sources */,
-				12F41A281CB8A6A300F954F6 /* UserMoneyInfoModel.m in Sources */,
 				123667491C44AA04000FAF70 /* LuckyGoodsOrderList.m in Sources */,
 				775843261AB95A300039B129 /* WXUILabel.m in Sources */,
 				1261F0181AE659AC00693710 /* HangupModel.m in Sources */,
 				123667531C44AA04000FAF70 /* LuckySharkModel.m in Sources */,
+				DD146B141CB8F27E00BB438E /* UserMoneyShowVC.m in Sources */,
 				12F4228F1B1D61F900643DD7 /* AddressManagerCell.m in Sources */,
 				DDB58F511AD3C6A2006248E9 /* CallHistoryEntityExt.m in Sources */,
 				1262E2C61ACA50B600667C54 /* WXTFindModel.m in Sources */,
 				12CE11E71C507D6C00FF85FA /* OrderInfoShopCell.m in Sources */,
 				775843021AB95A300039B129 /* BaseSearchEntity.m in Sources */,
+				DD2D89CA1CB73FA900474820 /* VirtualGoodsListCell.m in Sources */,
 				120D01611BBB91B5005CAA6C /* MD5DataSigner.m in Sources */,
 				122D641A1C3F99C80086AAB8 /* MakeOrderModel.m in Sources */,
 				128766E11B50B1C700A79320 /* AboutShopVC.m in Sources */,
@@ -8186,8 +8539,8 @@
 				120EC7821BB8F31800538637 /* qrspec.c in Sources */,
 				12F963321B3D4BDF00FF6A3E /* SBJsonStreamParserAccumulator.m in Sources */,
 				775842E31AB95A300039B129 /* WXCpxBtnImgView.m in Sources */,
+				DD146B171CB8F27E00BB438E /* UserMoneyInfoListCell.m in Sources */,
 				1236673E1C44AA04000FAF70 /* LuckyGoodsMakeOrderMoneyCell.m in Sources */,
-				12BBED6F1CB4BD8100EF6906 /* UserMoneyInfoCell.m in Sources */,
 				1203C2001B3E366600C402E3 /* OrderPayMoneyCell.m in Sources */,
 				12F422981B1D8A4000643DD7 /* InsertAddress.m in Sources */,
 				DD24CF671CA2397D00A5B9ED /* CollectionGoodsCell.m in Sources */,
@@ -8195,12 +8548,14 @@
 				775842FA1AB95A300039B129 /* KICropImageView.m in Sources */,
 				122858481C4F828B0089A369 /* WaitPayOrderStateCell.m in Sources */,
 				775843031AB95A300039B129 /* BaseSearchLV.m in Sources */,
+				DD146B0F1CB8F27E00BB438E /* RechargeCloudTicketVC.m in Sources */,
 				125A76B01B56747F00959AD8 /* JPushInfoModel.m in Sources */,
 				DDB58F4C1AD3C6A2006248E9 /* CallViewController.m in Sources */,
 				123667361C44AA04000FAF70 /* WXCommonWebView.m in Sources */,
 				12BC726C1C78531700FC6A1C /* ApplyAliWithdrawalsVC.m in Sources */,
 				12BC725B1C78531700FC6A1C /* MyRefereeEntity.m in Sources */,
 				122D63EA1C3F963A0086AAB8 /* LocalAreaModel.m in Sources */,
+				DD17107D1CB4AA770085713D /* VirtualInfoBDCell.m in Sources */,
 				122AB8D31C3E6F8C00AC9DF5 /* GoodsInfoModel.m in Sources */,
 				12BC72611C78531700FC6A1C /* JuniorListEntity.m in Sources */,
 				777A38561AC3933D001CF5FF /* WXTDatabase.m in Sources */,
@@ -8347,8 +8702,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ding Bin (S7PY53887M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ding Bin (S7PY53887M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bin Ding (9GVZ38434R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bin Ding (9GVZ38434R)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -8399,7 +8754,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46212f7e-1dd4-4270-a34a-5753d0e83e23";
+				PROVISIONING_PROFILE = "12e6aafe-deae-4158-bf7e-f356bd5273d3";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
@@ -8462,7 +8817,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46212f7e-1dd4-4270-a34a-5753d0e83e23";
+				PROVISIONING_PROFILE = "c845310b-ef28-4fe0-8fbf-482fdeaf2a15";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;

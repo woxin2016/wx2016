@@ -32,6 +32,7 @@ typedef enum{
 
 @interface GoodsAttentionModel : NSObject
 @property (nonatomic,strong)NSMutableArray *goodsArr;
++ (instancetype)goodsAttentionModelAlloc;
 //收藏商品
 -(void)searchGoodsPayAttention:(NSInteger)goodsID shopID:(NSInteger)shopID requestType:(GoodsAttentionModel_Type)type likeType:(GoodsAttentionModel_likeType)likeType;
 //删除商品

@@ -209,8 +209,6 @@
         }
     }
 
-
-
     
     if (!self.stockEntity.userCut && !self.stockEntity.redPacket && entity.postage == Goods_Postage_Have) {
         topView.hidden = YES;

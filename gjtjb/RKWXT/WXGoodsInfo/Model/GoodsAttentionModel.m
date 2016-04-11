@@ -19,6 +19,15 @@
     return _goodsArr;
 }
 
++ (instancetype)goodsAttentionModelAlloc{
+    static GoodsAttentionModel *model = nil;
+    static dispatch_once_t onceUser;
+    dispatch_once(&onceUser, ^{
+        model = [[GoodsAttentionModel alloc]init];
+    });
+    return model;
+}
+
 /*
  接口名称:收藏商品和店铺
  接口地址:https://oldyun.67call.com/wx10api/V1/stores.php

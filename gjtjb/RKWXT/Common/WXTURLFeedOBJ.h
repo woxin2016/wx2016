@@ -106,6 +106,11 @@ typedef enum {
     WXT_UrlFeed_Type_New_MoreMoneyInfo,
     WXT_UrlFeed_Type_New_UserMoneyForm,  //现金组成
     WXT_UrlFeed_Type_New_UserMoneyInfo,
+    //云票兑换
+    WXT_UrlFeed_Type_VirtualGoods,
+    WXT_UrlFeed_Type_VirtualGoodsInfo,
+    
+    
     
     WXT_UrlFeed_Type_Invalid,
 }WXT_UrlFeed_Type;
