@@ -885,7 +885,6 @@
 		DD146B1A1CB8F27E00BB438E /* UserAliAccountStateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AFE1CB8F27E00BB438E /* UserAliAccountStateCell.m */; };
 		DD146B1B1CB8F27E00BB438E /* UserMoneyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */; };
 		DD146B1C1CB8F27E00BB438E /* UserMoneyShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */; };
-		DD146B1F1CB8F99400BB438E /* AllMoneyListVC.h in Sources */ = {isa = PBXBuildFile; fileRef = DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */; };
 		DD1488011C9273AF00D2632E /* LimitGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488001C9273AF00D2632E /* LimitGoodsView.m */; };
 		DD1488041C92A69500D2632E /* NewShopPingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488031C92A69500D2632E /* NewShopPingCartModel.m */; };
 		DD17106D1CB49B9C0085713D /* VirtualGoodsInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17106C1CB49B9C0085713D /* VirtualGoodsInfoVC.m */; };
@@ -2607,8 +2606,6 @@
 		DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoCell.m; sourceTree = "<group>"; };
 		DD146B011CB8F27E00BB438E /* UserMoneyShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowCell.h; sourceTree = "<group>"; };
 		DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowCell.m; sourceTree = "<group>"; };
-		DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AllMoneyListVC.h; path = RKWXT/CloudTicket/UserMoney/View/MoneyInfoList/AllMoneyListVC.h; sourceTree = "<group>"; };
-		DD146B1E1CB8F99400BB438E /* AllMoneyListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AllMoneyListVC.m; path = RKWXT/CloudTicket/UserMoney/View/MoneyInfoList/AllMoneyListVC.m; sourceTree = "<group>"; };
 		DD1487FF1C9273AF00D2632E /* LimitGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitGoodsView.h; sourceTree = "<group>"; };
 		DD1488001C9273AF00D2632E /* LimitGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitGoodsView.m; sourceTree = "<group>"; };
 		DD1488021C92A69500D2632E /* NewShopPingCartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShopPingCartModel.h; sourceTree = "<group>"; };
@@ -5890,8 +5887,6 @@
 		2563B3DB1AAAD74000C04227 = {
 			isa = PBXGroup;
 			children = (
-				DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */,
-				DD146B1E1CB8F99400BB438E /* AllMoneyListVC.m */,
 				128083D51B61D21D00260B9F /* TencentOpenApi_IOS_Bundle.bundle */,
 				2563B3E61AAAD74000C04227 /* RKWXT */,
 				2563B3E51AAAD74000C04227 /* Products */,
@@ -7885,7 +7880,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD146B1F1CB8F99400BB438E /* AllMoneyListVC.h in Sources */,
 				DD146B151CB8F27E00BB438E /* AllMoneyListVC.m in Sources */,
 				DD2498B91C88312F0079DB5A /* ClassifySql.m in Sources */,
 				DD4723DD1ADE128800278A5C /* KeychainItemWrapper.m in Sources */,
