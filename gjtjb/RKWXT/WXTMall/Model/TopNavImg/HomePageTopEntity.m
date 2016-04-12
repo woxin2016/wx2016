@@ -28,11 +28,14 @@
         NSInteger type = [[dic objectForKey:@"top_nav_type_id"] integerValue];
         [self setTopAddID:type];
         
-        NSInteger sort_order = [[dic objectForKey:@"sort_order"] integerValue];
+        NSInteger sort_order = [[dic objectForKey:@"top_id"] integerValue];
         [self setSortID:sort_order];
         
         NSInteger position = [[dic objectForKey:@"show_position" ] integerValue];
         [self setPosition:position];
+        
+        NSString *url_address = [dic objectForKey:@"url_address"];
+        [self setUrl_address:url_address];
     }
     return self;
 }

@@ -58,7 +58,7 @@
         if([CustomMadeOBJ sharedCustomMadeOBJS].appCategory == E_App_Category_Eatable){
             _selectedIndex = 0;
         }else{
-            _selectedIndex = 1;
+            _selectedIndex = 0;
         }
     }
     [self showCurrentIndex:_selectedIndex preIndex:_preSelectedIndex];

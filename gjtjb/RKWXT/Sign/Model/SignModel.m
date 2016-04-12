@@ -40,10 +40,10 @@
     
     NSString *message = [NSString stringWithFormat:@"今日签到领取了%.2f元",entity.money];
     if(entity.type == 2){
-        message = [NSString stringWithFormat:@"今日签到领取了%.2f云票",entity.money];
+        message = [NSString stringWithFormat:@"今日签到领取了%d云票",(int)entity.money];
         
         //通知云票数量已经发生变化
-        [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += entity.money;
+        [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += (int)entity.money;
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
     }
     NSUserDefaults *userDefault1 = [NSUserDefaults standardUserDefaults];

@@ -13,7 +13,7 @@
 #define K_Notification_Name_UserMoneyBalanceChanged @"K_Notification_Name_UserMoneyBalanceChanged"   //现金发生变化
 
 @interface MoreMoneyInfoModel : T_HPSubBaseModel
-@property (nonatomic,assign) CGFloat userCloudBalance;  //使用之前请判断是否已经加载成功
+@property (nonatomic,assign) NSInteger userCloudBalance;  //使用之前请判断是否已经加载成功
 @property (nonatomic,assign) CGFloat userMoneyBalance;  //使用之前请判断是否已经加载成功
 
 @property (nonatomic,assign) BOOL isLoaded;

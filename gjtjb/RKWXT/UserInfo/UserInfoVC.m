@@ -385,7 +385,7 @@
     if(row == UserCloudTicket){
         [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
         [cell.textLabel setText:@"我的云票"];
-        [cell setCellInfo:[NSString stringWithFormat:@"%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance]];
+        [cell setCellInfo:[NSString stringWithFormat:@"%d",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance]];
         [cell load];
     }else{
         [cell.imageView setImage:[UIImage imageNamed:@"UserMoneyImg.png"]];

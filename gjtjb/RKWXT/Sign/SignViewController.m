@@ -129,7 +129,7 @@ enum{
         SignEntity *signEntity = [_model.signArr objectAtIndex:0];
         [_textLabel setText:[NSString stringWithFormat:@"签到奖励:%.2f元",signEntity.money]];
         if(signEntity.type == Sign_Type_Cloud){
-            [_textLabel setText:[NSString stringWithFormat:@"签到奖励:%.2f云票",signEntity.money]];
+            [_textLabel setText:[NSString stringWithFormat:@"签到奖励:%d云票",(int)signEntity.money]];
         }
     }
 }

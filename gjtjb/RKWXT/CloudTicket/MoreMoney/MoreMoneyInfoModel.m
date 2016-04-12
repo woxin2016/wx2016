@@ -43,7 +43,7 @@
             _isLoaded = NO;
         }else{
             _isLoaded = YES;
-            _userCloudBalance = [[[retData.data objectForKey:@"data"] objectForKey:@"xnb_1"] floatValue];
+            _userCloudBalance = [[[retData.data objectForKey:@"data"] objectForKey:@"xnb_1"] integerValue];
             _userMoneyBalance = [[[retData.data objectForKey:@"data"] objectForKey:@"balance"] floatValue];
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_LoadUserMoreMoneyInfoSucceed object:nil];
         }

@@ -14,6 +14,7 @@
 @property (nonatomic,strong) NSString *topImg; //图片URL
 @property (nonatomic,assign) NSInteger sortID; //排序
 @property (nonatomic,assign) NSInteger position;  //显示位置
+@property (nonatomic,strong) NSString *url_address; //跳转的网站
 
 +(HomePageTopEntity*)homePageTopEntityWithDictionary:(NSDictionary*)dic;
 
