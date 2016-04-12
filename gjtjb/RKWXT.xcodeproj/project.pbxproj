@@ -569,6 +569,7 @@
 		12CEB56F1CAA1CEA00276119 /* SellerChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CEB56E1CAA1CEA00276119 /* SellerChangeModel.m */; };
 		12CFE64B1AC1A077009C710B /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12CFE64A1AC1A077009C710B /* libsqlite3.0.dylib */; };
 		12CFE6511AC1A210009C710B /* CallHistoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CFE6501AC1A210009C710B /* CallHistoryEntity.m */; };
+		12D0BF5B1CBCE5E300ACF752 /* FindTopImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */; };
 		12D0C8721AB685250039A197 /* AboutWxtInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C8711AB685250039A197 /* AboutWxtInfoVC.m */; };
 		12D0C8761AB6AA8C0039A197 /* WXTVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C8751AB6AA8C0039A197 /* WXTVersion.m */; };
 		12D0C87C1AB6B2970039A197 /* VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C87B1AB6B2970039A197 /* VersionModel.m */; };
@@ -885,7 +886,6 @@
 		DD146B1A1CB8F27E00BB438E /* UserAliAccountStateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146AFE1CB8F27E00BB438E /* UserAliAccountStateCell.m */; };
 		DD146B1B1CB8F27E00BB438E /* UserMoneyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */; };
 		DD146B1C1CB8F27E00BB438E /* UserMoneyShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */; };
-		DD146B1F1CB8F99400BB438E /* AllMoneyListVC.h in Sources */ = {isa = PBXBuildFile; fileRef = DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */; };
 		DD1488011C9273AF00D2632E /* LimitGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488001C9273AF00D2632E /* LimitGoodsView.m */; };
 		DD1488041C92A69500D2632E /* NewShopPingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1488031C92A69500D2632E /* NewShopPingCartModel.m */; };
 		DD17106D1CB49B9C0085713D /* VirtualGoodsInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD17106C1CB49B9C0085713D /* VirtualGoodsInfoVC.m */; };
@@ -2036,6 +2036,8 @@
 		12CFE64A1AC1A077009C710B /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		12CFE64F1AC1A210009C710B /* CallHistoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoryEntity.h; sourceTree = "<group>"; };
 		12CFE6501AC1A210009C710B /* CallHistoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryEntity.m; sourceTree = "<group>"; };
+		12D0BF591CBCE5E300ACF752 /* FindTopImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindTopImgModel.h; sourceTree = "<group>"; };
+		12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindTopImgModel.m; sourceTree = "<group>"; };
 		12D0C8701AB685250039A197 /* AboutWxtInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWxtInfoVC.h; sourceTree = "<group>"; };
 		12D0C8711AB685250039A197 /* AboutWxtInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWxtInfoVC.m; sourceTree = "<group>"; };
 		12D0C8741AB6AA8C0039A197 /* WXTVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTVersion.h; sourceTree = "<group>"; };
@@ -2624,8 +2626,6 @@
 		DD146B001CB8F27E00BB438E /* UserMoneyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyInfoCell.m; sourceTree = "<group>"; };
 		DD146B011CB8F27E00BB438E /* UserMoneyShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMoneyShowCell.h; sourceTree = "<group>"; };
 		DD146B021CB8F27E00BB438E /* UserMoneyShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMoneyShowCell.m; sourceTree = "<group>"; };
-		DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AllMoneyListVC.h; path = RKWXT/CloudTicket/UserMoney/View/MoneyInfoList/AllMoneyListVC.h; sourceTree = "<group>"; };
-		DD146B1E1CB8F99400BB438E /* AllMoneyListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AllMoneyListVC.m; path = RKWXT/CloudTicket/UserMoney/View/MoneyInfoList/AllMoneyListVC.m; sourceTree = "<group>"; };
 		DD1487FF1C9273AF00D2632E /* LimitGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitGoodsView.h; sourceTree = "<group>"; };
 		DD1488001C9273AF00D2632E /* LimitGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitGoodsView.m; sourceTree = "<group>"; };
 		DD1488021C92A69500D2632E /* NewShopPingCartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShopPingCartModel.h; sourceTree = "<group>"; };
@@ -4683,6 +4683,7 @@
 		1262E2C01ACA509400667C54 /* WXTFindModel */ = {
 			isa = PBXGroup;
 			children = (
+				12D0BF581CBCE5C100ACF752 /* FindTopImg */,
 				1262E2C11ACA50B600667C54 /* FindEntity.h */,
 				1262E2C21ACA50B600667C54 /* FindEntity.m */,
 				1262E2C31ACA50B600667C54 /* WXTFindModel.h */,
@@ -5420,6 +5421,15 @@
 			path = SellerChange;
 			sourceTree = "<group>";
 		};
+		12D0BF581CBCE5C100ACF752 /* FindTopImg */ = {
+			isa = PBXGroup;
+			children = (
+				12D0BF591CBCE5E300ACF752 /* FindTopImgModel.h */,
+				12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */,
+			);
+			path = FindTopImg;
+			sourceTree = "<group>";
+		};
 		12D0C86F1AB684FE0039A197 /* AboutWxtInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -5941,8 +5951,6 @@
 		2563B3DB1AAAD74000C04227 = {
 			isa = PBXGroup;
 			children = (
-				DD146B1D1CB8F99400BB438E /* AllMoneyListVC.h */,
-				DD146B1E1CB8F99400BB438E /* AllMoneyListVC.m */,
 				128083D51B61D21D00260B9F /* TencentOpenApi_IOS_Bundle.bundle */,
 				2563B3E61AAAD74000C04227 /* RKWXT */,
 				2563B3E51AAAD74000C04227 /* Products */,
@@ -8015,7 +8023,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD146B1F1CB8F99400BB438E /* AllMoneyListVC.h in Sources */,
 				DD146B151CB8F27E00BB438E /* AllMoneyListVC.m in Sources */,
 				DD2498B91C88312F0079DB5A /* ClassifySql.m in Sources */,
 				DD4723DD1ADE128800278A5C /* KeychainItemWrapper.m in Sources */,
@@ -8440,6 +8447,7 @@
 				12BBED7F1CB4E9EB00EF6906 /* UserCommonShowCell.m in Sources */,
 				122EFBCE1C40FDD800CE0EA0 /* WaitReceiveOrderVC.m in Sources */,
 				12F572321B42766D00128294 /* T_SettingSwitchCell.m in Sources */,
+				12D0BF5B1CBCE5E300ACF752 /* FindTopImgModel.m in Sources */,
 				DDB58F501AD3C6A2006248E9 /* WXTCallHistoryCell.m in Sources */,
 				DD2D89C41CB73C8300474820 /* VirtualUserInfoCell.m in Sources */,
 				DD35B5A41CB398BE00B1C867 /* VirtualGoodsListVC.m in Sources */,

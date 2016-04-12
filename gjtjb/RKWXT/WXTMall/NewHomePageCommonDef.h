@@ -96,6 +96,8 @@ enum{
     HomePageJump_Type_MessageInfo,      //消息详情
     HomePageJump_Type_UserBonus,        //红包
     HomePageJump_Type_BusinessAlliance, //商家联盟
+    HomePageJump_Type_Web,              //跳转网页
+    HomePageJump_Type_None,             //不跳转
     
     HomePageJump_Type_Invalid
 };

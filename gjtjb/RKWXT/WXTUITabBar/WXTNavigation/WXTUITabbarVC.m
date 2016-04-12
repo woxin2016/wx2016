@@ -136,7 +136,7 @@ typedef enum{
     if([self showTabbarNumber] == 3){
         [self selectedAtIndex:0];
     }else{
-        [self selectedAtIndex:1];
+        [self selectedAtIndex:0];
     }
     [self setDexterity:E_Slide_Dexterity_Low];
     

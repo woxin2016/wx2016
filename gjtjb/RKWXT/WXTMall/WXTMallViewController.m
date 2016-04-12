@@ -536,10 +536,10 @@
     if(index >= HomePageJump_Type_Invalid){
         return;
     }
-    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID];
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID withWebUrl:entity.url_address];
 }
 
--(void)homePageClickJump:(NSInteger)addID withLinkID:(NSInteger)linkID{
+-(void)homePageClickJump:(NSInteger)addID withLinkID:(NSInteger)linkID withWebUrl:(NSString*)webUrl{
     switch (addID) {
         case HomePageJump_Type_GoodsInfo:
         {
@@ -572,6 +572,11 @@
             [[CoordinateController sharedCoordinateController] toWebVC:self url:shopUnionUrl title:@"商家联盟" animated:YES];
         }
             break;
+        case HomePageJump_Type_Web:
+        {
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"网站" animated:YES];
+        }
+            break;
         default:
             break;
     }
@@ -579,7 +584,7 @@
 
 -(void)homepageCommonImgCellClicked:(id)sender{
     HomePageTopEntity *entity = sender;
-    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID];
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID withWebUrl:entity.url_address];
 }
 
 #pragma mark baseFunction

@@ -19,7 +19,7 @@
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_RechargeCt httpMethod:WXT_HttpMethod_Post timeoutIntervcal:10 feed:dic completion:^(URLFeedData *retData) {
         if(retData.code == 0){
             //通知云票数量已经发生变化
-            [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += [[[retData.data objectForKey:@"data"] objectForKey:@"xnb_money"] floatValue];
+            [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += [[[retData.data objectForKey:@"data"] objectForKey:@"xnb_money"] integerValue];
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
         }
         completion(retData.code,retData.errorDesc);

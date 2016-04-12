@@ -25,17 +25,12 @@
 
 @implementation AllCTListVC
 
--(id)init{
-    self = [super init];
-    if(self){
-        _model = [[UserCloudTicketModel alloc] init];
-        [_model setDelegate:self];
-    }
-    return self;
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    _model = [[UserCloudTicketModel alloc] init];
+    [_model setDelegate:self];
+    
     [self setupRefresh];
 }
 
@@ -162,6 +157,11 @@
     if(!isRefresh){
         [_tableView footerEndRefreshing];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [_model setDelegate:nil];
 }
 
 @end
