@@ -147,7 +147,7 @@
     WXUILabel *textLabel = [[WXUILabel alloc] init];
     textLabel.frame = CGRectMake(xOffset, yOffset, labelWidth, labelHeight);
     [textLabel setBackgroundColor:[UIColor clearColor]];
-    [textLabel setText:@"金额提现10元起"];
+    [textLabel setText:@"金额提现20元起"];
     [textLabel setTextAlignment:NSTextAlignmentLeft];
     [textLabel setTextColor:WXColorWithInteger(0x000000)];
     [textLabel setFont:WXFont(15.0)];
@@ -178,8 +178,8 @@
         [UtilTool showAlertView:@"请输入提现金额"];
         return;
     }
-    if([_userTextField.text floatValue] < 10){
-        [UtilTool showAlertView:@"金额满10元才可以提现"];
+    if([_userTextField.text floatValue] < 20){
+        [UtilTool showAlertView:@"金额满20元才可以提现"];
         return;
     }
     if([_userTextField.text floatValue] > _money){

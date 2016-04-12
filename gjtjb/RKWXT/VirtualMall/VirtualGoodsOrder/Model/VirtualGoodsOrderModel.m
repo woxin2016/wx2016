@@ -11,6 +11,7 @@
 #import "WXTURLFeedOBJ+NewData.h"
 #import "NewUserAddressModel.h"
 #import "AreaEntity.h"
+#import "VirtualOrderInfoEntity.h"
 
 @implementation VirtualGoodsOrderModel
 
@@ -38,14 +39,19 @@
  back_money : 返现
  postage : 邮费
  
- 
-
- 返回数据格式：json
- 成功返回: error ：0  data:数据
- 失败返回：error ：1  msg:错误信息
  */
 
-- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type goodsID:(NSInteger)goodsID goodsPrice:(NSString*)goodsPrice xnb:(NSInteger)xnb backMoner:(CGFloat)backMoney postage:(CGFloat)postage{
+- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type orderInfo:(VirtualOrderInfoEntity*)orderInfo{
+    NSNumber * money= nil;
+    NSString *moneyKey = nil;
+    if (type == VirtualGoodsOrderType_Store) {
+        money = [NSNumber numberWithFloat:orderInfo.postage];
+        orderInfo.goodsPrice = 0.0;
+    }else{
+        CGFloat price = orderInfo.postage + orderInfo.goodsPrice * orderInfo.buyNumber;
+        money = [NSNumber numberWithFloat:price];
+    }
+    
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     AreaEntity *entity = [self addressEntity];
     if(!entity){
@@ -55,7 +61,6 @@
         return;
     }
     NSString *address = [NSString stringWithFormat:@"%@%@%@%@",entity.proName,entity.cityName,entity.disName,entity.address];
-    
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
     baseDic[@"pid"]= @"ios";
     baseDic[@"ver"]= [UtilTool currentVersion];
@@ -66,13 +71,12 @@
     baseDic[@"address"]= address;
     baseDic[@"consignee"]= entity.userName;
     baseDic[@"telephone"]= entity.userPhone;
-    
-    baseDic[@"goods_stock_id"]= [NSNumber numberWithInt:(int)kMerchantID];
-    baseDic[@"total_fee"]= [NSNumber numberWithInt:(int)kMerchantID];
-    baseDic[@"goods_price"]= [NSNumber numberWithInt:(int)kMerchantID];
-    baseDic[@"xnb_1"]= [NSNumber numberWithInt:(int)kMerchantID];
-    baseDic[@"back_money"]= [NSNumber numberWithInt:(int)kMerchantID];
-    baseDic[@"postage"]= [NSNumber numberWithInt:(int)kMerchantID];
+    baseDic[@"goods_stock_id"]= [NSNumber numberWithInteger:orderInfo.stockID];
+    baseDic[@"total_fee"]= money;
+    baseDic[@"goods_price"]= [NSNumber numberWithFloat:orderInfo.goodsPrice];
+    baseDic[@"xnb_1"]= [NSNumber numberWithFloat:orderInfo.xnbPrice];
+    baseDic[@"back_money"]= [NSNumber numberWithFloat:orderInfo.backMoney];
+    baseDic[@"postage"]= [NSNumber numberWithFloat:orderInfo.postage];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"pid"]= @"ios";
@@ -85,14 +89,33 @@
     dic[@"address"]= address;
     dic[@"consignee"]= entity.userName;
     dic[@"telephone"]= entity.userPhone;
+    dic[@"goods_stock_id"]= [NSNumber numberWithInteger:orderInfo.stockID];
+    dic[@"total_fee"]= money;
+    dic[@"goods_price"]= [NSNumber numberWithFloat:orderInfo.goodsPrice];
+    dic[@"xnb_1"]= [NSNumber numberWithFloat:orderInfo.xnbPrice];
+    dic[@"back_money"]= [NSNumber numberWithFloat:orderInfo.backMoney];
+    dic[@"postage"]= [NSNumber numberWithFloat:orderInfo.postage];
     
     
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_VirtualOrder httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
+        if (retData.code != 0){
+            
+          if (_delegate && [_delegate respondsToSelector:@selector(virtualGoodsOrderFailed:)]) {
+                [_delegate virtualGoodsOrderFailed:retData.errorDesc];
+            }
+            
+        }else{
+             [self analyticalProcessingData:retData.data[@"data"]];
+            if (_delegate && [_delegate respondsToSelector:@selector(virtualGoodsOrderSuccend)]) {
+                [_delegate virtualGoodsOrderSuccend];
+            }
+            
+        }
+    }];
 }
 
-
-
-- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type goodsInfo:(VirtualGoodsInfoEntity*)goodsInfo{
-    
+- (void)analyticalProcessingData:(NSDictionary*)dict{
+    self.order = [VirtualOrderInfoEntity virtualOrderInfoEntityWithDict:dict];
 }
 
 

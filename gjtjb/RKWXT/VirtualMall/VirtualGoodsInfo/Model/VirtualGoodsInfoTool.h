@@ -24,6 +24,12 @@
 // 设置返现金额
 + (CGFloat)backMoney:(VirtualGoodsInfoModel*)model;
 
+//所需云票
++ (CGFloat)xnb:(VirtualGoodsInfoModel*)model;
+
+//价格
++ (CGFloat)goodsPrice:(VirtualGoodsInfoModel*)model;
+
 // 返回订单信息
 + (VirtualOrderInfoEntity*)buyGoodsInfo:(VirtualStockGoodsView*)view;
 @end

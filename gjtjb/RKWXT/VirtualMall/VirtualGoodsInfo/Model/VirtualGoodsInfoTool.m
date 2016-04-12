@@ -35,12 +35,7 @@
         }
     }
     
-    if ([model.stockArr count] > 0) {
-        for(VirtualGoodsInfoEntity *entity in model.goodsInfoArr){
-            goodsInfoEntity = entity;
-            self.postage = goodsInfoEntity.postage;
-        }
-    }
+  
     if ((self.red != 0) || (self.cut != 0) || (self.postage != 0)) {
         return YES;
     }else{
@@ -68,17 +63,9 @@
 
 
 + (VirtualOrderInfoEntity*)buyGoodsInfo:(VirtualStockGoodsView*)view{
-    VirtualOrderInfoEntity *entity = [[VirtualOrderInfoEntity alloc] init];
-    entity.buyNumber = view.buyNum;
-    entity.goodsPrice = view.stockPrice;
-    entity.postage = view.postage;
-    entity.backMoney = view.backMoney;
-    entity.stockID = view.stockID;
-    entity.xnbPrice = view.xnbPrice;
-    entity.goodsImg = view.goodsImg;
-    entity.stockName = view.stockName;
-    return entity;
+    return view.virtualOrder;
 }
+
 
 + (CGFloat)backMoney:(VirtualGoodsInfoModel*)model{
     if ([model.stockArr count] == 0) return 0.0;
@@ -86,6 +73,27 @@
     for (VirtualGoodsInfoEntity *entity in model.stockArr) {
         if (entity.isDefault) {
             money =  entity.backMoney;
+        }
+    }
+    return money;
+}
+
++ (CGFloat)xnb:(VirtualGoodsInfoModel*)model{
+    if ([model.stockArr count] == 0) return 0.0;
+    CGFloat money = 0.0;
+    for (VirtualGoodsInfoEntity *entity in model.stockArr) {
+        if (entity.isDefault) {
+            money =  entity.xnb;
+        }
+    }
+    return money;
+}
++ (CGFloat)goodsPrice:(VirtualGoodsInfoModel*)model{
+    if ([model.stockArr count] == 0) return 0.0;
+    CGFloat money = 0.0;
+    for (VirtualGoodsInfoEntity *entity in model.stockArr) {
+        if (entity.isDefault) {
+            money =  entity.goodsPrice;
         }
     }
     return money;

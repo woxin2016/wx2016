@@ -16,6 +16,7 @@
     UILabel *_nameLabel;
     UILabel *_stockName;
     UILabel *_priceLabel;
+    UILabel *_buyNumber;
 }
 @end
 
@@ -35,14 +36,15 @@
         CGFloat xOffset = 12;
         CGFloat imgWidth = 63;
         CGFloat imgHeight = imgWidth;
-        _imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset, ([VirtualGoodsListCell cellHeightOfInfo:nil]-imgHeight)/2, imgWidth, imgHeight)];
+        CGFloat yOffset =  ([VirtualGoodsListCell cellHeightOfInfo:nil]-imgHeight)/2;
+        _imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset,yOffset, imgWidth, imgHeight)];
         [_imgView setUserInteractionEnabled:NO];
         [self.contentView addSubview:_imgView];
         
-        xOffset += imgWidth+13;
-        CGFloat yOffset = ([VirtualGoodsListCell cellHeightOfInfo:nil]-imgHeight)/2+2;
-        CGFloat nameWidth = 135;
-        CGFloat nameHeight = 45;
+        xOffset += imgWidth+10;
+        yOffset += 2;
+        CGFloat nameWidth = self.width - xOffset - 10;
+        CGFloat nameHeight = 25;
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameHeight);
         [_nameLabel setBackgroundColor:[UIColor clearColor]];
@@ -52,9 +54,10 @@
         [_nameLabel setFont:WXFont(15.0)];
         [self.contentView addSubview:_nameLabel];
         
-        CGFloat yGap = [VirtualGoodsListCell cellHeightOfInfo:nil]-([VirtualGoodsListCell cellHeightOfInfo:nil]-imgHeight)/2-16;
+        yOffset += nameHeight + 3;
+        CGFloat stockH = 15;
         _stockName = [[UILabel alloc] init];
-        _stockName.frame = CGRectMake(xOffset, yGap, 100, 18);
+        _stockName.frame = CGRectMake(xOffset, yOffset, nameWidth, stockH);
         [_stockName setBackgroundColor:[UIColor clearColor]];
         [_stockName setTextAlignment:NSTextAlignmentLeft];
         [_stockName setTextColor:WXColorWithInteger(0x000000)];
@@ -62,16 +65,26 @@
         [_stockName setFont:WXFont(13.0)];
         [self.contentView addSubview:_stockName];
         
-        
-        CGFloat priceWidth = 80;
-        CGFloat priceHeight = 17;
+        yOffset += stockH + 3;
+        CGFloat priceWidth = 120;
+        CGFloat priceHeight = 15;
         _priceLabel = [[UILabel alloc] init];
-        _priceLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-priceWidth-10, yOffset, priceWidth, priceHeight);
+        _priceLabel.frame = CGRectMake(xOffset, yOffset, priceWidth, priceHeight);
         [_priceLabel setBackgroundColor:[UIColor clearColor]];
-        [_priceLabel setTextAlignment:NSTextAlignmentRight];
-        [_priceLabel setTextColor:WXColorWithInteger(0x000000)];
+        [_priceLabel setTextAlignment:NSTextAlignmentLeft];
+        [_priceLabel setTextColor:[UIColor redColor]];
         [_priceLabel setFont:WXFont(14.0)];
         [self.contentView addSubview:_priceLabel];
+        
+        CGFloat numberW = 40;
+        xOffset = self.width - 10 - numberW;
+        _buyNumber = [[UILabel alloc] init];
+        _buyNumber.frame = CGRectMake(xOffset, yOffset, numberW, priceHeight);
+        [_buyNumber setBackgroundColor:[UIColor clearColor]];
+        [_buyNumber setTextAlignment:NSTextAlignmentRight];
+        [_buyNumber setTextColor:WXColorWithInteger(0x000000)];
+        [_buyNumber setFont:WXFont(13.0)];
+        [self.contentView addSubview:_buyNumber];
     }
     return self;
 }
@@ -80,9 +93,13 @@
     VirtualOrderInfoEntity *entity = self.cellInfo;
     [_imgView setCpxViewInfo:entity.goodsImg];
     [_imgView load];
-    [_nameLabel setText:entity.stockName];
-    CGFloat price = entity.buyNumber * entity.goodsPrice;
-    [_priceLabel setText:[NSString stringWithFormat:@"￥%.2f",price]];
+    
+    [_nameLabel setText:entity.goodsName];
+    _stockName.text = entity.stockName;
+    CGFloat price = entity.buyNumber * entity.xnbPrice;
+    [_priceLabel setText:[NSString stringWithFormat:@"所需云票￥%.2f",price]];
+    
+    _buyNumber.text = [NSString stringWithFormat:@"X %d",entity.buyNumber];
 }
 
 

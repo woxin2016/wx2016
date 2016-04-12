@@ -7,6 +7,7 @@
 //
 
 #import "VirtualForDateCell.h"
+#import "VirtualOrderInfoEntity.h"
 
 @interface VirtualForDateCell(){
     UILabel *_money;
@@ -75,12 +76,24 @@
 }
 
 - (void)load{
-    NSString *money = self.cellInfo;
-    NSString *moneyStr = [NSString stringWithFormat:@"￥%.2f",[money floatValue]];
-    [_money setText:moneyStr];
-    
     NSInteger time = [UtilTool timeChange];
     [_dateLabel setText:[UtilTool getDateTimeFor:time type:1]];
+}
+
+- (void)allMonery{
+    VirtualOrderInfoEntity *entity = self.cellInfo;
+    NSString *moneyStr = [NSString stringWithFormat:@"￥%.2f",entity.postage];
+    [_money setText:moneyStr];
+}
+
+- (void)allMoneryAddPostage{
+    VirtualOrderInfoEntity *entity = self.cellInfo;
+    NSString *moneyStr = [NSString stringWithFormat:@"￥%.2f",(entity.postage + entity.goodsPrice)];
+    [_money setText:moneyStr];
+}
+
++ (CGFloat)cellHeightOfInfo:(id)cellInfo{
+    return 60;
 }
 
 @end

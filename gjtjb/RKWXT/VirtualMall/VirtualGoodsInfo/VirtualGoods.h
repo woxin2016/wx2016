@@ -49,6 +49,7 @@ enum{
 #import "VietualInfoDesCell.h"
 #import "VirtualInfoBDCell.h"
 #import "VirtualInfoDownCell.h"
+#import "VirtualInfoDesExchangeCell.h"
 #import "VirtualInfoExplainCell.h"
 #import "VirtualInfoIntegralCell.h"
 #import "VirtualGoodsRedCutCell.h"

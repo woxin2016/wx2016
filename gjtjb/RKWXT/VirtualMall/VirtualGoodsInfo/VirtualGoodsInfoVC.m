@@ -26,8 +26,6 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        // 包邮 10000003   10000003   10000297
-//        self.goodsID = 10000003;
         _tool = [[VirtualGoodsInfoTool alloc]init];
         _model = [[VirtualGoodsInfoModel alloc]init];
         _model.delegate = self;
@@ -149,7 +147,8 @@
 
 - (void)addOBS{
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(userBuyBtnClicked) name:K_Notification_Name_UserBuyGoods object:nil];
+    [notificationCenter addObserver:self selector:@selector(userBuyBtnClicked) name:K_Notification_Name_VirtualStoreBuyGoods object:nil];
+     [notificationCenter addObserver:self selector:@selector(userBuyExchangeBtnClicked) name:K_Notification_Name_VirtualEXchangeBuyGoods object:nil];
 }
 
 
@@ -253,7 +252,11 @@
             height = IPHONE_SCREEN_WIDTH;
             break;
         case VirtualGoodsInfo_Section_GoodsDesc:
-            height = DseCellHeight;
+            if (self.type == VirtualGoodsType_Store) {
+                height = DseCellHeight;
+            }else{
+                height = 120;
+            }
             break;
         case VirtualGoodsInfo_Section_GoodsInfo:
         case VirtualGoodsInfo_Section_Integral:
@@ -305,7 +308,18 @@
     if ([_model.goodsInfoArr count] > 0) {
         [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
     }
-    [cell backMoney:[VirtualGoodsInfoTool backMoney:_model]];
+     [cell backMoney:[VirtualGoodsInfoTool backMoney:_model] xnb:[VirtualGoodsInfoTool xnb:_model]];
+    [cell load];
+    return cell;
+}
+
+// 商城样式产品基础信息
+- (WXUITableViewCell*)VirtualInfoDesExchangeCell{
+    VirtualInfoDesExchangeCell *cell = [VirtualInfoDesExchangeCell VirtualInfoDesExchangeCellWithTabelView:_tableView];
+    if ([_model.goodsInfoArr count] > 0) {
+        [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
+    }
+    [cell backMoney:[VirtualGoodsInfoTool backMoney:_model] xnb:[VirtualGoodsInfoTool xnb:_model] goodsPrice:[VirtualGoodsInfoTool goodsPrice:_model]];
     [cell load];
     return cell;
 }
@@ -379,7 +393,11 @@
             cell = [self virtualTableViewTopImg];
             break;
         case VirtualGoodsInfo_Section_GoodsDesc:
-            cell = [self virtualGoodsDesCell];
+            if (self.type == VirtualGoodsType_Store) {
+                cell = [self virtualGoodsDesCell];
+            }else{
+                cell = [self VirtualInfoDesExchangeCell];
+            }
             break;
         case VirtualGoodsInfo_Section_Integral:
             cell = [self virtualGoodsIntegralCell];
@@ -399,7 +417,6 @@
             }else{
                 cell = [self virtualGoodsDownCell:indexPath.row - 1];
             }
-            
             break;
         default:
             break;
@@ -451,7 +468,11 @@
 #pragma mark -- DownView
 - (void)buyBtnVirtual{
     stockView = [[VirtualStockGoodsView alloc]init];
-     [stockView setType:VirtualStockView_Type_Buy];
+    if (self.type == VirtualGoodsType_Store) {
+        stockView.type = VirtualStockView_Type_BuyStore;
+    }else if (self.type == VirtualGoodsType_Exchange){
+        stockView.type = VirtualOrderInfoEntity_BuyEXchange;
+    }
     [stockView VirtualGoodsStockInfo:_model.stockArr GoodsInfoArr:_model.goodsInfoArr];
     [self.view addSubview:stockView];
 }
@@ -556,11 +577,19 @@
 
 #pragma mark --  NSNotificationCenter
 - (void)userBuyBtnClicked{
-   
-    
         VirtualGoodsOrderVC *orderVC = [[VirtualGoodsOrderVC alloc]init];
-        orderVC.goodsList = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
+        orderVC.virtualOrder = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
+        orderVC.type = virtualParOrderType_Store;
+        orderVC.orderType = VirtualOrderType_PayOrder;
         [self.wxNavigationController pushViewController:orderVC];
+}
+
+- (void)userBuyExchangeBtnClicked{
+    VirtualGoodsOrderVC *orderVC = [[VirtualGoodsOrderVC alloc]init];
+    orderVC.virtualOrder = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
+    orderVC.type = virtualParOrderType_Exchange;
+    orderVC.orderType = VirtualOrderType_PayOrder;
+    [self.wxNavigationController pushViewController:orderVC];
 }
 
 #pragma mark  -- pullUP WebView

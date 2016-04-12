@@ -89,7 +89,7 @@
     [_imgView load];
     
     nameL.text = entity.goodsName;
-    priceL.text = [NSString stringWithFormat:@"所需云票:%.2f",entity.currency];
+    priceL.text = [NSString stringWithFormat:@"所需云票:%.2f",entity.xnb];
   
     
     NSString *backStr = [NSString stringWithFormat:@"返现金额:￥%.2f",entity.backMoney];

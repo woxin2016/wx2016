@@ -382,7 +382,11 @@
     [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
     [cell.textLabel setFont:WXFont(15.0)];
     [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
-    if(row == UserCloudTicket){
+    if (row == userXNBOrder) {
+        [cell.imageView setImage:[UIImage imageNamed:@"userXNBorder.png"]];
+        [cell.textLabel setText:@"兑换订单"];
+        [cell load];
+    }else if(row == UserCloudTicket){
         [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
         [cell.textLabel setText:@"我的云票"];
         [cell setCellInfo:[NSString stringWithFormat:@"%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance]];
@@ -485,6 +489,10 @@
             break;
         case PersonalInfo_UserMoney:
         {
+            if (row == userXNBOrder) {
+                VirtualOrderListVC *listVC = [[VirtualOrderListVC alloc]init];
+                [self.wxNavigationController pushViewController:listVC];
+            }
             if(row == UserCloudTicket){
                 CloudTicketListVC *cloudVC = [[CloudTicketListVC alloc] init];
                 [self.wxNavigationController pushViewController:cloudVC];

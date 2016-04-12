@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class VirtualGoodsInfoEntity;
+@class VirtualOrderInfoEntity;
 typedef enum{
     VirtualGoodsOrderType_Default,
     VirtualGoodsOrderType_Store,
@@ -18,9 +18,10 @@ typedef enum{
 - (void)virtualGoodsOrderSuccend;
 - (void)virtualGoodsOrderFailed:(NSString*)errorMsg;
 @end
+
 @interface VirtualGoodsOrderModel : NSObject
+@property (nonatomic,strong)VirtualOrderInfoEntity *order;
 @property (nonatomic,weak)id <VirtualGoodsOrderModelDelegate> delegate;
-- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type goodsID:(NSInteger)goodsID goodsPrice:(NSString*)goodsPrice xnb:(NSInteger)xnb backMoner:(CGFloat)backMoney postage:(CGFloat)postage;
-- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type goodsInfo:(VirtualGoodsInfoEntity*)goodsInfo;
+- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type orderInfo:(VirtualOrderInfoEntity*)orderInfo;
 
 @end

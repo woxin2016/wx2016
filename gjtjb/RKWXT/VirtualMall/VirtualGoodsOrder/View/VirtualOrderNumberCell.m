@@ -7,6 +7,7 @@
 //
 
 #import "VirtualOrderNumberCell.h"
+#import "virtualOrderListEntity.h"
 
 @interface VirtualOrderNumberCell ()
 {
@@ -29,7 +30,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         CGFloat xOffset = 10;
-        CGFloat labelW = 60;
+        CGFloat labelW = 50;
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, 0, labelW, self.height)];
         label.font = WXFont(14.0);
         label.textColor = [UIColor blackColor];
@@ -37,7 +38,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:label];
         
-        orderNumber = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, 0, 140, self.height)];
+        orderNumber = [[UILabel alloc]initWithFrame:CGRectMake(label.right + 10, 0, 140, self.height)];
         orderNumber.font = WXFont(14.0);
         orderNumber.textColor = [UIColor blackColor];
         [self.contentView addSubview:orderNumber];
@@ -46,7 +47,8 @@
 }
 
 - (void)load{
-    orderNumber.text = self.cellInfo;
+    virtualOrderListEntity *entity = self.cellInfo;
+    orderNumber.text = [NSString stringWithFormat:@"%d",entity.order_id];
 }
 
 @end

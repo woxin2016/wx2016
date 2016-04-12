@@ -42,7 +42,6 @@
             btn.tag = i;
             [btn setTitle:self.titArray[i] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
             [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchDown];
             [self addSubview:btn];
             
@@ -68,9 +67,14 @@
 }
 
 - (void)clickBtn:(UIButton*)btn{
+    btn.enabled = NO;
     btn.selected = YES;
     _seleBtn.selected = NO;
+    _seleBtn.enabled = YES;
     _seleBtn = btn;
+    [_seleBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    
     __block VietualHeardView *blockSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         blockSelf.didView.centerX = btn.centerX;

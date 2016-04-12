@@ -276,6 +276,8 @@ enum{
 }
 
 #pragma mark payBtnClicked
+
+
 -(void)gotoPayVC{
     if(!_goodsList){
         return;

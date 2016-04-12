@@ -10,11 +10,18 @@
 
 typedef enum{
     virtualParOrderType_Default,
-    virtualParOrderType_Store,
-    virtualParOrderType_Exchange
+    virtualParOrderType_Store,   // 兑换商城
+    virtualParOrderType_Exchange  // 品牌兑换
 }virtualParOrderType;
 
+typedef enum{
+    VirtualOrderType_PayOrder,
+    VirtualOrderType_LookOrderStatus,
+}VirtualOrderType;
+
+@class VirtualOrderInfoEntity;
 @interface VirtualGoodsOrderVC : WXUIViewController
-@property (nonatomic,strong)id goodsList;
+@property (nonatomic,strong)VirtualOrderInfoEntity *virtualOrder;
 @property (nonatomic,assign)virtualParOrderType type;
+@property (nonatomic,assign)VirtualOrderType orderType;
 @end

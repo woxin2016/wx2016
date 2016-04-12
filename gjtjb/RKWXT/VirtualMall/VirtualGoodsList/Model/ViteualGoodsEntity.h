@@ -16,6 +16,6 @@
 @property (nonatomic,assign)CGFloat backMoney;
 @property (nonatomic,copy)NSString *goodsIcon;
 @property (nonatomic,assign)NSInteger goodsID;
-@property (nonatomic,assign)CGFloat currency;
+@property (nonatomic,assign)CGFloat xnb;
 + (instancetype)viteualGoodsEntityWithDic:(NSDictionary*)dic;
 @end

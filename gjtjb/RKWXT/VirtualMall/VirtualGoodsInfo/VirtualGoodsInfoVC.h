@@ -9,7 +9,7 @@
 #import "NLMainViewController.h"
 
 typedef enum{
-    VirtualGoodsType_Default,
+    VirtualGoodsType_Default = 0,
     VirtualGoodsType_Store,
     VirtualGoodsType_Exchange
 }VirtualGoodsType;

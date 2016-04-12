@@ -88,19 +88,15 @@
 - (void)load{
     VirtualGoodsInfoEntity *entity = self.cellInfo;
     [desLabel setText:entity.goodsName];
-     NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:￥%.2f",entity.marketPrice];  //￥金额符号
-    [shopPrice setText:marketPriceString];
-   
     postgateL.text = [NSString stringWithFormat:@"邮费:￥%.2f",entity.postageVirtual];
 }
 
-- (void)backMoney:(CGFloat)money{
+- (void)backMoney:(CGFloat)money xnb:(CGFloat)xnb{
     [marketPrice setText:[NSString stringWithFormat:@"返现金额:￥%.2f",money]];
-    
-//    CGRect rectl = lineLabel.frame;
-//    rectl.size.width = [NSString sizeWithString:marketPrice.text font:marketPrice.font].width;
-//    [lineLabel setFrame:rectl];
+    NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:￥%.2f",xnb];  //￥金额符号
+    [shopPrice setText:marketPriceString];
 }
+
 
 
 @end

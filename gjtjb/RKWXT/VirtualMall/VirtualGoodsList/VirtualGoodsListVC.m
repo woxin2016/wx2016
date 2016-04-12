@@ -26,7 +26,7 @@
 #define heardViewH (44)
 
 
-@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate>
+@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate,VietualTopImgCellDelegate>
 {
     ViteualGoodsModel *_model;
     UITableView *_tableView;
@@ -68,6 +68,7 @@
 }
 
 - (void)requestNetWork{
+    [_model virtualLoadDataFromWeb];
     [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:0 length:10];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
@@ -104,7 +105,7 @@
     CGFloat height = 0.0;
     switch (indexPath.section) {
         case SubSections_TopImg:
-            height = 140;
+            height = [VietualTopImgCell cellHeightOfInfo:nil];
             break;
             case SubSections_List:
             if (_isExchange) {
@@ -135,7 +136,9 @@
 // 轮播图
 - (WXUITableViewCell*)tableViewCellTopimg{
     VietualTopImgCell *cell = [VietualTopImgCell viteualTopImgCellWithTabelView:_tableView];
-    cell.backgroundColor = [UIColor redColor];
+    [cell setDelegate:self];
+    [cell setCellInfo:_model.downImgArr];
+    [cell load];
     return cell;
 }
 
@@ -180,6 +183,11 @@
         ViteualGoodsEntity *entity = _model.goodsArray[indexPath.row];
         VirtualGoodsInfoVC *infoVC = [[VirtualGoodsInfoVC alloc]init];
         infoVC.goodsID = entity.goodsID;
+        if (_isExchange) {
+            infoVC.type = VirtualGoodsType_Exchange;
+        }else{
+            infoVC.type = VirtualGoodsType_Store;
+        }
         [self.wxNavigationController pushViewController:infoVC];
     }
 }
@@ -214,6 +222,11 @@
     }
 }
 
+#pragma mark -- topImg
+- (void)clickTopGoodAtIndex:(NSInteger)index{
+    
+}
+
 
 #pragma mark ---- model deleagete
 -(void)viteualGoodsModelFailed:(NSString *)errorMsg{
@@ -228,6 +241,17 @@
     
     [_tableView footerEndRefreshing];
     [_tableView reloadData];
+}
+
+-(void)viteualTopImgFailed:(NSString *)errorMsg{
+    [self unShowWaitView];
+    
+    [UtilTool showAlertView:errorMsg];
+}
+
+-(void)viteualTopImgSucceed{
+     [self unShowWaitView];
+    
 }
 
 @end

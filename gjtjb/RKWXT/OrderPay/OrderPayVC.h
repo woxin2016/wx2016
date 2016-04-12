@@ -13,11 +13,12 @@ typedef enum{
     OrderPay_Type_Order = 0,  //商城订单N
     OrderPay_Type_Recharge,   //话费充值R
     OrderPay_Type_Lucky,      //抽奖订单P
+    OrderPay_Type_Virtual,    //云票订单 （没有前缀）
 }OrderPay_Type;
+
 
 @interface OrderPayVC : WXUIViewController
 @property (nonatomic,assign) OrderPay_Type orderpay_type;
 @property (nonatomic,assign) CGFloat payMoney;
 @property (nonatomic,strong) NSString *orderID;
-
 @end

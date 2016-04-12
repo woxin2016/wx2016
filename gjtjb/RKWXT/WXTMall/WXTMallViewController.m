@@ -590,8 +590,8 @@
     switch (index) {
         case T_BaseFunction_Shark:
         {
-            LuckyShakeVC *luckyVC = [[LuckyShakeVC alloc] init];
-            [self.wxNavigationController pushViewController:luckyVC];
+            VirtualGoodsListVC *listVC = [[VirtualGoodsListVC alloc]init];
+            [self.wxNavigationController pushViewController:listVC];
         }
             break;
         case T_BaseFunction_Invate:
@@ -621,12 +621,10 @@
             break;
         case T_BaseFunction_Side:
         {
-//            FindCommonVC *vc = [[FindCommonVC alloc] init];
-//            vc.webURl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
-//            vc.name = @"商家联盟";
-//            [self.wxNavigationController pushViewController:vc];
-            VirtualGoodsListVC *listVC = [[VirtualGoodsListVC alloc]init];
-            [self.wxNavigationController pushViewController:listVC];
+            FindCommonVC *vc = [[FindCommonVC alloc] init];
+            vc.webURl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
+            vc.name = @"商家联盟";
+            [self.wxNavigationController pushViewController:vc];
         }
             break;
             

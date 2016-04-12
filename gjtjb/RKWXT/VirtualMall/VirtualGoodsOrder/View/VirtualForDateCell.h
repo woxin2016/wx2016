@@ -9,5 +9,7 @@
 #import "WXUITableViewCell.h"
 
 @interface VirtualForDateCell : WXUITableViewCell
+- (void)allMonery;
+- (void)allMoneryAddPostage;
 + (instancetype)VirtualForDateCellWithTabelView:(UITableView*)tableView;
 @end
