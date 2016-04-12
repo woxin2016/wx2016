@@ -178,8 +178,8 @@
         [UtilTool showAlertView:@"请输入提现金额"];
         return;
     }
-    if([_userTextField.text floatValue] < 10){
-        [UtilTool showAlertView:@"金额满10元才可以提现"];
+    if([_userTextField.text floatValue] < 20){
+        [UtilTool showAlertView:@"金额满20元才可以提现"];
         return;
     }
     if([_userTextField.text floatValue] > _money){

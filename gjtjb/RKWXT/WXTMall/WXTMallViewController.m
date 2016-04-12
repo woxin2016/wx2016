@@ -574,7 +574,7 @@
             break;
         case HomePageJump_Type_Web:
         {
-            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"商家联盟" animated:YES];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"网站" animated:YES];
         }
             break;
         default:

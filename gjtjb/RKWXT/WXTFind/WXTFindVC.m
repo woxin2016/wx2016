@@ -11,18 +11,18 @@
 #import "WXTFindCommonCell.h"
 #import "WXTFindModel.h"
 #import "FindEntity.h"
-#import "HomePageTop.h"
+#import "FindTopImgModel.h"
 #import "MJRefresh.h"
 #import "HomePageTopEntity.h"
 #import "NewHomePageCommonDef.h"
 
 #define Size self.bounds.size
 
-@interface WXTFindVC()<UITableViewDataSource,UITableViewDelegate,WXHomeTopGoodCellDelegate,WXTFindCommonCellCellDelegate,wxtFindModelDelegate,HomePageTopDelegate>{
+@interface WXTFindVC()<UITableViewDataSource,UITableViewDelegate,WXHomeTopGoodCellDelegate,WXTFindCommonCellCellDelegate,wxtFindModelDelegate,FindTopImgModelDelegate>{
     UITableView *_tableView;
     WXTFindModel *_comModel;
     NSArray *commonImgArr;
-    HomePageTop *_model;
+    FindTopImgModel *_model;
 }
 @end
 
@@ -34,7 +34,7 @@
         _comModel = [[WXTFindModel alloc] init];
         [_comModel setFindDelegate:self];
         
-        _model = [[HomePageTop alloc] init];
+        _model = [[FindTopImgModel alloc] init];
         [_model setDelegate:self];
     }
     return self;
@@ -56,7 +56,7 @@
     [self setupRefresh];
     
     [_comModel loadFindData:FindData_Type_Load];
-    [_model loadDataFromWeb];
+    [_model loadFindTopImgData];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -97,7 +97,7 @@
         cell = [[WXHomeTopGoodCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setDelegate:self];
-    [cell setCellInfo:_model.data];
+    [cell setCellInfo:_model.imgArr];
     [cell load];
     return cell;
 }
@@ -163,35 +163,68 @@
 }
 
 #pragma mark topImg
--(void)homePageTopLoadedSucceed{
+-(void)findTopImgLoadedSucceed{
     [self unShowWaitView];
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
--(void)homePageTopLoadedFailed:(NSString *)error{
+-(void)findTopImgLoadedFailed:(NSString *)error{
     [self unShowWaitView];
 }
 
 #pragma mark refresh
 -(void)headerRefreshing{
     [_comModel loadFindData:FindData_Type_Load];
-    [_model loadDataFromWeb];
+    [_model loadFindTopImgData];
 }
 
 -(void)clickTopGoodAtIndex:(NSInteger)index{
     HomePageTopEntity *entity = nil;
-    if([_model.data count] > 0){
-        entity = [_model.data objectAtIndex:index];
+    if([_model.imgArr count] > 0){
+        entity = [_model.imgArr objectAtIndex:index];
     }
-    switch (entity.topAddID) {
-        case HomePageJump_Type_Catagary:
-        {
-            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.linkID animated:YES];
-        }
-            break;
+    if(index >= HomePageJump_Type_Invalid){
+        return;
+    }
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID withWebUrl:entity.url_address];
+}
+
+-(void)homePageClickJump:(NSInteger)addID withLinkID:(NSInteger)linkID withWebUrl:(NSString*)webUrl{
+    switch (addID) {
         case HomePageJump_Type_GoodsInfo:
         {
-            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:entity.linkID animated:YES];
+            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_Catagary:
+        {
+            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_MessageCenter:
+        {
+            [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
+        }
+            break;
+        case HomePageJump_Type_MessageInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toJPushMessageInfoVC:self messageID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_UserBonus:
+        {
+            [[CoordinateController sharedCoordinateController] toUserBonusVC:self animated:YES];
+        }
+            break;
+        case HomePageJump_Type_BusinessAlliance:
+        {
+            NSString *shopUnionUrl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:shopUnionUrl title:@"商家联盟" animated:YES];
+        }
+            break;
+        case HomePageJump_Type_Web:
+        {
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"网站" animated:YES];
         }
             break;
         default:
