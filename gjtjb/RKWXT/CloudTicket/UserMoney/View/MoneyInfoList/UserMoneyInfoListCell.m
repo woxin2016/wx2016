@@ -36,7 +36,7 @@
         timeLabel.frame = CGRectMake(nameWidth, (UserMoneyInfoListCellHeight-labelHeight)/2, IPHONE_SCREEN_WIDTH-2*nameWidth, labelHeight);
         [timeLabel setBackgroundColor:[UIColor clearColor]];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
-        [timeLabel setTextColor:WXColorWithInteger(0x000000)];
+        [timeLabel setTextColor:WXColorWithInteger(0x5c615d)];
         [timeLabel setFont:WXFont(13.0)];
         [self.contentView addSubview:timeLabel];
         
@@ -44,7 +44,7 @@
         moneyLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-nameWidth, (UserMoneyInfoListCellHeight-labelHeight)/2, nameWidth, labelHeight);
         [moneyLabel setBackgroundColor:[UIColor clearColor]];
         [moneyLabel setTextAlignment:NSTextAlignmentCenter];
-        [moneyLabel setTextColor:WXColorWithInteger(0x000000)];
+        [moneyLabel setTextColor:WXColorWithInteger(AllBaseColor)];
         [moneyLabel setFont:WXFont(18.0)];
         [self.contentView addSubview:moneyLabel];
     }

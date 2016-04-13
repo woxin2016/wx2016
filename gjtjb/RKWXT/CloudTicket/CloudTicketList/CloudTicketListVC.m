@@ -62,11 +62,10 @@ enum{
 }
 
 -(WXUIButton*)rightBtn{
-    CGFloat xgap = 8;
-    CGFloat btnWidth = 70;
+    CGFloat btnWidth = 40;
     CGFloat btnHeight = 16;
     WXUIButton *rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(self.bounds.size.width-xgap-btnWidth, 35, btnWidth, btnHeight);
+    rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth, 35, btnWidth, btnHeight);
     [rightBtn setBackgroundColor:[UIColor clearColor]];
     [rightBtn setTitle:@"充值" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
