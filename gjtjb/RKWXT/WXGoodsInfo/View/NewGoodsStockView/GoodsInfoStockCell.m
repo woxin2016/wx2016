@@ -87,12 +87,12 @@
 
 - (void)setPrice{
     VirtualGoodsInfoEntity *entity = self.cellInfo;
-    priceLabel.text = [NSString stringWithFormat:@"所需云票:%.2f",entity.xnb];
+    priceLabel.text = [NSString stringWithFormat:@"所需云票:%.d",entity.xnb];
 }
 
 - (void)setPriceAddXnb{
     VirtualGoodsInfoEntity *entity = self.cellInfo;
-    priceLabel.text = [NSString stringWithFormat:@"￥%.2f + %.2f云票",entity.stockPrice,entity.xnb];
+    priceLabel.text = [NSString stringWithFormat:@"￥%.2f + %.d云票",entity.stockPrice,entity.xnb];
 }
 
 

@@ -111,6 +111,7 @@ typedef enum {
     WXT_UrlFeed_Type_VirtualGoodsInfo,
     WXT_UrlFeed_Type_VirtualOrder,
     WXT_UrlFeed_Type_VirtualOrderList,
+    WXT_UrlFeed_Type_VirtualCanCelOrder,
     
     
     WXT_UrlFeed_Type_Invalid,

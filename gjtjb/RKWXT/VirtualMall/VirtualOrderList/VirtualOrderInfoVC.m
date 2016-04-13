@@ -44,7 +44,7 @@ enum{
 #define Size self.bounds.size
 #define DownViewHeight 55
 
-@interface VirtualOrderInfoVC () <UITableViewDataSource,UITableViewDelegate,VirtualGoodsOrderModelDelegate,VirtualUserMessageCellDelegate>
+@interface VirtualOrderInfoVC () <UITableViewDataSource,UITableViewDelegate,VirtualUserMessageCellDelegate>
 {
     UITableView *_tableView;
     VirtualGoodsOrderModel *_model;
@@ -58,7 +58,6 @@ enum{
 - (instancetype)init{
     if (self = [super init]) {
         _model = [[VirtualGoodsOrderModel alloc]init];
-        _model.delegate  = self;
         if ([[MoreMoneyInfoModel shareUserMoreMoneyInfo] isLoaded]) {
             _xnbModel = [MoreMoneyInfoModel shareUserMoreMoneyInfo];
         }
@@ -73,11 +72,11 @@ enum{
         [_tableView reloadSections:[NSIndexSet indexSetWithIndex:VirtualOrder_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
     }
     
-    [self addOBS];
 }
 
 - (void)addOBS{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_LoadUserMoreMoneyInfoSucceed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelOrderFailure) name:V_Notification_Name_CancelVirtualOrderFailure object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelOrderSuccend) name:V_Notification_Name_CancelVirtualOrderSuccend object:nil];
 }
 
 - (void)viewDidLoad {
@@ -89,11 +88,12 @@ enum{
     
     [self addSubview:[self tableViewForFootView]];
 
+    
+    [self addOBS];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self removeaddOBS];
+- (void)dealloc{
+     [self removeaddOBS];
 }
 
 - (void)removeaddOBS{
@@ -382,8 +382,8 @@ enum{
 
 #pragma mark -- pay
 - (void)cancelOrder{
-    [self.wxNavigationController popViewControllerAnimated:YES completion:^{
-    }];
+    [_model cancelOrderIDWith:self.entity.order_id];
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 #pragma mark --- model deleagte
@@ -391,11 +391,22 @@ enum{
 - (void)gotoPayVC{
     // 跳转支付页面
     OrderPayVC *payVC = [[OrderPayVC alloc]init];
-    payVC.orderID = [NSString stringWithFormat:@"%d",self.entity.order_id];
+    payVC.orderID = [NSString stringWithFormat:@"%@%d",self.entity.orderPrefix,self.entity.order_id];
     payVC.payMoney = self.entity.monery;
     payVC.orderpay_type = OrderPay_Type_Virtual;
     [self.wxNavigationController pushViewController:payVC];
 }
 
+#pragma mark -- 通知
+- (void)cancelOrderFailure{
+    [self unShowWaitView];
+    [UtilTool showAlertView:@"订单取消失败"];
+}
 
+- (void)cancelOrderSuccend{
+    [self unShowWaitView];
+    [UtilTool showAlertView:@"订单取消成功"];
+    [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+    }];
+}
 @end

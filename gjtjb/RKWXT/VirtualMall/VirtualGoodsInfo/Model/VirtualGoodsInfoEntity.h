@@ -22,7 +22,7 @@
 @property (nonatomic,strong) NSString *meterageName;
 @property (nonatomic,assign) NSInteger goodshop_id;
 @property (nonatomic,strong) NSString *goodsShopName;
-@property (nonatomic,assign) CGFloat  pastVirtual;  //已经兑换的虚拟币
+@property (nonatomic,assign) int  pastVirtual;  //已经兑换的虚拟币
 @property (nonatomic,assign) CGFloat postageVirtual;  //邮费
 @property (nonatomic,strong) NSString *virtualImg;
 
@@ -62,10 +62,10 @@
 @property (nonatomic,assign) NSInteger stockID;
 @property (nonatomic,strong) NSString *stockName;
 @property (nonatomic,assign) NSInteger redPacket;
-@property (nonatomic,assign) CGFloat canVirtual;  // 可以兑换的虚拟币
+@property (nonatomic,assign) int canVirtual;  // 可以兑换的虚拟币
 @property (nonatomic,assign) BOOL isDefault;    //是否默认显示
 @property (nonatomic,assign) CGFloat backMoney; //返现金额
-@property (nonatomic,assign) CGFloat xnb;  //商品需要的虚拟币
+@property (nonatomic,assign) int xnb;  //商品需要的虚拟币
 @property (nonatomic,assign) CGFloat goodsPrice;  //  商品价格
 
 

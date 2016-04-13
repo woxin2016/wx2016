@@ -13,6 +13,7 @@
 @interface VirtualOrderListModel ()
 {
     NSMutableArray *dataArray;
+    NSInteger _number;
 }
 @end
 
@@ -45,6 +46,7 @@
  */
 
 - (void)loadVirtualOrderListWithStart:(NSInteger)start lenght:(NSInteger)lenght{
+    _number = start;
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
     baseDic[@"pid"]= @"ios";
@@ -85,12 +87,18 @@
 }
 
 - (void)analyticalProcessingOrderData:(NSDictionary*)dic{
+    if (_number == 0) {
+        [dataArray removeAllObjects];
+    }
+    
     NSArray *orderArray = dic[@"order"];
     for (NSDictionary *dict in orderArray) {
         virtualOrderListEntity *entity = [virtualOrderListEntity virtualOrderListEntityWidthDic:dict];
+        entity.orderPrefix = dic[@"order_prefix"];
         [dataArray addObject:entity];
     }
     self.listArray = dataArray;
 }
+
 
 @end

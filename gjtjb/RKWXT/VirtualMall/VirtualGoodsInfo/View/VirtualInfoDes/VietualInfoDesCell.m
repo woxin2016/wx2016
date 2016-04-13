@@ -34,7 +34,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         CGFloat xOffset = 12;
-        CGFloat yOffset = 12;
+        CGFloat yOffset = 10;
         CGFloat desWidth = IPHONE_SCREEN_WIDTH-2*xOffset - 60;
         CGFloat desHeight = 35;
         desLabel = [[WXUILabel alloc] init];
@@ -65,11 +65,6 @@
         [marketPrice setTextColor:WXColorWithInteger(0x9b9b9b)];
         [marketPrice setFont:WXFont(14.0)];
         [self.contentView addSubview:marketPrice];
- 
-//        lineLabel = [[WXUILabel alloc] init];
-//        lineLabel.frame = CGRectMake(0, priceLabelHeight/2, priceLabelWidth/2, 0.5);
-//        [lineLabel setBackgroundColor:[UIColor grayColor]];
-//        [marketPrice addSubview:lineLabel];
         
         xOffset += priceLabelWidth;
         postgateL = [[WXUILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, 80, priceLabelWidth)];
@@ -97,6 +92,14 @@
     [shopPrice setText:marketPriceString];
 }
 
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    
+}
 
 
 @end

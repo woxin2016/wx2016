@@ -42,19 +42,19 @@
         _imgView = [[WXRemotionImgBtn alloc]initWithFrame:CGRectMake(xOffset, yOffset, imageW, imageH)];
         [self.contentView addSubview:_imgView];
         
-        xOffset += imageW + 10;
-        yOffset += 10;
-        CGFloat nameLH = 25;
+        xOffset += imageW + 5;
+        yOffset += 4;
+        CGFloat nameLH = 35;
         CGFloat nameLW = (self.width - 30) - imageW;
         nameL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, nameLH)];
         nameL.font = WXFont(14.0);
+        nameL.numberOfLines = 2;
         nameL.textAlignment = NSTextAlignmentLeft;
         nameL.textColor = [UIColor blackColor];
-        nameL.numberOfLines = 2;
         [self.contentView addSubview:nameL];
         
-        yOffset += nameLH + 10;
-        CGFloat pricelH = 12;
+        yOffset += nameLH + 8;
+        CGFloat pricelH = 15;
         priceL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, pricelH)];
         priceL.font = WXFont(14.0);
         priceL.textAlignment = NSTextAlignmentLeft;
@@ -89,7 +89,7 @@
     [_imgView load];
     
     nameL.text = entity.goodsName;
-    priceL.text = [NSString stringWithFormat:@"所需云票:%.2f",entity.xnb];
+    priceL.text = [NSString stringWithFormat:@"所需云票:%d",entity.xnb];
   
     
     NSString *backStr = [NSString stringWithFormat:@"返现金额:￥%.2f",entity.backMoney];

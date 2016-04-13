@@ -26,6 +26,14 @@
 
 @implementation VirtualOrderListVC
 
+- (instancetype)init{
+    if (self  =[super init]) {
+        _model = [[VirtualOrderListModel alloc]init];
+        _model.delegate = self;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -48,15 +56,16 @@
 }
 
 - (void)requestNetWork{
-    _model = [[VirtualOrderListModel alloc]init];
-    _model.delegate = self;
     [_model loadVirtualOrderListWithStart:0 lenght:10];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 - (void)setupRefresh{
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+    [_tableView addFooterWithTarget:self action:@selector(heardRefreshing)];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [_tableView addHeaderWithTarget:self action:@selector(requestNetWork)];
     
     //设置文字
     _tableView.headerPullToRefreshText = @"下拉刷新";
@@ -113,6 +122,7 @@
 - (void)VirtualOrderListLoadSucceed{
     [self unShowWaitView];
      [_tableView footerEndRefreshing];
+     [_tableView headerEndRefreshing];
     
     if ([_model.listArray count] == 0) {
         [self emptyBackimage];
@@ -123,9 +133,8 @@
 
 -(void)virtualGoodsOrderListFailed:(NSString *)failure{
     [self unShowWaitView];
-     [_tableView footerEndRefreshing];
-    
-    
+    [_tableView footerEndRefreshing];
+    [_tableView headerEndRefreshing];
     [UtilTool showAlertView:failure];
 }
 
@@ -159,9 +168,11 @@
 }
 
 #pragma mark -- footerRefreshing
-- (void)footerRefreshing{
+- (void)heardRefreshing{
    [_model loadVirtualOrderListWithStart:[_model.listArray count] lenght:10];
 }
+
+
 
 
 @end

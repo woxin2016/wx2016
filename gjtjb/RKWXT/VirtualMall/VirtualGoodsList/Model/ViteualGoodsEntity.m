@@ -28,7 +28,7 @@
     entity.goodsPrice = [dic[@"goods_price"] floatValue];
     entity.marPrice = [dic[@"market_price"] floatValue];
     entity.backMoney = [dic[@"back_money"] floatValue];
-    entity.xnb = [dic[@"xnb_1"] floatValue];
+    entity.xnb = [dic[@"xnb_1"] intValue];
     return entity;
 }
 @end

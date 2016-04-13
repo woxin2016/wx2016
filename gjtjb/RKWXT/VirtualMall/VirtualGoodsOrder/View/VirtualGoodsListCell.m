@@ -96,8 +96,8 @@
     
     [_nameLabel setText:entity.goodsName];
     _stockName.text = entity.stockName;
-    CGFloat price = entity.buyNumber * entity.xnbPrice;
-    [_priceLabel setText:[NSString stringWithFormat:@"所需云票￥%.2f",price]];
+    int price = entity.buyNumber * entity.xnbPrice;
+    [_priceLabel setText:[NSString stringWithFormat:@"所需云票￥%d",price]];
     
     _buyNumber.text = [NSString stringWithFormat:@"X %d",entity.buyNumber];
 }

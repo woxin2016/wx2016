@@ -47,7 +47,7 @@
     for(NSDictionary *dic in datalist){
         HomePageTopEntity *entity = [HomePageTopEntity homePageTopEntityWithDictionary:dic];
         entity.topImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.topImg];
-        if(entity.position == 3){
+        if(entity.position == 4){
             [_downImgArr addObject:entity];
         }
     }

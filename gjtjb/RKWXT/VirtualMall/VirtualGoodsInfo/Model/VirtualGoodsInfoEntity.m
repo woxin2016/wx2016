@@ -48,7 +48,7 @@
         [self setGoodshop_id:shopId];
         
         
-        CGFloat pastVirtual = [[dic objectForKey:@"end_exchange"] floatValue];
+        int pastVirtual = [[dic objectForKey:@"end_exchange"] intValue];
         [self setPastVirtual:pastVirtual];
         
         CGFloat postageVirtual = [[dic objectForKey:@"postage"] floatValue];
@@ -190,7 +190,7 @@
         NSInteger red = [[dic objectForKey:@"is_use_red"] integerValue];
         [self setRedPacket:red];
         
-        CGFloat canVirtual = [[dic objectForKey:@"goods_number"] integerValue];
+        int canVirtual = [[dic objectForKey:@"goods_number"] intValue];
         [self setCanVirtual:canVirtual];
         
         BOOL isDefult = [[dic objectForKey:@"is_default"] boolValue];
@@ -199,7 +199,7 @@
         CGFloat backMoney = [[dic objectForKey:@"back_money"] floatValue];
         [self setBackMoney:backMoney];
         
-        CGFloat xnb = [[dic objectForKey:@"xnb_1"] floatValue];
+        int xnb = [[dic objectForKey:@"xnb_1"] intValue];
         [self setXnb:xnb];
         
         CGFloat goods_price = [[dic objectForKey:@"goods_price"] floatValue];

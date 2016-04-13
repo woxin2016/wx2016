@@ -102,6 +102,8 @@
     NSString *str = nil;
     if (entity.order_status == VirtualOrder_Status_Done) { //已完成
         str = @"已兑换";
+    }else if (entity.order_status == VirtualOrder_Status_Close){
+        str = @"已关闭";
     }else{
         if (entity.pay_status == VirtualOrder_Pay_Done) { //已付款
             

@@ -956,6 +956,7 @@
 		DD30AA061CBCD75E001875F4 /* VirtualOrderGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30AA051CBCD75E001875F4 /* VirtualOrderGoodsCell.m */; };
 		DD30AA091CBCD963001875F4 /* VirtualOrderAllMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30AA081CBCD963001875F4 /* VirtualOrderAllMoneyCell.m */; };
 		DD30AA0C1CBCE0B6001875F4 /* VirtualOrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30AA0B1CBCE0B6001875F4 /* VirtualOrderDateCell.m */; };
+		DD30AA0E1CBD0668001875F4 /* virtualWarning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */; };
 		DD351C581AD8B85000DF0C7E /* libPods-CocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */; };
 		DD35B5A41CB398BE00B1C867 /* VirtualGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */; };
 		DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D85D1C841A7900422F5B /* T_Back@2x.png */; };
@@ -2754,6 +2755,7 @@
 		DD30AA081CBCD963001875F4 /* VirtualOrderAllMoneyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderAllMoneyCell.m; sourceTree = "<group>"; };
 		DD30AA0A1CBCE0B6001875F4 /* VirtualOrderDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualOrderDateCell.h; sourceTree = "<group>"; };
 		DD30AA0B1CBCE0B6001875F4 /* VirtualOrderDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderDateCell.m; sourceTree = "<group>"; };
+		DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "virtualWarning@2x.png"; sourceTree = "<group>"; };
 		DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CocoaLumberjack.a"; path = "Pods/../build/Release-iphoneos/libPods-CocoaLumberjack.a"; sourceTree = "<group>"; };
 		DD35B5A21CB398BE00B1C867 /* VirtualGoodsListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsListVC.h; sourceTree = "<group>"; };
 		DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsListVC.m; sourceTree = "<group>"; };
@@ -5688,6 +5690,7 @@
 		12F46A2C1B20012000B8EC98 /* T_GoodsInfo */ = {
 			isa = PBXGroup;
 			children = (
+				DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */,
 				DD136AA41C97FD6C0019932E /* storeCart@2x.png */,
 				DD89B5621C8981790059F097 /* Shopping@2x.png */,
 				DD89B5601C897AC70059F097 /* LMResPackingImg@2x.png */,
@@ -7919,6 +7922,7 @@
 				12C875631CACC5FC00DF0B5C /* UserLikeImg@2x.png in Resources */,
 				DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */,
 				127321261C7ABDE100C8D1D7 /* UserThirdClientImg@2x.png in Resources */,
+				DD30AA0E1CBD0668001875F4 /* virtualWarning@2x.png in Resources */,
 				12DDE7391CB5E908006BBB1E /* UserMoneyImg@2x.png in Resources */,
 				DD89B55E1C89794E0059F097 /* LMCarriageImg@2x.png in Resources */,
 				12BD30F81B3E79D700170316 /* OrderAlipayImg@2x.png in Resources */,

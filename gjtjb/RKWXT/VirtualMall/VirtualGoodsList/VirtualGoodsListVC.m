@@ -9,6 +9,7 @@
 #import "VirtualGoodsListVC.h"
 #import "VirtualGoodsInfoVC.h"
 
+
 #import "VietualHeardView.h"
 #import "ViteualExchangeCell.h"
 #import "ViteualStoreCell.h"
@@ -16,12 +17,26 @@
 
 #import "ViteualGoodsModel.h"
 #import "ViteualGoodsEntity.h"
+#import "HomePageTopEntity.h"
 #import "MJRefresh.h"
  enum{
     SubSections_TopImg = 0,
     SubSections_List,
     SubSections_Invalid
  };
+
+enum{
+    HomePageJump_Type_GoodsInfo = 1,    //商品详情
+    HomePageJump_Type_Catagary,         //分类列表
+    HomePageJump_Type_MessageCenter,    //消息中心
+    HomePageJump_Type_MessageInfo,      //消息详情
+    HomePageJump_Type_UserBonus,        //红包
+    HomePageJump_Type_BusinessAlliance, //商家联盟
+    HomePageJump_Type_Web,              //跳转网页
+    HomePageJump_Type_None,             //不跳转
+    
+    HomePageJump_Type_Invalid
+};
 
 #define heardViewH (44)
 
@@ -52,6 +67,7 @@
     [super viewDidLoad];
     [self setCSTTitle:@"云票返现"];
     
+    
     [self initTabelView];
     
     [self requestNetWork];
@@ -64,7 +80,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    [self.view addSubview:_tableView];
+    [self addSubview:_tableView];
 }
 
 - (void)requestNetWork{
@@ -179,6 +195,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == SubSections_List) {
         ViteualGoodsEntity *entity = _model.goodsArray[indexPath.row];
         VirtualGoodsInfoVC *infoVC = [[VirtualGoodsInfoVC alloc]init];
@@ -223,10 +241,64 @@
 }
 
 #pragma mark -- topImg
-- (void)clickTopGoodAtIndex:(NSInteger)index{
+-(void)clickTopGoodAtIndex:(NSInteger)index{
+    HomePageTopEntity *entity = nil;
+    if([_model.downImgArr count] > 0){
+        entity = [_model.downImgArr objectAtIndex:index];
+    }
     
+    if(index >= HomePageJump_Type_Invalid){
+        return;
+    }
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID withWebUrl:entity.url_address];
 }
 
+-(void)homePageClickJump:(NSInteger)addID withLinkID:(NSInteger)linkID withWebUrl:(NSString*)webUrl{
+    switch (addID) {
+        case HomePageJump_Type_GoodsInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_Catagary:
+        {
+            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_MessageCenter:
+        {
+            [self toSysPushMsgView];
+        }
+            break;
+        case HomePageJump_Type_MessageInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toJPushMessageInfoVC:self messageID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_UserBonus:
+        {
+            [[CoordinateController sharedCoordinateController] toUserBonusVC:self animated:YES];
+        }
+            break;
+        case HomePageJump_Type_BusinessAlliance:
+        {
+            NSString *shopUnionUrl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:shopUnionUrl title:@"商家联盟" animated:YES];
+        }
+            break;
+        case HomePageJump_Type_Web:
+        {
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"网站" animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)toSysPushMsgView{
+    [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
+}
 
 #pragma mark ---- model deleagete
 -(void)viteualGoodsModelFailed:(NSString *)errorMsg{
@@ -251,7 +323,6 @@
 
 -(void)viteualTopImgSucceed{
      [self unShowWaitView];
-    
 }
 
 @end

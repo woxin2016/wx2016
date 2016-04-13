@@ -199,7 +199,7 @@
     if([_model.limitGoods.data count] == 0 && (section==T_HomePage_LimitBuyInfo || section==T_HomePage_LimitBuyTitle)){
         return 0;
     }
-    if(section == T_HomePage_LimitBuyInfo || section == T_HomePage_RecomendInfo || section == T_HomePage_GuessInfo){
+    if(section == T_HomePage_LimitBuyInfo  || section == T_HomePage_GuessInfo){
         return 0;
     }
     if(section == T_HomePage_CenterImg && [_model.top.centerImgArr count] == 0){
@@ -210,6 +210,9 @@
     }
     if(section == T_HomePage_DownImg && [_model.top.downImgArr count] == 1){
         return 0;
+    }
+    if (section ==  T_HomePage_RecomendInfo) {
+        return 0.1;
     }
     return 7;
 }
@@ -361,6 +364,11 @@
     [cell.textLabel setText:@"为我推荐"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
     [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
+    
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.height - 0.5, cell.width, 0.5)];
+    didView.backgroundColor = [UIColor grayColor];
+    [cell.contentView addSubview:didView];
+    
     return cell;
 }
 

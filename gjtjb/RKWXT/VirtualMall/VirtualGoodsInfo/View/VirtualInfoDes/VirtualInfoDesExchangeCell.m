@@ -35,16 +35,16 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         CGFloat xOffset = 12;
-        CGFloat yOffset = 12;
+        CGFloat yOffset = 10;
         CGFloat desWidth = IPHONE_SCREEN_WIDTH-2*xOffset - 60;
         CGFloat desHeight = 35;
         desLabel = [[WXUILabel alloc] init];
         desLabel.frame = CGRectMake(xOffset, yOffset, desWidth, desHeight);
         [desLabel setBackgroundColor:[UIColor clearColor]];
         [desLabel setTextAlignment:NSTextAlignmentLeft];
+        desLabel.numberOfLines = 2;
         [desLabel setFont:WXFont(14.0)];
         [desLabel setTextColor:WXColorWithInteger(0x000000)];
-        desLabel.numberOfLines = 2;
         [self.contentView addSubview:desLabel];
         
         yOffset += desHeight + 3;
@@ -55,7 +55,7 @@
         [shopPrice setBackgroundColor:[UIColor clearColor]];
         [shopPrice setTextAlignment:NSTextAlignmentLeft];
         [shopPrice setTextColor:WXColorWithInteger(AllBaseColor)];
-        [shopPrice setFont:WXFont(16.0)];
+        [shopPrice setFont:WXFont(15.0)];
         [self.contentView addSubview:shopPrice];
         
         yOffset += priceLabelHeight + 3;
@@ -64,7 +64,7 @@
         [marketPrice setBackgroundColor:[UIColor clearColor]];
         [marketPrice setTextAlignment:NSTextAlignmentLeft];
         [marketPrice setTextColor:WXColorWithInteger(AllBaseColor)];
-        [marketPrice setFont:WXFont(16.0)];
+        [marketPrice setFont:WXFont(15.0)];
         [self.contentView addSubview:marketPrice];
         
         yOffset += priceLabelHeight + 3;
@@ -73,10 +73,11 @@
         [backMoneyl setBackgroundColor:[UIColor clearColor]];
         [backMoneyl setTextAlignment:NSTextAlignmentLeft];
         [backMoneyl setTextColor:WXColorWithInteger(0x9b9b9b)];
-        [backMoneyl setFont:WXFont(14.0)];
+        [backMoneyl setFont:WXFont(13.0)];
         [self.contentView addSubview:backMoneyl];
         
-        xOffset += priceLabelWidth;
+        
+        xOffset += self.width - 80 - 10;
         postgateL = [[WXUILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, 80, priceLabelWidth)];
         postgateL.centerY = backMoneyl.centerY;
         [postgateL setBackgroundColor:[UIColor clearColor]];
@@ -98,10 +99,17 @@
 }
 
 - (void)backMoney:(CGFloat)money xnb:(CGFloat)xnb goodsPrice:(CGFloat)goodsPrice{
-    VirtualGoodsInfoEntity *entity = self.cellInfo;
     [backMoneyl setText:[NSString stringWithFormat:@"返现金额:￥%.2f",money]];
     NSString *backMoneylString = [NSString stringWithFormat:@"价格:￥%.2f + %.2f云票",goodsPrice,xnb];  //￥金额符号
     [shopPrice setText:backMoneylString];
+}
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    
 }
 
 @end

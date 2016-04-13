@@ -229,11 +229,11 @@
     switch (section) {
         case VirtualGoodsInfo_Section_GoodsInfo:
         case VirtualGoodsInfo_Section_Integral:
-            height = 20;
+            height = 7;
             break;
         case VirtualGoodsInfo_Section_Unstable:
             if (_isApper) {
-                 height = 20;
+                 height = 7;
             }else{
                 height = 0;
             }
@@ -310,6 +310,7 @@
     }
      [cell backMoney:[VirtualGoodsInfoTool backMoney:_model] xnb:[VirtualGoodsInfoTool xnb:_model]];
     [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     return cell;
 }
 

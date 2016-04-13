@@ -280,6 +280,9 @@
         case WXT_UrlFeed_Type_VirtualOrderList:
             url = @"/exchange_order_list.php";
             break;
+        case WXT_UrlFeed_Type_VirtualCanCelOrder:
+            url = @"/exchange_order_cancel.php";
+            break;
         default:
             break;
     }

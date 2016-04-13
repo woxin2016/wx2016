@@ -12,7 +12,8 @@
 
 @interface VirtualInfoExplainCell ()
 {
-    WXRemotionImgBtn *imgBtn;
+    UIImageView *imgBtn;
+    UILabel *label;
 }
 @end
 
@@ -32,14 +33,18 @@
         self.height = ExplainCellHeight;
         CGFloat xOffset = 10;
         CGFloat yOffset = 10;
-        CGFloat imgW = 70;
+        CGFloat imgW = 100;
         CGFloat imgH = imgW;
-        imgBtn = [[WXRemotionImgBtn alloc]initWithFrame:CGRectMake(xOffset, yOffset, imgW, imgH)];
-        [self.contentView addSubview:imgBtn];
+        UIView *bView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, yOffset, imgW, imgH)];
+        bView.backgroundColor = [UIColor colrWithR:213 g:213 b:213];
+        [self.contentView addSubview:bView];
+        
+        imgBtn = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgW, imgH)];
+        [bView addSubview:imgBtn];
+        
         
         xOffset += imgW + 10;
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, self.width - 30 - imgW, self.height - yOffset * 2)];
-        label.text = @"本商品只支持平台邮寄兑换(所需邮费12)\n不支持商家现场兑换,每个用户每次只能兑换一个\n返现金额在订单完成的1-3个工作日内返还到您的现金余额中";
+        label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, self.width - 30 - imgW, self.height - yOffset * 2)];
         label.font = WXFont(12.0);
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor blackColor];
@@ -52,8 +57,16 @@
 
 - (void)load{
     VirtualGoodsInfoEntity *entity = self.cellInfo;
-    [imgBtn setCpxViewInfo:entity.virtualImg];
-    [imgBtn load];
+    label.text = [NSString stringWithFormat:@"本商品只支持平台邮寄兑换(所需邮费%.2f)\n不支持商家现场兑换,每个用户每次只能兑换一个\n返现金额在订单完成的1-3个工作日内返还到您的现金余额中",entity.postageVirtual];;
+    imgBtn.image = [UIImage imageNamed:@"virtualWarning.png"];
+}
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    
 }
 
 

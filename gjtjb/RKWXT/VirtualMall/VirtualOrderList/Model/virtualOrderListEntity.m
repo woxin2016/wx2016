@@ -59,6 +59,8 @@
         CGFloat parketPrice = [[dic objectForKey:@"market_price"] floatValue];
         [self setMarket_price:parketPrice];
         
+        
+        
         NSInteger orderID = [[dic objectForKey:@"order_id"] integerValue];
         [self setOrder_id:orderID];
         
@@ -77,7 +79,7 @@
         NSString *number = [dic objectForKey:@"tracking_number"];
         [self setSend_number:number];
         
-        CGFloat xnb = [[dic objectForKey:@"xnb_1"] floatValue];
+        int xnb = [[dic objectForKey:@"xnb_1"] intValue];
         [self setXnb:xnb];
         
         CGFloat price = [[dic objectForKey:@"goods_price"] floatValue];

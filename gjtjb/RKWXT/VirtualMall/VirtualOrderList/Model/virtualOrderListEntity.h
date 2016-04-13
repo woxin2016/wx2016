@@ -43,16 +43,19 @@ typedef enum{
 @property (nonatomic,strong) NSString *stockName; //属性名称
 @property (nonatomic,assign) NSInteger lottery_id; //中奖ID
 @property (nonatomic,assign) CGFloat market_price; //市场价格
-@property (nonatomic,assign) NSInteger order_id;   //订单ID
+
 @property (nonatomic,assign) NSInteger makeOrderTime; //下单时间
 @property (nonatomic,assign) NSInteger send_time;  //发货时间
 @property (nonatomic,strong) NSString *send_type;  //发货类型
 @property (nonatomic,strong) NSString *sellerPhone;//卖家电话
 @property (nonatomic,strong) NSString *send_number;//快递单号
-@property (nonatomic,assign) CGFloat xnb;//云票
+
+@property (nonatomic,assign) int xnb;//云票
 @property (nonatomic,assign) CGFloat goodsPrice; //商品价格
 @property (nonatomic,assign) CGFloat monery;
 @property (nonatomic,assign) CGFloat posgate;  //运费
+@property (nonatomic,assign) NSInteger order_id;   //订单ID
+@property (nonatomic,strong) NSString *orderPrefix; //订单前缀
 
 +(virtualOrderListEntity*)virtualOrderListEntityWidthDic:(NSDictionary*)dic;
 

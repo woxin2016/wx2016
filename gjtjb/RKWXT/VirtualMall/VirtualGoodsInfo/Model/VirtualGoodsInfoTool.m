@@ -45,20 +45,20 @@
 
 // 可以兑换
 + (NSString*)canUseVirtual:(VirtualGoodsInfoModel*)model{
-    CGFloat can = 0.0;
+    int can = 0.0;
     if ([model.stockArr count] == 0) return nil;
     
     for (VirtualGoodsInfoEntity *entity in model.stockArr) {
         can += entity.canVirtual;
     }
-    return [NSString stringWithFormat:@"%.2f",can];
+    return [NSString stringWithFormat:@"%.d",can];
 }
 
 // 已经兑换
 + (NSString*)pastVirtual:(VirtualGoodsInfoModel*)model{
     if ([model.goodsInfoArr count] == 0) return nil;
     VirtualGoodsInfoEntity *entity = model.goodsInfoArr[0];
-    return [NSString stringWithFormat:@"%.2f",entity.pastVirtual];
+    return [NSString stringWithFormat:@"%.d",entity.pastVirtual];
 }
 
 
@@ -80,7 +80,7 @@
 
 + (CGFloat)xnb:(VirtualGoodsInfoModel*)model{
     if ([model.stockArr count] == 0) return 0.0;
-    CGFloat money = 0.0;
+    int money = 0.0;
     for (VirtualGoodsInfoEntity *entity in model.stockArr) {
         if (entity.isDefault) {
             money =  entity.xnb;

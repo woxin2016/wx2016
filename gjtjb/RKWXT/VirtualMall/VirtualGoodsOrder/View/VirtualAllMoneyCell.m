@@ -116,7 +116,7 @@
     NSString *bonusStr = [NSString stringWithFormat:@"%.2f",entity.goodsPrice];
     [_bonus setText:bonusStr];
     
-    NSString *xnb = [NSString stringWithFormat:@"-%.2f",entity.xnbPrice];
+    NSString *xnb = [NSString stringWithFormat:@"-%.d",entity.xnbPrice];
      [_xnb setText:xnb];
     
     NSString *carriageStr = [NSString stringWithFormat:@"+%.2f",entity.postage];
