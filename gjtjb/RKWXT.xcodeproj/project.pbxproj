@@ -570,6 +570,7 @@
 		12CFE64B1AC1A077009C710B /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12CFE64A1AC1A077009C710B /* libsqlite3.0.dylib */; };
 		12CFE6511AC1A210009C710B /* CallHistoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CFE6501AC1A210009C710B /* CallHistoryEntity.m */; };
 		12D0BF5B1CBCE5E300ACF752 /* FindTopImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */; };
+		12D0BF5D1CBCF58F00ACF752 /* HomeTopBgImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D0BF5C1CBCF58F00ACF752 /* HomeTopBgImg@2x.png */; };
 		12D0C8721AB685250039A197 /* AboutWxtInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C8711AB685250039A197 /* AboutWxtInfoVC.m */; };
 		12D0C8761AB6AA8C0039A197 /* WXTVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C8751AB6AA8C0039A197 /* WXTVersion.m */; };
 		12D0C87C1AB6B2970039A197 /* VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C87B1AB6B2970039A197 /* VersionModel.m */; };
@@ -2039,6 +2040,7 @@
 		12CFE6501AC1A210009C710B /* CallHistoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryEntity.m; sourceTree = "<group>"; };
 		12D0BF591CBCE5E300ACF752 /* FindTopImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindTopImgModel.h; sourceTree = "<group>"; };
 		12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindTopImgModel.m; sourceTree = "<group>"; };
+		12D0BF5C1CBCF58F00ACF752 /* HomeTopBgImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeTopBgImg@2x.png"; sourceTree = "<group>"; };
 		12D0C8701AB685250039A197 /* AboutWxtInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWxtInfoVC.h; sourceTree = "<group>"; };
 		12D0C8711AB685250039A197 /* AboutWxtInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWxtInfoVC.m; sourceTree = "<group>"; };
 		12D0C8741AB6AA8C0039A197 /* WXTVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTVersion.h; sourceTree = "<group>"; };
@@ -7895,6 +7897,7 @@
 				1241E5431AE9D89B00811D3F /* 3N@2x.png in Resources */,
 				1241E53A1AE9D89B00811D3F /* #S@2x.png in Resources */,
 				DD2E63DA1C915FEC0037632F /* userCollection@2x.png in Resources */,
+				12D0BF5D1CBCF58F00ACF752 /* HomeTopBgImg@2x.png in Resources */,
 				12F46A391B20012000B8EC98 /* T_Attention@2x.png in Resources */,
 				12F3CC811B1DE82C00E64DE4 /* WaitingPayImg@2x.png in Resources */,
 				1236675B1C44AA04000FAF70 /* SharkCenterImg@2x.png in Resources */,

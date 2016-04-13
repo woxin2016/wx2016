@@ -65,6 +65,7 @@
     topView = [[WXUIView alloc] init];
     topView.frame = CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, 60);
     [topView setBackgroundColor:[UIColor clearColor]];
+    [topView setBackgroundImage:[UIImage imageNamed:@"HomeTopBgImg.png"]];
     [self.view addSubview:topView];
     
     CGFloat btnWidth = 200;
@@ -131,9 +132,15 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     UIColor *color = WXColorWithInteger(AllBaseColor);
     CGFloat offset=scrollView.contentOffset.y;
+    if(offset == 0){
+        [topView setHidden:NO];
+        [topView setBackgroundImage:[UIImage imageNamed:@"HomeTopBgImg.png"]];
+    }
     if (offset < 0) {
         [topView setHidden:YES];
-    }else {
+    }
+    if(offset > 0){
+        [topView setBackgroundImage:nil];
         [topView setHidden:NO];
         CGFloat alpha = 1-((T_HomePageTopImgHeight-60-offset)/(T_HomePageTopImgHeight-60));
         topView.backgroundColor = [color colorWithAlphaComponent:alpha];
