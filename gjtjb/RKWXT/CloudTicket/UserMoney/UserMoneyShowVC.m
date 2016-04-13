@@ -175,7 +175,12 @@ enum{
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == Row_UserMoneyShow){
+        if([_model.userAliAcountArr count] == 0){
+            [UtilTool showTipView:@"请先绑定提现账户"];
+            return;
+        }
         if(_moneyEntity.balance == 0){
+            [UtilTool showTipView:@"您没有现金可以提现"];
             return;
         }
         UserMoneyDrawVC *moneyVC = [[UserMoneyDrawVC alloc] init];
