@@ -33,19 +33,19 @@
         self.height = ExplainCellHeight;
         CGFloat xOffset = 10;
         CGFloat yOffset = 10;
-        CGFloat imgW = 100;
+        CGFloat imgW = 60;
         CGFloat imgH = imgW;
         UIView *bView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, yOffset, imgW, imgH)];
-        bView.backgroundColor = [UIColor colrWithR:213 g:213 b:213];
+        bView.backgroundColor = RGB_COLOR(208, 208, 208);
         [self.contentView addSubview:bView];
         
-        imgBtn = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgW, imgH)];
+        imgBtn = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 40, 40)];
         [bView addSubview:imgBtn];
         
         
         xOffset += imgW + 10;
-        label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, self.width - 30 - imgW, self.height - yOffset * 2)];
-        label.font = WXFont(12.0);
+        label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, 10, self.width - 30 - imgW, self.height - yOffset * 2)];
+        label.font = WXFont(10.0);
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor blackColor];
         label.numberOfLines = 0;

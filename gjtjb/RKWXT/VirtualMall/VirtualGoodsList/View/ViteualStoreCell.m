@@ -66,7 +66,7 @@
         CGFloat labelH = 12;
         CGFloat labelW = 80;
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, labelW, labelH)];
-        label.font = WXFont(12.0);
+        label.font = WXFont(13.0);
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor grayColor];
         label.text = @"平台邮寄兑换";

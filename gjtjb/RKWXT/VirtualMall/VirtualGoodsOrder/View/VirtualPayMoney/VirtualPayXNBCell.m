@@ -33,12 +33,14 @@
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, 0, labelW, self.height)];
         label.text = @"云票";
         label.textAlignment = NSTextAlignmentLeft;
-        label.font = WXFont(13.0);
+        label.font = WXFont(14.0);
+        label.textColor = WXColorWithInteger(0x646464);
         [self.contentView addSubview:label];
         
         _moneyL = [[UILabel alloc]initWithFrame:CGRectMake(label.right, 0, 150, self.height)];
         _moneyL.textAlignment = NSTextAlignmentLeft;
-        _moneyL.font = WXFont(14.0);
+        _moneyL.font = WXFont(13.0);
+        _moneyL.textColor = WXColorWithInteger(0x646464);
         [self.contentView addSubview:_moneyL];
         
 //        CGFloat switchW = 60;
@@ -50,8 +52,8 @@
     return self;
 }
 
-- (void)userCanXNB:(CGFloat)XNB{
-    _moneyL.text = [NSString stringWithFormat:@"共有%.2f云票",XNB];
+- (void)userCanXNB:(NSInteger)XNB{
+    _moneyL.text = [NSString stringWithFormat:@"共有%.d云票",XNB];
 }
 
 

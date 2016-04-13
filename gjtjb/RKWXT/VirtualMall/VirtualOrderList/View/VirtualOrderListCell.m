@@ -34,7 +34,7 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        self.height = 80;
         self.width = IPHONE_SCREEN_WIDTH;
         CGFloat xOffset = 10;
         CGFloat yOffset = 10;
@@ -46,13 +46,13 @@
         
         CGFloat timeW = 80;
         CGFloat timeX = self.width - xOffset - timeW;
-        timeL = [[UILabel alloc]initWithFrame:CGRectMake(timeX, yOffset, timeW , 15)];
+        timeL = [[UILabel alloc]initWithFrame:CGRectMake(timeX, yOffset + 5, timeW , 15)];
         timeL.font = WXFont(13.0);
         timeL.textAlignment = NSTextAlignmentRight;
         timeL.textColor = [UIColor grayColor];
         [self.contentView addSubview:timeL];
         
-        stautsL = [[UILabel alloc]initWithFrame:CGRectMake(timeX, yOffset + 25, timeW , 15)];
+        stautsL = [[UILabel alloc]initWithFrame:CGRectMake(timeX, timeL.bottom + 10, timeW , 15)];
         stautsL.font = WXFont(14.0);
         stautsL.textAlignment = NSTextAlignmentRight;
         stautsL.textColor = [UIColor redColor];
@@ -60,8 +60,8 @@
         
         
         xOffset += imageW + 10;
-        yOffset += 5;
-        CGFloat nameLH = 25;
+        yOffset += 3;
+        CGFloat nameLH = 35;
         CGFloat nameLW = (self.width - 30) - imageW - timeW;
         nameL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, nameLH)];
         nameL.font = WXFont(14.0);
@@ -70,11 +70,11 @@
         nameL.numberOfLines = 2;
         [self.contentView addSubview:nameL];
         
-        yOffset += nameLH + 10;
-        CGFloat pricelH = 12;
+        yOffset += nameLH + 5;
+        CGFloat pricelH = 15;
 //        CGFloat priceW = 120;
         orderID = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, pricelH)];
-        orderID.font = WXFont(14.0);
+        orderID.font = WXFont(13.0);
         orderID.textAlignment = NSTextAlignmentLeft;
         orderID.textColor = [UIColor redColor];
         [self.contentView addSubview:orderID];
@@ -93,6 +93,7 @@
     timeL.text = [self orderTime:entity.makeOrderTime];
     stautsL.text = [self orderStants:entity];
     nameL.text = entity.goods_name;
+    nameL.textAlignment = NSTextAlignmentLeft;
     orderID.text = [NSString stringWithFormat:@"订单号:%d",entity.order_id];
     
 }

@@ -98,9 +98,9 @@
     marketPrice.text = [NSString stringWithFormat:@"官方价格:￥%.2f",entity.marketPrice];
 }
 
-- (void)backMoney:(CGFloat)money xnb:(CGFloat)xnb goodsPrice:(CGFloat)goodsPrice{
+- (void)backMoney:(CGFloat)money xnb:(int)xnb goodsPrice:(CGFloat)goodsPrice{
     [backMoneyl setText:[NSString stringWithFormat:@"返现金额:￥%.2f",money]];
-    NSString *backMoneylString = [NSString stringWithFormat:@"价格:￥%.2f + %.2f云票",goodsPrice,xnb];  //￥金额符号
+    NSString *backMoneylString = [NSString stringWithFormat:@"价格:%.2f + %d云票",goodsPrice,xnb];  //￥金额符号
     [shopPrice setText:backMoneylString];
 }
 

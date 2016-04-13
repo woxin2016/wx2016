@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setCSTTitle:@"云票订单"];
+    [self setCSTTitle:@"兑换订单"];
     
     [self initializeTableView];
     
@@ -90,17 +90,21 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     virtualOrderListEntity *entity = _model.listArray[indexPath.row];
-    if ([self orderStants:entity]) {
+   
         VirtualOrderInfoVC *infoVC = [[VirtualOrderInfoVC alloc]init];
-        infoVC.entity = entity;
-        [self.wxNavigationController pushViewController:infoVC];
-    }
+                           infoVC.entity = entity;
+         infoVC.isAppearPay = [self orderStants:entity];
+      [self.wxNavigationController pushViewController:infoVC];
 }
 
 - (BOOL)orderStants:(virtualOrderListEntity*)entity{
     BOOL isOpen;
     if (entity.order_status == VirtualOrder_Status_Done) { //已完成
+        isOpen = NO;
+    }else if (entity.order_status == VirtualOrder_Status_Close){
         isOpen = NO;
     }else{
         if (entity.pay_status == VirtualOrder_Pay_Done) { //已付款
@@ -161,7 +165,7 @@
     nameLabel.frame = CGRectMake((IPHONE_SCREEN_WIDTH-nameWidth)/2, yOffset, nameWidth, nameHeight);
     [nameLabel setBackgroundColor:[UIColor clearColor]];
     [nameLabel setTextAlignment:NSTextAlignmentCenter];
-    [nameLabel setText:@"您还没添加收货地址"];
+    [nameLabel setText:@"您还没兑换订单"];
     [nameLabel setTextColor:WXColorWithInteger(0x000000)];
     [nameLabel setFont:WXFont(16.0)];
     [self addSubview:nameLabel];

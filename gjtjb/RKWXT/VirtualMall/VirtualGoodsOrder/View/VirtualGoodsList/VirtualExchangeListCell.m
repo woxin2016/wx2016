@@ -67,6 +67,16 @@
         [_stockName setFont:WXFont(13.0)];
         [self.contentView addSubview:_stockName];
         
+        CGFloat numberW = 40;
+        CGFloat buyX = self.width - 10 - numberW;
+        _buyNumber = [[UILabel alloc] init];
+        _buyNumber.frame = CGRectMake(buyX, yOffset, numberW, 15);
+        [_buyNumber setBackgroundColor:[UIColor clearColor]];
+        [_buyNumber setTextAlignment:NSTextAlignmentRight];
+        [_buyNumber setTextColor:WXColorWithInteger(0x000000)];
+        [_buyNumber setFont:WXFont(13.0)];
+        [self.contentView addSubview:_buyNumber];
+        
         yOffset += stockH + 3;
         CGFloat priceWidth = 160;
         CGFloat priceHeight = 15;
@@ -78,15 +88,6 @@
         [_priceLabel setFont:WXFont(14.0)];
         [self.contentView addSubview:_priceLabel];
         
-        CGFloat numberW = 40;
-        xOffset = self.width - 10 - numberW;
-        _buyNumber = [[UILabel alloc] init];
-        _buyNumber.frame = CGRectMake(xOffset, yOffset, numberW, priceHeight);
-        [_buyNumber setBackgroundColor:[UIColor clearColor]];
-        [_buyNumber setTextAlignment:NSTextAlignmentRight];
-        [_buyNumber setTextColor:WXColorWithInteger(0x000000)];
-        [_buyNumber setFont:WXFont(13.0)];
-        [self.contentView addSubview:_buyNumber];
     }
     return self;
 }

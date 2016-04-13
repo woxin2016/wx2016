@@ -73,7 +73,7 @@
     
     [self initWebView];
     _tableView = [[UITableView alloc] init];
-    _tableView.frame = CGRectMake(0, TopNavigationViewHeight, Size.width, Size.height-TopNavigationViewHeight);
+    _tableView.frame = CGRectMake(0, TopNavigationViewHeight, Size.width, Size.height-DownViewHeight);
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
@@ -133,13 +133,14 @@
 
 -(WXUIView*)baseDownView{
     WXUIView *downView = [[WXUIView alloc] init];
-    [downView setBackgroundColor:[UIColor whiteColor]];
+    [downView setBackgroundColor:RGB_COLOR(210, 210, 210)];
     
     CGFloat btnWidth = [UIScreen mainScreen].bounds.size.width / 3;
     CGFloat xOffset = 0;
+    CGFloat yOffset = 0.5;
     UIButton *phontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    phontBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
-    [phontBtn setBackgroundColor:[UIColor clearColor]];
+    phontBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, DownViewHeight - yOffset);
+    [phontBtn setBackgroundColor:[UIColor whiteColor]];
     [phontBtn.titleLabel setFont:WXFont(14.0)];
     [phontBtn setTitle:@"联系卖家" forState:UIControlStateNormal];
     [phontBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -151,7 +152,7 @@
     
     xOffset += btnWidth;
     WXUIButton *buyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    buyBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
+    buyBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, DownViewHeight - yOffset);
     [buyBtn setBackgroundColor:[UIColor clearColor]];
     [buyBtn setTag:2];
     [buyBtn.titleLabel setFont:WXFont(14.0)];
@@ -163,7 +164,7 @@
     
    
     WXUIButton *addBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, 0, btnWidth, DownViewHeight);
+    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, yOffset, btnWidth, DownViewHeight - yOffset);
     [addBtn setTag:1];
     [addBtn.titleLabel setFont:WXFont(14.0)];
     [addBtn setBackgroundColor:[UIColor clearColor]];
@@ -199,17 +200,6 @@
     backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 4, 0, 0);
     [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:backBtn];
-    
-//    CGFloat labelWidth = 80;
-//    CGFloat labelHeight = 30;
-//    WXUILabel *titleLabel = [[WXUILabel alloc] init];
-//    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight, labelWidth, labelHeight);
-//    [titleLabel setBackgroundColor:[UIColor clearColor]];
-//    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-//    [titleLabel setFont:WXFont(15.0)];
-//    [titleLabel setText:@"商品详情"];
-//    [titleLabel setTextColor:WXColorWithInteger(0xffffff)];
-//    [topView addSubview:titleLabel];
 }
 
 -(UIView*)tableFooterView{

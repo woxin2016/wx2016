@@ -7,7 +7,7 @@
 //
 
 #import "VirtualOrderInfoVC.h"
-#import "VirtualGoodsOrderModel.h"
+#import "VirtualOrderListModel.h"
 #import "virtualOrderListEntity.h"
 #import "MoreMoneyInfoModel.h"
 
@@ -47,7 +47,7 @@ enum{
 @interface VirtualOrderInfoVC () <UITableViewDataSource,UITableViewDelegate,VirtualUserMessageCellDelegate>
 {
     UITableView *_tableView;
-    VirtualGoodsOrderModel *_model;
+    VirtualOrderListModel *_model;
     MoreMoneyInfoModel *_xnbModel;
     
 }
@@ -57,7 +57,7 @@ enum{
 
 - (instancetype)init{
     if (self = [super init]) {
-        _model = [[VirtualGoodsOrderModel alloc]init];
+        _model = [[VirtualOrderListModel alloc]init];
         if ([[MoreMoneyInfoModel shareUserMoreMoneyInfo] isLoaded]) {
             _xnbModel = [MoreMoneyInfoModel shareUserMoreMoneyInfo];
         }
@@ -82,13 +82,12 @@ enum{
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setCSTTitle:@"下单"];
+    [self setCSTTitle:@"订单详情"];
     
     [self initTableView];
     
-    [self addSubview:[self tableViewForFootView]];
+    [self addSubview: self.isAppearPay  ? [self tableViewForFootView] : [[UIView alloc] initWithFrame:CGRectZero]];
 
-    
     [self addOBS];
 }
 
@@ -117,19 +116,20 @@ enum{
     CGFloat btnHeight = 35;
     WXUIButton *payBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     payBtn.frame = CGRectMake(Size.width-xOffset-btnWidth, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [payBtn setBorderRadian:2.0 width:0.5 color:WXColorWithInteger(0xdd2726)];
     [payBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
     [payBtn setTitle:@"去支付" forState:UIControlStateNormal];
     [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    payBtn.titleLabel.font = WXFont(14.0);
     [payBtn addTarget:self action:@selector(gotoPayVC) forControlEvents:UIControlEventTouchUpInside];
     [footView addSubview:payBtn];
     
     WXUIButton *cancelBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     cancelBtn.frame = CGRectMake(Size.width-xOffset * 2-btnWidth * 2, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [cancelBtn setBackgroundColor:[UIColor grayColor]];
+    [cancelBtn setBackgroundColor:RGB_COLOR(213, 213, 213)];
     [cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
     [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchUpInside];
+    cancelBtn.titleLabel.font = WXFont(14.0);
     [footView addSubview:cancelBtn];
     
     footView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
@@ -171,10 +171,12 @@ enum{
         case VirtualOrder_Section_Company:
         case VirtualOrder_Section_GoodsList:
         case VirtualOrder_Section_PayWay:
-        case VirtualOrder_Section_UserMessage:
         case VirtualOrder_Section_PayMoney:
         case VirtualOrder_Section_AllMoneyInfo:
             row = 1;
+            break;
+        case VirtualOrder_Section_UserMessage:
+            row = 0;
             break;
         default:
             break;
@@ -222,19 +224,11 @@ enum{
     CGFloat height = 0.0;
     switch (section) {
         case VirtualOrder_Section_UserInfo:
-            height = 10;
-            break;
         case VirtualOrder_Section_Company:
-            height = 10;
-            break;
         case VirtualOrder_Section_PayWay:
-            height = 10;
-            break;
         case VirtualOrder_Section_PayMoney:
-            height = 10;
-            break;
         case VirtualOrder_Section_UserMessage:
-            height = 10;
+            height = 7;
             break;
         case VirtualOrder_Section_GoodsList:
         case VirtualOrder_Section_ForDate:
@@ -253,6 +247,7 @@ enum{
     VirtualOrderNumberCell *cell = [VirtualOrderNumberCell VirtualOrderNumberCellWithTabelView:_tableView];
     [cell setCellInfo:self.entity];
     [cell load];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -263,6 +258,7 @@ enum{
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell load];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -281,12 +277,14 @@ enum{
     VirtualOrderGoodsCell *cell = [VirtualOrderGoodsCell VirtualOrderGoodsCellWithTabelView:_tableView];
     [cell setCellInfo:self.entity];
     [cell load];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
 //支付方式
 - (WXUITableViewCell*)virtualTableViewVirtualPayStatusCell{
     VirtualPayStatusCell *cell = [VirtualPayStatusCell VirtualPayStatusCellWithTabelView:_tableView];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -294,6 +292,7 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualPayMoneryCell{
     VirtualPayMoneryCell *cell = [VirtualPayMoneryCell VirtualPayMoneryCellWithTabelView:_tableView];
     [cell userCanMonery:_xnbModel.userMoneyBalance];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -301,13 +300,15 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualPayXNBCell{
     VirtualPayXNBCell *cell = [VirtualPayXNBCell VirtualPayXNBCellWithTabelView:_tableView];
     [cell userCanXNB:_xnbModel.userCloudBalance];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
 //买家留言
 - (WXUITableViewCell*)virtualTableViewVirtualUserMessageCell{
     VirtualUserMessageCell *cell = [VirtualUserMessageCell VirtualUserMessageCellWithTabelView:_tableView];
-    cell.delegate = self;
+//    cell.delegate = self;
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -316,6 +317,7 @@ enum{
     VirtualOrderAllMoneyCell *cell = [VirtualOrderAllMoneyCell VirtualOrderAllMoneyCellWithTabelView:_tableView];
     [cell setCellInfo:self.entity];
     [cell load];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -324,6 +326,7 @@ enum{
     VirtualOrderDateCell *cell = [VirtualOrderDateCell VirtualOrderDateCellWithTabelView:_tableView];
     [cell setCellInfo:self.entity];
     [cell load];
+     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 

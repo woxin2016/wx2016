@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define V_Notification_Name_CancelVirtualOrderSuccend @"V_Notification_Name_CancelVirtualOrderSuccend"
+#define V_Notification_Name_CancelVirtualOrderFailure @"V_Notification_Name_CancelVirtualOrderFailure"
+
 @protocol VirtualOrderListModelDelegate <NSObject>
 - (void)VirtualOrderListLoadSucceed;
 - (void)virtualGoodsOrderListFailed:(NSString*)failure;
@@ -17,4 +20,5 @@
 @property (nonatomic,strong)NSArray *listArray;
 @property (nonatomic,weak)id<VirtualOrderListModelDelegate> delegate;
 - (void)loadVirtualOrderListWithStart:(NSInteger)start lenght:(NSInteger)lenght;
+- (void)cancelOrderIDWith:(NSInteger)orderID;
 @end

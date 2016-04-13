@@ -82,7 +82,7 @@
     
     
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(20, 18, 45, 40);
+    leftBtn.frame = CGRectMake(10, 18, 45, 40);
     [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
     [leftBtn setTitle:@"分类" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -102,7 +102,7 @@
     CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
     leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-40, 18, 25, 25)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-50, 18, 25, 25)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
     [topView addSubview:_unreadView];
@@ -206,7 +206,7 @@
     if([_model.limitGoods.data count] == 0 && (section==T_HomePage_LimitBuyInfo || section==T_HomePage_LimitBuyTitle)){
         return 0;
     }
-    if(section == T_HomePage_LimitBuyInfo  || section == T_HomePage_GuessInfo){
+    if(section == T_HomePage_LimitBuyInfo || section == T_HomePage_RecomendInfo || section == T_HomePage_GuessInfo){
         return 0;
     }
     if(section == T_HomePage_CenterImg && [_model.top.centerImgArr count] == 0){
@@ -217,9 +217,6 @@
     }
     if(section == T_HomePage_DownImg && [_model.top.downImgArr count] == 1){
         return 0;
-    }
-    if (section ==  T_HomePage_RecomendInfo) {
-        return 0.1;
     }
     return 7;
 }
@@ -372,10 +369,9 @@
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
     [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
     
-    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.height - 0.5, cell.width, 0.5)];
-    didView.backgroundColor = [UIColor grayColor];
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTextSectionHeight - 0.5, cell.width, 0.5)];
+    didView.backgroundColor = WXColorWithInteger(0xcacaca);
     [cell.contentView addSubview:didView];
-    
     return cell;
 }
 
@@ -447,6 +443,11 @@
     [cell.textLabel setText:@"猜你喜欢"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
     [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
+    
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTextSectionHeight - 0.5, cell.width, 0.5)];
+    didView.backgroundColor = WXColorWithInteger(0xcacaca);
+    didView.alpha = 0.5;
+    [cell.contentView addSubview:didView];
     return cell;
 }
 

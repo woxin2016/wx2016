@@ -35,6 +35,10 @@
         [moreBtn.titleLabel setFont:WXFont(12.0)];
         [moreBtn addTarget:self action:@selector(moreBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:moreBtn];
+        
+        UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTextSectionHeight - 0.5, self.width, 0.5)];
+        didView.backgroundColor = WXColorWithInteger(0xcacaca);
+        [self.contentView addSubview:didView];
     }
     return self;
 }

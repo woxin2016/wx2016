@@ -15,8 +15,8 @@
 #define T_HomePageLimitBuyHeight        (170)
 #define T_HomePageTextSectionHeight     (39)
 #define T_HomePageCommonImgHeight       (80)
-#define T_HomePageRecommendHeight       (208)
-#define T_HomePageGuessInfoHeight       (208)
+#define T_HomePageRecommendHeight       (225)
+#define T_HomePageGuessInfoHeight       (225)
 #define T_HomePageClassifyInfoHeight    (88)
 
 #define BigTextFont   (13.0)

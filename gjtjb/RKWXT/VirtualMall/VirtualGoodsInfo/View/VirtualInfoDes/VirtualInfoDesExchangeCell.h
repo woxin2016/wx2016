@@ -10,5 +10,5 @@
 
 @interface VirtualInfoDesExchangeCell : WXUITableViewCell
 + (instancetype)VirtualInfoDesExchangeCellWithTabelView:(UITableView*)tableView;
-- (void)backMoney:(CGFloat)money xnb:(CGFloat)xnb goodsPrice:(CGFloat)goodsPrice;
+- (void)backMoney:(CGFloat)money xnb:(int)xnb goodsPrice:(CGFloat)goodsPrice;
 @end

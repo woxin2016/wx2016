@@ -82,12 +82,12 @@ enum{
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setCSTTitle:@"下单"];
+    [self setCSTTitle:@"确认订单"];
      
     [self initTableView];
     
     if (self.orderType == VirtualOrderType_LookOrderStatus) {
-        [self addSubview:[self tableViewForFootView]];
+       
     }else{
         [self addSubview:[self payTableViewForFootView]];
     }
@@ -118,11 +118,11 @@ enum{
     CGFloat btnHeight = 35;
     WXUIButton *payBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     payBtn.frame = CGRectMake(Size.width-xOffset-btnWidth, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [payBtn setBorderRadian:2.0 width:0.5 color:WXColorWithInteger(0xdd2726)];
     [payBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
     [payBtn setTitle:@"去支付" forState:UIControlStateNormal];
     [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payBtn addTarget:self action:@selector(gotoPayVC) forControlEvents:UIControlEventTouchUpInside];
+     payBtn.titleLabel.font = WXFont(14.0);
     [footView addSubview:payBtn];
 
     
@@ -142,35 +142,6 @@ enum{
     return footView;
 }
 
-
-
--(UIView*)tableViewForFootView{
-    UIView *footView = [[UIView alloc] init];
-    CGFloat xOffset = 10;
-    CGFloat btnWidth = 75;
-    CGFloat btnHeight = 35;
-    WXUIButton *payBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    payBtn.frame = CGRectMake(Size.width-xOffset-btnWidth, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [payBtn setBorderRadian:2.0 width:0.5 color:WXColorWithInteger(0xdd2726)];
-    [payBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
-    [payBtn setTitle:@"去支付" forState:UIControlStateNormal];
-    [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [payBtn addTarget:self action:@selector(gotoPayVC) forControlEvents:UIControlEventTouchUpInside];
-    [footView addSubview:payBtn];
-    
-    WXUIButton *cancelBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    cancelBtn.frame = CGRectMake(Size.width-xOffset * 2-btnWidth * 2, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [cancelBtn setBorderRadian:2.0 width:0.5 color:[UIColor grayColor]];
-//    [cancelBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
-    [cancelBtn setBackgroundColor:[UIColor grayColor]];
-    [cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [cancelBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchUpInside];
-    [footView addSubview:cancelBtn];
-    
-    footView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
-    return footView;
-}
 
 #pragma mark   --   Tableview
 //改变cell分割线置顶
@@ -281,16 +252,10 @@ enum{
             }
             break;
         case VirtualOrder_Section_Company:
-            height = 10;
-            break;
         case VirtualOrder_Section_PayWay:
-            height = 10;
-            break;
         case VirtualOrder_Section_PayMoney:
-            height = 10;
-            break;
         case VirtualOrder_Section_UserMessage:
-            height = 10;
+            height = 7;
             break;
         case VirtualOrder_Section_GoodsList:
         case VirtualOrder_Section_ForDate:

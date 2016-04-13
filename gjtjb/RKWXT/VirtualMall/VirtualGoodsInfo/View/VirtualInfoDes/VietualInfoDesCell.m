@@ -63,10 +63,10 @@
         [marketPrice setBackgroundColor:[UIColor clearColor]];
         [marketPrice setTextAlignment:NSTextAlignmentLeft];
         [marketPrice setTextColor:WXColorWithInteger(0x9b9b9b)];
-        [marketPrice setFont:WXFont(14.0)];
+        [marketPrice setFont:WXFont(13.0)];
         [self.contentView addSubview:marketPrice];
         
-        xOffset += priceLabelWidth;
+        xOffset = self.width - 80 - 10;
         postgateL = [[WXUILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, 80, priceLabelWidth)];
         postgateL.centerY = marketPrice.centerY;
         [postgateL setBackgroundColor:[UIColor clearColor]];
@@ -86,9 +86,9 @@
     postgateL.text = [NSString stringWithFormat:@"邮费:￥%.2f",entity.postageVirtual];
 }
 
-- (void)backMoney:(CGFloat)money xnb:(CGFloat)xnb{
+- (void)backMoney:(CGFloat)money xnb:(int)xnb{
     [marketPrice setText:[NSString stringWithFormat:@"返现金额:￥%.2f",money]];
-    NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:￥%.2f",xnb];  //￥金额符号
+    NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:%d",xnb];  //￥金额符号
     [shopPrice setText:marketPriceString];
 }
 

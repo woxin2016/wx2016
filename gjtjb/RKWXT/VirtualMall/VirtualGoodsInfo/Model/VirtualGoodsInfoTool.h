@@ -25,7 +25,7 @@
 + (CGFloat)backMoney:(VirtualGoodsInfoModel*)model;
 
 //所需云票
-+ (CGFloat)xnb:(VirtualGoodsInfoModel*)model;
++ (int)xnb:(VirtualGoodsInfoModel*)model;
 
 //价格
 + (CGFloat)goodsPrice:(VirtualGoodsInfoModel*)model;

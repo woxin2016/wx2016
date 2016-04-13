@@ -21,6 +21,7 @@
     WXUILabel *_nameLabel;
     WXUILabel *likeNumLabel;
     WXUILabel *hotNumLabel;
+    WXUILabel *hotLeftLabel;
 }
 @end
 
@@ -68,8 +69,9 @@
         [_newPriceLabel setFont:[UIFont systemFontOfSize:11.0]];
         [bgBtn addSubview:_newPriceLabel];
         
-        xOffset += imgWidth/2;
-        UIImage *likeImg = [UIImage imageNamed:@"UserLikeImg.png"];
+        xOffset = 5;
+        yOffset += nameLabelHeight / 2 + 2;
+        UIImage *likeImg = [UIImage imageNamed:@"UserLikeNewImg.png"];
         WXUIImageView *imgView = [[WXUIImageView alloc] init];
         imgView.frame = CGRectMake(xOffset, yOffset+(nameLabelHeight/2-likeImg.size.height)/2, likeImg.size.width, likeImg.size.height);
         [imgView setImage:likeImg];
@@ -85,16 +87,16 @@
         [likeNumLabel setFont:WXFont(10.0)];
         [bgBtn addSubview:likeNumLabel];
         
-        xOffset += numberWidth;
+        xOffset = bgWidth / 2;
         CGFloat nameWidth = 20;
-        WXUILabel *nameLabel = [[WXUILabel alloc] init];
-        nameLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameLabelHeight/2);
-        [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setTextAlignment:NSTextAlignmentCenter];
-        [nameLabel setTextColor:WXColorWithInteger(0x707070)];
-        [nameLabel setFont:WXFont(10.0)];
-        [nameLabel setText:@"热度"];
-        [bgBtn addSubview:nameLabel];
+        hotLeftLabel = [[WXUILabel alloc] init];
+        hotLeftLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameLabelHeight/2);
+        [hotLeftLabel setBackgroundColor:[UIColor clearColor]];
+        [hotLeftLabel setTextAlignment:NSTextAlignmentLeft];
+        [hotLeftLabel setTextColor:WXColorWithInteger(0x707070)];
+        [hotLeftLabel setFont:WXFont(10.0)];
+        [hotLeftLabel setText:@"热度"];
+        [bgBtn addSubview:hotLeftLabel];
         
         xOffset += nameWidth+2;
         hotNumLabel = [[WXUILabel alloc] init];
@@ -131,7 +133,12 @@
     [_newPriceLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.shopPrice]];
     [_nameLabel setText:entity.goods_name];
     [likeNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.likeNum]];
-    [hotNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.hotNum]];
+    
+    NSString *hotStr = [NSString stringWithFormat:@"%ld",(long)entity.hotNum];
+    CGFloat xOffset = ((IPHONE_SCREEN_WIDTH-3*xGap)/2) - [NSString sizeWithString:hotStr font:hotLeftLabel.font].width - hotLeftLabel.width - 10;
+    hotLeftLabel.X = xOffset;
+    [hotNumLabel setText:hotStr];
+    hotNumLabel.X = hotLeftLabel.right + 3;
     
     if(entity.index%2==0){
         CGRect rect = bgBtn.frame;

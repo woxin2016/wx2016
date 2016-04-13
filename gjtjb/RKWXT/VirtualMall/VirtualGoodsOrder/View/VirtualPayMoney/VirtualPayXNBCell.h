@@ -9,6 +9,6 @@
 #import "WXUITableViewCell.h"
 
 @interface VirtualPayXNBCell : WXUITableViewCell
-- (void)userCanXNB:(CGFloat)XNB;
+- (void)userCanXNB:(NSInteger)XNB;
 + (instancetype)VirtualPayXNBCellWithTabelView:(UITableView*)tableView;
 @end

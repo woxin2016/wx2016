@@ -10,5 +10,5 @@
 
 @interface VietualInfoDesCell : WXUITableViewCell
 + (instancetype)VietualInfoDesCellWithTabelView:(UITableView*)tableView;
-- (void)backMoney:(CGFloat)money xnb:(CGFloat)xnb;
+- (void)backMoney:(CGFloat)money xnb:(int)xnb;
 @end

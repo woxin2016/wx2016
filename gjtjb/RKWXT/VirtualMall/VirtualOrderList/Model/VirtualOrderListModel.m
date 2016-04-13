@@ -101,4 +101,53 @@
 }
 
 
+/*
+ 接口名称：取消兑换的订单
+ 接口地址：https://oldyun.67call.com/wx10api/V1/exchange_order_cancel.php
+ 请求方式：POST
+ 输入参数：
+ pid:平台类型(android,ios,web),
+ ver:版本号,
+ ts:时间戳,
+ sid : 商家ID
+ woxin_id : 我信ID
+ phone:登录的手机号
+ order_id:订单ID
+ sign: 签名
+ 返回数据格式：json
+ 成功返回: error ：0  data:数据
+ 失败返回：error ：1  msg:错误信息
+ */
+- (void)cancelOrderIDWith:(NSInteger)orderID{
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
+    baseDic[@"pid"]= @"ios";
+    baseDic[@"ver"]= [UtilTool currentVersion];
+    baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    baseDic[@"woxin_id"]= userObj.wxtID;
+    baseDic[@"phone"]= userObj.user;
+    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    baseDic[@"order_id"] = [NSNumber numberWithInteger:orderID];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"pid"]= @"ios";
+    dic[@"ver"]= [UtilTool currentVersion];
+    dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    dic[@"woxin_id"]= userObj.wxtID;
+    dic[@"phone"]= userObj.user;
+    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
+    dic[@"order_id"] = [NSNumber numberWithInteger:orderID];
+    
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_VirtualCanCelOrder httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
+        if (retData.code != 0){
+            [[NSNotificationCenter defaultCenter]postNotificationName:V_Notification_Name_CancelVirtualOrderFailure object:nil];
+        }else{
+            [[NSNotificationCenter defaultCenter]postNotificationName:V_Notification_Name_CancelVirtualOrderSuccend object:nil];
+        }
+    }];
+    
+}
+
+
 @end

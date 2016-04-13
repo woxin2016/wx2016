@@ -10,7 +10,4 @@
 
 @interface VirtualOrderListCell : WXUITableViewCell
 + (instancetype)VirtualOrderListCellWithTabelView:(UITableView*)tableView;
-
-
-
 @end

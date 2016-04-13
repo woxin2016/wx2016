@@ -73,15 +73,16 @@
 
 - (UIView*)baseInitDownView{
     WXUIView *downView = [[WXUIView alloc] init];
-    [downView setBackgroundColor:[UIColor whiteColor]];
+    [downView setBackgroundColor:RGB_COLOR(210, 210, 210)];
     
     CGFloat btnWidth = [UIScreen mainScreen].bounds.size.width / 2;
     CGFloat xOffset = 0;
+    CGFloat yOffset = 0.5;
     UIButton *phontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    phontBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
-    [phontBtn setBackgroundColor:[UIColor clearColor]];
+    phontBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, DownViewHeight - yOffset);
+    [phontBtn setBackgroundColor:[UIColor whiteColor]];
     [phontBtn.titleLabel setFont:WXFont(14.0)];
-    [phontBtn setTitle:@"联系卖家" forState:UIControlStateNormal];
+    [phontBtn setTitle:@"联系客服" forState:UIControlStateNormal];
     [phontBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [phontBtn setImage:[UIImage imageNamed:@"storeCart.png"] forState:UIControlStateNormal];
     phontBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 8);
@@ -89,14 +90,13 @@
     [downView addSubview:phontBtn];
     
     WXUIButton *addBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, 0, btnWidth, DownViewHeight);
+    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, yOffset, btnWidth, DownViewHeight - yOffset);
     [addBtn setTag:1];
     [addBtn.titleLabel setFont:WXFont(14.0)];
-    [addBtn setBackgroundColor:[UIColor clearColor]];
+    [addBtn setBackgroundColor:[UIColor colorWithHexString:@"#f74f35"]];
     [addBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
     [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(buyBtnVirtual) forControlEvents:UIControlEventTouchUpInside];
-    [addBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
     [downView addSubview:addBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
@@ -110,12 +110,12 @@
     [topView setBackgroundColor:WXColorWithInteger(AllBaseColor)];
     [self.view addSubview:topView];
     
-    CGFloat xGap = 5;
+    CGFloat xGap = 3;
     CGFloat yGap = 6;
-    CGFloat btnWidth = 40;
+    CGFloat btnWidth = 25;
     CGFloat btnHeight = 25;
     WXUIButton *backBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(xGap, TopNavigationViewHeight-yGap-btnHeight, btnWidth, btnHeight);
+    backBtn.frame = CGRectMake(xGap, TopNavigationViewHeight-yGap-btnHeight - 0.5, btnWidth, btnHeight);
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn setImage:[UIImage imageNamed:@"CommonArrowLeft.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
@@ -124,7 +124,7 @@
     CGFloat labelWidth = 80;
     CGFloat labelHeight = 30;
     WXUILabel *titleLabel = [[WXUILabel alloc] init];
-    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight, labelWidth, labelHeight);
+    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight - 0.5, labelWidth, labelHeight);
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:WXFont(15.0)];

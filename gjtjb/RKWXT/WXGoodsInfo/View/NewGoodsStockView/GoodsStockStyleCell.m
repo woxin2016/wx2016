@@ -45,7 +45,8 @@
         stockBtn = [[WXUILabel alloc]initWithFrame:CGRectZero];
         stockBtn.font = WXFont(13.0);
         stockBtn.textColor = [UIColor colorWithHexString:@"#969696"];
-        [stockBtn setBorderRadian:4 width:1.0 color:[UIColor colorWithHexString:@"#969696"]];
+        [stockBtn setBorderRadian:0 width:1.0 color:RGB_COLOR(210, 210, 210)];
+        stockBtn.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:stockBtn];
     }
     return self;
@@ -56,10 +57,13 @@
     CGFloat MAXW = self.frame.size.width - (10 * 2) - nameW - 20;
     CGFloat offsetX = 10 * 2 + nameW;
     CGFloat offsetW = [self sizeWithString:entity.stockName font:WXFont(13.0) maxW:MAXW];
+    if (offsetW < MAXW / 2) {
+        offsetW = MAXW / 2;
+    }
     CGFloat offsetY = (self.frame.size.height - 20) / 2;
     stockBtn.frame = CGRectMake(offsetX , offsetY, offsetW, 20);
     stockBtn.text = entity.stockName;
-    stockBtn.textAlignment = NSTextAlignmentCenter;
+    
     
 }
 

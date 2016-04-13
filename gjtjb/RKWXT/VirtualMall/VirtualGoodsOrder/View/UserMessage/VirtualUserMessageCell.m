@@ -36,6 +36,8 @@
         [self.contentView addSubview:label];
         
         _field = [[UITextField alloc]initWithFrame:CGRectMake(label.right, 0, self.width - 20 - labelW, self.height)];
+        _field.placeholder = @"请输入备注信息";
+        _field.font = WXFont(13.0);
         [_field addTarget:self action:@selector(textfieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
         [_field addTarget:self action:@selector(textFiledValueDidChanged:) forControlEvents:UIControlEventEditingChanged];
         [self.contentView addSubview:_field];

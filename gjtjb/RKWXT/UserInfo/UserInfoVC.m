@@ -211,7 +211,7 @@
     if(section == PersonalInfo_Order){
         return 0;
     }
-    return 12;
+    return 7;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

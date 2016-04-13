@@ -14,7 +14,7 @@
 #define DownViewHeight (44)
 #define TopNavigationViewHeight (64)
 #define TopNavigationViewHeight (64)
-#define ExplainCellHeight (120)
+#define ExplainCellHeight (80)
 #define DseCellHeight (100)
 enum{
     VirtualGoodsInfo_Section_TopImg = 0,

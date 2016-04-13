@@ -34,7 +34,7 @@
         CGSize btnSize = btnImg.size;
         
         WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-        leftBtn.frame = CGRectMake(20, 2, 60, 40);
+        leftBtn.frame = CGRectMake(20, 2,60, 40);
         [leftBtn setImage:btnImg forState:UIControlStateNormal];
         [leftBtn setTitle:@"消息" forState:UIControlStateNormal];
         [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

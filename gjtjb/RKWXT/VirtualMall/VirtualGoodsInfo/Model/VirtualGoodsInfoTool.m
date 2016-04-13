@@ -78,7 +78,7 @@
     return money;
 }
 
-+ (CGFloat)xnb:(VirtualGoodsInfoModel*)model{
++ (int)xnb:(VirtualGoodsInfoModel*)model{
     if ([model.stockArr count] == 0) return 0.0;
     int money = 0.0;
     for (VirtualGoodsInfoEntity *entity in model.stockArr) {

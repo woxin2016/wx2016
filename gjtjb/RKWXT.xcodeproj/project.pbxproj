@@ -570,7 +570,6 @@
 		12CFE64B1AC1A077009C710B /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12CFE64A1AC1A077009C710B /* libsqlite3.0.dylib */; };
 		12CFE6511AC1A210009C710B /* CallHistoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CFE6501AC1A210009C710B /* CallHistoryEntity.m */; };
 		12D0BF5B1CBCE5E300ACF752 /* FindTopImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */; };
-		12D0BF5D1CBCF58F00ACF752 /* HomeTopBgImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D0BF5C1CBCF58F00ACF752 /* HomeTopBgImg@2x.png */; };
 		12D0C8721AB685250039A197 /* AboutWxtInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C8711AB685250039A197 /* AboutWxtInfoVC.m */; };
 		12D0C8761AB6AA8C0039A197 /* WXTVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C8751AB6AA8C0039A197 /* WXTVersion.m */; };
 		12D0C87C1AB6B2970039A197 /* VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C87B1AB6B2970039A197 /* VersionModel.m */; };
@@ -904,6 +903,8 @@
 		DD207D011C9BB2DF00A2F342 /* NewGoodsStockView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD207D001C9BB2DF00A2F342 /* NewGoodsStockView.m */; };
 		DD207D421C9BEDF300A2F342 /* GoodsInfoStockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD207D411C9BEDF300A2F342 /* GoodsInfoStockCell.m */; };
 		DD207D7D1C9C233F00A2F342 /* GoodsStockStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD207D7C1C9C233F00A2F342 /* GoodsStockStyleCell.m */; };
+		DD21D0011CBDE7C500454DBC /* HomeTopBgImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD21D0001CBDE7C500454DBC /* HomeTopBgImg@2x.png */; };
+		DD21D0031CBE240600454DBC /* UserLikeNewImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD21D0021CBE240600454DBC /* UserLikeNewImg@2x.png */; };
 		DD2498B61C88312F0079DB5A /* ClassifySearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498A21C88312F0079DB5A /* ClassifySearchVC.m */; };
 		DD2498B71C88312F0079DB5A /* ClassifyHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498A51C88312F0079DB5A /* ClassifyHistoryModel.m */; };
 		DD2498B81C88312F0079DB5A /* ClassifyInsertData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498A81C88312F0079DB5A /* ClassifyInsertData.m */; };
@@ -2040,7 +2041,6 @@
 		12CFE6501AC1A210009C710B /* CallHistoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryEntity.m; sourceTree = "<group>"; };
 		12D0BF591CBCE5E300ACF752 /* FindTopImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindTopImgModel.h; sourceTree = "<group>"; };
 		12D0BF5A1CBCE5E300ACF752 /* FindTopImgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindTopImgModel.m; sourceTree = "<group>"; };
-		12D0BF5C1CBCF58F00ACF752 /* HomeTopBgImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeTopBgImg@2x.png"; sourceTree = "<group>"; };
 		12D0C8701AB685250039A197 /* AboutWxtInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWxtInfoVC.h; sourceTree = "<group>"; };
 		12D0C8711AB685250039A197 /* AboutWxtInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWxtInfoVC.m; sourceTree = "<group>"; };
 		12D0C8741AB6AA8C0039A197 /* WXTVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTVersion.h; sourceTree = "<group>"; };
@@ -2664,6 +2664,8 @@
 		DD207D411C9BEDF300A2F342 /* GoodsInfoStockCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsInfoStockCell.m; sourceTree = "<group>"; };
 		DD207D7B1C9C233F00A2F342 /* GoodsStockStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsStockStyleCell.h; sourceTree = "<group>"; };
 		DD207D7C1C9C233F00A2F342 /* GoodsStockStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsStockStyleCell.m; sourceTree = "<group>"; };
+		DD21D0001CBDE7C500454DBC /* HomeTopBgImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeTopBgImg@2x.png"; sourceTree = "<group>"; };
+		DD21D0021CBE240600454DBC /* UserLikeNewImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserLikeNewImg@2x.png"; sourceTree = "<group>"; };
 		DD2498A11C88312F0079DB5A /* ClassifySearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifySearchVC.h; sourceTree = "<group>"; };
 		DD2498A21C88312F0079DB5A /* ClassifySearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifySearchVC.m; sourceTree = "<group>"; };
 		DD2498A41C88312F0079DB5A /* ClassifyHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyHistoryModel.h; sourceTree = "<group>"; };
@@ -4869,7 +4871,9 @@
 		128221CD1B184E83004613BB /* NewHomePage */ = {
 			isa = PBXGroup;
 			children = (
+				DD21D0021CBE240600454DBC /* UserLikeNewImg@2x.png */,
 				DD2CA8771CBB9F15008D0AE6 /* HomevirtualXNB@2x.png */,
+				DD21D0001CBDE7C500454DBC /* HomeTopBgImg@2x.png */,
 				12C875621CACC5FC00DF0B5C /* UserLikeImg@2x.png */,
 				122D63B81C3F4AF60086AAB8 /* HomePageCutImg@2x.png */,
 				122D63B91C3F4AF60086AAB8 /* HomePageShareImg@2x.png */,
@@ -7713,6 +7717,7 @@
 				DD25720D1C9FC6AF008D541E /* searchGoods@2x.png in Resources */,
 				122D63B41C3F49A30086AAB8 /* HomePageGame@2x.png in Resources */,
 				12A66B281B74AE4800542112 /* NoWifi@2x.png in Resources */,
+				DD21D0031CBE240600454DBC /* UserLikeNewImg@2x.png in Resources */,
 				128083D61B61D21D00260B9F /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				1263EFE41ACD35820014C347 /* Icon-Small-50.png in Resources */,
 				120B5D991B871991009564F5 /* GoodsInfoGaryBackImg@2x.png in Resources */,
@@ -7804,6 +7809,7 @@
 				122D63BF1C3F4AF60086AAB8 /* HomePageSignImg@2x.png in Resources */,
 				12846A8B1B252D720021F9FE /* LoginUpSmallImg@2x.png in Resources */,
 				12F3CC7F1B1DE82C00E64DE4 /* SysSettingImg@2x.png in Resources */,
+				DD21D0011CBDE7C500454DBC /* HomeTopBgImg@2x.png in Resources */,
 				12D52BB91AC2EF4400C5CE71 /* dtmf-3.aif in Resources */,
 				1241E5611AE9D91400811D3F /* LoadDataLogo@2x.png in Resources */,
 				DD35D8731C84258400422F5B /* GoodsListDownImg@2x.png in Resources */,
@@ -7897,7 +7903,6 @@
 				1241E5431AE9D89B00811D3F /* 3N@2x.png in Resources */,
 				1241E53A1AE9D89B00811D3F /* #S@2x.png in Resources */,
 				DD2E63DA1C915FEC0037632F /* userCollection@2x.png in Resources */,
-				12D0BF5D1CBCF58F00ACF752 /* HomeTopBgImg@2x.png in Resources */,
 				12F46A391B20012000B8EC98 /* T_Attention@2x.png in Resources */,
 				12F3CC811B1DE82C00E64DE4 /* WaitingPayImg@2x.png in Resources */,
 				1236675B1C44AA04000FAF70 /* SharkCenterImg@2x.png in Resources */,

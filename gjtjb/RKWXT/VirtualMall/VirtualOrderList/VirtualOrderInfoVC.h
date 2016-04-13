@@ -10,4 +10,5 @@
 @class virtualOrderListEntity;
 @interface VirtualOrderInfoVC : WXUIViewController
 @property (nonatomic,strong)virtualOrderListEntity *entity;
+@property (nonatomic,assign)BOOL isAppearPay;
 @end

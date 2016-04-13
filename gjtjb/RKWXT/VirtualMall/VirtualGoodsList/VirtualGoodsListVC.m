@@ -161,8 +161,8 @@ enum{
 // 兑换商城
 - (WXUITableViewCell*)tableViewCellStore:(NSInteger)row{
     ViteualStoreCell *cell = [ViteualStoreCell viteualStoreCellWithTabelView:_tableView];
-    [cell setCellInfo:_model.goodsArray[row]];
-    [cell load];
+       [cell setCellInfo:_model.goodsArray[row]];
+       [cell load];
     return cell;
 }
 
@@ -312,7 +312,7 @@ enum{
     [self unShowWaitView];
     
     [_tableView footerEndRefreshing];
-    [_tableView reloadData];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:SubSections_List] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)viteualTopImgFailed:(NSString *)errorMsg{
@@ -323,6 +323,7 @@ enum{
 
 -(void)viteualTopImgSucceed{
      [self unShowWaitView];
+     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:SubSections_TopImg] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end
