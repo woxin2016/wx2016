@@ -72,7 +72,7 @@
         [accountName setFont:WXFont(14.0)];
         [footerView addSubview:accountName];
         
-        yGap += labelHeight+10;
+        yGap += labelHeight+3;
         accountType = [[WXUILabel alloc] init];
         accountType.frame = CGRectMake(xOffset, yGap, labelWidth, labelHeight);
         [accountType setBackgroundColor:[UIColor clearColor]];
@@ -82,7 +82,7 @@
         [accountType setFont:WXFont(14.0)];
         [footerView addSubview:accountType];
         
-        yGap += labelHeight+10;
+        yGap += labelHeight+3;
         accountInfo = [[WXUILabel alloc] init];
         accountInfo.frame = CGRectMake(xOffset, yGap, labelWidth, labelHeight);
         [accountInfo setBackgroundColor:[UIColor clearColor]];

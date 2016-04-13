@@ -21,7 +21,7 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        CGFloat labelWidth = IPHONE_SCREEN_WIDTH/2;
+        CGFloat labelWidth = IPHONE_SCREEN_WIDTH/3;
         CGFloat labelHeight = 20;
         CGFloat yOffset = 8;
         WXUILabel *leftName = [[WXUILabel alloc] init];
@@ -34,7 +34,7 @@
         [self.contentView addSubview:leftName];
         
         WXUILabel *rightName = [[WXUILabel alloc] init];
-        rightName.frame = CGRectMake(labelWidth, yOffset, labelWidth, labelHeight);
+        rightName.frame = CGRectMake(IPHONE_SCREEN_WIDTH*2/3, yOffset, labelWidth, labelHeight);
         [rightName setBackgroundColor:[UIColor clearColor]];
         [rightName setText:@"提现中"];
         [rightName setTextAlignment:NSTextAlignmentCenter];
@@ -53,7 +53,7 @@
         [self.contentView addSubview:leftMoney];
         
         rightMoney = [[WXUILabel alloc] init];
-        rightMoney.frame = CGRectMake(labelWidth, yOffset, labelWidth, labelHeight);
+        rightMoney.frame = CGRectMake(IPHONE_SCREEN_WIDTH*2/3, yOffset, labelWidth, labelHeight);
         [rightMoney setBackgroundColor:[UIColor clearColor]];
         [rightMoney setTextAlignment:NSTextAlignmentCenter];
         [rightMoney setTextColor:WXColorWithInteger(0x000000)];

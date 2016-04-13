@@ -10,6 +10,7 @@
 #import "UserAliEntity.h"
 #import "ApplyAliModel.h"
 #import "ConfirmUserAliPayVC.h"
+#import "MoreMoneyInfoModel.h"
 
 #define size self.bounds.size
 
@@ -194,6 +195,10 @@
     [self unShowWaitView];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setFloat:[_userTextField.text floatValue] forKey:ApplySucceed];
+    
+    //提现成功修改个人中心现金的显示
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance -= [_userTextField.text floatValue];
+    [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserMoneyBalanceChanged object:nil];
     
     [self.wxNavigationController popViewControllerAnimated:YES completion:^{
     }];

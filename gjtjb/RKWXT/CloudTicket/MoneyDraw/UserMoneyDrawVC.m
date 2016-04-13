@@ -10,6 +10,7 @@
 #import "UserMoneyDrawCell.h"
 #import "UserMoneyDrawShowCell.h"
 #import "ApplyAliModel.h"
+#import "MoreMoneyInfoModel.h"
 
 #define Size self.bounds.size
 
@@ -173,6 +174,10 @@
     [self unShowWaitView];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setFloat:drawMoney forKey:UserApplyMoneySucceed];
+    
+    //提现成功修改个人中心现金的显示
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance -= drawMoney;
+    [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserMoneyBalanceChanged object:nil];
     
     [self.wxNavigationController popViewControllerAnimated:YES completion:^{
     }];
