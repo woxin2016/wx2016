@@ -127,13 +127,16 @@
 // 商品样式
 - (WXUITableViewCell*)tableViewGoodsStyleWithRow:(NSInteger)row{
     GoodsStockStyleCell *cell = [GoodsStockStyleCell GoodsStockStyleCellWithTableView:tableViews];
-    [cell setCellInfo:goodsStockArr[row]];
+    entity = goodsStockArr[row];
+    [cell setCellInfo:entity];
     [cell load];
     if (row == 0) {
         [cell setLabelHid:NO];
     }else{
         [cell setLabelHid:YES];
     }
+  
+    [cell setLabelBackGroundColor:entity.selected];
     return cell;
 }
 
@@ -161,6 +164,13 @@
     NSUInteger row = indexPath.row;
     if (section == GoodsInfoSectionStock_Number) {  //刷新数据
         entity = goodsStockArr[row];
+        
+        
+        for (VirtualGoodsInfoEntity *stock in goodsStockArr) {
+            stock.selected = NO;
+        }
+        entity.selected = YES;
+        
         buyNumber = 1;
         NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
         GoodsInfoStockCell *cell = (GoodsInfoStockCell*)[tableView cellForRowAtIndexPath:path];
@@ -180,6 +190,9 @@
     NSIndexPath *cellPath = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
     GoodsBuyNumberCell *buyCell = (GoodsBuyNumberCell*)[tableView cellForRowAtIndexPath:cellPath];
     [buyCell lookGoodsStockNumber:buyNumber];
+    
+    [tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfoSectionStock_Number] withRowAnimation:UITableViewRowAnimationNone];
+  
 }
 
 
@@ -187,6 +200,13 @@
 - (void)VirtualGoodsStockInfo:(NSArray *)stockArr GoodsInfoArr:(NSArray *)goodsInfoArr{
     goodsArr = goodsInfoArr;
     goodsStockArr = stockArr;
+    
+    for (VirtualGoodsInfoEntity *stock in goodsStockArr) {
+        if (stock.isDefault) {
+            stock.selected = YES;
+        }
+    }
+
     
     CGFloat IPHONE_Width = [UIScreen mainScreen].bounds.size.width;
     CGFloat IPHONE_HEIGHT = [UIScreen mainScreen].bounds.size.height;
@@ -303,6 +323,9 @@
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_VirtualEXchangeBuyGoods object:nil];
     }
+    
+     [self isClicked];
+     entity.selected = NO;
 }
 
 

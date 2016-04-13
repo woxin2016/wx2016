@@ -312,7 +312,7 @@
     }
      [cell backMoney:[VirtualGoodsInfoTool backMoney:_model] xnb:[VirtualGoodsInfoTool xnb:_model]];
     [cell load];
-    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 

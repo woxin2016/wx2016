@@ -190,6 +190,7 @@ enum{
     switch (section) {
         case VirtualOrder_Section_Number:
         case VirtualOrder_Section_PayMoney:
+        case VirtualOrder_Section_UserMessage:
             height = 44;
             break;
         case VirtualOrder_Section_UserInfo:
@@ -210,10 +211,7 @@ enum{
         case VirtualOrder_Section_ForDate:
             height = [VirtualOrderDateCell cellHeightOfInfo:nil];
             break;
-        case VirtualOrder_Section_UserMessage:
-            height = [VirtualOrderUserMessageCell cellHeightOfInfo:self.entity.userMessage];
-            break;
-            
+        
         default:
             break;
     }
@@ -248,6 +246,8 @@ enum{
     [cell setCellInfo:self.entity];
     [cell load];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
+
     return cell;
 }
 
@@ -256,9 +256,10 @@ enum{
 - (WXUITableViewCell*)virtualTableViewUsetInfoCell{
     VirtualUserInfoCell *cell = [VirtualUserInfoCell VirtualUserInfoCellWithTabelView:_tableView];
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell load];
      [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
+
     return cell;
 }
 
@@ -278,6 +279,7 @@ enum{
     [cell setCellInfo:self.entity];
     [cell load];
      [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -285,6 +287,7 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualPayStatusCell{
     VirtualPayStatusCell *cell = [VirtualPayStatusCell VirtualPayStatusCellWithTabelView:_tableView];
      [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -293,6 +296,7 @@ enum{
     VirtualPayMoneryCell *cell = [VirtualPayMoneryCell VirtualPayMoneryCellWithTabelView:_tableView];
     [cell userCanMonery:_xnbModel.userMoneyBalance];
      [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -301,6 +305,7 @@ enum{
     VirtualPayXNBCell *cell = [VirtualPayXNBCell VirtualPayXNBCellWithTabelView:_tableView];
     [cell userCanXNB:_xnbModel.userCloudBalance];
      [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -308,8 +313,9 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualOrderUserMessageCell{
     VirtualOrderUserMessageCell *cell = [VirtualOrderUserMessageCell VirtualOrderUserMessageCellWithTabelView:_tableView];
     [cell setCellInfo:self.entity.userMessage];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell load];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -327,7 +333,7 @@ enum{
     VirtualOrderDateCell *cell = [VirtualOrderDateCell VirtualOrderDateCellWithTabelView:_tableView];
     [cell setCellInfo:self.entity];
     [cell load];
-     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 

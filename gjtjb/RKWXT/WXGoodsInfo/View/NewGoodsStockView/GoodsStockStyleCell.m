@@ -79,7 +79,13 @@
     
 }
 
-
+- (void)setLabelBackGroundColor:(BOOL)hid{
+    if (hid) {
+        stockBtn.backgroundColor = RGB_COLOR(211, 208, 211);
+    }else{
+        stockBtn.backgroundColor = [UIColor whiteColor];
+    }
+}
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     

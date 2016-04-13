@@ -130,6 +130,8 @@
     }else{
         [cell setLabelHid:YES];
     }
+    GoodsInfoEntity *stock = goodsStockArr[row];
+    [cell setLabelBackGroundColor:stock.selected];
     return cell;
 }
 
@@ -159,6 +161,12 @@
     NSUInteger row = indexPath.row;
     if (section == GoodsInfoSectionStock_Number) {  //刷新数据
         entity = goodsStockArr[row];
+        
+        for (GoodsInfoEntity *stock in goodsStockArr) {
+            stock.selected = NO;
+        }
+        entity.selected = YES;
+        
         buyNumber = 1;
         NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
         GoodsInfoStockCell *cell = (GoodsInfoStockCell*)[tableView cellForRowAtIndexPath:path];
@@ -173,6 +181,8 @@
      NSIndexPath *cellPath = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
     GoodsBuyNumberCell *buyCell = (GoodsBuyNumberCell*)[tableView cellForRowAtIndexPath:cellPath];
     [buyCell lookGoodsStockNumber:buyNumber];
+    
+   [tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfoSectionStock_Number] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
@@ -180,6 +190,13 @@
 - (void)loadGoodsStockInfo:(NSArray *)stockArr GoodsInfoArr:(NSArray *)goodsInfoArr{
     goodsArr = goodsInfoArr;
     goodsStockArr = stockArr;
+    
+    for (int i = 0; i < [goodsStockArr count]; i++) {
+        if (i == 0) {
+            GoodsInfoEntity *stock = goodsStockArr[i];
+            stock.selected = YES;
+        }
+    }
     
     CGFloat IPHONE_Width = [UIScreen mainScreen].bounds.size.width;
     CGFloat IPHONE_HEIGHT = [UIScreen mainScreen].bounds.size.height;
@@ -289,6 +306,9 @@
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserBuyGoods object:nil];
     }
+    
+     [self isClicked];
+    entity.selected = NO;
 }
 
 

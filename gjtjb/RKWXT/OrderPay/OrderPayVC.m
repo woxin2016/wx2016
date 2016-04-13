@@ -279,6 +279,12 @@ enum{
         [self toLuckyGoodsOrderList];
         return;
     }
+    
+    if (_orderpay_type == OrderPay_Type_Virtual) {
+        [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+        }];
+        return;
+    }
     [self toOrderList];
 }
 

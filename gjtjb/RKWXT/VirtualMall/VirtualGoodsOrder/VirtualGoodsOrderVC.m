@@ -283,6 +283,7 @@ enum{
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -301,6 +302,7 @@ enum{
     VirtualGoodsListCell *cell = [VirtualGoodsListCell VirtualGoodsListCellWithTabelView:_tableView];
     [cell setCellInfo:self.virtualOrder];
     [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -309,12 +311,14 @@ enum{
     VirtualExchangeListCell *cell = [VirtualExchangeListCell VirtualExchangeListCellWithTabelView:_tableView];
     [cell setCellInfo:self.virtualOrder];
     [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
 //支付方式
 - (WXUITableViewCell*)virtualTableViewVirtualPayStatusCell{
     VirtualPayStatusCell *cell = [VirtualPayStatusCell VirtualPayStatusCellWithTabelView:_tableView];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -329,6 +333,7 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualPayXNBCell{
     VirtualPayXNBCell *cell = [VirtualPayXNBCell VirtualPayXNBCellWithTabelView:_tableView];
     [cell userCanXNB:[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -336,6 +341,7 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualUserMessageCell{
     VirtualUserMessageCell *cell = [VirtualUserMessageCell VirtualUserMessageCellWithTabelView:_tableView];
     cell.delegate = self;
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -356,11 +362,6 @@ enum{
 - (WXUITableViewCell*)virtualTableViewVirtualForDateCell{
     VirtualForDateCell *cell = [VirtualForDateCell VirtualForDateCellWithTabelView:_tableView];
     [cell setCellInfo:self.virtualOrder];
-    if (self.type == virtualParOrderType_Store) {
-        [cell allMonery];
-    }else{
-        [cell allMoneryAddPostage];
-    }
     [cell load];
     return cell;
 }
