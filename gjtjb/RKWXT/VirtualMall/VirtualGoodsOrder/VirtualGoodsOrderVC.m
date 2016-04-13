@@ -47,9 +47,9 @@ enum{
 {
     UITableView *_tableView;
     VirtualGoodsOrderModel *_model;
-    MoreMoneyInfoModel *_xnbModel;
     
 }
+@property (nonatomic,strong)NSString *userMessage;
 @end
 
 @implementation VirtualGoodsOrderVC
@@ -58,8 +58,8 @@ enum{
     if (self = [super init]) {
         _model = [[VirtualGoodsOrderModel alloc]init];
         _model.delegate  = self;
-        if ([[MoreMoneyInfoModel shareUserMoreMoneyInfo] isLoaded]) {
-             _xnbModel = [MoreMoneyInfoModel shareUserMoreMoneyInfo];
+        if (![[MoreMoneyInfoModel shareUserMoreMoneyInfo] isLoaded]) {
+             [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
         }
     }
     return self;
@@ -321,14 +321,14 @@ enum{
 //现金支付
 - (WXUITableViewCell*)virtualTableViewVirtualPayMoneryCell{
     VirtualPayMoneryCell *cell = [VirtualPayMoneryCell VirtualPayMoneryCellWithTabelView:_tableView];
-    [cell userCanMonery:_xnbModel.userMoneyBalance];
+    [cell userCanMonery:[MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance];
     return cell;
 }
 
 //云票支付
 - (WXUITableViewCell*)virtualTableViewVirtualPayXNBCell{
     VirtualPayXNBCell *cell = [VirtualPayXNBCell VirtualPayXNBCellWithTabelView:_tableView];
-    [cell userCanXNB:_xnbModel.userCloudBalance];
+    [cell userCanXNB:[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance];
     return cell;
 }
 
@@ -425,9 +425,9 @@ enum{
 #pragma mark -- pay
 - (void)gotoPayVC{
     if (self.type == virtualParOrderType_Store) {
-        [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Store orderInfo:self.virtualOrder];
+        [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Store orderInfo:self.virtualOrder remark:(self.userMessage.length==0?@"无":self.userMessage)];
     }else{
-        [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Exchange orderInfo:self.virtualOrder];
+        [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Exchange orderInfo:self.virtualOrder remark:(self.userMessage.length==0?@"无":self.userMessage)];
     }
     [self showWaitViewMode:E_WaiteView_Mode_FullScreenBlock title:@""];
 }
@@ -441,16 +441,18 @@ enum{
 - (void)virtualGoodsOrderSuccend{
     [self unShowWaitView];
     
+    
+    //发出通知
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance -= [VirtualOrderInfoEntity shareVirtualOrderAlloc].xnbPrice;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = YES;
+    
     // 跳转支付页面
     OrderPayVC *payVC = [[OrderPayVC alloc]init];
     payVC.orderID = _model.order.orderID;
     payVC.payMoney = _model.order.payMoney;
     payVC.orderpay_type = OrderPay_Type_Virtual;
     [self.wxNavigationController pushViewController:payVC];
-    
-    //发出通知
-     [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
-     _xnbModel.userCloudBalance -= [VirtualOrderInfoEntity shareVirtualOrderAlloc].xnbPrice;
 }
 
 - (void)virtualGoodsOrderFailed:(NSString *)errorMsg{
@@ -468,7 +470,7 @@ enum{
 
 #pragma mark --- cell delegate
 - (void)userMessageTextFieldChanged:(NSString *)message{
-    
+    self.userMessage = message;
 }
 
 

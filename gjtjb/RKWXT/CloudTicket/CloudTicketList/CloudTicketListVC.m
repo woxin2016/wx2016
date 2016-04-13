@@ -62,7 +62,7 @@ enum{
 }
 
 -(WXUIButton*)rightBtn{
-    CGFloat btnWidth = 40;
+    CGFloat btnWidth = 60;
     CGFloat btnHeight = 16;
     WXUIButton *rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth, 35, btnWidth, btnHeight);

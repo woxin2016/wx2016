@@ -25,6 +25,6 @@ typedef enum{
 @interface VirtualGoodsOrderModel : NSObject
 @property (nonatomic,strong)VirtualOrderInfoEntity *order;
 @property (nonatomic,weak)id <VirtualGoodsOrderModelDelegate> delegate;
-- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type orderInfo:(VirtualOrderInfoEntity*)orderInfo;
+- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type orderInfo:(VirtualOrderInfoEntity*)orderInfo remark:(NSString*)remark;
 
 @end

@@ -54,6 +54,10 @@
     if(![MoreMoneyInfoModel shareUserMoreMoneyInfo].isLoaded){
         [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
     }
+    
+    if([MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged){
+        [self uploadUserMoreMoneyInfo];
+    }
 }
 
 -(void)viewDidLoad{
@@ -621,6 +625,7 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self removeOBS];
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = NO;
 }
 
 @end

@@ -87,6 +87,9 @@
         
         CGFloat postage = [[dic objectForKey:@"postage"] floatValue];
         [self setPosgate:postage];
+        
+        NSString *userMessage = [dic objectForKey:@"remark"];
+        [self setUserMessage:userMessage];
     }
     return self;
 }

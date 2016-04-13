@@ -19,7 +19,7 @@
 #import "VirtualPayMoneryCell.h"
 #import "VirtualPayXNBCell.h"
 #import "VirtualOrderDateCell.h"
-#import "VirtualUserMessageCell.h"
+#import "VirtualOrderUserMessageCell.h"
 #import "VirtualOrderGoodsCell.h"
 #import "VirtualOrderAllMoneyCell.h"
 
@@ -44,7 +44,7 @@ enum{
 #define Size self.bounds.size
 #define DownViewHeight 55
 
-@interface VirtualOrderInfoVC () <UITableViewDataSource,UITableViewDelegate,VirtualUserMessageCellDelegate>
+@interface VirtualOrderInfoVC () <UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tableView;
     VirtualOrderListModel *_model;
@@ -176,7 +176,7 @@ enum{
             row = 1;
             break;
         case VirtualOrder_Section_UserMessage:
-            row = 0;
+            row = 1;
             break;
         default:
             break;
@@ -189,6 +189,7 @@ enum{
     NSInteger section = indexPath.section;
     switch (section) {
         case VirtualOrder_Section_Number:
+        case VirtualOrder_Section_PayMoney:
             height = 44;
             break;
         case VirtualOrder_Section_UserInfo:
@@ -209,9 +210,8 @@ enum{
         case VirtualOrder_Section_ForDate:
             height = [VirtualOrderDateCell cellHeightOfInfo:nil];
             break;
-        case VirtualOrder_Section_PayMoney:
         case VirtualOrder_Section_UserMessage:
-            height = 44;
+            height = [VirtualOrderUserMessageCell cellHeightOfInfo:self.entity.userMessage];
             break;
             
         default:
@@ -305,10 +305,11 @@ enum{
 }
 
 //买家留言
-- (WXUITableViewCell*)virtualTableViewVirtualUserMessageCell{
-    VirtualUserMessageCell *cell = [VirtualUserMessageCell VirtualUserMessageCellWithTabelView:_tableView];
-//    cell.delegate = self;
-     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+- (WXUITableViewCell*)virtualTableViewVirtualOrderUserMessageCell{
+    VirtualOrderUserMessageCell *cell = [VirtualOrderUserMessageCell VirtualOrderUserMessageCellWithTabelView:_tableView];
+    [cell setCellInfo:self.entity.userMessage];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell load];
     return cell;
 }
 
@@ -353,7 +354,7 @@ enum{
             cell = [self virtualTableViewVirtualPayXNBCell];
             break;
         case VirtualOrder_Section_UserMessage:
-            cell = [self virtualTableViewVirtualUserMessageCell];
+            cell = [self virtualTableViewVirtualOrderUserMessageCell];
             break;
         case VirtualOrder_Section_ForDate:
             cell = [self virtualTableViewVirtualOrderDateCell];
@@ -369,17 +370,7 @@ enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger section = indexPath.section;
-    switch (section) {
-        case VirtualOrder_Section_UserInfo:
-        {
-            ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
-            [self.wxNavigationController pushViewController:addressVC];
-        }
-            break;
-        default:
-            break;
-    }
+
     
 }
 
@@ -412,4 +403,22 @@ enum{
     [self.wxNavigationController popViewControllerAnimated:YES completion:^{
     }];
 }
+
+#pragma mark -- userMessage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

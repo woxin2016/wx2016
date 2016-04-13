@@ -117,6 +117,7 @@ enum{
     return row;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0.0;
     switch (indexPath.section) {
@@ -138,6 +139,13 @@ enum{
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == SubSections_List) {
         return heardViewH;
+    }
+    return 0.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == SubSections_TopImg) {
+        return 7.0;
     }
     return 0.0;
 }

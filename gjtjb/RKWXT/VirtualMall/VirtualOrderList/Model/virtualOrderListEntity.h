@@ -56,6 +56,7 @@ typedef enum{
 @property (nonatomic,assign) CGFloat posgate;  //运费
 @property (nonatomic,assign) NSInteger order_id;   //订单ID
 @property (nonatomic,strong) NSString *orderPrefix; //订单前缀
+@property (nonatomic,copy) NSString *userMessage;  //用户留言
 
 +(virtualOrderListEntity*)virtualOrderListEntityWidthDic:(NSDictionary*)dic;
 

@@ -41,9 +41,8 @@
  
  */
 
-- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type orderInfo:(VirtualOrderInfoEntity*)orderInfo{
+- (void)submitOrdersVitrtualWithType:(VirtualGoodsOrderType)type orderInfo:(VirtualOrderInfoEntity*)orderInfo remark:(NSString *)remark{
     NSNumber * money= nil;
-    NSString *moneyKey = nil;
     if (type == VirtualGoodsOrderType_Store) {
         money = [NSNumber numberWithFloat:orderInfo.postage];
         orderInfo.goodsPrice = 0.0;
@@ -77,6 +76,7 @@
     baseDic[@"xnb_1"]= [NSNumber numberWithFloat:orderInfo.xnbPrice];
     baseDic[@"back_money"]= [NSNumber numberWithFloat:orderInfo.backMoney];
     baseDic[@"postage"]= [NSNumber numberWithFloat:orderInfo.postage];
+    baseDic[@"remark"] =remark;
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"pid"]= @"ios";
@@ -95,7 +95,7 @@
     dic[@"xnb_1"]= [NSNumber numberWithFloat:orderInfo.xnbPrice];
     dic[@"back_money"]= [NSNumber numberWithFloat:orderInfo.backMoney];
     dic[@"postage"]= [NSNumber numberWithFloat:orderInfo.postage];
-    
+    dic[@"remark"] =remark;
     
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_VirtualOrder httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){

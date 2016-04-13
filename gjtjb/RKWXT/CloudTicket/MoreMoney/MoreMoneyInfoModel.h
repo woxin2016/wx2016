@@ -17,6 +17,7 @@
 @property (nonatomic,assign) CGFloat userMoneyBalance;  //使用之前请判断是否已经加载成功
 
 @property (nonatomic,assign) BOOL isLoaded;
+@property (nonatomic,assign) BOOL isChanged;
 
 +(MoreMoneyInfoModel*)shareUserMoreMoneyInfo;
 -(void)loadUserMoreMoneyInfo;

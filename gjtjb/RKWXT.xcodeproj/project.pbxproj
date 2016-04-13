@@ -905,6 +905,7 @@
 		DD207D7D1C9C233F00A2F342 /* GoodsStockStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD207D7C1C9C233F00A2F342 /* GoodsStockStyleCell.m */; };
 		DD21D0011CBDE7C500454DBC /* HomeTopBgImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD21D0001CBDE7C500454DBC /* HomeTopBgImg@2x.png */; };
 		DD21D0031CBE240600454DBC /* UserLikeNewImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD21D0021CBE240600454DBC /* UserLikeNewImg@2x.png */; };
+		DD21D03B1CBE536D00454DBC /* VirtualOrderUserMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD21D03A1CBE536D00454DBC /* VirtualOrderUserMessageCell.m */; };
 		DD2498B61C88312F0079DB5A /* ClassifySearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498A21C88312F0079DB5A /* ClassifySearchVC.m */; };
 		DD2498B71C88312F0079DB5A /* ClassifyHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498A51C88312F0079DB5A /* ClassifyHistoryModel.m */; };
 		DD2498B81C88312F0079DB5A /* ClassifyInsertData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498A81C88312F0079DB5A /* ClassifyInsertData.m */; };
@@ -2666,6 +2667,8 @@
 		DD207D7C1C9C233F00A2F342 /* GoodsStockStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsStockStyleCell.m; sourceTree = "<group>"; };
 		DD21D0001CBDE7C500454DBC /* HomeTopBgImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeTopBgImg@2x.png"; sourceTree = "<group>"; };
 		DD21D0021CBE240600454DBC /* UserLikeNewImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserLikeNewImg@2x.png"; sourceTree = "<group>"; };
+		DD21D0391CBE536D00454DBC /* VirtualOrderUserMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualOrderUserMessageCell.h; sourceTree = "<group>"; };
+		DD21D03A1CBE536D00454DBC /* VirtualOrderUserMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderUserMessageCell.m; sourceTree = "<group>"; };
 		DD2498A11C88312F0079DB5A /* ClassifySearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifySearchVC.h; sourceTree = "<group>"; };
 		DD2498A21C88312F0079DB5A /* ClassifySearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifySearchVC.m; sourceTree = "<group>"; };
 		DD2498A41C88312F0079DB5A /* ClassifyHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyHistoryModel.h; sourceTree = "<group>"; };
@@ -7434,6 +7437,8 @@
 				DD30AA081CBCD963001875F4 /* VirtualOrderAllMoneyCell.m */,
 				DD30AA0A1CBCE0B6001875F4 /* VirtualOrderDateCell.h */,
 				DD30AA0B1CBCE0B6001875F4 /* VirtualOrderDateCell.m */,
+				DD21D0391CBE536D00454DBC /* VirtualOrderUserMessageCell.h */,
+				DD21D03A1CBE536D00454DBC /* VirtualOrderUserMessageCell.m */,
 			);
 			path = VirtualOrderSoreList;
 			sourceTree = "<group>";
@@ -8138,6 +8143,7 @@
 				DD1D29AC1C9A944100F81D9A /* UserDefaultSiteCell.m in Sources */,
 				123667381C44AA04000FAF70 /* LuckyGoodsDesCell.m in Sources */,
 				12F9632F1B3D4BDF00FF6A3E /* NSObject+SBJson.m in Sources */,
+				DD21D03B1CBE536D00454DBC /* VirtualOrderUserMessageCell.m in Sources */,
 				12BC72731C78531700FC6A1C /* WithdrawadsRecordListModel.m in Sources */,
 				123666D11C449760000FAF70 /* OverdueCell.m in Sources */,
 				12CE12021C50AF2600FF85FA /* WaitSendOrderMoneyCell.m in Sources */,
