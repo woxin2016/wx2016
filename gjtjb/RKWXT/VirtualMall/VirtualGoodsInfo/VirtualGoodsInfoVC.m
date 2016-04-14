@@ -441,7 +441,10 @@
         if (row == 0) {
             _isOpen = !_isOpen;
             [cell changeArrowWithDown:!_isOpen];
+              cell.selectionStyle = _isOpen ? UITableViewCellSelectionStyleNone :UITableViewCellSelectionStyleGray;
             [self didSeleCellisOpne];
+       
+          
         }
     }
     
@@ -470,6 +473,12 @@
 
 #pragma mark -- DownView
 - (void)buyBtnVirtual{
+    
+    if([_model.goodsInfoArr count] == 0){
+        [UtilTool showAlertView:@"数据加载失败"];
+        return;
+    }
+    
     stockView = [[VirtualStockGoodsView alloc]init];
     if (self.type == VirtualGoodsType_Store) {
         stockView.type = VirtualStockView_Type_BuyStore;

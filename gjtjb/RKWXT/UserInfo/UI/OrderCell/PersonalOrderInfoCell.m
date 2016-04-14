@@ -7,8 +7,20 @@
 //
 
 #import "PersonalOrderInfoCell.h"
+#import "ShoppingCartView.h"
+
+@interface PersonalOrderInfoCell () <ShoppingCartViewDelegate>
+
+@end
 
 @implementation PersonalOrderInfoCell
+
+/*
+ shoppingCartBtn = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width-35, TopNavigationViewHeight-35, 25, 25)];
+ shoppingCartBtn.delegate = self;
+ [shoppingCartBtn searchShoppingCartNumber];
+ [self.view addSubview:shoppingCartBtn];
+ */
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -17,15 +29,21 @@
         CGFloat btnWidth = 68;
         CGFloat btnHeight = 50;
         WXUIButton *cartBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-        cartBtn.frame = CGRectMake(xOffset, (PersonalOrderInfoCellHeight-btnHeight)/2+3, btnWidth, btnHeight);
-        [cartBtn setImage:[UIImage imageNamed:@"ShoppingCartImg.png"] forState:UIControlStateNormal];
-        [cartBtn setImageEdgeInsets:(UIEdgeInsetsMake(0, 35, btnHeight/2, 0))];
-        [cartBtn setTitle:@"购物车" forState:UIControlStateNormal];
-        [cartBtn setTitleEdgeInsets:(UIEdgeInsetsMake(20, 7, 0, 0))];
-        [cartBtn setTitleColor:WXColorWithInteger(0x707070) forState:UIControlStateNormal];
-        [cartBtn.titleLabel setFont:WXFont(13.0)];
+        cartBtn.frame = CGRectMake(xOffset, (PersonalOrderInfoCellHeight-50)/2 + 3, btnWidth, btnHeight);
         [cartBtn addTarget:self action:@selector(toMyShoppingCart) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:cartBtn];
+        ShoppingCartView *cartBtn1 = [[ShoppingCartView alloc]initWithFrame:CGRectMake(35/2, 0, btnWidth, 25)];
+        cartBtn1.delegate = self;
+        [cartBtn1 searchShoppingCartNumber];
+        [cartBtn1 replaceBtnImage:@"ShoppingCartImg.png"];
+        [cartBtn addSubview:cartBtn1];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(35/2, cartBtn1.bottom , btnWidth, 20)];
+        label.text = @"购物车";
+        label.font = WXFont(13.0);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = WXColorWithInteger(0x707070);
+        [cartBtn addSubview:label];
+        
         
         
         xOffset += btnWidth+xOffset;
@@ -74,6 +92,12 @@
 -(void)waitReceive{
     if(_delegate && [_delegate respondsToSelector:@selector(personalInfoToWaitReceiveOrderList)]){
         [_delegate personalInfoToWaitReceiveOrderList];
+    }
+}
+
+- (void)shoppingCartViewInShoppingVC{
+    if(_delegate && [_delegate respondsToSelector:@selector(personalInfoToShoppingCart)]){
+        [_delegate personalInfoToShoppingCart];
     }
 }
 

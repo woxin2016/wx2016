@@ -67,11 +67,9 @@ enum{
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     if (_tableView) {
         [_tableView reloadSections:[NSIndexSet indexSetWithIndex:VirtualOrder_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
     }
-    
 }
 
 - (void)addOBS{
@@ -131,6 +129,10 @@ enum{
     [cancelBtn addTarget:self action:@selector(cancelOrder) forControlEvents:UIControlEventTouchUpInside];
     cancelBtn.titleLabel.font = WXFont(14.0);
     [footView addSubview:cancelBtn];
+    
+    UIView *marView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Size.width, 0.5)];
+    marView.backgroundColor = RGB_COLOR(210, 210, 210);
+    [footView addSubview:marView];
     
     footView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
     return footView;

@@ -26,7 +26,7 @@
     [self setCSTTitle:@"充值"];
     [self setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
     
-    [self createUpImgView];
+//    [self createUpImgView];
     [self createBaseView];
 }
 
@@ -52,7 +52,7 @@
 
 -(void)createBaseView{
     CGFloat xOffset = 19;
-    CGFloat yOffset = 60;
+    CGFloat yOffset = 7;
     CGFloat numWidth = 36;
     CGFloat numHeight = 17;
     WXUIView *backLabel = [[WXUIView alloc] init];
@@ -111,7 +111,6 @@
     yOffset = backLabel.frame.origin.y+2*EveryCellHeight+50;
     UIButton *okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     okBtn.frame = CGRectMake(13, yOffset, Size.width-2*13, EveryCellHeight);
-    [okBtn setBorderRadian:6.0 width:1.0 color:[UIColor clearColor]];
     [okBtn setBackgroundColor:WXColorWithInteger(AllBaseColor)];
     [okBtn setTitle:@"确定" forState:UIControlStateNormal];
     [okBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];

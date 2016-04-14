@@ -35,13 +35,13 @@
         self.width = IPHONE_SCREEN_WIDTH;
         
         CGFloat xOffset = 10;
-        CGFloat yOffset = 10;
+        CGFloat yOffset = 7;
         CGFloat imageH = 100;
         CGFloat imageW = imageH;
         _imgView = [[WXRemotionImgBtn alloc]initWithFrame:CGRectMake(xOffset, yOffset, imageW, imageH)];
         [self.contentView addSubview:_imgView];
         
-        xOffset += imageW + 10;
+        xOffset += imageW + 5;
         yOffset += 2;
         CGFloat nameLH = 35;
         CGFloat nameLW = (self.width - 30) - imageW;
@@ -87,6 +87,9 @@
         moneyL.textColor = [UIColor grayColor];
         [self.contentView addSubview:moneyL];
         
+        UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, [ViteualExchangeCell cellHeightOfInfo:nil] - 0.5 , self.width - xOffset, 0.5)];
+        didView.backgroundColor = WXColorWithInteger(0xd6d6d6);
+        [self.contentView addSubview:didView];
     }
     return self;
 }
@@ -109,7 +112,7 @@
 }
 
 + (CGFloat)cellHeightOfInfo:(id)cellInfo{
-    return 120;
+    return 114;
 }
 
 

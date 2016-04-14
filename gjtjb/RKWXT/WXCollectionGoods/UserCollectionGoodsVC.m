@@ -184,8 +184,8 @@
     [imgView setImage:[UIImage imageNamed:@"AddressEmptyImg.png"]];
     [self addSubview:imgView];
     
-    CGFloat logoWidth = 45;
-    CGFloat logoHeight = logoWidth;
+    CGFloat logoWidth = 44;
+    CGFloat logoHeight = 38;
     WXUIImageView *logoView = [[WXUIImageView alloc] init];
     logoView.frame = CGRectMake((imgWidth-logoWidth)/2, (imgHeight-logoHeight)/2, logoWidth, logoHeight);
     [logoView setImage:[UIImage imageNamed:@"AddressEmptyCollention.png"]];

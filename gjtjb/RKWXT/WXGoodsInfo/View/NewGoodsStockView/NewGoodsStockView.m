@@ -307,8 +307,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserBuyGoods object:nil];
     }
     
-     [self isClicked];
+    
     entity.selected = NO;
+     [self isClicked];
 }
 
 

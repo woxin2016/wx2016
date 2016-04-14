@@ -179,7 +179,7 @@
         [UtilTool showAlertView:@"请输入提现金额"];
         return;
     }
-    if([_userTextField.text floatValue] < 0){
+    if([_userTextField.text floatValue] < 20){
         [UtilTool showAlertView:@"金额满20元才可以提现"];
         return;
     }

@@ -17,7 +17,7 @@
 #import "MJRefresh.h"
 
 
-@interface VirtualOrderListVC ()<UITableViewDataSource,UITableViewDelegate,VirtualOrderListModelDelegate>
+@interface VirtualOrderListVC ()<UITableViewDataSource,UITableViewDelegate,VirtualOrderListModelDelegate,VirtualOrderListCellDelegate>
 {
     UITableView *_tableView;
     VirtualOrderListModel *_model;
@@ -43,7 +43,25 @@
     
     [self requestNetWork];
     
-     [self setupRefresh];
+    [self setupRefresh];
+    
+    [self addOBS];
+}
+
+
+
+- (void)addOBS{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ConfirmOrderSuccend) name:V_Notification_Name_CancelVirtualConfirmOrderSuccend object:nil];
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ConfirmOrderFailure) name:V_Notification_Name_CancelVirtualConfirmOrderFailure object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self removeOBS];
+}
+
+- (void)removeOBS{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)initializeTableView{
@@ -85,6 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VirtualOrderListCell *cell = [VirtualOrderListCell VirtualOrderListCellWithTabelView:_tableView];
     [cell setCellInfo:_model.listArray[indexPath.row]];
+    cell.delegate = self;
     [cell load];
     return cell;
 }
@@ -176,7 +195,33 @@
    [_model loadVirtualOrderListWithStart:[_model.listArray count] lenght:10];
 }
 
+#pragma mark cell delegate
+-(void)confirmGoodsBtn:(NSInteger)orderID{
+    [_model confirmOrderBtnWithOrderID:orderID];
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+}
 
+- (void)ConfirmOrderSuccend{
+    [self unShowWaitView];
+    
+    [_tableView reloadData];
+}
+
+- (void)ConfirmOrderFailure{
+    [self unShowWaitView];
+    [UtilTool showAlertView:@"确认收货失败"];
+}
+
+- (void)VirtualConfirmOrderSuccend{
+    [self unShowWaitView];
+    
+    [self requestNetWork];
+}
+
+-(void)VirtualConfirmOrderFailure:(NSString *)failure{
+    [self unShowWaitView];
+    [UtilTool showAlertView:failure];
+}
 
 
 @end

@@ -138,6 +138,10 @@ enum{
         allMonery.text = [NSString stringWithFormat:@"合计:￥%.2f",(self.virtualOrder.postage + self.virtualOrder.goodsPrice)];
     }
     
+    UIView *marView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Size.width, 0.5)];
+    marView.backgroundColor = RGB_COLOR(210, 210, 210);
+    [footView addSubview:marView];
+    
     footView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
     return footView;
 }

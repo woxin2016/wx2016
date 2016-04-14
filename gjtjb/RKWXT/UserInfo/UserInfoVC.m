@@ -389,7 +389,6 @@
     if (row == userXNBOrder) {
         [cell.imageView setImage:[UIImage imageNamed:@"userXNBorder.png"]];
         [cell.textLabel setText:@"兑换订单"];
-        [cell load];
     }else if(row == UserCloudTicket){
         [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
         [cell.textLabel setText:@"我的云票"];

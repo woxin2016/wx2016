@@ -919,7 +919,6 @@
 		DD24CF671CA2397D00A5B9ED /* CollectionGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF661CA2397D00A5B9ED /* CollectionGoodsCell.m */; };
 		DD24CF6A1CA23D8100A5B9ED /* CollectionGoodsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF691CA23D8100A5B9ED /* CollectionGoodsEntity.m */; };
 		DD24CF991CA26C7200A5B9ED /* collectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF981CA26C7200A5B9ED /* collectionView.m */; };
-		DD24CF9B1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD24CF9A1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png */; };
 		DD2572051C9FA6C6008D541E /* DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2572041C9FA6C6008D541E /* DropdownMenu.m */; };
 		DD2572081C9FA7D2008D541E /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2572071C9FA7D2008D541E /* UIViewAdditions.m */; };
 		DD25720D1C9FC6AF008D541E /* searchGoods@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25720B1C9FC6AF008D541E /* searchGoods@2x.png */; };
@@ -929,6 +928,7 @@
 		DD2572191C9FD3C0008D541E /* searchShopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2572181C9FD3C0008D541E /* searchShopIcon@2x.png */; };
 		DD25721B1C9FD3C5008D541E /* searchGoodsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721A1C9FD3C5008D541E /* searchGoodsIcon@2x.png */; };
 		DD25721D1C9FE39D008D541E /* NewinitImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */; };
+		DD288B301CBF6EE900A18845 /* AddressEmptyCollention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD288B2F1CBF6EE900A18845 /* AddressEmptyCollention@2x.png */; };
 		DD2CA8661CBB3728008D0AE6 /* VirtualUserMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA8651CBB3728008D0AE6 /* VirtualUserMessageCell.m */; };
 		DD2CA86A1CBB3C9D008D0AE6 /* VirtualPayMoneryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA8691CBB3C9D008D0AE6 /* VirtualPayMoneryCell.m */; };
 		DD2CA86D1CBB3CEE008D0AE6 /* VirtualPayXNBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA86C1CBB3CEE008D0AE6 /* VirtualPayXNBCell.m */; };
@@ -2695,7 +2695,6 @@
 		DD24CF691CA23D8100A5B9ED /* CollectionGoodsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionGoodsEntity.m; sourceTree = "<group>"; };
 		DD24CF971CA26C7200A5B9ED /* collectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionView.h; sourceTree = "<group>"; };
 		DD24CF981CA26C7200A5B9ED /* collectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionView.m; sourceTree = "<group>"; };
-		DD24CF9A1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddressEmptyCollention@2x.png"; path = "../AddressEmptyCollention@2x.png"; sourceTree = "<group>"; };
 		DD2572031C9FA6C6008D541E /* DropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownMenu.h; sourceTree = "<group>"; };
 		DD2572041C9FA6C6008D541E /* DropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownMenu.m; sourceTree = "<group>"; };
 		DD2572061C9FA7D2008D541E /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
@@ -2708,6 +2707,7 @@
 		DD2572181C9FD3C0008D541E /* searchShopIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchShopIcon@2x.png"; sourceTree = "<group>"; };
 		DD25721A1C9FD3C5008D541E /* searchGoodsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchGoodsIcon@2x.png"; sourceTree = "<group>"; };
 		DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewinitImage@2x.png"; sourceTree = "<group>"; };
+		DD288B2F1CBF6EE900A18845 /* AddressEmptyCollention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEmptyCollention@2x.png"; sourceTree = "<group>"; };
 		DD2CA8641CBB3728008D0AE6 /* VirtualUserMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualUserMessageCell.h; sourceTree = "<group>"; };
 		DD2CA8651CBB3728008D0AE6 /* VirtualUserMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualUserMessageCell.m; sourceTree = "<group>"; };
 		DD2CA8681CBB3C9D008D0AE6 /* VirtualPayMoneryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualPayMoneryCell.h; sourceTree = "<group>"; };
@@ -5339,9 +5339,9 @@
 		12CD08CC1C9B94C30028A629 /* UserAddress */ = {
 			isa = PBXGroup;
 			children = (
+				DD288B2F1CBF6EE900A18845 /* AddressEmptyCollention@2x.png */,
 				12CD08CD1C9B94E50028A629 /* AddressEmptyImg@2x.png */,
 				12CD08CE1C9B94E50028A629 /* AddressEmptyLogo@2x.png */,
-				DD24CF9A1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png */,
 			);
 			path = UserAddress;
 			sourceTree = "<group>";
@@ -7798,7 +7798,6 @@
 				124535421AE9D146004198C9 /* sign14@2x.png in Resources */,
 				122D63AE1C3F465A0086AAB8 /* MyCutImg@2x.png in Resources */,
 				127FDD781B57A76E0059BDB6 /* CallBtnUpImg@2x.png in Resources */,
-				DD24CF9B1CA2752B00A5B9ED /* AddressEmptyCollention@2x.png in Resources */,
 				121121101BA2775000651E4A /* MyCutTeam@2x.png in Resources */,
 				1245354F1AE9D146004198C9 /* sign27@2x.png in Resources */,
 				DD8D0F641C9D530100882ADA /* SignSeleNow@2x.png in Resources */,
@@ -7836,6 +7835,7 @@
 				1241E5531AE9D89B00811D3F /* keyboardEye@2x.png in Resources */,
 				12F3CC7D1B1DE82C00E64DE4 /* ShoppingCartImg@2x.png in Resources */,
 				12C069191B7C743600C05D42 /* FindUnionImg@2x.png in Resources */,
+				DD288B301CBF6EE900A18845 /* AddressEmptyCollention@2x.png in Resources */,
 				12F46A3A1B20012000B8EC98 /* T_AttentionSel@2x.png in Resources */,
 				1241E5681AE9D91400811D3F /* wxtRecharge@2x.png in Resources */,
 				127FDD7B1B57B2570059BDB6 /* woxinHidIcon@2x.png in Resources */,

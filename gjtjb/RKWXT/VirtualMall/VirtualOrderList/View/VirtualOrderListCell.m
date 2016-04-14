@@ -18,6 +18,8 @@
         UILabel *orderID;
         UILabel *timeL;
         UILabel *stautsL;
+        UIButton *comBtn;
+    BOOL _isAppear;
 }
 @end
 
@@ -60,7 +62,7 @@
         
         
         xOffset += imageW + 10;
-        yOffset += 3;
+        yOffset -= 3;
         CGFloat nameLH = 35;
         CGFloat nameLW = (self.width - 30) - imageW - timeW;
         nameL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, nameLH)];
@@ -80,6 +82,16 @@
         [self.contentView addSubview:orderID];
         
         
+        
+        CGFloat comH = 25;
+        comBtn = [[UIButton alloc]initWithFrame:stautsL.frame];
+        comBtn.height = comH;
+        [comBtn addTarget:self action:@selector(clickComBtn) forControlEvents:UIControlEventTouchUpInside];
+        [comBtn setTitle:@"确认收货" forState:UIControlStateNormal];
+         comBtn.titleLabel.font = WXFont(13.0);
+        comBtn.backgroundColor = WXColorWithInteger(0xdd2726);
+        [self.contentView addSubview:comBtn];
+        
     }
     return self;
 }
@@ -95,14 +107,27 @@
     nameL.text = entity.goods_name;
     nameL.textAlignment = NSTextAlignmentLeft;
     orderID.text = [NSString stringWithFormat:@"订单号:%d",entity.order_id];
-    
+    if (_isAppear) {
+        comBtn.hidden = NO;
+        stautsL.hidden = YES;
+    }else{
+        comBtn.hidden = YES;
+        stautsL.hidden = NO;
+    }
 }
 
+- (void)clickComBtn{
+    virtualOrderListEntity *entity = self.cellInfo;
+    if (_delegate && [_delegate respondsToSelector:@selector(confirmGoodsBtn:)]) {
+        [_delegate confirmGoodsBtn:entity.order_id];
+    }
+}
 
 - (NSString*)orderStants:(virtualOrderListEntity*)entity{
     NSString *str = nil;
+    _isAppear = NO;
     if (entity.order_status == VirtualOrder_Status_Done) { //已完成
-        str = @"已兑换";
+        str = @"已完成";
     }else if (entity.order_status == VirtualOrder_Status_Close){
         str = @"已关闭";
     }else{
@@ -110,16 +135,17 @@
             
             if (entity.send_status == VirtualOrder_Send_Done) { //已发货
                 str = @"已发货";
+                _isAppear = YES;
             }else{
-                str = @"未发货";
+                str = @"待发货";
             }
-            
         }else{
             str = @"待兑换";
         }
     }
     return str;
 }
+
 
 
 - (NSString*)orderTime:(NSTimeInterval)timeVal{

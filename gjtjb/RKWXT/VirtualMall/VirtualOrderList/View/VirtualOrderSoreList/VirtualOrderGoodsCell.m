@@ -44,14 +44,14 @@
         xOffset += imgWidth+10;
         yOffset += 2;
         CGFloat nameWidth = self.width - xOffset - 10;
-        CGFloat nameHeight = 25;
+        CGFloat nameHeight = 35;
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameHeight);
         [_nameLabel setBackgroundColor:[UIColor clearColor]];
         [_nameLabel setTextAlignment:NSTextAlignmentLeft];
         [_nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [_nameLabel setNumberOfLines:0];
-        [_nameLabel setFont:WXFont(15.0)];
+        [_nameLabel setNumberOfLines:2];
+        [_nameLabel setFont:WXFont(14.0)];
         [self.contentView addSubview:_nameLabel];
         
         yOffset += nameHeight + 3;

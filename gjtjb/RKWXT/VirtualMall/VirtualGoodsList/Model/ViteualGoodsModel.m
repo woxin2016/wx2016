@@ -15,6 +15,7 @@
 {
     NSMutableArray *_goodsArray;
     ModelType  notType;
+    BOOL isRemoAll;
     
     // 顶部大图
     NSMutableArray *_downImgArr;
@@ -105,6 +106,8 @@
  */
 - (void)viteualGoodsModelRequeatNetWork:(ModelType)type start:(NSInteger)start length:(NSInteger)length{
    
+    isRemoAll = start == 0;
+    
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
     baseDic[@"pid"]= @"ios";
@@ -146,10 +149,10 @@
 }
 
 - (void)handleReturnData:(NSArray*)data type:(ModelType)type{
-    
+   
     if ([data count] <= 0) return;
     
-    if (notType != type) {
+    if (notType != type  || isRemoAll) {
         notType = type;
        [_goodsArray removeAllObjects];
     }

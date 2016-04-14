@@ -8,6 +8,13 @@
 
 #import "WXUITableViewCell.h"
 
+@protocol VirtualOrderListCellDelegate;
 @interface VirtualOrderListCell : WXUITableViewCell
+@property (nonatomic,weak)id<VirtualOrderListCellDelegate>  delegate;
 + (instancetype)VirtualOrderListCellWithTabelView:(UITableView*)tableView;
+@end
+
+
+@protocol VirtualOrderListCellDelegate <NSObject>
+- (void)confirmGoodsBtn:(NSInteger)orderID;
 @end

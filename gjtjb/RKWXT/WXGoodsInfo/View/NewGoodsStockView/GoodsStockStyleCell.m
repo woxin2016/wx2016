@@ -81,9 +81,11 @@
 
 - (void)setLabelBackGroundColor:(BOOL)hid{
     if (hid) {
-        stockBtn.backgroundColor = RGB_COLOR(211, 208, 211);
+        stockBtn.textColor = [UIColor colorWithHexString:@"#f74f35"];
+        [stockBtn setBorderRadian:0 width:1.0 color:[UIColor colorWithHexString:@"#f74f35"]];
     }else{
-        stockBtn.backgroundColor = [UIColor whiteColor];
+        stockBtn.textColor = [UIColor colorWithHexString:@"#969696"];
+        [stockBtn setBorderRadian:0 width:1.0 color:RGB_COLOR(210, 210, 210)];
     }
 }
 

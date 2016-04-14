@@ -18,6 +18,7 @@
     UILabel *_unreadLabel;
     NSInteger _number;
     ShoppingCartModel *model;
+    WXUIButton *_leftBtn;
 }
 @end
 
@@ -27,23 +28,23 @@
     if (self = [super initWithFrame:frame]) {
         UIImage *btnImg = [UIImage imageNamed:@"Shopping.png"];
         
-        WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-        leftBtn.frame = CGRectMake(0, 0,frame.size.width, frame.size.height);
-        [leftBtn setImage:btnImg forState:UIControlStateNormal];
-        [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [leftBtn.titleLabel setFont:WXFont(10.0)];
-        [leftBtn addTarget:self action:@selector(goShoppingVC) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:leftBtn];
+        _leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+        _leftBtn.frame = CGRectMake(0, 0,frame.size.width, frame.size.height);
+        [_leftBtn setImage:btnImg forState:UIControlStateNormal];
+        [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_leftBtn.titleLabel setFont:WXFont(10.0)];
+        [_leftBtn addTarget:self action:@selector(goShoppingVC) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_leftBtn];
         
         
         UIImage *image = [UIImage imageNamed:@"unreadBg.png"];
         CGSize imgSize = image.size;
         _unreadNumberImgV = [[UIImageView alloc] initWithImage:image];
-        CGFloat X = leftBtn.frame.size.width / 2 + imgSize.width / 3.0;
+        CGFloat X = _leftBtn.frame.size.width / 2 + imgSize.width / 4.0;
         CGFloat Y = - (imgSize.height / 4);
         CGRect unreadViewRect = CGRectMake(X,Y, imgSize.width, imgSize.height);
         [_unreadNumberImgV setFrame:unreadViewRect];
-        [leftBtn addSubview:_unreadNumberImgV];
+        [_leftBtn addSubview:_unreadNumberImgV];
         [_unreadNumberImgV setHidden:_number];
         
         
@@ -51,7 +52,7 @@
         [_unreadLabel setFont:[UIFont systemFontOfSize:9.0]];
         [_unreadLabel setTextColor:[UIColor whiteColor]];
          _unreadLabel.textAlignment = NSTextAlignmentCenter;
-        [leftBtn addSubview:_unreadLabel];
+        [_leftBtn addSubview:_unreadLabel];
         
         [self addOBS];
     }
@@ -110,6 +111,11 @@
     if (_delegate && [_delegate respondsToSelector:@selector(shoppingCartViewInShoppingVC)]) {
         [_delegate shoppingCartViewInShoppingVC];
     }
+}
+
+- (void)replaceBtnImage:(NSString*)imageName{
+    UIImage *image = [UIImage imageNamed:imageName];
+    [_leftBtn setImage:image forState:UIControlStateNormal];
 }
 
 @end

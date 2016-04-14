@@ -262,6 +262,9 @@
         case WXT_UrlFeed_Type_VirtualOrder:
             url = @"/insert_exchange_order.php";
             break;
+        case WXT_UrlFeed_Type_VirtualConfirmOrder:
+            url = @"//order_success.php";
+            break;
         case WXT_UrlFeed_Type_New_MoreMoneyInfo:
             url = @"/balance.php";
             break;

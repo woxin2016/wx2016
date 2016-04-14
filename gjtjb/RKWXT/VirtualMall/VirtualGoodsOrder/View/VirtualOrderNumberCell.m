@@ -63,7 +63,7 @@
 - (NSString*)orderStants:(virtualOrderListEntity*)entity{
     NSString *str = nil;
     if (entity.order_status == VirtualOrder_Status_Done) { //已完成
-        str = @"已兑换";
+        str = @"已完成";
     }else if (entity.order_status == VirtualOrder_Status_Close){
         str = @"已关闭";
     }else{
@@ -74,7 +74,6 @@
             }else{
                 str = @"未发货";
             }
-            
         }else{
             str = @"待兑换";
         }

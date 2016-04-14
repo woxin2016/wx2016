@@ -80,6 +80,7 @@ enum{
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self addSubview:_tableView];
 }
 
@@ -92,6 +93,7 @@ enum{
 - (void)setupRefresh{
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+    [_tableView addHeaderWithTarget:self action:@selector(requestNetWork)];
     
     //设置文字
     _tableView.headerPullToRefreshText = @"下拉刷新";
@@ -237,6 +239,7 @@ enum{
         default:
             break;
     }
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 #pragma mark -- footerRefreshing
@@ -312,6 +315,7 @@ enum{
 -(void)viteualGoodsModelFailed:(NSString *)errorMsg{
     [self unShowWaitView];
     
+    [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [UtilTool showAlertView:errorMsg];
 }
@@ -319,6 +323,7 @@ enum{
 -(void)viteualGoodsModelSucceed{
     [self unShowWaitView];
     
+    [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:SubSections_List] withRowAnimation:UITableViewRowAnimationNone];
 }

@@ -13,6 +13,7 @@
 @interface ShoppingCartView : UIView
 @property (nonatomic,weak)id <ShoppingCartViewDelegate> delegate;
 - (void)searchShoppingCartNumber;
+- (void)replaceBtnImage:(NSString*)imageName;  //替换图片
 @end
 
 @protocol ShoppingCartViewDelegate <NSObject>

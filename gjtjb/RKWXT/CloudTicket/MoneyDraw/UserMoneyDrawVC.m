@@ -158,7 +158,7 @@
         [UtilTool showTipView:@"请输入提现金额"];
         return;
     }
-    if(drawMoney < 0){
+    if(drawMoney < 20){
         [UtilTool showTipView:@"提现金额需大于20元"];
         return;
     }

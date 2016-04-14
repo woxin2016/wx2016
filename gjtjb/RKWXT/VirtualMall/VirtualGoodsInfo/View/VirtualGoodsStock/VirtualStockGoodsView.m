@@ -127,8 +127,8 @@
 // 商品样式
 - (WXUITableViewCell*)tableViewGoodsStyleWithRow:(NSInteger)row{
     GoodsStockStyleCell *cell = [GoodsStockStyleCell GoodsStockStyleCellWithTableView:tableViews];
-    entity = goodsStockArr[row];
-    [cell setCellInfo:entity];
+   VirtualGoodsInfoEntity *goodsEntity = goodsStockArr[row];
+    [cell setCellInfo:goodsEntity];
     [cell load];
     if (row == 0) {
         [cell setLabelHid:NO];
@@ -136,7 +136,7 @@
         [cell setLabelHid:YES];
     }
   
-    [cell setLabelBackGroundColor:entity.selected];
+    [cell setLabelBackGroundColor:goodsEntity.selected];
     return cell;
 }
 
@@ -324,10 +324,10 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_VirtualEXchangeBuyGoods object:nil];
     }
     
-     [self isClicked];
      entity.selected = NO;
+     [self isClicked];
+    
 }
-
 
 
 @end

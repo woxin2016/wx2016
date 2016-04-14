@@ -69,6 +69,7 @@
     dic[@"start_item"] = [NSNumber numberWithInteger:start];
     dic[@"length"] = [NSNumber numberWithInteger:lenght];
     
+    __block VirtualOrderListModel *blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_VirtualOrderList httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
             if (_delegate && [_delegate respondsToSelector:@selector(virtualGoodsOrderListFailed:)]) {
@@ -76,7 +77,7 @@
             }
             
         }else{
-            [self analyticalProcessingOrderData:retData.data[@"data"]];
+            [blockSelf analyticalProcessingOrderData:retData.data[@"data"]];
             if (_delegate && [_delegate respondsToSelector:@selector(VirtualOrderListLoadSucceed)]) {
                 [_delegate VirtualOrderListLoadSucceed];
             }
@@ -149,5 +150,55 @@
     
 }
 
+/*
+ 接口名称:确认完成收货
+ 接口地址:https://oldyun.67call.com/wx10api/V1/order_success.php
+ 请求方式:POST
+ 输入参数:
+ pid:平台类型(android,ios),
+ ts:时间戳,
+ woxin_id : 我信ID
+ phone:手机号码,
+ pwd:密码,
+ order_id:订单ID,
+ sign: 签名,
+ 返回数据格式:json
+ 成功返回: error :0  data:数据
+ 失败返回:error :1  msg:错误信息
+ */
+- (void)confirmOrderBtnWithOrderID:(NSInteger)orderID{
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
+    baseDic[@"pid"]= @"ios";
+    baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    baseDic[@"woxin_id"]= userObj.wxtID;
+    baseDic[@"phone"]= userObj.user;
+    baseDic[@"pwd"]= [UtilTool md5:userObj.pwd];
+    baseDic[@"order_id"] = [NSNumber numberWithInteger:orderID];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"pid"]= @"ios";
+    dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    dic[@"woxin_id"]= userObj.wxtID;
+    dic[@"phone"]= userObj.user;
+    dic[@"pwd"]= [UtilTool md5:userObj.pwd];
+    dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
+    dic[@"order_id"] = [NSNumber numberWithInteger:orderID];
+    
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_VirtualConfirmOrder httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
+        if (retData.code != 0){
+//            [[NSNotificationCenter defaultCenter]postNotificationName:V_Notification_Name_CancelVirtualConfirmOrderFailure object:nil];
+            if (_delegate && [_delegate respondsToSelector:@selector(VirtualConfirmOrderFailure:)]) {
+                [_delegate VirtualConfirmOrderFailure:retData.errorDesc];
+            }
+        }else{
+//            [[NSNotificationCenter defaultCenter]postNotificationName:V_Notification_Name_CancelVirtualConfirmOrderSuccend object:nil];
+            if (_delegate && [_delegate respondsToSelector:@selector(VirtualConfirmOrderSuccend)]) {
+                [_delegate VirtualConfirmOrderSuccend];
+            }
+        }
+    }];
+
+}
 
 @end
