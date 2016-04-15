@@ -159,7 +159,7 @@
     [buyBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
     [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [buyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [buyBtn setBackgroundColor:[UIColor redColor]];
+    [buyBtn setBackgroundColor:[UIColor colorWithHexString:@"f74f35"]];
     [downView addSubview:buyBtn];
     
    
@@ -171,7 +171,7 @@
     [addBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [addBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
+    [addBtn setBackgroundColor:RGB_COLOR(245, 138, 10)];
     [downView addSubview:addBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
@@ -732,7 +732,7 @@
 
 -(void)addShoppingCartSucceed:(NSNotification*)notification{
     [self unShowWaitView];
-    [UtilTool showTipView:@"加入购物车成功"];
+    [UtilTool showRoundView:@"加入购物车成功"];
 }
 
 -(void)addShoppingCartFailed:(NSNotification*)notification{
@@ -741,7 +741,7 @@
     if(!errorMsg){
         errorMsg = @"未能加入购物车";
     }
-    [UtilTool showTipView:errorMsg];
+    [UtilTool showRoundView:errorMsg];
 }
 
 -(NSString*)remoHomeImgPre:(NSString*)homeImg{
@@ -767,7 +767,7 @@
     [self unShowWaitView];
     _isGoodsAttenion = NO;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
-    [UtilTool showTipView:@"取消收藏"];
+    [UtilTool showRoundView:@"取消收藏"];
 }
 
 - (void)requestSucceed:(NSNotification*)tion{
@@ -775,7 +775,7 @@
     [self lickGoodsInfo:tion];
      _isGoodsAttenion = YES;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
-    [UtilTool showTipView:@"收藏成功"];
+    [UtilTool showRoundView:@"收藏成功"];
 }
 
 - (void)lickGoodsInfo:(NSNotification*)tion{
@@ -788,15 +788,15 @@
 
 #pragma mark desCellDelegate
 -(void)goodsInfoDesCarriageBtnClicked{
-    [UtilTool showTipView:@"该商品免运费"];
+    [UtilTool showRoundView:@"该商品免运费"];
 }
 
 -(void)goodsInfoDesCutBtnClicked{
-    [UtilTool showTipView:@"该商品有分成"];
+    [UtilTool showRoundView:@"该商品有分成"];
 }
 
 - (void)goodsInfoDesredPacketBtnClicked{
-    [UtilTool showTipView:@"该商品可以使用红包"];
+    [UtilTool showRoundView:@"该商品可以使用红包"];
 }
 
 - (void)goodsInfoDesAddlikeGoods:(BOOL)isAttection{
@@ -808,30 +808,7 @@
 }
 
 #pragma mark collection
--(void)userCollectionBtnClicked{
-//    LMGoodsInfoEntity *entity = nil;
-//    if([_model.goodsInfoArr count] > 0){
-//        entity = [_model.goodsInfoArr objectAtIndex:0];
-//    }
-//    if(collection_type == LMGoods_Collection_None){
-//        [_collectionModel lmCollectionData:entity.goodshop_id goods:entity.goodsID type:LMCollection_Type_Goods dataType:CollectionData_Type_Add];
-//    }
-//    if(collection_type == LMGoods_Collection_Has){
-//        [_collectionModel lmCollectionData:entity.goodshop_id goods:entity.goodsID type:LMCollection_Type_Goods dataType:CollectionData_Type_Deleate];
-//    }
-}
 
--(void)goodsCollectionSucceed{
-//    collection_type = LMGoods_Collection_Has;
-//    [collectionBtn setImage:[UIImage imageNamed:@"LMGoodsAttention.png"] forState:UIControlStateNormal];
-//    [UtilTool showTipView:@"收藏成功"];
-}
-
--(void)goodsCancelCollectionSucceed{
-//    collection_type = LMGoods_Collection_None;
-//    [collectionBtn setImage:[UIImage imageNamed:@"T_Attention.png"] forState:UIControlStateNormal];
-//    [UtilTool showTipView:@"取消收藏"];
-}
 
 #pragma mark sharedDelegate
 -(void)menuButtonClicked:(int)index{

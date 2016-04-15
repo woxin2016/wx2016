@@ -58,6 +58,7 @@ enum{
         _model.delegate = self;
         _isExchange = NO;
         _heardView = [[VietualHeardView alloc]initWithFrame:CGRectMake(0, 0,IPHONE_SCREEN_WIDTH, heardViewH)];
+        _heardView.backgroundColor = [UIColor whiteColor];
         _heardView.delegate  =self;
     }
     return self;
@@ -67,7 +68,6 @@ enum{
     [super viewDidLoad];
     [self setCSTTitle:@"云票返现"];
     
-    
     [self initTabelView];
     
     [self requestNetWork];
@@ -76,7 +76,7 @@ enum{
 }
 
 - (void)initTabelView{
-    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -325,7 +325,7 @@ enum{
     
     [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
-    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:SubSections_List] withRowAnimation:UITableViewRowAnimationNone];
+    [_tableView reloadData];
 }
 
 -(void)viteualTopImgFailed:(NSString *)errorMsg{

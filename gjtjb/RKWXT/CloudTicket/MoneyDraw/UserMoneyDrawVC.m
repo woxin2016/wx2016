@@ -79,7 +79,7 @@
     [infoLabel sizeToFit];
     
     yOffset += infoHeight+35;
-    CGFloat btnWidth = IPHONE_SCREEN_WIDTH*3/4;
+    CGFloat btnWidth = IPHONE_SCREEN_WIDTH-2*20;
     CGFloat btnHeight = 40;
     WXUIButton *submitBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     submitBtn.frame = CGRectMake((IPHONE_SCREEN_WIDTH-btnWidth)/2, yOffset, btnWidth, btnHeight);

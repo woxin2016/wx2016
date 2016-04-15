@@ -45,7 +45,7 @@
         stockBtn = [[WXUILabel alloc]initWithFrame:CGRectZero];
         stockBtn.font = WXFont(13.0);
         stockBtn.textColor = [UIColor colorWithHexString:@"#969696"];
-        [stockBtn setBorderRadian:0 width:1.0 color:RGB_COLOR(210, 210, 210)];
+        [stockBtn setBorderRadian:0 width:0.5 color:RGB_COLOR(210, 210, 210)];
         stockBtn.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:stockBtn];
     }

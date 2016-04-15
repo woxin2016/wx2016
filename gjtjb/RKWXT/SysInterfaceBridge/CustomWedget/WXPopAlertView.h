@@ -26,5 +26,6 @@ typedef enum {
 @property (nonatomic,assign)CGFloat showTime;
 
 - (id)initWithTip:(NSString*)tip;
+- (instancetype)initRoundWithTip:(NSString*)tip;
 - (void)show;
 @end

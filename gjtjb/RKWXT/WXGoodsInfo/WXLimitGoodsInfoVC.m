@@ -164,7 +164,7 @@
     [limitBuyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [limitBuyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [limitBuyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [limitBuyBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
+    [limitBuyBtn setBackgroundColor:[UIColor colorWithHexString:@"f74f35"]];
     [downView addSubview:limitBuyBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;

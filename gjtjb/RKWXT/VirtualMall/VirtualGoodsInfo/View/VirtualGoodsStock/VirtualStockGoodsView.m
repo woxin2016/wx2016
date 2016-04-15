@@ -113,7 +113,7 @@
 - (WXUITableViewCell*)tableViewGoodsInfoWithRow:(NSInteger)row{
     GoodsInfoStockCell *cell = [GoodsInfoStockCell GoodsInfoStockCellWithTableView:tableViews];
     [cell setCellInfo:goodsStockArr[row]];
-    cell.imgUrl = [goodsArr[0] goodsImg];
+    cell.imgUrl = [goodsArr[0] homeImg];
     [cell load];
     
     if (self.type == VirtualStockView_Type_BuyStore) {
@@ -175,7 +175,7 @@
         NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
         GoodsInfoStockCell *cell = (GoodsInfoStockCell*)[tableView cellForRowAtIndexPath:path];
         [cell setCellInfo:entity];
-        cell.imgUrl = [goodsArr[0] goodsImg];
+        cell.imgUrl = [goodsArr[0] homeImg];
         [cell load];
         
         if (self.type == VirtualStockView_Type_BuyStore) {
@@ -270,7 +270,7 @@
     self.virtualOrder.backMoney = GoodsEntity.backMoney;;
     self.virtualOrder.xnbPrice = GoodsEntity.xnb;
     self.virtualOrder.stockID = GoodsEntity.stockID;
-    self.virtualOrder.goodsImg = infoEntity.virtualImg;
+    self.virtualOrder.goodsImg = infoEntity.homeImg;
     self.virtualOrder.stockName = GoodsEntity.stockName;
     self.virtualOrder.goodsName = infoEntity.goodsName;
     self.virtualOrder.goodsPrice = GoodsEntity.stockPrice;

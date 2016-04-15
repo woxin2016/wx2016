@@ -102,16 +102,15 @@
     CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
     leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-50, 18, 50, 40)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-50, 18, 40, 40)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
     [topView addSubview:_unreadView];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH - 75, 18, 50, 40)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH - 75, 18, 40, 40)];
     btn.backgroundColor = [UIColor clearColor];
     [btn addTarget:self action:@selector(toSysPushMsgView) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:btn];
-    
     
 }
 

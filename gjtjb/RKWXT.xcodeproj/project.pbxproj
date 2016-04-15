@@ -927,7 +927,7 @@
 		DD2572171C9FCD2B008D541E /* searchTopAcc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2572161C9FCD2B008D541E /* searchTopAcc@2x.png */; };
 		DD2572191C9FD3C0008D541E /* searchShopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2572181C9FD3C0008D541E /* searchShopIcon@2x.png */; };
 		DD25721B1C9FD3C5008D541E /* searchGoodsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721A1C9FD3C5008D541E /* searchGoodsIcon@2x.png */; };
-		DD25721D1C9FE39D008D541E /* NewinitImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */; };
+		DD25721D1C9FE39D008D541E /* wxMallinitImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD25721C1C9FE39D008D541E /* wxMallinitImage@2x.png */; };
 		DD288B301CBF6EE900A18845 /* AddressEmptyCollention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD288B2F1CBF6EE900A18845 /* AddressEmptyCollention@2x.png */; };
 		DD2CA8661CBB3728008D0AE6 /* VirtualUserMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA8651CBB3728008D0AE6 /* VirtualUserMessageCell.m */; };
 		DD2CA86A1CBB3C9D008D0AE6 /* VirtualPayMoneryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA8691CBB3C9D008D0AE6 /* VirtualPayMoneryCell.m */; };
@@ -2706,7 +2706,7 @@
 		DD2572161C9FCD2B008D541E /* searchTopAcc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchTopAcc@2x.png"; sourceTree = "<group>"; };
 		DD2572181C9FD3C0008D541E /* searchShopIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchShopIcon@2x.png"; sourceTree = "<group>"; };
 		DD25721A1C9FD3C5008D541E /* searchGoodsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchGoodsIcon@2x.png"; sourceTree = "<group>"; };
-		DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewinitImage@2x.png"; sourceTree = "<group>"; };
+		DD25721C1C9FE39D008D541E /* wxMallinitImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wxMallinitImage@2x.png"; sourceTree = "<group>"; };
 		DD288B2F1CBF6EE900A18845 /* AddressEmptyCollention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddressEmptyCollention@2x.png"; sourceTree = "<group>"; };
 		DD2CA8641CBB3728008D0AE6 /* VirtualUserMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualUserMessageCell.h; sourceTree = "<group>"; };
 		DD2CA8651CBB3728008D0AE6 /* VirtualUserMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualUserMessageCell.m; sourceTree = "<group>"; };
@@ -4888,7 +4888,7 @@
 				122D63B31C3F49A30086AAB8 /* HomePageWallet@2x.png */,
 				12F2D8041B1F01E900C8017F /* failedImage@2x.png */,
 				12F2D8051B1F01E900C8017F /* initImage@2x.png */,
-				DD25721C1C9FE39D008D541E /* NewinitImage@2x.png */,
+				DD25721C1C9FE39D008D541E /* wxMallinitImage@2x.png */,
 				DDEA9EE11B1BFE5D00530C1C /* sysPushMessageIcon@2x.png */,
 				DDEA9EE21B1BFE5D00530C1C /* unreadBg@2x.png */,
 				128221CF1B184E83004613BB /* HomePageLeftBtn@2x.png */,
@@ -7897,7 +7897,7 @@
 				124535101AE9D0BC004198C9 /* MallNormal@2x.png in Resources */,
 				12D52BBB1AC2EF4400C5CE71 /* dtmf-5.aif in Resources */,
 				DD35D8711C84258400422F5B /* ClassifySearchImg@2x.png in Resources */,
-				DD25721D1C9FE39D008D541E /* NewinitImage@2x.png in Resources */,
+				DD25721D1C9FE39D008D541E /* wxMallinitImage@2x.png in Resources */,
 				1241E54F1AE9D89B00811D3F /* 9N@2x.png in Resources */,
 				124535561AE9D146004198C9 /* sign33@2x.png in Resources */,
 				12CD4EBA1C9A57AE003789F8 /* PersonalSexSel@2x.png in Resources */,
@@ -8936,7 +8936,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ding Bin (S7PY53887M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ding Bin (S7PY53887M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen WoXin Network Technology Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (

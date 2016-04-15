@@ -387,8 +387,7 @@
     [cell.textLabel setFont:WXFont(15.0)];
     [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
     if (row == userXNBOrder) {
-        [cell.imageView setImage:[UIImage imageNamed:@"userXNBorder.png"]];
-        [cell.textLabel setText:@"兑换订单"];
+        cell = [self tableViewForOrderListCell];
     }else if(row == UserCloudTicket){
         [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
         [cell.textLabel setText:@"我的云票"];
@@ -400,6 +399,20 @@
         [cell setCellInfo:[NSString stringWithFormat:@"￥%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance]];
         [cell load];
     }
+    return cell;
+}
+
+- (UserCommonShowCell*)tableViewForOrderListCell{
+    static NSString *identifier = @"ForOrderListCell";
+    UserCommonShowCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[UserCommonShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
+    [cell.textLabel setFont:WXFont(15.0)];
+    [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+    [cell.imageView setImage:[UIImage imageNamed:@"userXNBorder.png"]];
+    [cell.textLabel setText:@"兑换订单"];
     return cell;
 }
 

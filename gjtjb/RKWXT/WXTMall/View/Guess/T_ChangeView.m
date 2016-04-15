@@ -34,7 +34,7 @@
 
         CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-3*xGap)/2;
         CGFloat bgHeight = T_HomePageGuessInfoHeight-7;
-        bgBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+        bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         bgBtn.frame = CGRectMake(xGap, 0, bgWidth, bgHeight);
         [bgBtn setBackgroundColor:[UIColor whiteColor]];
         [bgBtn addTarget:self action:@selector(changeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
