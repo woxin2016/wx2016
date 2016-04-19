@@ -90,6 +90,7 @@
     ViteualGoodsEntity *entity = self.cellInfo;
     
     [_imgView setCpxViewInfo:[NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.goodsIcon]];
+    [_imgView setButtonEnable:NO];
     [_imgView load];
     
     nameL.text = entity.goodsName;

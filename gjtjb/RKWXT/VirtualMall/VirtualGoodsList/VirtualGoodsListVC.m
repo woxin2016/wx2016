@@ -8,6 +8,7 @@
 
 #import "VirtualGoodsListVC.h"
 #import "VirtualGoodsInfoVC.h"
+#import "RechargeCloudTicketVC.h"
 
 
 #import "VietualHeardView.h"
@@ -68,11 +69,27 @@ enum{
     [super viewDidLoad];
     [self setCSTTitle:@"云票返现"];
     
+    [self.view addSubview:[self rightBtn]];
+    
     [self initTabelView];
     
     [self requestNetWork];
     
     [self setupRefresh];
+}
+
+-(WXUIButton*)rightBtn{
+    CGFloat btnWidth = 55;
+    CGFloat btnHeight = 20;
+    WXUIButton *rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth, 32, btnWidth, btnHeight);
+    [rightBtn setBackgroundColor:[UIColor clearColor]];
+    [rightBtn setTitle:@"充值" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightBtn.titleLabel setFont:WXFont(14.0)];
+    [rightBtn addTarget:self action:@selector(gotoRechargeCTVC) forControlEvents:UIControlEventTouchUpInside];
+    
+    return rightBtn;
 }
 
 - (void)initTabelView{
@@ -253,6 +270,7 @@ enum{
 
 #pragma mark -- topImg
 -(void)clickTopGoodAtIndex:(NSInteger)index{
+    return;
     HomePageTopEntity *entity = nil;
     if([_model.downImgArr count] > 0){
         entity = [_model.downImgArr objectAtIndex:index];
@@ -338,5 +356,12 @@ enum{
      [self unShowWaitView];
      [_tableView reloadSections:[NSIndexSet indexSetWithIndex:SubSections_TopImg] withRowAnimation:UITableViewRowAnimationNone];
 }
+
+#pragma mark -- gotoRechargeCTVC
+- (void)gotoRechargeCTVC{
+    RechargeCloudTicketVC *cloudTicketVC = [[RechargeCloudTicketVC alloc] init];
+    [self.wxNavigationController pushViewController:cloudTicketVC];
+}
+
 
 @end

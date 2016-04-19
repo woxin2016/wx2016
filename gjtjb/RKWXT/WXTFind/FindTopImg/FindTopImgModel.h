@@ -13,7 +13,7 @@
 @interface FindTopImgModel : T_HPSubBaseModel
 @property (nonatomic,weak) id<FindTopImgModelDelegate>delegate;
 @property (nonatomic,strong) NSArray *imgArr;
-
+@property (nonatomic,strong) NSArray *foundImgArr;
 -(void)loadFindTopImgData;
 @end
 

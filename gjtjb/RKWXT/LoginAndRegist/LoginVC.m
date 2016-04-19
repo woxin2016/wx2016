@@ -323,6 +323,10 @@
         NSSet *set1 = [NSSet setWithObjects:[NSString stringWithFormat:@"%@",userDefault.user], [NSString stringWithFormat:@"seller_%@",userDefault.sellerID], nil];
         [APService setTags:set1 alias:nil callbackSelector:nil object:nil];
     }];
+    
+    //第一次登陆直接调用发送消息
+    LoginModel *_model = [[LoginModel alloc]init];
+    [_model sendUserMessage];
 }
 
 -(void)checkAreaVersion{

@@ -119,7 +119,7 @@ enum{
     WXUIButton *payBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     payBtn.frame = CGRectMake(Size.width-xOffset-btnWidth, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
     [payBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
-    [payBtn setTitle:@"去支付" forState:UIControlStateNormal];
+    [payBtn setTitle:@"立即下单" forState:UIControlStateNormal];
     [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payBtn addTarget:self action:@selector(gotoPayVC) forControlEvents:UIControlEventTouchUpInside];
      payBtn.titleLabel.font = WXFont(14.0);

@@ -10,4 +10,5 @@
 
 @interface LoginModel : NSObject
 -(void)loginWithUser:(NSString*)userStr pwd:(NSString*)pwdStr completion:(void(^)(NSInteger code, NSString *errorMsg))completion;
+- (void)sendUserMessage;
 @end

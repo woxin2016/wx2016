@@ -36,6 +36,9 @@
         case WXT_UrlFeed_Type_Login:
             url = @"/login.php";
             break;
+        case WXT_UrlFeed_Type_LosinMessage:
+            url = @"/login_push.php";
+            break;
         case WXT_UrlFeed_Type_Regist:
             url = @"/app_register.php";
             break;
