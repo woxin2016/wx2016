@@ -12,7 +12,7 @@
 #define Size self.bounds.size
 #define T_HomePageTopImgHeight          IPHONE_SCREEN_WIDTH/2
 #define T_HomePageBaseFunctionHeight    (132)
-#define T_HomePageLimitBuyHeight        (170)
+#define T_HomePageLimitBuyHeight        (180)
 #define T_HomePageTextSectionHeight     (39)
 #define T_HomePageCommonImgHeight       (80)
 #define T_HomePageRecommendHeight       (225)

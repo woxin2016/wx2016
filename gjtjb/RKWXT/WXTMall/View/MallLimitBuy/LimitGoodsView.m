@@ -27,7 +27,7 @@
         
 //        CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-4*10)/3.5;
         CGFloat bgWidth = frame.size.width;
-        CGFloat bgHeight = T_HomePageRecommendHeight;
+        CGFloat bgHeight = T_HomePageLimitBuyHeight;
         UIButton *bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         bgBtn.frame = CGRectMake(0, 0, bgWidth, bgHeight);
         [bgBtn setBackgroundColor:[UIColor whiteColor]];
@@ -64,7 +64,7 @@
         [bgBtn addSubview:_oldPriceLabel];
         
         WXUILabel *lineLabel = [[WXUILabel alloc] init];
-        lineLabel.frame = CGRectMake(xOffset, yOffset+nameLabelHeight/2, imgWidth-2*10+8, 0.5);
+        lineLabel.frame = CGRectMake(xOffset + 4, yOffset+nameLabelHeight/2, imgWidth-2*10+8, 0.5);
         [lineLabel setBackgroundColor:[UIColor grayColor]];
         [bgBtn addSubview:lineLabel];
         
@@ -79,8 +79,8 @@
         
         
         yOffset += nameLabelHeight + 5;
-        CGFloat buyH = 20;
-        UILabel *buyLabel = [[UILabel alloc]initWithFrame:CGRectMake(7.5, yOffset, bgWidth - 15, buyH)];
+        CGFloat buyH = 25;
+        UILabel *buyLabel = [[UILabel alloc]initWithFrame:CGRectMake(7.5, yOffset, bgWidth - 20, buyH)];
         [buyLabel setBorderRadian:buyH / 2 width:0.5 color:[UIColor colorWithHexString:@"f74f35"]];
         buyLabel.font = WXFont(14.0);
         buyLabel.textColor = [UIColor colorWithHexString:@"f74f35"];

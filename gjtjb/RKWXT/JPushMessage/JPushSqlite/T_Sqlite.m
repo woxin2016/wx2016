@@ -55,9 +55,9 @@
             char *to_View = (char*)sqlite3_column_text(statement, 6);
             if (to_View) {
                 toView = [[NSString alloc] initWithUTF8String:to_View];
+            }else{
+                toView = @"notRed";
             }
-            
-          
             
             KFLog_Normal(YES,@"number:%@ goodsID:%@",_number,_goodsID);
             JPushMsgEntity *entity = [[JPushMsgEntity alloc] init];
@@ -66,12 +66,8 @@
             entity.msgURL = _colorText;
             entity.pushTime = pushTime;
             entity.push_id = [pushID integerValue];
+            entity.toView = toView;
             
-            if (entity.toView.length == 0) {
-                entity.toView = @"notRed";
-            }else{
-                entity.toView = toView;
-            }
             
             [all addObject:entity];
         }

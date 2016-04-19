@@ -78,15 +78,15 @@ enum{
 
 -(WXUIButton*)rightBtn{
     CGFloat xgap = 8;
-    CGFloat btnWidth = 70;
+    CGFloat btnWidth = 60;
     CGFloat btnHeight = 16;
     rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(self.bounds.size.width-xgap-btnWidth, 35, btnWidth, btnHeight);
+    rightBtn.frame = CGRectMake(self.bounds.size.width - btnWidth, 35, btnWidth, btnHeight);
     [rightBtn setBackgroundColor:[UIColor clearColor]];
     [rightBtn setTitle:@"获取余额" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightBtn.titleLabel setFont:WXFont(13.0)];
-    [rightBtn addTarget:self action:@selector(toUseBonusRule) forControlEvents:UIControlEventTouchUpInside];
+//    [rightBtn addTarget:self action:@selector(toUseBonusRule) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *moneyStr = [NSString stringWithFormat:@"%ld元",(long)[UserBonusModel shareUserBonusModel].bonusMoney];
     [rightBtn setTitle:moneyStr forState:UIControlStateNormal];

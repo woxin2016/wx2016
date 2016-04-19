@@ -128,7 +128,7 @@
 }
 
 + (CGFloat)cellHeightOfInfo:(id)cellInfo{
-    return 140;
+    return 120;
 }
 
 

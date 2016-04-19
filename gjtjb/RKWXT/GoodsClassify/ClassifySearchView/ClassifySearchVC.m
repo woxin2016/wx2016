@@ -141,8 +141,8 @@ static NSString* g_dropItemList[CLassify_Search_Invalid] ={
     
     CGFloat width = self.view.frame.size.width - 2 * xOffset;
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, yGap - 5, width, 25)];
-    backView.backgroundColor = [UIColor redColor];
-    [backView setBorderRadian:10 width:0 color:[UIColor clearColor]];
+    backView.backgroundColor = [UIColor colorWithHexString:@"f74f35"];
+    [backView setBorderRadian:5 width:0 color:[UIColor clearColor]];
     [self addSubview:backView];
     
     CGFloat rightBtnWidth = 40;

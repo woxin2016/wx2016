@@ -942,6 +942,7 @@
 		DD2CA8861CBBACA5008D0AE6 /* virtualOrderListEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA8851CBBACA5008D0AE6 /* virtualOrderListEntity.m */; };
 		DD2CA8881CBBB22A008D0AE6 /* virtualOrder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD2CA8871CBBB22A008D0AE6 /* virtualOrder@2x.png */; };
 		DD2CA88B1CBBB7AC008D0AE6 /* VirtualOrderInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CA88A1CBBB7AC008D0AE6 /* VirtualOrderInfoVC.m */; };
+		DD2CB18F1CC4C8A2004C6FE4 /* UIButton+XBAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2CB18E1CC4C8A2004C6FE4 /* UIButton+XBAlignment.m */; };
 		DD2D89C41CB73C8300474820 /* VirtualUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89C31CB73C8300474820 /* VirtualUserInfoCell.m */; };
 		DD2D89C71CB73CA300474820 /* VirtualCompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89C61CB73CA300474820 /* VirtualCompanyCell.m */; };
 		DD2D89CA1CB73FA900474820 /* VirtualGoodsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2D89C91CB73FA900474820 /* VirtualGoodsListCell.m */; };
@@ -2731,6 +2732,8 @@
 		DD2CA8871CBBB22A008D0AE6 /* virtualOrder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "virtualOrder@2x.png"; sourceTree = "<group>"; };
 		DD2CA8891CBBB7AC008D0AE6 /* VirtualOrderInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualOrderInfoVC.h; sourceTree = "<group>"; };
 		DD2CA88A1CBBB7AC008D0AE6 /* VirtualOrderInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderInfoVC.m; sourceTree = "<group>"; };
+		DD2CB18D1CC4C8A2004C6FE4 /* UIButton+XBAlignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XBAlignment.h"; sourceTree = "<group>"; };
+		DD2CB18E1CC4C8A2004C6FE4 /* UIButton+XBAlignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XBAlignment.m"; sourceTree = "<group>"; };
 		DD2D89C21CB73C8300474820 /* VirtualUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualUserInfoCell.h; path = ../VirtualUserInfoCell.h; sourceTree = "<group>"; };
 		DD2D89C31CB73C8300474820 /* VirtualUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualUserInfoCell.m; path = ../VirtualUserInfoCell.m; sourceTree = "<group>"; };
 		DD2D89C51CB73CA300474820 /* VirtualCompanyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualCompanyCell.h; path = RKWXT/VirtualMall/VirtualGoodsOrder/View/VirtualCompanyCell.h; sourceTree = SOURCE_ROOT; };
@@ -6802,6 +6805,8 @@
 		77DB93F61AAFE7890021A816 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DD2CB18D1CC4C8A2004C6FE4 /* UIButton+XBAlignment.h */,
+				DD2CB18E1CC4C8A2004C6FE4 /* UIButton+XBAlignment.m */,
 				DD2572061C9FA7D2008D541E /* UIViewAdditions.h */,
 				DD2572071C9FA7D2008D541E /* UIViewAdditions.m */,
 				DD999F911B204C7B00086D1C /* UIButton+UIButtonImageWithLable.h */,
@@ -8727,6 +8732,7 @@
 				DD17107D1CB4AA770085713D /* VirtualInfoBDCell.m in Sources */,
 				122AB8D31C3E6F8C00AC9DF5 /* GoodsInfoModel.m in Sources */,
 				12BC72611C78531700FC6A1C /* JuniorListEntity.m in Sources */,
+				DD2CB18F1CC4C8A2004C6FE4 /* UIButton+XBAlignment.m in Sources */,
 				777A38561AC3933D001CF5FF /* WXTDatabase.m in Sources */,
 				DD207D011C9BB2DF00A2F342 /* NewGoodsStockView.m in Sources */,
 				120EC7841BB8F31800538637 /* split.c in Sources */,

@@ -245,7 +245,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = CommonCellHeight;
     if(indexPath.section == PersonalInfo_Order && indexPath.row == Order_Category){
-        height = 53;
+        height = PersonalOrderInfoCellHeight;
     }
     return height;
 }

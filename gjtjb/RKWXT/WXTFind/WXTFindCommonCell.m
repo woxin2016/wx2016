@@ -32,71 +32,113 @@
     if([listArr count] > 0){
         return;
     }
-    
+    self.contentView.backgroundColor = WXColorWithInteger(0xbababa);
     NSArray *dataArr = self.cellInfo;
-    
     CGRect rect = [self bounds];
-    CGFloat btnWidth = rect.size.width/3-1;
+    CGFloat margin = 0.5;
+    CGFloat btnWidth = rect.size.width/3 -margin;
     CGFloat btnHeight = btnWidth;
-    __block NSInteger count = 0;
-    for(NSInteger i = 0; i < ([dataArr count]/3+([dataArr count]%3>0?1:0)); i++){
-        for(NSInteger j = 0; j < EveryCellShowNumber; j++){
-            if(count > [dataArr count]-1){
-                break;
-            }
-            FindEntity *entity = [dataArr objectAtIndex:count];
-            
-            WXUIButton *commonBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-            commonBtn.frame = CGRectMake(j*(btnWidth+1), i*(btnHeight+1), btnWidth, btnHeight);
-            [commonBtn setBackgroundColor:[UIColor whiteColor]];
-//            [commonBtn setBackgroundImageOfColor:WXColorWithInteger(0xbababa) controlState:UIControlStateHighlighted];
-            commonBtn.tag = entity.classifyID;
-            [commonBtn addTarget:self action:@selector(commonBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-            [self.contentView addSubview:commonBtn];
-            [listArr addObject:entity];
-            
-            CGFloat imgWidth = 30;
-            CGFloat imgHeight = imgWidth;
-            WXRemotionImgBtn *imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake((btnWidth-imgWidth)/2, 10+(btnHeight/2-imgHeight)/2, imgWidth, imgHeight)];
-            [imgView setUserInteractionEnabled:NO];
-            [imgView setCpxViewInfo:entity.icon_url];
-            [imgView load];
-            [commonBtn addSubview:imgView];
-            
-            CGFloat labelHeight = 15;
-            WXUILabel *namelabel = [[WXUILabel alloc] init];
-            namelabel.frame = CGRectMake(0, 18+btnHeight/2, btnWidth, labelHeight);
-            [namelabel setBackgroundColor:[UIColor clearColor]];
-            [namelabel setTextAlignment:NSTextAlignmentCenter];
-            [namelabel setTextColor:WXColorWithInteger(0x414141)];
-            [namelabel setFont:WXFont(12.0)];
-            [namelabel setText:entity.name];
-            [commonBtn addSubview:namelabel];
-            
-            //有可能没用
-            WXUILabel *desLabel = [[WXUILabel alloc] init];
-            desLabel.frame = CGRectMake(0, btnHeight/2+labelHeight+18, btnWidth, labelHeight);
-            [desLabel setBackgroundColor:[UIColor clearColor]];
-            [desLabel setTextAlignment:NSTextAlignmentCenter];
-            [desLabel setTextColor:WXColorWithInteger(0xbababa)];
-            [desLabel setFont:WXFont(9.0)];
-            [commonBtn addSubview:desLabel];
-            
-            if(j != 2){
-                WXUILabel *rightLine = [[WXUILabel alloc] init];
-                rightLine.frame = CGRectMake(commonBtn.frame.origin.x+btnWidth+0.2, commonBtn.frame.origin.y, 0.2, btnHeight);
-                [rightLine setBackgroundColor:WXColorWithInteger(0xbababa)];
-                [self.contentView addSubview:rightLine];
-            }
-            
-            WXUILabel *downLine = [[WXUILabel alloc] init];
-            downLine.frame = CGRectMake(commonBtn.frame.origin.x, commonBtn.frame.origin.y+btnHeight, btnWidth, 0.2);
-            [downLine setBackgroundColor:WXColorWithInteger(0xbababa)];
-            [self.contentView addSubview:downLine];
-            
-            count++;
-        }
+    for (int i = 0; i < [dataArr count]; i++) {
+        
+        FindEntity *entity = [dataArr objectAtIndex:i];
+        [listArr addObject:entity];
+        
+        CGFloat X = i % EveryCellShowNumber;
+        CGFloat Y = i / EveryCellShowNumber;
+        CGFloat btnX = X * ( btnWidth + margin);
+        CGFloat btnY = 0.3 + Y * (btnHeight + margin);
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(btnX, btnY, btnWidth, btnHeight);
+        btn.tag = entity.classifyID;
+        [btn addTarget:self action:@selector(commonBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        btn.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:btn];
+        
+        CGFloat imgWidth = 30;
+        CGFloat imgHeight = imgWidth;
+        WXRemotionImgBtn *imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake((btnWidth-imgWidth)/2, 10+(btnHeight/2-imgHeight)/2, imgWidth, imgHeight)];
+        [imgView setUserInteractionEnabled:NO];
+        [imgView setCpxViewInfo:entity.icon_url];
+        [imgView load];
+        [btn addSubview:imgView];
+        
+        CGFloat labelHeight = 15;
+        WXUILabel *namelabel = [[WXUILabel alloc] init];
+        namelabel.frame = CGRectMake(0, 18+btnHeight/2, btnWidth, labelHeight);
+        [namelabel setBackgroundColor:[UIColor clearColor]];
+        [namelabel setTextAlignment:NSTextAlignmentCenter];
+        [namelabel setTextColor:WXColorWithInteger(0x414141)];
+        [namelabel setFont:WXFont(12.0)];
+        [namelabel setText:entity.name];
+        [btn addSubview:namelabel];
+        
     }
+    
+}
+
+- (void)vist{
+    //    CGRect rect = [self bounds];
+    //    CGFloat btnWidth = rect.size.width/3-1;
+    //    CGFloat btnHeight = btnWidth;
+    //    __block NSInteger count = 0;
+    //    for(NSInteger i = 0; i < ([dataArr count]/3+([dataArr count]%3>0?1:0)); i++){
+    //        for(NSInteger j = 0; j < EveryCellShowNumber; j++){
+    //            if(count > [dataArr count]-1){
+    //                break;
+    //            }
+    //            FindEntity *entity = [dataArr objectAtIndex:count];
+    //
+    //            WXUIButton *commonBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+    //            commonBtn.frame = CGRectMake(j*(btnWidth+1), i*(btnHeight+1), btnWidth, btnHeight);
+    //            [commonBtn setBackgroundColor:[UIColor whiteColor]];
+    ////            [commonBtn setBackgroundImageOfColor:WXColorWithInteger(0xbababa) controlState:UIControlStateHighlighted];
+    //            commonBtn.tag = entity.classifyID;
+    //            [commonBtn addTarget:self action:@selector(commonBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    //            [self.contentView addSubview:commonBtn];
+    //            [listArr addObject:entity];
+    //
+    //            CGFloat imgWidth = 30;
+    //            CGFloat imgHeight = imgWidth;
+    //            WXRemotionImgBtn *imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake((btnWidth-imgWidth)/2, 10+(btnHeight/2-imgHeight)/2, imgWidth, imgHeight)];
+    //            [imgView setUserInteractionEnabled:NO];
+    //            [imgView setCpxViewInfo:entity.icon_url];
+    //            [imgView load];
+    //            [commonBtn addSubview:imgView];
+    //
+    //            CGFloat labelHeight = 15;
+    //            WXUILabel *namelabel = [[WXUILabel alloc] init];
+    //            namelabel.frame = CGRectMake(0, 18+btnHeight/2, btnWidth, labelHeight);
+    //            [namelabel setBackgroundColor:[UIColor clearColor]];
+    //            [namelabel setTextAlignment:NSTextAlignmentCenter];
+    //            [namelabel setTextColor:WXColorWithInteger(0x414141)];
+    //            [namelabel setFont:WXFont(12.0)];
+    //            [namelabel setText:entity.name];
+    //            [commonBtn addSubview:namelabel];
+    //
+    //            //有可能没用
+    //            WXUILabel *desLabel = [[WXUILabel alloc] init];
+    //            desLabel.frame = CGRectMake(0, btnHeight/2+labelHeight+18, btnWidth, labelHeight);
+    //            [desLabel setBackgroundColor:[UIColor clearColor]];
+    //            [desLabel setTextAlignment:NSTextAlignmentCenter];
+    //            [desLabel setTextColor:WXColorWithInteger(0xbababa)];
+    //            [desLabel setFont:WXFont(9.0)];
+    //            [commonBtn addSubview:desLabel];
+    //
+    //            if(j != 2){
+    //                WXUILabel *rightLine = [[WXUILabel alloc] init];
+    //                rightLine.frame = CGRectMake(commonBtn.frame.origin.x+btnWidth+0.2, commonBtn.frame.origin.y, 0.2, btnHeight);
+    //                [rightLine setBackgroundColor:WXColorWithInteger(0xbababa)];
+    //                [self.contentView addSubview:rightLine];
+    //            }
+    //
+    //            WXUILabel *downLine = [[WXUILabel alloc] init];
+    //            downLine.frame = CGRectMake(commonBtn.frame.origin.x, commonBtn.frame.origin.y+btnHeight, btnWidth, 0.2);
+    //            [downLine setBackgroundColor:WXColorWithInteger(0xbababa)];
+    //            [self.contentView addSubview:downLine];
+    //            
+    //            count++;
+    //        }
+    //    }
 }
 
 -(void)commonBtnClicked:(id)sender{
@@ -104,6 +146,14 @@
     if(_delegate && [_delegate respondsToSelector:@selector(clickClassifyBtnAtIndex:)]){
         [_delegate clickClassifyBtnAtIndex:btn.tag];
     }
+}
+
++ (CGFloat)cellHeightOfInfo:(id)cellInfo{
+    NSArray *dataArr = cellInfo;
+    CGFloat margin = 0.5;
+    CGFloat btnWidth = IPHONE_SCREEN_WIDTH / EveryCellShowNumber -margin;
+    CGFloat btnHeight = btnWidth;
+    return btnHeight * ( ( dataArr.count / EveryCellShowNumber) + 0.5);
 }
 
 @end

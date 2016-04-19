@@ -82,7 +82,7 @@
     
     
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(20, 18, 45, 40);
+    leftBtn.frame = CGRectMake(15, 18, 45, 40);
     [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
     [leftBtn setTitle:@"分类" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -102,12 +102,12 @@
     CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
     leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-50, 18, 40, 40)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-40, 18, 44, 44)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
     [topView addSubview:_unreadView];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH - 75, 18, 40, 40)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH - 60, 18, 40, 40)];
     btn.backgroundColor = [UIColor clearColor];
     [btn addTarget:self action:@selector(toSysPushMsgView) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:btn];
