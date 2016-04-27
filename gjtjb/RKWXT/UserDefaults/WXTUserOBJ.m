@@ -71,6 +71,11 @@
     [userDefault setObject:shareInfo forKey:WXT_Userdefault_ShareInfo];
 }
 
+-(void)setShareUserCutInfo:(NSString *)cutInfo{
+    WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
+    [userDefault setObject:cutInfo forKey:WXT_Userdefault_UserCutInfo];
+}
+
 -(void)setUserIdentity:(NSString *)identity{
     WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
     [userDefault setObject:identity forKey:WXT_Userdefault_UserIdentity];
@@ -153,6 +158,11 @@
 -(NSString*)shareInfo{
     WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
     return [userDefault textValueForKey:WXT_Userdefault_ShareInfo];
+}
+
+-(NSString*)userCutInfo{
+    WXTUserDefault *userDefault = [WXTUserDefault sharedWXUserDefault];
+    return [userDefault textValueForKey:WXT_Userdefault_UserCutInfo];
 }
 
 -(NSString*)userIentifier{

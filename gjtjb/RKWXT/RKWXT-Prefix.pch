@@ -12,7 +12,6 @@
 #endif
 
 //#define WX_AVAILABLE(version)
-//#define ShowAppHome
 
 //#define Test   //测试，目前只显示版本号
 
@@ -20,7 +19,7 @@
 //线上地址 ：api.woxinyun.com
 #define AllImgPrefixUrlString @"http://oldyun.67call.com/wx10/Public/Uploads/"  //所有网络获取图片皆拼接此字符串前缀
 #define WXTBaseUrl @"http://oldyun.67call.com/"  //基地址
-#define WXTShareBaseUrl @"http://api.woxinyun.com/"  //分享的基地址
+#define WXTShareBaseUrl @"http://oldyun.67call.com/"  //分享的基地址
 
 #define KTabBarHeight (45.0)
 #define AllBaseColor (0xf74f35)

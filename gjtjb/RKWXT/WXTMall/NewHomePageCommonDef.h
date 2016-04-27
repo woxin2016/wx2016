@@ -53,7 +53,8 @@ enum{
 #import "WXTMallListWebVC.h"
 #import "WXSysMsgUnreadV.h"
 #import "MJRefresh.h"
-#import "ShareBrowserView.h"
+#import "MailShareView.h"
+#import "ShareInfoModel.h"
 #import "WXGoodsInfoVC.h"
 #import "VirtualGoodsListVC.h"
 

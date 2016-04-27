@@ -9,7 +9,7 @@
 #import "WXTMallViewController.h"
 #import "NewHomePageCommonDef.h"
 
-@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,ShareBrowserViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,HomePageCommonImgCellDelegate,HomePageClassifyModelDelegate,HomeClassifyInfoCellDelegate,HomeClassifyTitleCellDelegate>{
+@interface WXTMallViewController ()<UITableViewDelegate,UITableViewDataSource,WXSysMsgUnreadVDelegate,WXHomeTopGoodCellDelegate,WXHomeBaseFunctionCellBtnClicked,HomeLimitBuyCellDelegate,HomeRecommendInfoCellDelegate,MailShareViewDelegate,HomePageTopDelegate,HomePageRecDelegate,HomePageSurpDelegate,HomeNewGuessInfoCellDelegate,HomeLimitGoodsDelegate,HomePageCommonImgCellDelegate,HomePageClassifyModelDelegate,HomeClassifyInfoCellDelegate,HomeClassifyTitleCellDelegate>{
     UITableView *_tableView;
     WXSysMsgUnreadV * _unreadView;
     NewHomePageModel *_model;
@@ -608,9 +608,11 @@
             break;
         case T_BaseFunction_Invate:
         {
-            ShareBrowserView *pictureBrowse = [[ShareBrowserView alloc] init];
+            MailShareView *pictureBrowse = [[MailShareView alloc] init];
             pictureBrowse.delegate = self;
             [pictureBrowse showShareThumbView:view toDestview:self.view withImage:[UIImage imageNamed:@"TwoDimension.png"]];
+            [[ShareInfoModel shareInfoModel] loadUserShareInfo];
+            [[ShareInfoModel shareInfoModel] loadUserShareCutInfo];
         }
             break;
         case T_BaseFunction_Sign:
