@@ -60,7 +60,7 @@ enum{
 }
 
 -(void)createBackBtn{
-    CGFloat xOffset = 5;
+    CGFloat xOffset = 20;
     CGFloat yOffset = 30;
     UIImage *img = [UIImage imageNamed:@"T_Back.png"];
     WXTUIButton *backBtn = [WXTUIButton buttonWithType:UIButtonTypeCustom];
