@@ -54,9 +54,8 @@ enum{
 #import "WXSysMsgUnreadV.h"
 #import "MJRefresh.h"
 #import "MailShareView.h"
-#import "ShareInfoModel.h"
 #import "WXGoodsInfoVC.h"
-#import "VirtualGoodsListVC.h"
+#import "CloudTicketListVC.h"
 
 #import "WXHomeTopGoodCell.h"
 #import "WXHomeBaseFunctionCell.h"

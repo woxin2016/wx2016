@@ -22,8 +22,8 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        NSArray *textArr = @[@"云票返现",@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟"];
-        NSArray *imgArr = @[@"HomevirtualXNB.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
+        NSArray *textArr = @[@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟",@"我的云票"];
+        NSArray *imgArr = @[@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png",@"HomevirtualXNB.png"];
         NSInteger rowCount = 3;
         CGFloat width = self.frame.size.width  / rowCount;
         CGFloat baseHeight = ImgBtnHeight/2;
@@ -70,28 +70,22 @@
     T_BaseFunction t_baseFunction = T_BaseFunction_Init;
     switch (tag) {
         case 1:
-            t_baseFunction = T_BaseFunction_Shark;
-            break;
-        case 2:
             t_baseFunction = T_BaseFunction_Sign;
             break;
-        case 3:
+        case 2:
             t_baseFunction = T_BaseFunction_Wallet;
             break;
-        case 4:
+        case 3:
             t_baseFunction = T_BaseFunction_Invate;
             break;
-        case 5:
-            t_baseFunction = T_BaseFunction_Game;
-            break;
-        case 6:
-            t_baseFunction = T_BaseFunction_Side;
-            break;
-        case 7:
+        case 4:
             t_baseFunction = T_BaseFunction_Cut;
             break;
-        case 8:
+        case 5:
             t_baseFunction = T_BaseFunction_Union;
+            break;
+        case 6:
+            t_baseFunction = T_BaseFunction_yunP;
             break;
         default:
             break;

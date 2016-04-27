@@ -37,8 +37,8 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", @"invite_info", @"vname", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_ShareCutInfo httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code == 0){
-//            WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-//            [userObj setShareInfo:[[retData.data objectForKey:@"data"] objectForKey:@"app_share_info"]];
+            WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+            [userObj setShareUserCutInfo:[[retData.data objectForKey:@"data"] objectForKey:@"value"]];
         }
     }];
 }

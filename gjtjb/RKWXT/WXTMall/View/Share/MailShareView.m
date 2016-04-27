@@ -71,7 +71,6 @@ static NSString *shareNameArr[]={
     _shareView = [[UIView alloc] init];
     [_shareView setFrame:CGRectMake((IPHONE_SCREEN_WIDTH-shareViewWidth)/2, (IPHONE_SCREEN_HEIGHT-shareViewHeight)/2, shareViewWidth, shareViewHeight)];
     [_shareView setBackgroundColor:[UIColor whiteColor]];
-    [_shareView setBorderRadian:10.0 width:2.0 color:[UIColor clearColor]];
     [self addSubview:_shareView];
     
     

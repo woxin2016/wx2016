@@ -615,21 +615,6 @@
         return;
     }
     switch (index) {
-        case T_BaseFunction_Shark:
-        {
-            VirtualGoodsListVC *listVC = [[VirtualGoodsListVC alloc]init];
-            [self.wxNavigationController pushViewController:listVC];
-        }
-            break;
-        case T_BaseFunction_Invate:
-        {
-            MailShareView *pictureBrowse = [[MailShareView alloc] init];
-            pictureBrowse.delegate = self;
-            [pictureBrowse showShareThumbView:view toDestview:self.view withImage:[UIImage imageNamed:@"TwoDimension.png"]];
-            [[ShareInfoModel shareInfoModel] loadUserShareInfo];
-            [[ShareInfoModel shareInfoModel] loadUserShareCutInfo];
-        }
-            break;
         case T_BaseFunction_Sign:
         {
             SignViewController *signVC = [[SignViewController alloc] init];
@@ -642,13 +627,20 @@
             [self.wxNavigationController pushViewController:boundsVC];
         }
             break;
-        case T_BaseFunction_Game:
+        case T_BaseFunction_Invate:
+        {
+            MailShareView *pictureBrowse = [[MailShareView alloc] init];
+            pictureBrowse.delegate = self;
+            [pictureBrowse showShareThumbView:view toDestview:self.view withImage:[UIImage imageNamed:@"TwoDimension.png"]];
+        }
+            break;
+        case T_BaseFunction_Cut:
         {
             NewUserCutVC *userCutVC = [[NewUserCutVC alloc] init];
             [self.wxNavigationController pushViewController:userCutVC];
         }
             break;
-        case T_BaseFunction_Side:
+        case T_BaseFunction_Union:
         {
             FindCommonVC *vc = [[FindCommonVC alloc] init];
             vc.webURl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
@@ -656,7 +648,12 @@
             [self.wxNavigationController pushViewController:vc];
         }
             break;
-            
+        case T_BaseFunction_yunP:
+        {
+            CloudTicketListVC *listVC = [[CloudTicketListVC alloc] init];
+            [self.wxNavigationController pushViewController:listVC];
+        }
+            break;
         default:
             [UtilTool showTipView:@"努力开发中..."];
             break;
