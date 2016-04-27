@@ -13,7 +13,8 @@
 
 @interface ViteualGoodsModel ()
 {
-    NSMutableArray *_goodsArray;
+    NSMutableArray *_storeArray;
+    NSMutableArray *_exchangeArray;
     ModelType  notType;
     BOOL isRemoAll;
     
@@ -23,14 +24,17 @@
 @end
 
 @implementation ViteualGoodsModel
-@synthesize goodsArray = _goodsArray;
+@synthesize storeArray = _storeArray;
+@synthesize exchangeArray = _exchangeArray;
 
 @synthesize downImgArr = _downImgArr;
 
 
 -(instancetype)init{
     if (self = [super init]) {
-        _goodsArray = [NSMutableArray array];
+        _storeArray = [NSMutableArray array];
+        _exchangeArray = [NSMutableArray array];
+        
         notType = ModelType_Store;
         
         _downImgArr = [[NSMutableArray alloc] init];
@@ -150,17 +154,33 @@
 
 - (void)handleReturnData:(NSArray*)data type:(ModelType)type{
    
-    if ([data count] <= 0) return;
+    if ([data count] <= 0) {
+        if (_delegate && [_delegate respondsToSelector:@selector(vieualNoGoodsData)]) {
+            [_delegate vieualNoGoodsData];
+        }
+        return;
+    };
     
-    if (notType != type  || isRemoAll) {
-        notType = type;
-       [_goodsArray removeAllObjects];
+    if (isRemoAll && type == ModelType_Store) {
+        [_storeArray removeAllObjects];
     }
     
+    if (isRemoAll && type == ModelType_Exchange) {
+        [_exchangeArray removeAllObjects];
+    }
+    
+    ViteualGoodsEntity *entity = nil;
     for (NSDictionary *dic in data) {
-        ViteualGoodsEntity *entity = [ViteualGoodsEntity  viteualGoodsEntityWithDic:dic];
-        [_goodsArray addObject:entity];
+        entity = [ViteualGoodsEntity viteualGoodsEntityWithDic:dic];
+        if (type == ModelType_Store) {
+            [_storeArray addObject:entity];
+        }else{
+            [_exchangeArray addObject:entity];
+        }
     }
+    
+  
+    
     
 }
 

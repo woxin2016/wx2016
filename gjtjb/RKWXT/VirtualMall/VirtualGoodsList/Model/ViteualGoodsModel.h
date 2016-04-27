@@ -18,7 +18,8 @@ typedef enum{
 @protocol viteualGoodsModelDelegate;
 @interface ViteualGoodsModel : NSObject
 @property (nonatomic,weak)id<viteualGoodsModelDelegate> delegate;
-@property (nonatomic,strong)NSArray *goodsArray;
+@property (nonatomic,strong)NSArray *storeArray;
+@property (nonatomic,strong)NSArray *exchangeArray;
 - (void)viteualGoodsModelRequeatNetWork:(ModelType)type start:(NSInteger)start length:(NSInteger)length;
 - (void)virtualLoadDataFromWeb;
 
@@ -31,4 +32,5 @@ typedef enum{
 -(void)viteualGoodsModelFailed:(NSString*)errorMsg;
 -(void)viteualTopImgSucceed;
 -(void)viteualTopImgFailed:(NSString*)errorMsg;
+- (void)vieualNoGoodsData;
 @end

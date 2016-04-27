@@ -48,6 +48,7 @@ enum{
     UITableView *_tableView;
     BOOL _isExchange;  // YES 为兑换商城  NO为品牌兑换
     VietualHeardView *_heardView;
+    UIButton *_backTop;
 }
 @end
 
@@ -99,6 +100,14 @@ enum{
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self addSubview:_tableView];
+    
+    UIImage *btnImg = [UIImage imageNamed:@"backTopImg.png"];
+    CGFloat btnW = 40;
+    _backTop = [[UIButton alloc]initWithFrame:CGRectMake(self.bounds.size.width - 60, self.bounds.size.height - 65, btnW,btnW)];
+    [_backTop setBorderRadian:btnW / 2 width:0 color:[UIColor clearColor]];
+    [_backTop addTarget:self action:@selector(backTopBtn) forControlEvents:UIControlEventTouchDown];
+   [_backTop setBackgroundImage:btnImg forState:UIControlStateNormal];
+    [self addSubview:_backTop];
 }
 
 - (void)requestNetWork{
@@ -122,6 +131,20 @@ enum{
     _tableView.footerRefreshingText = @"加载中";
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    UIColor *color = [UIColor colorWithHexString:@"f74f35"];
+    CGFloat offset=scrollView.contentOffset.y;
+    if(offset <= 0){
+        [_backTop setHidden:YES];
+    }
+ 
+    if(offset > 0){
+        [_backTop setHidden:NO];
+        CGFloat alpha = 1 - ((160 - 60 - offset) / (160 - 60));
+        _backTop.backgroundColor = [color colorWithAlphaComponent:alpha];
+    }
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return SubSections_Invalid;
 }
@@ -131,7 +154,11 @@ enum{
     if (section == SubSections_TopImg) {
         row = 1;
     }else{
-       row = _model.goodsArray.count;
+        if (_isExchange) {
+             row = _model.exchangeArray.count;
+        }else{
+             row = _model.storeArray.count;
+        }
     }
     return row;
 }
@@ -162,12 +189,7 @@ enum{
     return 0.0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == SubSections_TopImg) {
-        return 7.0;
-    }
-    return 0.0;
-}
+
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == SubSections_List) {
@@ -188,7 +210,7 @@ enum{
 // 兑换商城
 - (WXUITableViewCell*)tableViewCellStore:(NSInteger)row{
     ViteualStoreCell *cell = [ViteualStoreCell viteualStoreCellWithTabelView:_tableView];
-       [cell setCellInfo:_model.goodsArray[row]];
+       [cell setCellInfo:_model.storeArray[row]];
        [cell load];
     return cell;
 }
@@ -196,7 +218,7 @@ enum{
 // 品牌兑换
 - (WXUITableViewCell*)tableViewCellExchange:(NSInteger)row{
     ViteualExchangeCell *cell = [ViteualExchangeCell viteualExchangeCellWithTabelView:_tableView];
-    [cell setCellInfo:_model.goodsArray[row]];
+    [cell setCellInfo:_model.exchangeArray[row]];
     [cell load];
     return cell;
 }
@@ -225,14 +247,18 @@ enum{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == SubSections_List) {
-        ViteualGoodsEntity *entity = _model.goodsArray[indexPath.row];
+        ViteualGoodsEntity *entity = nil;
         VirtualGoodsInfoVC *infoVC = [[VirtualGoodsInfoVC alloc]init];
-        infoVC.goodsID = entity.goodsID;
+        
         if (_isExchange) {
+            entity = _model.exchangeArray[indexPath.row];
             infoVC.type = VirtualGoodsType_Exchange;
         }else{
+            entity = _model.storeArray[indexPath.row];
             infoVC.type = VirtualGoodsType_Store;
         }
+        
+        infoVC.goodsID = entity.goodsID;
         [self.wxNavigationController pushViewController:infoVC];
     }
 }
@@ -256,21 +282,21 @@ enum{
         default:
             break;
     }
+    
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 #pragma mark -- footerRefreshing
 - (void)footerRefreshing{
     if (_isExchange) {
-        [_model viteualGoodsModelRequeatNetWork:ModelType_Exchange start:[_model.goodsArray count] length:10];
+        [_model viteualGoodsModelRequeatNetWork:ModelType_Exchange start:[_model.exchangeArray count] length:10];
     }else{
-        [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:[_model.goodsArray count] length:10];
+        [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:[_model.storeArray count] length:10];
     }
 }
 
 #pragma mark -- topImg
 -(void)clickTopGoodAtIndex:(NSInteger)index{
-    return;
     HomePageTopEntity *entity = nil;
     if([_model.downImgArr count] > 0){
         entity = [_model.downImgArr objectAtIndex:index];
@@ -317,7 +343,7 @@ enum{
             break;
         case HomePageJump_Type_Web:
         {
-            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"网站" animated:YES];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"兑换说明" animated:YES];
         }
             break;
         default:
@@ -341,6 +367,7 @@ enum{
 -(void)viteualGoodsModelSucceed{
     [self unShowWaitView];
     
+    
     [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [_tableView reloadData];
@@ -349,7 +376,12 @@ enum{
 -(void)viteualTopImgFailed:(NSString *)errorMsg{
     [self unShowWaitView];
     
-    [UtilTool showAlertView:errorMsg];
+    [UtilTool showRoundView:errorMsg];
+}
+
+- (void)vieualNoGoodsData{
+    [self unShowWaitView];
+    [UtilTool showRoundView:@"无更多"];
 }
 
 -(void)viteualTopImgSucceed{
@@ -363,5 +395,10 @@ enum{
     [self.wxNavigationController pushViewController:cloudTicketVC];
 }
 
+
+#pragma mark -- btn
+- (void)backTopBtn{
+    [_tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
 
 @end

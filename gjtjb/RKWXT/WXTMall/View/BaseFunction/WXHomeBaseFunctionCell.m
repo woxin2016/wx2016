@@ -22,7 +22,7 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        NSArray *textArr = @[@"云票返现",@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟"];
+        NSArray *textArr = @[@"免费兑换",@"签到有奖",@"商家红包",@"我要赚钱",@"我的奖励",@"商家联盟"];
         NSArray *imgArr = @[@"HomevirtualXNB.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
         NSInteger rowCount = 3;
         CGFloat width = self.frame.size.width  / rowCount;

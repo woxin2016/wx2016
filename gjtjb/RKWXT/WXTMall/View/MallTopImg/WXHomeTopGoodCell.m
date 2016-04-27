@@ -51,6 +51,11 @@
         
         _merchantImgViewArray = [[NSMutableArray alloc] init];
         [NSTimer scheduledTimerWithTimeInterval:kTimerInterval target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
+        
+        UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTopImgHeight - 0.5, self.width, 0.5)];
+        didView.backgroundColor = WXColorWithInteger(0xcacaca);
+        didView.alpha = 0.5;
+        [self.contentView addSubview:didView];
     }
     return self;
 }

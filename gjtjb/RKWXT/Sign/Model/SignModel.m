@@ -44,6 +44,7 @@
         
         //通知云票数量已经发生变化
         [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += (int)entity.money;
+        [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
     }
     NSUserDefaults *userDefault1 = [NSUserDefaults standardUserDefaults];

@@ -20,6 +20,7 @@
         if(retData.code == 0){
             //通知云票数量已经发生变化
             [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += [[[retData.data objectForKey:@"data"] objectForKey:@"xnb_money"] integerValue];
+            [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
         }
         completion(retData.code,retData.errorDesc);

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RKWXT/WXTFind/FindTopImg/FindTopImgModel.m"
-            timestampString = "482725342.097896"
+            filePath = "RKWXT/VirtualMall/VirtualOrderList/VirtualOrderInfoVC.m"
+            timestampString = "483351664.487219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-fillDataWithJsonData:"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
+            landmarkName = "-cancelOrderSuccend"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RKWXT/WXTFind/FindTopImg/FindTopImgModel.m"
-            timestampString = "482725480.637429"
+            filePath = "RKWXT/UserInfo/UserInfoVC.m"
+            timestampString = "483351550.842209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-fillDataWithJsonData:"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-uploadUserMoreMoneyInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

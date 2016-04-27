@@ -66,7 +66,7 @@
     dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
     dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
   
-    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_Login httpMethod:WXT_HttpMethod_Post timeoutIntervcal:10 feed:dic completion:^(URLFeedData *retData) {
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_LosinMessage httpMethod:WXT_HttpMethod_Post timeoutIntervcal:10 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code == 0){
             
         }else{
