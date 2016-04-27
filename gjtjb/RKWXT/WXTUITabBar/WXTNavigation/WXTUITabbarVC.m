@@ -13,6 +13,7 @@
 #import "ContactsCallViewController.h"
 #import "CallViewController.h"
 #import "CustomMadeOBJ.h"
+#import "VirtualGoodsListVC.h"
 
 #define kTabBarHeight KTabBarHeight
 #define TabBaryGap (100)
@@ -49,6 +50,7 @@ typedef enum{
     ContactsCallViewController *callview = [[[ContactsCallViewController alloc] init] autorelease];
     WXTFindVC *phoneView = [[[WXTFindVC alloc] init] autorelease];
     UserInfoVC *infoVC = [[[UserInfoVC alloc] init] autorelease];
+    VirtualGoodsListVC *goodsListVC = [[[VirtualGoodsListVC alloc] init] autorelease];
     
     WXUITabBarItem *mallItem = [self createTabbarItem];
     [mallItem setTabBarItemImage:[UIImage imageNamed:@"MallNormal.png"] forState:WXButtonControlState_Normal];
@@ -59,6 +61,11 @@ typedef enum{
     [callItem setTabBarItemImage:[UIImage imageNamed:@"CallNormal.png"] forState:WXButtonControlState_Normal];
     [callItem setTabBarItemImage:[UIImage imageNamed:@"CallBtnDownImg.png"] forState:WXButtonControlState_Selected];
     [callItem setTabBarItemTitle:@"通话" forState:WXButtonControlState_Normal];
+    
+    WXUITabBarItem *goodsListItem = [self createTabbarItem];
+    [goodsListItem setTabBarItemImage:[UIImage imageNamed:@"FreeChangedNor.png"] forState:WXButtonControlState_Normal];
+    [goodsListItem setTabBarItemImage:[UIImage imageNamed:@"FreeChangedSel.png"] forState:WXButtonControlState_Selected];
+    [goodsListItem setTabBarItemTitle:@"免费兑换" forState:WXButtonControlState_Normal];
     
     WXUITabBarItem *findItem = [self createTabbarItem];
     [findItem setTabBarItemImage:[UIImage imageNamed:@"FindNormal.png"] forState:WXButtonControlState_Normal];
@@ -74,8 +81,8 @@ typedef enum{
     [moreItem setTabBarItemTitle:@"个人中心" forState:WXButtonControlState_Normal];
 
     WXUITabBar *tabBar = [[[WXUITabBar alloc] initWithTabBarHeight:kTabBarHeight] autorelease];
-    [tabBar setTabBarItems:[NSArray arrayWithObjects:mallItem,callItem,findItem,moreItem, nil]];
-    if(self = [super initWithControllers:[NSArray arrayWithObjects:mallVC,callview,phoneView,infoVC, nil] tabBar:tabBar]){
+    [tabBar setTabBarItems:[NSArray arrayWithObjects:mallItem,callItem,goodsListItem,findItem,moreItem, nil]];
+    if(self = [super initWithControllers:[NSArray arrayWithObjects:mallVC,callview,goodsListVC,phoneView,infoVC, nil] tabBar:tabBar]){
     }else{}
     [tabBar setBackgroundColor:[UIColor whiteColor]];
     
@@ -97,10 +104,7 @@ typedef enum{
 }
 
 -(NSInteger)showTabbarNumber{
-    NSInteger number = 4;
-#ifdef ShowAppHome
-    number = 5;
-#endif
+    NSInteger number = 5;
     if([CustomMadeOBJ sharedCustomMadeOBJS].appCategory == E_App_Category_Eatable){
         return 3;
     }

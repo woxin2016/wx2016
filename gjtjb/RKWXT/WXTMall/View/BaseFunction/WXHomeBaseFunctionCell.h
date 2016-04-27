@@ -10,14 +10,12 @@
 
 typedef enum{
     T_BaseFunction_Init = 0,
-    T_BaseFunction_Shark,
     T_BaseFunction_Sign,
     T_BaseFunction_Wallet,
     T_BaseFunction_Invate,
-    T_BaseFunction_Game,
-    T_BaseFunction_Side,
     T_BaseFunction_Cut,
     T_BaseFunction_Union,
+    T_BaseFunction_yunP,
     
     T_BaseFunction_Invalid,
 }T_BaseFunction;

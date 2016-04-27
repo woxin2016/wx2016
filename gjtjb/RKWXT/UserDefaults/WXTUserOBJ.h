@@ -25,6 +25,7 @@
 -(void)setShopID:(NSString*)shopID; //店铺ID
 -(void)setShopName:(NSString*)shopName; //店铺name
 -(void)setShareInfo:(NSString*)shareInfo; //分享内容
+-(void)setShareUserCutInfo:(NSString*)cutInfo;  //分享提成文字
 -(void)setUserIdentity:(NSString*)identity; //为1说明是特殊号码，可以切换商家
 
 -(NSString*)wxtID;
@@ -39,6 +40,7 @@
 -(NSString*)shopID;
 -(NSString*)shopName;
 -(NSString*)shareInfo;
+-(NSString*)userCutInfo;
 -(NSString*)userIentifier;
 
 -(void)removeAllUserInfo;

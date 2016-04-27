@@ -70,28 +70,22 @@
     T_BaseFunction t_baseFunction = T_BaseFunction_Init;
     switch (tag) {
         case 1:
-            t_baseFunction = T_BaseFunction_Shark;
-            break;
-        case 2:
             t_baseFunction = T_BaseFunction_Sign;
             break;
-        case 3:
+        case 2:
             t_baseFunction = T_BaseFunction_Wallet;
             break;
-        case 4:
+        case 3:
             t_baseFunction = T_BaseFunction_Invate;
             break;
-        case 5:
-            t_baseFunction = T_BaseFunction_Game;
-            break;
-        case 6:
-            t_baseFunction = T_BaseFunction_Side;
-            break;
-        case 7:
+        case 4:
             t_baseFunction = T_BaseFunction_Cut;
             break;
-        case 8:
+        case 5:
             t_baseFunction = T_BaseFunction_Union;
+            break;
+        case 6:
+            t_baseFunction = T_BaseFunction_yunP;
             break;
         default:
             break;

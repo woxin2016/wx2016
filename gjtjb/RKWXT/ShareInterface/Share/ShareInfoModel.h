@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface ShareInfoModel : NSObject
+
++(ShareInfoModel*)shareInfoModel;
 -(void)loadUserShareInfo;
+-(void)loadUserShareCutInfo;
 
 @end

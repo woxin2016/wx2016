@@ -81,11 +81,6 @@
         [tabBarItem setFrame:rect];
         [self addSubview:tabBarItem];
         xOffset += itemSize.width;
-#ifdef ShowAppHome
-        if(xOffset == 2*itemSize.width){
-            xOffset += itemSize.width;
-        }
-#endif
         
         [tabBarItem addtarget:self action:@selector(tabBarItemClicked:) forControlEvent:UITouchControl_UpInside];
     }
