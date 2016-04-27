@@ -34,7 +34,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         CGFloat xOffset = 12;
-        CGFloat imgWidth = 63;
+        CGFloat imgWidth = 70;
         CGFloat imgHeight = imgWidth;
         CGFloat yOffset =  ([VirtualGoodsListCell cellHeightOfInfo:nil]-imgHeight)/2;
         _imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(xOffset,yOffset, imgWidth, imgHeight)];
@@ -42,26 +42,25 @@
         [self.contentView addSubview:_imgView];
         
         xOffset += imgWidth+10;
-        yOffset += 2;
+        yOffset -= 3;
         CGFloat nameWidth = self.width - xOffset - 10;
-        CGFloat nameHeight = 25;
+        CGFloat nameHeight = 38;
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameHeight);
         [_nameLabel setBackgroundColor:[UIColor clearColor]];
         [_nameLabel setTextAlignment:NSTextAlignmentLeft];
         [_nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [_nameLabel setNumberOfLines:0];
         [_nameLabel setFont:WXFont(15.0)];
+        [_nameLabel setNumberOfLines:2];
         [self.contentView addSubview:_nameLabel];
         
         yOffset += nameHeight + 3;
         CGFloat stockH = 15;
         _stockName = [[UILabel alloc] init];
-        _stockName.frame = CGRectMake(xOffset, yOffset, nameWidth, stockH);
+        _stockName.frame = CGRectMake(xOffset, yOffset, nameWidth - 40, stockH);
         [_stockName setBackgroundColor:[UIColor clearColor]];
         [_stockName setTextAlignment:NSTextAlignmentLeft];
         [_stockName setTextColor:WXColorWithInteger(0x000000)];
-        [_stockName setNumberOfLines:0];
         [_stockName setFont:WXFont(13.0)];
         [self.contentView addSubview:_stockName];
         
@@ -75,7 +74,7 @@
         [_buyNumber setFont:WXFont(13.0)];
         [self.contentView addSubview:_buyNumber];
         
-        yOffset += stockH + 3;
+        yOffset += stockH + 5;
         CGFloat priceWidth = 120;
         CGFloat priceHeight = 15;
         _priceLabel = [[UILabel alloc] init];

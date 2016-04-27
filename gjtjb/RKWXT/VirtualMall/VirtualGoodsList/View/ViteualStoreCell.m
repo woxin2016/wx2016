@@ -65,7 +65,7 @@
         
         yOffset += pricelH +10;
         CGFloat markH = 15;
-        CGFloat maLW = 60;
+        CGFloat maLW = 50;
         UILabel *maLabel = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, maLW, markH)];
         maLabel.font = WXFont(14.0);
         maLabel.textAlignment = NSTextAlignmentLeft;

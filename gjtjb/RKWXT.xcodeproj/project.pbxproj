@@ -918,7 +918,6 @@
 		DD2498BC1C88312F0079DB5A /* SearchResultEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498B01C88312F0079DB5A /* SearchResultEntity.m */; };
 		DD2498BD1C88312F0079DB5A /* ClassifyHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498B31C88312F0079DB5A /* ClassifyHistoryCell.m */; };
 		DD2498BE1C88312F0079DB5A /* ClassifySrarchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2498B51C88312F0079DB5A /* ClassifySrarchListCell.m */; };
-		DD24C6AD1CD09A70005DB9CB /* backTopImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD24C6AC1CD09A70005DB9CB /* backTopImg@2x.png */; };
 		DD24CF621CA2306C00A5B9ED /* UserCollectionGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF611CA2306C00A5B9ED /* UserCollectionGoodsVC.m */; };
 		DD24CF671CA2397D00A5B9ED /* CollectionGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF661CA2397D00A5B9ED /* CollectionGoodsCell.m */; };
 		DD24CF6A1CA23D8100A5B9ED /* CollectionGoodsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24CF691CA23D8100A5B9ED /* CollectionGoodsEntity.m */; };
@@ -977,6 +976,7 @@
 		DD35D8741C84258400422F5B /* GoodsListUpImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D86C1C84258400422F5B /* GoodsListUpImg@2x.png */; };
 		DD35D8751C84258400422F5B /* LMSearchDropDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D86D1C84258400422F5B /* LMSearchDropDown@2x.png */; };
 		DD35D8761C84258400422F5B /* LMSearchDropUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D86E1C84258400422F5B /* LMSearchDropUp@2x.png */; };
+		DD4456851CD0AB650025958C /* backTopImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4456841CD0AB650025958C /* backTopImg@2x.png */; };
 		DD4723DD1ADE128800278A5C /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF43001ADD0E4C0063B763 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DD89B54A1C89247D0059F097 /* CLassifySearchListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD89B5461C89247D0059F097 /* CLassifySearchListVC.m */; };
 		DD89B54B1C89247D0059F097 /* ClassifyResultListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD89B5491C89247D0059F097 /* ClassifyResultListCell.m */; };
@@ -2696,7 +2696,6 @@
 		DD2498B31C88312F0079DB5A /* ClassifyHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyHistoryCell.m; sourceTree = "<group>"; };
 		DD2498B41C88312F0079DB5A /* ClassifySrarchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifySrarchListCell.h; sourceTree = "<group>"; };
 		DD2498B51C88312F0079DB5A /* ClassifySrarchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifySrarchListCell.m; sourceTree = "<group>"; };
-		DD24C6AC1CD09A70005DB9CB /* backTopImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backTopImg@2x.png"; sourceTree = "<group>"; };
 		DD24CF601CA2306C00A5B9ED /* UserCollectionGoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionGoodsVC.h; sourceTree = "<group>"; };
 		DD24CF611CA2306C00A5B9ED /* UserCollectionGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionGoodsVC.m; sourceTree = "<group>"; };
 		DD24CF651CA2397D00A5B9ED /* CollectionGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionGoodsCell.h; sourceTree = "<group>"; };
@@ -2788,6 +2787,7 @@
 		DD35D86C1C84258400422F5B /* GoodsListUpImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsListUpImg@2x.png"; sourceTree = "<group>"; };
 		DD35D86D1C84258400422F5B /* LMSearchDropDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LMSearchDropDown@2x.png"; sourceTree = "<group>"; };
 		DD35D86E1C84258400422F5B /* LMSearchDropUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LMSearchDropUp@2x.png"; sourceTree = "<group>"; };
+		DD4456841CD0AB650025958C /* backTopImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backTopImg@2x.png"; sourceTree = "<group>"; };
 		DD817A211ADE062500586634 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		DD89B5451C89247D0059F097 /* CLassifySearchListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLassifySearchListVC.h; sourceTree = "<group>"; };
 		DD89B5461C89247D0059F097 /* CLassifySearchListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLassifySearchListVC.m; sourceTree = "<group>"; };
@@ -5714,7 +5714,7 @@
 		12F46A2C1B20012000B8EC98 /* T_GoodsInfo */ = {
 			isa = PBXGroup;
 			children = (
-				DD24C6AC1CD09A70005DB9CB /* backTopImg@2x.png */,
+				DD4456841CD0AB650025958C /* backTopImg@2x.png */,
 				DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */,
 				DD136AA41C97FD6C0019932E /* storeCart@2x.png */,
 				DD89B5621C8981790059F097 /* Shopping@2x.png */,
@@ -7769,7 +7769,6 @@
 				12CE121E1C50C58500FF85FA /* GoodsInfoCartImg@2x.png in Resources */,
 				1241E5311AE9D89B00811D3F /* CallBtnImg@2x.png in Resources */,
 				124535521AE9D146004198C9 /* sign2@2x.png in Resources */,
-				DD24C6AD1CD09A70005DB9CB /* backTopImg@2x.png in Resources */,
 				1245355B1AE9D146004198C9 /* sign6@2x.png in Resources */,
 				12CD4EB91C9A57AE003789F8 /* PersonalSexNor@2x.png in Resources */,
 				122D63B71C3F49A30086AAB8 /* HomePageWallet@2x.png in Resources */,
@@ -8023,6 +8022,7 @@
 				1241E5651AE9D91400811D3F /* T_Back@2x.png in Resources */,
 				128083E31B622A6D00260B9F /* ShareWxFriendImg@2x.png in Resources */,
 				DD25721B1C9FD3C5008D541E /* searchGoodsIcon@2x.png in Resources */,
+				DD4456851CD0AB650025958C /* backTopImg@2x.png in Resources */,
 				1263EFE91ACD35820014C347 /* iTunesArtWork.png in Resources */,
 				1241E54D1AE9D89B00811D3F /* 8N@2x.png in Resources */,
 				127321251C7ABDE100C8D1D7 /* UserSecondClientImg@2x.png in Resources */,
@@ -9019,7 +9019,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46212f7e-1dd4-4270-a34a-5753d0e83e23";
+				PROVISIONING_PROFILE = "c845310b-ef28-4fe0-8fbf-482fdeaf2a15";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;

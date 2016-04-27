@@ -16,6 +16,8 @@
     WXUILabel *marketPrice;
     WXUILabel *lineLabel;
     WXUILabel *postgateL;
+    UILabel *markPL;
+    UIView *markDidView;
 }
 @end
 
@@ -54,10 +56,32 @@
         [shopPrice setBackgroundColor:[UIColor clearColor]];
         [shopPrice setTextAlignment:NSTextAlignmentLeft];
         [shopPrice setTextColor:WXColorWithInteger(AllBaseColor)];
-        [shopPrice setFont:WXFont(16.0)];
+        [shopPrice setFont:WXFont(15.0)];
         [self.contentView addSubview:shopPrice];
         
-        yOffset += priceLabelHeight + 3;
+        
+        yOffset += priceLabelHeight + 5;
+        CGFloat markH = 15;
+        CGFloat maLW = 50;
+        UILabel *maLabel = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, maLW, markH)];
+        maLabel.font = WXFont(15.0);
+        maLabel.textAlignment = NSTextAlignmentLeft;
+        maLabel.textColor = [UIColor redColor];
+        maLabel.text = @"市场价:";
+        [self.contentView addSubview:maLabel];
+        
+        markPL = [[UILabel alloc]initWithFrame:CGRectMake(maLabel.right, yOffset,priceLabelWidth + 20- maLW, markH)];
+        markPL.font = WXFont(14.0);
+        markPL.textAlignment = NSTextAlignmentLeft;
+        markPL.textColor = [UIColor redColor];
+        [self.contentView addSubview:markPL];
+        
+        markDidView = [[UIView alloc]init];
+        markDidView.backgroundColor = [UIColor redColor];
+        [markPL addSubview:markDidView];
+        
+        
+        yOffset += markH + 4;
         marketPrice = [[WXUILabel alloc] init];
         marketPrice.frame = CGRectMake(xOffset, yOffset, priceLabelWidth + 20, priceLabelHeight);
         [marketPrice setBackgroundColor:[UIColor clearColor]];
@@ -84,12 +108,16 @@
     VirtualGoodsInfoEntity *entity = self.cellInfo;
     [desLabel setText:entity.goodsName];
     postgateL.text = [NSString stringWithFormat:@"邮费:￥%.2f",entity.postageVirtual];
+    
+    markPL.text = [NSString stringWithFormat:@"￥%.2f",entity.marketPrice];
+    markDidView.frame = CGRectMake(0, markPL.height / 2 - 0.5 , [NSString sizeWithString:markPL.text font:markPL.font].width, 0.5);
 }
 
 - (void)backMoney:(CGFloat)money xnb:(int)xnb{
     [marketPrice setText:[NSString stringWithFormat:@"返现金额:￥%.2f",money]];
     NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:%d",xnb];  //￥金额符号
     [shopPrice setText:marketPriceString];
+   
 }
 
 

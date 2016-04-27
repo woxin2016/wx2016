@@ -102,12 +102,11 @@ enum{
     [self addSubview:_tableView];
     
     UIImage *btnImg = [UIImage imageNamed:@"backTopImg.png"];
-    CGFloat btnW = 40;
-    _backTop = [[UIButton alloc]initWithFrame:CGRectMake(self.bounds.size.width - 60, self.bounds.size.height - 65, btnW,btnW)];
-    [_backTop setBorderRadian:btnW / 2 width:0 color:[UIColor clearColor]];
+    _backTop = [[UIButton alloc]initWithFrame:CGRectMake(self.bounds.size.width - 65, self.bounds.size.height - 65,45,45)];
+    [_backTop setBorderRadian:_backTop.width / 2 width:0 color:[UIColor clearColor]];
     [_backTop addTarget:self action:@selector(backTopBtn) forControlEvents:UIControlEventTouchDown];
-   [_backTop setBackgroundImage:btnImg forState:UIControlStateNormal];
-    [self addSubview:_backTop];
+    [_backTop setBackgroundImage:btnImg forState:UIControlStateNormal];
+    [self.view addSubview:_backTop];
 }
 
 - (void)requestNetWork{
@@ -140,7 +139,7 @@ enum{
  
     if(offset > 0){
         [_backTop setHidden:NO];
-        CGFloat alpha = 1 - ((160 - 60 - offset) / (160 - 60));
+        CGFloat alpha = offset / 200;
         _backTop.backgroundColor = [color colorWithAlphaComponent:alpha];
     }
 }
@@ -343,7 +342,7 @@ enum{
             break;
         case HomePageJump_Type_Web:
         {
-            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"兑换说明" animated:YES];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"使用说明" animated:YES];
         }
             break;
         default:
