@@ -181,6 +181,8 @@
     [userDefault removeObjectForKey:WXT_Userdefault_SellerID];
     [userDefault removeObjectForKey:WXT_Userdefault_ShopID];
     [userDefault removeObjectForKey:WXT_Userdefault_ShopName];
+    [userDefault removeObjectForKey:WXT_Userdefault_ShareInfo];
+    [userDefault removeObjectForKey:WXT_Userdefault_UserCutInfo];
 }
 
 @end
