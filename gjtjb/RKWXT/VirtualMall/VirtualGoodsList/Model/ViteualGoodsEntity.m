@@ -25,10 +25,10 @@
     entity.goodsIcon = dic[@"goods_home_img"];
     entity.goodsID = [dic[@"goods_id"] integerValue];
     entity.goodsName = dic[@"goods_name"];
-    entity.goodsPrice = [dic[@"shop_price"] floatValue];
+    entity.goodsPrice = [dic[@"goods_price"] floatValue];
     entity.marPrice = [dic[@"market_price"] floatValue];
     entity.backMoney = [dic[@"back_money"] floatValue];
-    entity.currency = [dic[@"xnb_1"] floatValue];
+    entity.xnb = [dic[@"xnb_1"] intValue];
     return entity;
 }
 @end

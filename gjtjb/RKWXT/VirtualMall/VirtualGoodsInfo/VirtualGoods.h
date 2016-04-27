@@ -14,7 +14,7 @@
 #define DownViewHeight (44)
 #define TopNavigationViewHeight (64)
 #define TopNavigationViewHeight (64)
-#define ExplainCellHeight (90)
+#define ExplainCellHeight (80)
 #define DseCellHeight (100)
 enum{
     VirtualGoodsInfo_Section_TopImg = 0,
@@ -49,6 +49,7 @@ enum{
 #import "VietualInfoDesCell.h"
 #import "VirtualInfoBDCell.h"
 #import "VirtualInfoDownCell.h"
+#import "VirtualInfoDesExchangeCell.h"
 #import "VirtualInfoExplainCell.h"
 #import "VirtualInfoIntegralCell.h"
 #import "VirtualGoodsRedCutCell.h"

@@ -31,7 +31,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        CGFloat yOffset = 12;
+        CGFloat yOffset = 0;
         
         UIView *bgView = [[UIView alloc] init];
         bgView.frame = CGRectMake(0, yOffset, IPHONE_SCREEN_WIDTH, [VirtualUserInfoCell cellHeightOfInfo:nil]-2*yOffset);
@@ -110,7 +110,7 @@
 }
 
 + (CGFloat)cellHeightOfInfo:(id)cellInfo{
-    return 100;
+    return 80;
 }
 
 @end

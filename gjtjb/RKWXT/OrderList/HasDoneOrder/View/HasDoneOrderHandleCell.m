@@ -26,7 +26,7 @@
         rightBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-btnWidth, (HasDoneOrderHandleCellHeight-btnHeight)/2, btnWidth, btnHeight);
         [rightBtn setHidden:YES];
         [rightBtn setBackgroundColor:WXColorWithInteger(0xff9c00)];
-        [rightBtn setBorderRadian:3.0 width:1.0 color:[UIColor clearColor]];
+//        [rightBtn setBorderRadian:3.0 width:1.0 color:[UIColor clearColor]];
         [rightBtn.titleLabel setFont:WXFont(10.0)];
         [rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:rightBtn];

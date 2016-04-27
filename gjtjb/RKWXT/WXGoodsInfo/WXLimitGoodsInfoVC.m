@@ -52,7 +52,7 @@
     
     [self initWebView];
     _tableView = [[UITableView alloc] init];
-    _tableView.frame = CGRectMake(0, TopNavigationViewHeight, Size.width, Size.height-TopNavigationViewHeight);
+    _tableView.frame = CGRectMake(0, TopNavigationViewHeight, Size.width, Size.height-DownViewHeight);
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
@@ -138,13 +138,14 @@
 
 - (WXUIView*)limitBaseDownView{
     WXUIView *downView = [[WXUIView alloc] init];
-    [downView setBackgroundColor:[UIColor whiteColor]];
+    [downView setBackgroundColor:RGB_COLOR(210, 210, 210)];
     
     CGFloat btnWidth = [UIScreen mainScreen].bounds.size.width /2;
     CGFloat xOffset = 0;
+    CGFloat yOffset = 0.5;
     UIButton *phontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    phontBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
-    [phontBtn setBackgroundColor:[UIColor clearColor]];
+    phontBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, DownViewHeight - yOffset);
+    [phontBtn setBackgroundColor:[UIColor whiteColor]];
     [phontBtn.titleLabel setFont:WXFont(14.0)];
     [phontBtn setTitle:@"联系卖家" forState:UIControlStateNormal];
     [phontBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -156,14 +157,14 @@
     
     xOffset += btnWidth;
     WXUIButton *limitBuyBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    limitBuyBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
+    limitBuyBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, DownViewHeight - yOffset);
     [limitBuyBtn setBackgroundColor:[UIColor clearColor]];
     [limitBuyBtn setTag:1];
     [limitBuyBtn.titleLabel setFont:WXFont(14.0)];
     [limitBuyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [limitBuyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [limitBuyBtn addTarget:self action:@selector(buyBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [limitBuyBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
+    [limitBuyBtn setBackgroundColor:[UIColor colorWithHexString:@"f74f35"]];
     [downView addSubview:limitBuyBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;

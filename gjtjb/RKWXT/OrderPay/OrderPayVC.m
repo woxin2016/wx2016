@@ -77,6 +77,20 @@ enum{
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSInteger row;
+    switch (section) {
+        case OrderPay_Section_Money:
+            row = 1;
+            break;
+        case OrderPay_Section_Alipay:
+            row = 1;
+            break;
+        case OrderPay_Section_Wechat:
+                row = 1;
+            break;
+        default:
+            break;
+    }
     return 1;
 }
 
@@ -171,8 +185,30 @@ enum{
 
 #pragma mark wechat
 -(void)wechatPay{
-    [_model wechatPayWithOrderID:_orderID type:(_orderpay_type==OrderPay_Type_Order ? @"N" : (_orderpay_type==OrderPay_Type_Lucky ? @"P" : @""))];
+//    [_model wechatPayWithOrderID:_orderID type:(_orderpay_type==OrderPay_Type_Order ? @"N" : (_orderpay_type==OrderPay_Type_Lucky ? @"P" : @""))];
+     [_model wechatPayWithOrderID:_orderID type:[self weixinType]];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+}
+
+-(NSString*)weixinType{
+    NSString *newStr = nil;
+    switch (_orderpay_type) {
+        case OrderPay_Type_Order:
+            newStr = @"N";
+            break;
+        case OrderPay_Type_Recharge:
+            newStr = @"";
+            break;
+        case OrderPay_Type_Lucky:
+            newStr = @"P";
+            break;
+        case OrderPay_Type_Virtual:
+            newStr = @"E";
+            break;
+        default:
+            break;
+    }
+    return newStr;
 }
 
 -(void)wechatPayLoadSucceed{
@@ -243,6 +279,12 @@ enum{
         [self toLuckyGoodsOrderList];
         return;
     }
+    
+    if (_orderpay_type == OrderPay_Type_Virtual) {
+        [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+        }];
+        return;
+    }
     [self toOrderList];
 }
 
@@ -284,6 +326,9 @@ enum{
             break;
         case OrderPay_Type_Lucky:
             newStr = [NSString stringWithFormat:@"P%@",_orderID];
+            break;
+        case OrderPay_Type_Virtual:
+            newStr = [NSString stringWithFormat:@"%@",_orderID];
             break;
         default:
             break;

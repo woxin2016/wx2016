@@ -36,25 +36,25 @@
         
         self.width = IPHONE_SCREEN_WIDTH;
         CGFloat xOffset = 10;
-        CGFloat yOffset = 10;
-        CGFloat imageH = 90;
+        CGFloat yOffset = 7;
+        CGFloat imageH = 100;
         CGFloat imageW = imageH;
         _imgView = [[WXRemotionImgBtn alloc]initWithFrame:CGRectMake(xOffset, yOffset, imageW, imageH)];
         [self.contentView addSubview:_imgView];
         
-        xOffset += imageW + 10;
-        yOffset += 10;
-        CGFloat nameLH = 25;
+        xOffset += imageW + 5;
+        yOffset += 4;
+        CGFloat nameLH = 35;
         CGFloat nameLW = (self.width - 30) - imageW;
         nameL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, nameLH)];
         nameL.font = WXFont(14.0);
+        nameL.numberOfLines = 2;
         nameL.textAlignment = NSTextAlignmentLeft;
         nameL.textColor = [UIColor blackColor];
-        nameL.numberOfLines = 2;
         [self.contentView addSubview:nameL];
         
-        yOffset += nameLH + 10;
-        CGFloat pricelH = 12;
+        yOffset += nameLH + 8;
+        CGFloat pricelH = 15;
         priceL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, pricelH)];
         priceL.font = WXFont(14.0);
         priceL.textAlignment = NSTextAlignmentLeft;
@@ -66,7 +66,7 @@
         CGFloat labelH = 12;
         CGFloat labelW = 80;
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, labelW, labelH)];
-        label.font = WXFont(12.0);
+        label.font = WXFont(13.0);
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor grayColor];
         label.text = @"平台邮寄兑换";
@@ -78,6 +78,10 @@
         moneyL.textAlignment = NSTextAlignmentLeft;
         moneyL.textColor = [UIColor grayColor];
         [self.contentView addSubview:moneyL];
+        
+        UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, [ViteualStoreCell cellHeightOfInfo:nil] - 0.5 , self.width - xOffset, 0.5)];
+        didView.backgroundColor = WXColorWithInteger(0xd6d6d6);
+        [self.contentView addSubview:didView];
     }
     return self;
 }
@@ -89,7 +93,7 @@
     [_imgView load];
     
     nameL.text = entity.goodsName;
-    priceL.text = [NSString stringWithFormat:@"所需云票:%.2f",entity.currency];
+    priceL.text = [NSString stringWithFormat:@"所需云票:%d",entity.xnb];
   
     
     NSString *backStr = [NSString stringWithFormat:@"返现金额:￥%.2f",entity.backMoney];
@@ -99,7 +103,7 @@
 }
 
 + (CGFloat)cellHeightOfInfo:(id)cellInfo{
-    return 110;
+    return 114;
 }
 
 @end

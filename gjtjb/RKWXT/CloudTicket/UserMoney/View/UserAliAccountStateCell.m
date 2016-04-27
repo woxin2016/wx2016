@@ -140,7 +140,7 @@
         [accountName setText:[NSString stringWithFormat:@"账户名: %@",[self userNameShowType:entity.aliName]]];
         [accountInfo setText:[NSString stringWithFormat:@"收款账户: %@",[self userAliAccountShowWith:entity.aliCount]]];
         
-        [submitBtn setTitle:@"修改绑定账户" forState:UIControlStateNormal];
+        [submitBtn setTitle:@"重新绑定账户" forState:UIControlStateNormal];
     }
 }
 

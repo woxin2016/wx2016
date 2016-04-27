@@ -110,7 +110,10 @@ typedef enum {
     //云票兑换
     WXT_UrlFeed_Type_VirtualGoods,
     WXT_UrlFeed_Type_VirtualGoodsInfo,
-    
+    WXT_UrlFeed_Type_VirtualOrder,
+    WXT_UrlFeed_Type_VirtualOrderList,
+    WXT_UrlFeed_Type_VirtualCanCelOrder,
+    WXT_UrlFeed_Type_VirtualConfirmOrder,
     
     
     WXT_UrlFeed_Type_Invalid,

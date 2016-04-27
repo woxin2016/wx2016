@@ -148,7 +148,7 @@
     WXUILabel *textLabel = [[WXUILabel alloc] init];
     textLabel.frame = CGRectMake(xOffset, yOffset, labelWidth, labelHeight);
     [textLabel setBackgroundColor:[UIColor clearColor]];
-    [textLabel setText:@"金额提现10元起"];
+    [textLabel setText:@"金额提现20元起"];
     [textLabel setTextAlignment:NSTextAlignmentLeft];
     [textLabel setTextColor:WXColorWithInteger(0x000000)];
     [textLabel setFont:WXFont(15.0)];

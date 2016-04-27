@@ -43,7 +43,7 @@
         [self.contentView addSubview:_money];
         
         yOffset += upHeight+8;
-        CGFloat xOffset = 170;
+        CGFloat xOffset = 160;
         CGFloat dateWidth = 50;
         CGFloat dateHeight = 15;
         UILabel *datelabel = [[UILabel alloc] init];

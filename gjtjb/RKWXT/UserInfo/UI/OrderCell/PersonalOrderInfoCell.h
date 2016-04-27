@@ -8,7 +8,7 @@
 
 #import "WXTUITableViewCell.h"
 
-#define PersonalOrderInfoCellHeight (53)
+#define PersonalOrderInfoCellHeight (63)
 
 @protocol PersonalOrderInfoDelegate;
 

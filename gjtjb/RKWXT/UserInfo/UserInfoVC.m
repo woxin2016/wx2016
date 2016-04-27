@@ -54,6 +54,10 @@
     if(![MoreMoneyInfoModel shareUserMoreMoneyInfo].isLoaded){
         [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
     }
+    
+    if([MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged){
+        [self uploadUserMoreMoneyInfo];
+    }
 }
 
 -(void)viewDidLoad{
@@ -211,7 +215,7 @@
     if(section == PersonalInfo_Order){
         return 0;
     }
-    return 12;
+    return 7;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -241,7 +245,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = CommonCellHeight;
     if(indexPath.section == PersonalInfo_Order && indexPath.row == Order_Category){
-        height = 53;
+        height = PersonalOrderInfoCellHeight;
     }
     return height;
 }
@@ -382,7 +386,9 @@
     [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
     [cell.textLabel setFont:WXFont(15.0)];
     [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
-    if(row == UserCloudTicket){
+    if (row == userXNBOrder) {
+        cell = [self tableViewForOrderListCell];
+    }else if(row == UserCloudTicket){
         [cell.imageView setImage:[UIImage imageNamed:@"CloudTicketImg.png"]];
         [cell.textLabel setText:@"我的云票"];
         [cell setCellInfo:[NSString stringWithFormat:@"%d",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance]];
@@ -393,6 +399,20 @@
         [cell setCellInfo:[NSString stringWithFormat:@"￥%.2f",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance]];
         [cell load];
     }
+    return cell;
+}
+
+- (UserCommonShowCell*)tableViewForOrderListCell{
+    static NSString *identifier = @"ForOrderListCell";
+    UserCommonShowCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    if(!cell){
+        cell = [[UserCommonShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    [cell setDefaultAccessoryView:WXT_CellDefaultAccessoryType_HasNext];
+    [cell.textLabel setFont:WXFont(15.0)];
+    [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+    [cell.imageView setImage:[UIImage imageNamed:@"userXNBorder.png"]];
+    [cell.textLabel setText:@"兑换订单"];
     return cell;
 }
 
@@ -485,6 +505,10 @@
             break;
         case PersonalInfo_UserMoney:
         {
+            if (row == userXNBOrder) {
+                VirtualOrderListVC *listVC = [[VirtualOrderListVC alloc]init];
+                [self.wxNavigationController pushViewController:listVC];
+            }
             if(row == UserCloudTicket){
                 CloudTicketListVC *cloudVC = [[CloudTicketListVC alloc] init];
                 [self.wxNavigationController pushViewController:cloudVC];
@@ -613,6 +637,7 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self removeOBS];
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = NO;
 }
 
 @end

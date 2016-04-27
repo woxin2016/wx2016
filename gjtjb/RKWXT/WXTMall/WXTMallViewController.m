@@ -82,7 +82,7 @@
     
     
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(20, 18, 45, 40);
+    leftBtn.frame = CGRectMake(15, 18, 45, 40);
     [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
     [leftBtn setTitle:@"分类" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -102,10 +102,16 @@
     CGFloat titleEdgeInsetsRight = -titleEdgeInsetsLeft;
     leftBtn.titleEdgeInsets = UIEdgeInsetsMake(40*2/3-5, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
     
-    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-40, 18, 25, 25)];
+    _unreadView = [[WXSysMsgUnreadV alloc] initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH-40, 18, 44, 44)];
     [_unreadView setDelegate:self];
     [_unreadView showSysPushMsgUnread];
     [topView addSubview:_unreadView];
+    
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_SCREEN_WIDTH - 60, 18, 40, 40)];
+    btn.backgroundColor = [UIColor clearColor];
+    [btn addTarget:self action:@selector(toSysPushMsgView) forControlEvents:UIControlEventTouchUpInside];
+    [topView addSubview:btn];
+    
 }
 
 //用户切换商家通知
@@ -368,6 +374,10 @@
     [cell.textLabel setText:@"为我推荐"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
     [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
+    
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTextSectionHeight - 0.5, cell.width, 0.5)];
+    didView.backgroundColor = WXColorWithInteger(0xcacaca);
+    [cell.contentView addSubview:didView];
     return cell;
 }
 
@@ -439,6 +449,11 @@
     [cell.textLabel setText:@"猜你喜欢"];
     [cell.textLabel setFont:[UIFont systemFontOfSize:TextFont]];
     [cell.textLabel setTextColor:WXColorWithInteger(0xf74f35)];
+    
+    UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTextSectionHeight - 0.5, cell.width, 0.5)];
+    didView.backgroundColor = WXColorWithInteger(0xcacaca);
+    didView.alpha = 0.5;
+    [cell.contentView addSubview:didView];
     return cell;
 }
 
@@ -602,8 +617,8 @@
     switch (index) {
         case T_BaseFunction_Shark:
         {
-            LuckyShakeVC *luckyVC = [[LuckyShakeVC alloc] init];
-            [self.wxNavigationController pushViewController:luckyVC];
+            VirtualGoodsListVC *listVC = [[VirtualGoodsListVC alloc]init];
+            [self.wxNavigationController pushViewController:listVC];
         }
             break;
         case T_BaseFunction_Invate:
@@ -635,12 +650,10 @@
             break;
         case T_BaseFunction_Side:
         {
-//            FindCommonVC *vc = [[FindCommonVC alloc] init];
-//            vc.webURl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
-//            vc.name = @"商家联盟";
-//            [self.wxNavigationController pushViewController:vc];
-            VirtualGoodsListVC *listVC = [[VirtualGoodsListVC alloc]init];
-            [self.wxNavigationController pushViewController:listVC];
+            FindCommonVC *vc = [[FindCommonVC alloc] init];
+            vc.webURl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
+            vc.name = @"商家联盟";
+            [self.wxNavigationController pushViewController:vc];
         }
             break;
             

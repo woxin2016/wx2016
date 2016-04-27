@@ -21,6 +21,7 @@
     WXUILabel *_newPriceLabel;
     WXUILabel *likeNumLabel;
     WXUILabel *hotNumLabel;
+    WXUILabel *hotLeftLabel;
 }
 @end
 
@@ -33,7 +34,7 @@
 
         CGFloat bgWidth = (IPHONE_SCREEN_WIDTH-3*xGap)/2;
         CGFloat bgHeight = T_HomePageGuessInfoHeight-7;
-        bgBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+        bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         bgBtn.frame = CGRectMake(xGap, 0, bgWidth, bgHeight);
         [bgBtn setBackgroundColor:[UIColor whiteColor]];
         [bgBtn addTarget:self action:@selector(changeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -68,8 +69,9 @@
         [_newPriceLabel setFont:[UIFont systemFontOfSize:11.0]];
         [bgBtn addSubview:_newPriceLabel];
         
-        xOffset += imgWidth/2;
-        UIImage *likeImg = [UIImage imageNamed:@"UserLikeImg.png"];
+        xOffset = 5;
+        yOffset += nameLabelHeight / 2 + 2;
+        UIImage *likeImg = [UIImage imageNamed:@"UserLikeNewImg.png"];
         WXUIImageView *imgView = [[WXUIImageView alloc] init];
         imgView.frame = CGRectMake(xOffset, yOffset+(nameLabelHeight/2-likeImg.size.height)/2, likeImg.size.width, likeImg.size.height);
         [imgView setImage:likeImg];
@@ -85,16 +87,16 @@
         [likeNumLabel setFont:WXFont(10.0)];
         [bgBtn addSubview:likeNumLabel];
         
-        xOffset += numberWidth;
+        xOffset = bgWidth / 2;
         CGFloat nameWidth = 20;
-        WXUILabel *nameLabel = [[WXUILabel alloc] init];
-        nameLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameLabelHeight/2);
-        [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setTextAlignment:NSTextAlignmentCenter];
-        [nameLabel setTextColor:WXColorWithInteger(0x707070)];
-        [nameLabel setFont:WXFont(10.0)];
-        [nameLabel setText:@"热度"];
-        [bgBtn addSubview:nameLabel];
+        hotLeftLabel = [[WXUILabel alloc] init];
+        hotLeftLabel.frame = CGRectMake(xOffset, yOffset, nameWidth, nameLabelHeight/2);
+        [hotLeftLabel setBackgroundColor:[UIColor clearColor]];
+        [hotLeftLabel setTextAlignment:NSTextAlignmentLeft];
+        [hotLeftLabel setTextColor:WXColorWithInteger(0x707070)];
+        [hotLeftLabel setFont:WXFont(10.0)];
+        [hotLeftLabel setText:@"热度"];
+        [bgBtn addSubview:hotLeftLabel];
         
         xOffset += nameWidth+2;
         hotNumLabel = [[WXUILabel alloc] init];
@@ -132,7 +134,12 @@
     [_newPriceLabel setText:shopPrice];
     [_nameLabel setText:entity.goods_name];
     [likeNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.likeNum]];
-    [hotNumLabel setText:[NSString stringWithFormat:@"%ld",(long)entity.hotNum]];
+  
+    NSString *hotStr = [NSString stringWithFormat:@"%ld",(long)entity.hotNum];
+    CGFloat xOffset = ((IPHONE_SCREEN_WIDTH-3*xGap)/2) - [NSString sizeWithString:hotStr font:hotLeftLabel.font].width - hotLeftLabel.width - 10;
+    hotLeftLabel.X = xOffset;
+    [hotNumLabel setText:hotStr];
+    hotNumLabel.X = hotLeftLabel.right + 3;
     
     if(entity.index%2==0){
         CGRect rect = bgBtn.frame;
@@ -141,13 +148,6 @@
     }
 }
 
-// 计算高度 <先放着，不确定他这高度怎么计算的>
-+ (CGFloat)sizeWithString:(NSString*)string font:(UIFont*)font maxW:(CGFloat)maxW{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[NSFontAttributeName] = font;
-    CGSize size = CGSizeMake(maxW, MAXFLOAT);
-    return [string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size.height ;
-    
-}
+
 
 @end

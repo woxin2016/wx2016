@@ -34,7 +34,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         CGFloat xOffset = 12;
-        CGFloat yOffset = 12;
+        CGFloat yOffset = 10;
         CGFloat desWidth = IPHONE_SCREEN_WIDTH-2*xOffset - 60;
         CGFloat desHeight = 35;
         desLabel = [[WXUILabel alloc] init];
@@ -63,15 +63,10 @@
         [marketPrice setBackgroundColor:[UIColor clearColor]];
         [marketPrice setTextAlignment:NSTextAlignmentLeft];
         [marketPrice setTextColor:WXColorWithInteger(0x9b9b9b)];
-        [marketPrice setFont:WXFont(14.0)];
+        [marketPrice setFont:WXFont(13.0)];
         [self.contentView addSubview:marketPrice];
- 
-//        lineLabel = [[WXUILabel alloc] init];
-//        lineLabel.frame = CGRectMake(0, priceLabelHeight/2, priceLabelWidth/2, 0.5);
-//        [lineLabel setBackgroundColor:[UIColor grayColor]];
-//        [marketPrice addSubview:lineLabel];
         
-        xOffset += priceLabelWidth;
+        xOffset = self.width - 80 - 10;
         postgateL = [[WXUILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, 80, priceLabelWidth)];
         postgateL.centerY = marketPrice.centerY;
         [postgateL setBackgroundColor:[UIColor clearColor]];
@@ -88,18 +83,22 @@
 - (void)load{
     VirtualGoodsInfoEntity *entity = self.cellInfo;
     [desLabel setText:entity.goodsName];
-     NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:￥%.2f",entity.marketPrice];  //￥金额符号
-    [shopPrice setText:marketPriceString];
-   
     postgateL.text = [NSString stringWithFormat:@"邮费:￥%.2f",entity.postageVirtual];
 }
 
-- (void)backMoney:(CGFloat)money{
+- (void)backMoney:(CGFloat)money xnb:(int)xnb{
     [marketPrice setText:[NSString stringWithFormat:@"返现金额:￥%.2f",money]];
+    NSString *marketPriceString = [NSString stringWithFormat:@"所需云票:%d",xnb];  //￥金额符号
+    [shopPrice setText:marketPriceString];
+}
+
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
     
-//    CGRect rectl = lineLabel.frame;
-//    rectl.size.width = [NSString sizeWithString:marketPrice.text font:marketPrice.font].width;
-//    [lineLabel setFrame:rectl];
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    
 }
 
 

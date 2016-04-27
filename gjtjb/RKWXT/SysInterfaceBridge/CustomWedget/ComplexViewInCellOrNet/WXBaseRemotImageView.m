@@ -9,7 +9,7 @@
 #import "WXBaseRemotImageView.h"
 #import "URLDownloadOBJ.h"
 
-#define kImageInitFileName @"NewinitImage.png"
+#define kImageInitFileName @"wxMallinitImage.png"
 #define kImageFailedFileName @"failedImage.png"
 
 @interface WXBaseRemotImageView()

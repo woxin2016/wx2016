@@ -27,6 +27,7 @@
 #import "ManagerAddressVC.h"
 #import "CloudTicketListVC.h"
 #import "UserMoneyShowVC.h"
+#import "VirtualOrderListVC.h"
 
 enum{
     PersonalInfo_Order = 0,
@@ -54,7 +55,8 @@ enum{
 
 //我的云票
 enum{
-    UserCloudTicket = 0,
+    userXNBOrder = 0,
+    UserCloudTicket ,
     UserAccountMoney,
     
     UserMoneyInvalid,

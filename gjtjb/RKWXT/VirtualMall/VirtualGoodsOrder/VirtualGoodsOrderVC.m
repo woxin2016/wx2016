@@ -8,17 +8,23 @@
 
 #import "VirtualGoodsOrderVC.h"
 #import "VirtualGoodsOrderModel.h"
+#import "VirtualOrderInfoEntity.h"
+#import "MoreMoneyInfoModel.h"
 
 #import "VirtualOrderNumberCell.h"
 #import "VirtualUserInfoCell.h"
 #import "VirtualCompanyCell.h"
 #import "VirtualGoodsListCell.h"
 #import "VirtualPayStatusCell.h"
-#import "VirtualAllMoneyCell.h"
+#import "VirtualPayMoneryCell.h"
+#import "VirtualPayXNBCell.h"
 #import "VirtualForDateCell.h"
-
+#import "VirtualUserMessageCell.h"
+#import "VirtualExchangeListCell.h"
+#import "VirtualAllMoneyCell.h"
 
 #import "ManagerAddressVC.h"
+#import "OrderPayVC.h"
 
 enum{
     VirtualOrder_Section_Number = 0,
@@ -27,6 +33,8 @@ enum{
     VirtualOrder_Section_GoodsList,
     VirtualOrder_Section_PayWay,
     VirtualOrder_Section_PayMoney,
+    VirtualOrder_Section_UserMessage,
+    VirtualOrder_Section_AllMoneyInfo,
     VirtualOrder_Section_ForDate,
     
     VirtualOrder_Section_Invalid,
@@ -35,11 +43,13 @@ enum{
 #define Size self.bounds.size
 #define DownViewHeight 55
 
-@interface VirtualGoodsOrderVC () <UITableViewDataSource,UITableViewDelegate,VirtualGoodsOrderModelDelegate>
+@interface VirtualGoodsOrderVC () <UITableViewDataSource,UITableViewDelegate,VirtualGoodsOrderModelDelegate,VirtualUserMessageCellDelegate>
 {
     UITableView *_tableView;
     VirtualGoodsOrderModel *_model;
+    
 }
+@property (nonatomic,strong)NSString *userMessage;
 @end
 
 @implementation VirtualGoodsOrderVC
@@ -48,25 +58,49 @@ enum{
     if (self = [super init]) {
         _model = [[VirtualGoodsOrderModel alloc]init];
         _model.delegate  = self;
+        if (![[MoreMoneyInfoModel shareUserMoreMoneyInfo] isLoaded]) {
+             [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
+        }
     }
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     if (_tableView) {
         [_tableView reloadSections:[NSIndexSet indexSetWithIndex:VirtualOrder_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
     }
+    
+    [self addOBS];
+}
+
+- (void)addOBS{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadUserMoreMoneyInfo) name:K_Notification_Name_LoadUserMoreMoneyInfoSucceed object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setCSTTitle:@"下单"];
-    
+    [self setCSTTitle:@"确认订单"];
+     
     [self initTableView];
     
-    [self addSubview:[self tableViewForFootView]];
+    if (self.orderType == VirtualOrderType_LookOrderStatus) {
+       
+    }else{
+        [self addSubview:[self payTableViewForFootView]];
+    }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self removeaddOBS];
+}
+
+- (void)removeaddOBS{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)initTableView{
@@ -77,23 +111,41 @@ enum{
     [self addSubview:_tableView];
 }
 
--(UIView*)tableViewForFootView{
+- (UIView*)payTableViewForFootView{
     UIView *footView = [[UIView alloc] init];
     CGFloat xOffset = 10;
     CGFloat btnWidth = 75;
     CGFloat btnHeight = 35;
     WXUIButton *payBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     payBtn.frame = CGRectMake(Size.width-xOffset-btnWidth, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
-    [payBtn setBorderRadian:2.0 width:0.5 color:WXColorWithInteger(0xdd2726)];
     [payBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
     [payBtn setTitle:@"去支付" forState:UIControlStateNormal];
     [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payBtn addTarget:self action:@selector(gotoPayVC) forControlEvents:UIControlEventTouchUpInside];
+     payBtn.titleLabel.font = WXFont(14.0);
     [footView addSubview:payBtn];
+
+    
+    CGFloat labelX = Size.width - 2 *xOffset - btnWidth - 120;
+    UILabel *allMonery = [[UILabel alloc]initWithFrame:CGRectMake(labelX, (DownViewHeight-btnHeight)/2, 120, btnHeight)];
+    allMonery.textColor = [UIColor redColor];
+    allMonery.font = WXFont(14.0);
+    [footView addSubview:allMonery];
+    
+    if (self.type == virtualParOrderType_Store) {
+        allMonery.text = [NSString stringWithFormat:@"合计:￥%.2f",self.virtualOrder.postage];
+    }else{
+        allMonery.text = [NSString stringWithFormat:@"合计:￥%.2f",(self.virtualOrder.postage + self.virtualOrder.goodsPrice)];
+    }
+    
+    UIView *marView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, Size.width, 0.5)];
+    marView.backgroundColor = RGB_COLOR(210, 210, 210);
+    [footView addSubview:marView];
     
     footView.frame = CGRectMake(0, Size.height-DownViewHeight, Size.width, DownViewHeight);
     return footView;
 }
+
 
 #pragma mark   --   Tableview
 //改变cell分割线置顶
@@ -125,15 +177,32 @@ enum{
     NSInteger row;
     switch (section) {
         case VirtualOrder_Section_Number:
+        {
+            if (self.orderType == VirtualOrderType_LookOrderStatus) {
+                row = 1;
+            }else{
+                row = 0;
+            }
+        }
+            break;
+        case VirtualOrder_Section_ForDate:
+        {
+            if (self.orderType == VirtualOrderType_LookOrderStatus) {
+                row = 1;
+            }else{
+                row = 0;
+            }
+        }
+            break;
         case VirtualOrder_Section_UserInfo:
         case VirtualOrder_Section_Company:
         case VirtualOrder_Section_GoodsList:
         case VirtualOrder_Section_PayWay:
+        case VirtualOrder_Section_UserMessage:
         case VirtualOrder_Section_PayMoney:
-        case VirtualOrder_Section_ForDate:
+        case VirtualOrder_Section_AllMoneyInfo:
             row = 1;
             break;
-            
         default:
             break;
     }
@@ -159,8 +228,14 @@ enum{
         case VirtualOrder_Section_PayWay:
             height = [VirtualPayStatusCell cellHeightOfInfo:nil];
             break;
-        case VirtualOrder_Section_PayMoney:
+        case VirtualOrder_Section_AllMoneyInfo:
+            height = [VirtualAllMoneyCell cellHeightOfInfo:nil];
+            break;
         case VirtualOrder_Section_ForDate:
+            height = [VirtualForDateCell cellHeightOfInfo:nil];
+            break;
+        case VirtualOrder_Section_PayMoney:
+        case VirtualOrder_Section_UserMessage:
             height = 44;
             break;
             
@@ -174,17 +249,21 @@ enum{
     CGFloat height = 0.0;
     switch (section) {
         case VirtualOrder_Section_UserInfo:
-            height = 10;
+            if (self.orderType == VirtualOrderType_LookOrderStatus) {
+                height = 10;
+            }else{
+                height = 0.0;
+            }
             break;
         case VirtualOrder_Section_Company:
-            height = 10;
-            break;
         case VirtualOrder_Section_PayWay:
-            height = 20;
+        case VirtualOrder_Section_PayMoney:
+        case VirtualOrder_Section_UserMessage:
+            height = 7;
             break;
         case VirtualOrder_Section_GoodsList:
-        case VirtualOrder_Section_PayMoney:
         case VirtualOrder_Section_ForDate:
+        case VirtualOrder_Section_AllMoneyInfo:
             height = 0.0;
             break;
             
@@ -208,6 +287,7 @@ enum{
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
 
@@ -224,23 +304,69 @@ enum{
 //商品列表
 - (WXUITableViewCell*)virtualTableViewVirtualGoodsListCell{
     VirtualGoodsListCell *cell = [VirtualGoodsListCell VirtualGoodsListCellWithTabelView:_tableView];
-    [cell setCellInfo:self.goodsList];
+    [cell setCellInfo:self.virtualOrder];
     [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
+
+// 商城商品列表
+- (WXUITableViewCell*)virtualTableViewVirtualExchangeListCell{
+    VirtualExchangeListCell *cell = [VirtualExchangeListCell VirtualExchangeListCellWithTabelView:_tableView];
+    [cell setCellInfo:self.virtualOrder];
+    [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
+    return cell;
+}
+
 //支付方式
 - (WXUITableViewCell*)virtualTableViewVirtualPayStatusCell{
     VirtualPayStatusCell *cell = [VirtualPayStatusCell VirtualPayStatusCellWithTabelView:_tableView];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
     return cell;
 }
-//总价
+
+//现金支付
+- (WXUITableViewCell*)virtualTableViewVirtualPayMoneryCell{
+    VirtualPayMoneryCell *cell = [VirtualPayMoneryCell VirtualPayMoneryCellWithTabelView:_tableView];
+    [cell userCanMonery:[MoreMoneyInfoModel shareUserMoreMoneyInfo].userMoneyBalance];
+    return cell;
+}
+
+//云票支付
+- (WXUITableViewCell*)virtualTableViewVirtualPayXNBCell{
+    VirtualPayXNBCell *cell = [VirtualPayXNBCell VirtualPayXNBCellWithTabelView:_tableView];
+    [cell userCanXNB:[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
+    return cell;
+}
+
+//买家留言
+- (WXUITableViewCell*)virtualTableViewVirtualUserMessageCell{
+    VirtualUserMessageCell *cell = [VirtualUserMessageCell VirtualUserMessageCellWithTabelView:_tableView];
+    cell.delegate = self;
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
+    return cell;
+}
+
+//总价详情
 - (WXUITableViewCell*)virtualTableViewVirtualAllMoneyCell{
     VirtualAllMoneyCell *cell = [VirtualAllMoneyCell VirtualAllMoneyCellWithTabelView:_tableView];
+    [cell setCellInfo:self.virtualOrder];
+    [cell load];
+    if (self.type == virtualParOrderType_Store) {
+        [cell hidePrice];
+    }else{
+        [cell hidePriceAddPostage];
+    }
     return cell;
 }
+
 //下单时间
 - (WXUITableViewCell*)virtualTableViewVirtualForDateCell{
     VirtualForDateCell *cell = [VirtualForDateCell VirtualForDateCellWithTabelView:_tableView];
+    [cell setCellInfo:self.virtualOrder];
+    [cell load];
     return cell;
 }
 
@@ -258,16 +384,26 @@ enum{
              cell = [self virtualTableViewVirtualCompanyCell];
              break;
         case VirtualOrder_Section_GoodsList:
-             cell = [self virtualTableViewVirtualGoodsListCell];
+            if (self.type == virtualParOrderType_Store) {
+                cell = [self virtualTableViewVirtualGoodsListCell];
+            }else{
+                cell = [self virtualTableViewVirtualExchangeListCell];
+            }
              break;
         case VirtualOrder_Section_PayWay:
              cell = [self virtualTableViewVirtualPayStatusCell];
              break;
         case VirtualOrder_Section_PayMoney:
-             cell = [self virtualTableViewVirtualAllMoneyCell];
-             break;
+               cell = [self virtualTableViewVirtualPayXNBCell];
+            break;
+        case VirtualOrder_Section_UserMessage:
+            cell = [self virtualTableViewVirtualUserMessageCell];
+            break;
         case VirtualOrder_Section_ForDate:
             cell = [self virtualTableViewVirtualForDateCell];
+            break;
+        case VirtualOrder_Section_AllMoneyInfo:
+            cell = [self virtualTableViewVirtualAllMoneyCell];
             break;
         default:
             break;
@@ -285,21 +421,6 @@ enum{
             [self.wxNavigationController pushViewController:addressVC];
         }
             break;
-//        case VirtualOrder_Section_Company:
-//            cell = [self virtualTableViewVirtualCompanyCell];
-//            break;
-//        case VirtualOrder_Section_GoodsList:
-//            cell = [self virtualTableViewVirtualGoodsListCell];
-//            break;
-//        case VirtualOrder_Section_PayWay:
-//            cell = [self virtualTableViewVirtualPayStatusCell];
-//            break;
-//        case VirtualOrder_Section_PayMoney:
-//            cell = [self virtualTableViewVirtualAllMoneyCell];
-//            break;
-//        case VirtualOrder_Section_ForDate:
-//            cell = [self virtualTableViewVirtualForDateCell];
-//            break;
         default:
             break;
     }
@@ -308,14 +429,35 @@ enum{
 
 #pragma mark -- pay
 - (void)gotoPayVC{
-//    [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Store goodsInfo:];
+    if (self.type == virtualParOrderType_Store) {
+        [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Store orderInfo:self.virtualOrder remark:(self.userMessage.length==0?@"无":self.userMessage)];
+    }else{
+        [_model submitOrdersVitrtualWithType:VirtualGoodsOrderType_Exchange orderInfo:self.virtualOrder remark:(self.userMessage.length==0?@"无":self.userMessage)];
+    }
+    [self showWaitViewMode:E_WaiteView_Mode_FullScreenBlock title:@""];
 }
 
+- (void)cancelOrder{
+    [self.wxNavigationController popViewControllerAnimated:YES completion:^{
+    }];
+}
 
 #pragma mark --- model deleagte
 - (void)virtualGoodsOrderSuccend{
     [self unShowWaitView];
     
+    
+    //发出通知
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance -= [VirtualOrderInfoEntity shareVirtualOrderAlloc].xnbPrice;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = YES;
+    
+    // 跳转支付页面
+    OrderPayVC *payVC = [[OrderPayVC alloc]init];
+    payVC.orderID = _model.order.orderID;
+    payVC.payMoney = _model.order.payMoney;
+    payVC.orderpay_type = OrderPay_Type_Virtual;
+    [self.wxNavigationController pushViewController:payVC];
 }
 
 - (void)virtualGoodsOrderFailed:(NSString *)errorMsg{
@@ -325,6 +467,17 @@ enum{
     }
     [UtilTool showAlertView:errorMsg];
 }
+
+#pragma mark  -
+- (void)uploadUserMoreMoneyInfo{
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:VirtualOrder_Section_PayMoney] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+#pragma mark --- cell delegate
+- (void)userMessageTextFieldChanged:(NSString *)message{
+    self.userMessage = message;
+}
+
 
 
 @end

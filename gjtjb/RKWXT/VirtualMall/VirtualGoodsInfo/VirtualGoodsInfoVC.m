@@ -26,8 +26,6 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        // 包邮 10000003   10000003   10000297
-//        self.goodsID = 10000003;
         _tool = [[VirtualGoodsInfoTool alloc]init];
         _model = [[VirtualGoodsInfoModel alloc]init];
         _model.delegate = self;
@@ -75,15 +73,16 @@
 
 - (UIView*)baseInitDownView{
     WXUIView *downView = [[WXUIView alloc] init];
-    [downView setBackgroundColor:[UIColor whiteColor]];
+    [downView setBackgroundColor:RGB_COLOR(210, 210, 210)];
     
     CGFloat btnWidth = [UIScreen mainScreen].bounds.size.width / 2;
     CGFloat xOffset = 0;
+    CGFloat yOffset = 0.5;
     UIButton *phontBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    phontBtn.frame = CGRectMake(xOffset, 0, btnWidth, DownViewHeight);
-    [phontBtn setBackgroundColor:[UIColor clearColor]];
+    phontBtn.frame = CGRectMake(xOffset, yOffset, btnWidth, DownViewHeight - yOffset);
+    [phontBtn setBackgroundColor:[UIColor whiteColor]];
     [phontBtn.titleLabel setFont:WXFont(14.0)];
-    [phontBtn setTitle:@"联系卖家" forState:UIControlStateNormal];
+    [phontBtn setTitle:@"联系客服" forState:UIControlStateNormal];
     [phontBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [phontBtn setImage:[UIImage imageNamed:@"storeCart.png"] forState:UIControlStateNormal];
     phontBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 8);
@@ -91,14 +90,13 @@
     [downView addSubview:phontBtn];
     
     WXUIButton *addBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, 0, btnWidth, DownViewHeight);
+    addBtn.frame = CGRectMake(xOffset+(IPHONE_SCREEN_WIDTH-xOffset)/2, yOffset, btnWidth, DownViewHeight - yOffset);
     [addBtn setTag:1];
     [addBtn.titleLabel setFont:WXFont(14.0)];
-    [addBtn setBackgroundColor:[UIColor clearColor]];
+    [addBtn setBackgroundColor:[UIColor colorWithHexString:@"#f74f35"]];
     [addBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
     [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(buyBtnVirtual) forControlEvents:UIControlEventTouchUpInside];
-    [addBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:137/255.0 blue:11/255.0 alpha:1.0]];
     [downView addSubview:addBtn];
     
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
@@ -112,12 +110,12 @@
     [topView setBackgroundColor:WXColorWithInteger(AllBaseColor)];
     [self.view addSubview:topView];
     
-    CGFloat xGap = 5;
+    CGFloat xGap = 3;
     CGFloat yGap = 6;
-    CGFloat btnWidth = 40;
+    CGFloat btnWidth = 25;
     CGFloat btnHeight = 25;
     WXUIButton *backBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(xGap, TopNavigationViewHeight-yGap-btnHeight, btnWidth, btnHeight);
+    backBtn.frame = CGRectMake(xGap, TopNavigationViewHeight-yGap-btnHeight - 0.5, btnWidth, btnHeight);
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn setImage:[UIImage imageNamed:@"CommonArrowLeft.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backToLastPage) forControlEvents:UIControlEventTouchUpInside];
@@ -126,7 +124,7 @@
     CGFloat labelWidth = 80;
     CGFloat labelHeight = 30;
     WXUILabel *titleLabel = [[WXUILabel alloc] init];
-    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight, labelWidth, labelHeight);
+    titleLabel.frame = CGRectMake((self.bounds.size.width-labelWidth)/2, TopNavigationViewHeight-yGap-labelHeight - 0.5, labelWidth, labelHeight);
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:WXFont(15.0)];
@@ -149,7 +147,8 @@
 
 - (void)addOBS{
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(userBuyBtnClicked) name:K_Notification_Name_UserBuyGoods object:nil];
+    [notificationCenter addObserver:self selector:@selector(userBuyBtnClicked) name:K_Notification_Name_VirtualStoreBuyGoods object:nil];
+     [notificationCenter addObserver:self selector:@selector(userBuyExchangeBtnClicked) name:K_Notification_Name_VirtualEXchangeBuyGoods object:nil];
 }
 
 
@@ -165,22 +164,24 @@
 
 
 #pragma mark -- tableView
--(void)viewDidLayoutSubviews {
+//改变cell分割线置顶
+-(void)viewDidLayoutSubviews{
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [_tableView setSeparatorInset:UIEdgeInsetsZero];
+        [_tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
     }
     
-    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)])  {
-        [_tableView setLayoutMargins:UIEdgeInsetsZero];
+    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
     }
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPat{
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
-        [cell setSeparatorInset:UIEdgeInsetsZero];
     }
 }
 
@@ -230,11 +231,11 @@
     switch (section) {
         case VirtualGoodsInfo_Section_GoodsInfo:
         case VirtualGoodsInfo_Section_Integral:
-            height = 20;
+            height = 7;
             break;
         case VirtualGoodsInfo_Section_Unstable:
             if (_isApper) {
-                 height = 20;
+                 height = 7;
             }else{
                 height = 0;
             }
@@ -253,7 +254,11 @@
             height = IPHONE_SCREEN_WIDTH;
             break;
         case VirtualGoodsInfo_Section_GoodsDesc:
-            height = DseCellHeight;
+            if (self.type == VirtualGoodsType_Store) {
+                height = DseCellHeight;
+            }else{
+                height = 120;
+            }
             break;
         case VirtualGoodsInfo_Section_GoodsInfo:
         case VirtualGoodsInfo_Section_Integral:
@@ -305,7 +310,19 @@
     if ([_model.goodsInfoArr count] > 0) {
         [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
     }
-    [cell backMoney:[VirtualGoodsInfoTool backMoney:_model]];
+     [cell backMoney:[VirtualGoodsInfoTool backMoney:_model] xnb:[VirtualGoodsInfoTool xnb:_model]];
+    [cell load];
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width - 20);
+    return cell;
+}
+
+// 商城样式产品基础信息
+- (WXUITableViewCell*)VirtualInfoDesExchangeCell{
+    VirtualInfoDesExchangeCell *cell = [VirtualInfoDesExchangeCell VirtualInfoDesExchangeCellWithTabelView:_tableView];
+    if ([_model.goodsInfoArr count] > 0) {
+        [cell setCellInfo:[_model.goodsInfoArr objectAtIndex:0]];
+    }
+    [cell backMoney:[VirtualGoodsInfoTool backMoney:_model] xnb:[VirtualGoodsInfoTool xnb:_model] goodsPrice:[VirtualGoodsInfoTool goodsPrice:_model]];
     [cell load];
     return cell;
 }
@@ -379,7 +396,11 @@
             cell = [self virtualTableViewTopImg];
             break;
         case VirtualGoodsInfo_Section_GoodsDesc:
-            cell = [self virtualGoodsDesCell];
+            if (self.type == VirtualGoodsType_Store) {
+                cell = [self virtualGoodsDesCell];
+            }else{
+                cell = [self VirtualInfoDesExchangeCell];
+            }
             break;
         case VirtualGoodsInfo_Section_Integral:
             cell = [self virtualGoodsIntegralCell];
@@ -399,7 +420,6 @@
             }else{
                 cell = [self virtualGoodsDownCell:indexPath.row - 1];
             }
-            
             break;
         default:
             break;
@@ -421,7 +441,10 @@
         if (row == 0) {
             _isOpen = !_isOpen;
             [cell changeArrowWithDown:!_isOpen];
+              cell.selectionStyle = _isOpen ? UITableViewCellSelectionStyleNone :UITableViewCellSelectionStyleGray;
             [self didSeleCellisOpne];
+       
+          
         }
     }
     
@@ -450,8 +473,18 @@
 
 #pragma mark -- DownView
 - (void)buyBtnVirtual{
+    
+    if([_model.goodsInfoArr count] == 0){
+        [UtilTool showAlertView:@"数据加载失败"];
+        return;
+    }
+    
     stockView = [[VirtualStockGoodsView alloc]init];
-     [stockView setType:VirtualStockView_Type_Buy];
+    if (self.type == VirtualGoodsType_Store) {
+        stockView.type = VirtualStockView_Type_BuyStore;
+    }else if (self.type == VirtualGoodsType_Exchange){
+        stockView.type = VirtualOrderInfoEntity_BuyEXchange;
+    }
     [stockView VirtualGoodsStockInfo:_model.stockArr GoodsInfoArr:_model.goodsInfoArr];
     [self.view addSubview:stockView];
 }
@@ -556,11 +589,19 @@
 
 #pragma mark --  NSNotificationCenter
 - (void)userBuyBtnClicked{
-   
-    
         VirtualGoodsOrderVC *orderVC = [[VirtualGoodsOrderVC alloc]init];
-        orderVC.goodsList = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
+        orderVC.virtualOrder = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
+        orderVC.type = virtualParOrderType_Store;
+        orderVC.orderType = VirtualOrderType_PayOrder;
         [self.wxNavigationController pushViewController:orderVC];
+}
+
+- (void)userBuyExchangeBtnClicked{
+    VirtualGoodsOrderVC *orderVC = [[VirtualGoodsOrderVC alloc]init];
+    orderVC.virtualOrder = [VirtualGoodsInfoTool buyGoodsInfo:stockView];
+    orderVC.type = virtualParOrderType_Exchange;
+    orderVC.orderType = VirtualOrderType_PayOrder;
+    [self.wxNavigationController pushViewController:orderVC];
 }
 
 #pragma mark  -- pullUP WebView

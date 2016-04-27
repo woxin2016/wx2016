@@ -9,10 +9,7 @@
 #import "VietualHeardView.h"
 
 @interface VietualHeardView ()
-{
-    UIButton *_seleBtn;
-}
-
+@property (nonatomic,strong)UIButton *seleBtn;
 @property (nonatomic,strong)NSArray *titArray;
 @property (nonatomic,strong)UIView *didView;
 @property (nonatomic,strong)UIView *boView;
@@ -43,6 +40,8 @@
             [btn setTitle:self.titArray[i] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+            [btn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+            btn.titleLabel.font = WXFont(15.0);
             [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchDown];
             [self addSubview:btn];
             
@@ -68,9 +67,14 @@
 }
 
 - (void)clickBtn:(UIButton*)btn{
-    btn.selected = YES;
-    _seleBtn.selected = NO;
-    _seleBtn = btn;
+    
+  
+    
+    if (self.seleBtn == btn) return;
+    
+    self.seleBtn = btn;
+   
+   
     __block VietualHeardView *blockSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
         blockSelf.didView.centerX = btn.centerX;
@@ -79,6 +83,12 @@
     if (_delegate && [_delegate respondsToSelector:@selector(vietualHeardViewClickBtnTag:)]) {
         [_delegate vietualHeardViewClickBtnTag:btn.tag];
     }
+}
+
+-(void)setSeleBtn:(UIButton *)seleBtn{
+    seleBtn.selected = YES;
+    self.seleBtn.selected = NO;
+    _seleBtn = seleBtn;
 }
 
 

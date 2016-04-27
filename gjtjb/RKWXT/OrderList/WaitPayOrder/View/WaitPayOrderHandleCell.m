@@ -27,7 +27,7 @@
         rightBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xOffset-btnWidth, (WaitPayOrderHandleCellHeight-btnHeight)/2, btnWidth, btnHeight);
         [rightBtn setHidden:YES];
         [rightBtn setBackgroundColor:WXColorWithInteger(0xff9c00)];
-        [rightBtn setBorderRadian:3.0 width:1.0 color:[UIColor clearColor]];
+//        [rightBtn setBorderRadian:3.0 width:1.0 color:[UIColor clearColor]];
         [rightBtn.titleLabel setFont:WXFont(10.0)];
         [rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:rightBtn];
@@ -36,7 +36,7 @@
         leftBtn.frame = CGRectMake(IPHONE_SCREEN_WIDTH-2*(xOffset+btnWidth), (WaitPayOrderHandleCellHeight-btnHeight)/2, btnWidth, btnHeight);
         [leftBtn setHidden:YES];
         [leftBtn setBackgroundColor:WXColorWithInteger(0xff9c00)];
-        [leftBtn setBorderRadian:3.0 width:1.0 color:[UIColor clearColor]];
+//        [leftBtn setBorderRadian:3.0 width:1.0 color:[UIColor clearColor]];
         [leftBtn.titleLabel setFont:WXFont(10.0)];
         [leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:leftBtn];

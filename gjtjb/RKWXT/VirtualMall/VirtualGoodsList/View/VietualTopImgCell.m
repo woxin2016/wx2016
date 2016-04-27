@@ -9,8 +9,9 @@
 #import "VietualTopImgCell.h"
 #import "CSTScrollBrowser.h"
 #import "WXRemotionImgBtn.h"
+#import "HomePageTopEntity.h"
 
-@interface VietualTopImgCell ()<UIScrollViewDelegate,WXRemotionImgBtnDelegate>
+@interface VietualTopImgCell ()<UIScrollViewDelegate,WXRemotionImgBtnDelegate,VietualTopImgCellDelegate>
 {
     CSTScrollBrowser *_browser;
     UIPageControl *_pageControl;
@@ -35,7 +36,8 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         CGRect rect = self.bounds;
-//        rect.size.height = T_HomePageTopImgHeight;
+        rect.size.height = [VietualTopImgCell cellHeightOfInfo:nil];
+        
         _browser = [[CSTScrollBrowser alloc] initWithFrame:rect];
         [_browser setScrollDelegate:self];
         [_browser setGap:0];
@@ -62,13 +64,13 @@
 -(void)load{
     NSArray *goodEntityArray = self.cellInfo;
     [self toInit];
-//    for(HomePageTopEntity *topADVEntity in goodEntityArray){
-//        WXRemotionImgBtn *imgView = [[[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, T_HomePageTopImgHeight)] autorelease];
-//        [imgView setCpxViewInfo:topADVEntity.topImg];
-//        [imgView load];
-//        [imgView setDelegate:self];
-//        [_merchantImgViewArray addObject:imgView];
-//    }
+    for(HomePageTopEntity *topADVEntity in goodEntityArray){
+        WXRemotionImgBtn *imgView = [[WXRemotionImgBtn alloc] initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, [VietualTopImgCell cellHeightOfInfo:nil])];
+        [imgView setCpxViewInfo:topADVEntity.topImg];
+        [imgView load];
+        [imgView setDelegate:self];
+        [_merchantImgViewArray addObject:imgView];
+    }
     
     [_browser setSubScrollViews:_merchantImgViewArray];
     [self setSubPageViews:_merchantImgViewArray];
@@ -125,7 +127,9 @@
     }
 }
 
-
++ (CGFloat)cellHeightOfInfo:(id)cellInfo{
+    return 120;
+}
 
 
 

@@ -33,28 +33,22 @@
         NSString *goodsName = [dic objectForKey:@"goods_name"];
         [self setGoodsName:goodsName];
         
-        NSInteger postage = [[dic objectForKey:@"is_postage"] integerValue];
-        [self setPostage:postage];
+//        NSInteger postage = [[dic objectForKey:@"is_postage"] integerValue];
+//        [self setPostage:postage];
         
         CGFloat marketPrice = [[dic objectForKey:@"market_price"] floatValue];
         [self setMarketPrice:marketPrice];
         
-        CGFloat shopPrice = [[dic objectForKey:@"shop_price"] floatValue];
-        [self setShopPrice:shopPrice];
         
         NSString *merName = [dic objectForKey:@"meterage_name"];
         [self setMeterageName:merName];
         
-        //        NSInteger collectionType = [[dic objectForKey:@"collect"] integerValue];
-        //        [self setCollectionType:collectionType];
         
         NSInteger shopId = [[dic objectForKey:@"shop_id"] integerValue];
         [self setGoodshop_id:shopId];
         
-        //        NSString *shopName = [dic objectForKey:@"shop_name"];
-        //        [self setGoodsShopName:shopName];
         
-        CGFloat pastVirtual = [[dic objectForKey:@"end_exchange"] floatValue];
+        int pastVirtual = [[dic objectForKey:@"end_exchange"] intValue];
         [self setPastVirtual:pastVirtual];
         
         CGFloat postageVirtual = [[dic objectForKey:@"postage"] floatValue];
@@ -81,11 +75,6 @@
         NSString *address = [dic objectForKey:@"address"];
         [self setSellerAddress:address];
         
-        //        CGFloat lautitude = [[dic objectForKey:@"latitude"] floatValue];
-        //        [self setSellerLatitude:lautitude];
-        //
-        //        CGFloat longitude = [[dic objectForKey:@"longitude"] floatValue];
-        //        [self setSellerLongitude:longitude];
         
         NSString *sellername = [dic objectForKey:@"seller_name"];
         [self setSellerName:sellername];
@@ -162,14 +151,6 @@
         NSString *address = [dic objectForKey:@"address"];
         [self setShopAddress:address];
         
-        //        CGFloat distance = [[dic objectForKey:@"distance"] floatValue];
-        //        [self setShopDistance:distance];
-        //
-        //        CGFloat lautitude = [[dic objectForKey:@"latitude"] floatValue];
-        //        [self setShopLatitude:lautitude];
-        //
-        //        CGFloat longitude = [[dic objectForKey:@"longitude"] floatValue];
-        //        [self setShopLongitude:longitude];
         
         NSInteger shopID = [[dic objectForKey:@"seller_id"] integerValue];
         [self setShopID:shopID];
@@ -209,7 +190,7 @@
         NSInteger red = [[dic objectForKey:@"is_use_red"] integerValue];
         [self setRedPacket:red];
         
-        CGFloat canVirtual = [[dic objectForKey:@"goods_number"] integerValue];
+        int canVirtual = [[dic objectForKey:@"goods_number"] intValue];
         [self setCanVirtual:canVirtual];
         
         BOOL isDefult = [[dic objectForKey:@"is_default"] boolValue];
@@ -217,79 +198,15 @@
         
         CGFloat backMoney = [[dic objectForKey:@"back_money"] floatValue];
         [self setBackMoney:backMoney];
+        
+        int xnb = [[dic objectForKey:@"xnb_1"] intValue];
+        [self setXnb:xnb];
+        
+        CGFloat goods_price = [[dic objectForKey:@"goods_price"] floatValue];
+        [self setGoodsPrice:goods_price];
     }
     return self;
 }
 
-+ (VirtualGoodsInfoEntity *)initLimitStockDataEntity:(NSDictionary*)dic{
-    if (!dic) {
-        return nil;
-    }
-    return [[self alloc] initLimitStock:dic];
-}
-
-- (instancetype)initLimitStock:(NSDictionary*)dic{
-    if (self = [super init]) {
-        
-        NSInteger stockId = [[dic objectForKey:@"seckill_goods_id"] integerValue];
-        [self setStockID:stockId];
-        
-        NSString *name = [dic objectForKey:@"goods_stock_name"];
-        [self setStockName:name];
-        
-        NSInteger number = [[dic objectForKey:@"seckill_number"] integerValue];
-        [self setStockNum:number];
-        
-        CGFloat goodsPrice = [[dic objectForKey:@"seckill_price"] floatValue];
-        [self setStockPrice:goodsPrice];
-        
-        NSInteger goodsID = [[dic objectForKey:@"goods_id"] integerValue];
-        [self setGoodsID:goodsID];
-        
-        NSInteger speacialID = [[dic objectForKey:@"seckill_id"] integerValue];
-        [self setSpeacialid:speacialID];
-    }
-    return self;
-}
-
-+ (VirtualGoodsInfoEntity *)initLimitGoodsInfoEntity:(NSDictionary*)dic{
-    if(!dic){
-        return nil;
-    }
-    return [[self alloc] initLimitGoodsInfoDic:dic];
-}
-
-- (instancetype)initLimitGoodsInfoDic:(NSDictionary*)dic{
-    self = [super init];
-    if(self){
-        NSString *homeImg = [dic objectForKey:@"goods_home_img"];
-        [self setHomeImg:homeImg];
-        
-        NSString *topImg = [dic objectForKey:@"goods_icarousel_img"];
-        [self setGoodsImg:topImg];
-        
-        NSInteger goodsID = [[dic objectForKey:@"goods_id"] integerValue];
-        [self setGoodsID:goodsID];
-        
-        NSString *goodsName = [dic objectForKey:@"goods_name"];
-        [self setGoodsName:goodsName];
-        
-        NSInteger postage = [[dic objectForKey:@"is_postage"] integerValue];
-        [self setPostage:postage];
-        
-        CGFloat marketPrice = [[dic objectForKey:@"max_goods_price"] floatValue];
-        [self setMarketPrice:marketPrice];
-        
-        CGFloat shopPrice = [[dic objectForKey:@"min_seckill_price"] floatValue];
-        [self setShopPrice:shopPrice];
-        
-        NSString *merName = [dic objectForKey:@"meterage_name"];
-        [self setMeterageName:merName];
-        
-        NSInteger shopId = [[dic objectForKey:@"shop_id"] integerValue];
-        [self setGoodshop_id:shopId];
-    }
-    return self;
-}
 
 @end

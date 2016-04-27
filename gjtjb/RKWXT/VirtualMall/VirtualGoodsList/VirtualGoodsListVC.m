@@ -9,6 +9,7 @@
 #import "VirtualGoodsListVC.h"
 #import "VirtualGoodsInfoVC.h"
 
+
 #import "VietualHeardView.h"
 #import "ViteualExchangeCell.h"
 #import "ViteualStoreCell.h"
@@ -16,6 +17,7 @@
 
 #import "ViteualGoodsModel.h"
 #import "ViteualGoodsEntity.h"
+#import "HomePageTopEntity.h"
 #import "MJRefresh.h"
  enum{
     SubSections_TopImg = 0,
@@ -23,10 +25,23 @@
     SubSections_Invalid
  };
 
+enum{
+    HomePageJump_Type_GoodsInfo = 1,    //商品详情
+    HomePageJump_Type_Catagary,         //分类列表
+    HomePageJump_Type_MessageCenter,    //消息中心
+    HomePageJump_Type_MessageInfo,      //消息详情
+    HomePageJump_Type_UserBonus,        //红包
+    HomePageJump_Type_BusinessAlliance, //商家联盟
+    HomePageJump_Type_Web,              //跳转网页
+    HomePageJump_Type_None,             //不跳转
+    
+    HomePageJump_Type_Invalid
+};
+
 #define heardViewH (44)
 
 
-@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate>
+@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate,VietualTopImgCellDelegate>
 {
     ViteualGoodsModel *_model;
     UITableView *_tableView;
@@ -43,6 +58,7 @@
         _model.delegate = self;
         _isExchange = NO;
         _heardView = [[VietualHeardView alloc]initWithFrame:CGRectMake(0, 0,IPHONE_SCREEN_WIDTH, heardViewH)];
+        _heardView.backgroundColor = [UIColor whiteColor];
         _heardView.delegate  =self;
     }
     return self;
@@ -60,14 +76,16 @@
 }
 
 - (void)initTabelView{
-    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    [self.view addSubview:_tableView];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self addSubview:_tableView];
 }
 
 - (void)requestNetWork{
+    [_model virtualLoadDataFromWeb];
     [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:0 length:10];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
@@ -75,6 +93,7 @@
 - (void)setupRefresh{
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+    [_tableView addHeaderWithTarget:self action:@selector(requestNetWork)];
     
     //设置文字
     _tableView.headerPullToRefreshText = @"下拉刷新";
@@ -100,11 +119,12 @@
     return row;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0.0;
     switch (indexPath.section) {
         case SubSections_TopImg:
-            height = 140;
+            height = [VietualTopImgCell cellHeightOfInfo:nil];
             break;
             case SubSections_List:
             if (_isExchange) {
@@ -125,6 +145,13 @@
     return 0.0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == SubSections_TopImg) {
+        return 7.0;
+    }
+    return 0.0;
+}
+
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == SubSections_List) {
         return _heardView;
@@ -135,15 +162,17 @@
 // 轮播图
 - (WXUITableViewCell*)tableViewCellTopimg{
     VietualTopImgCell *cell = [VietualTopImgCell viteualTopImgCellWithTabelView:_tableView];
-    cell.backgroundColor = [UIColor redColor];
+    [cell setDelegate:self];
+    [cell setCellInfo:_model.downImgArr];
+    [cell load];
     return cell;
 }
 
 // 兑换商城
 - (WXUITableViewCell*)tableViewCellStore:(NSInteger)row{
     ViteualStoreCell *cell = [ViteualStoreCell viteualStoreCellWithTabelView:_tableView];
-    [cell setCellInfo:_model.goodsArray[row]];
-    [cell load];
+       [cell setCellInfo:_model.goodsArray[row]];
+       [cell load];
     return cell;
 }
 
@@ -176,10 +205,17 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == SubSections_List) {
         ViteualGoodsEntity *entity = _model.goodsArray[indexPath.row];
         VirtualGoodsInfoVC *infoVC = [[VirtualGoodsInfoVC alloc]init];
         infoVC.goodsID = entity.goodsID;
+        if (_isExchange) {
+            infoVC.type = VirtualGoodsType_Exchange;
+        }else{
+            infoVC.type = VirtualGoodsType_Store;
+        }
         [self.wxNavigationController pushViewController:infoVC];
     }
 }
@@ -203,6 +239,7 @@
         default:
             break;
     }
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 #pragma mark -- footerRefreshing
@@ -214,11 +251,71 @@
     }
 }
 
+#pragma mark -- topImg
+-(void)clickTopGoodAtIndex:(NSInteger)index{
+    HomePageTopEntity *entity = nil;
+    if([_model.downImgArr count] > 0){
+        entity = [_model.downImgArr objectAtIndex:index];
+    }
+    
+    if(index >= HomePageJump_Type_Invalid){
+        return;
+    }
+    [self homePageClickJump:entity.topAddID withLinkID:entity.linkID withWebUrl:entity.url_address];
+}
+
+-(void)homePageClickJump:(NSInteger)addID withLinkID:(NSInteger)linkID withWebUrl:(NSString*)webUrl{
+    switch (addID) {
+        case HomePageJump_Type_GoodsInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toGoodsInfoVC:self goodsID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_Catagary:
+        {
+            [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_MessageCenter:
+        {
+            [self toSysPushMsgView];
+        }
+            break;
+        case HomePageJump_Type_MessageInfo:
+        {
+            [[CoordinateController sharedCoordinateController] toJPushMessageInfoVC:self messageID:linkID animated:YES];
+        }
+            break;
+        case HomePageJump_Type_UserBonus:
+        {
+            [[CoordinateController sharedCoordinateController] toUserBonusVC:self animated:YES];
+        }
+            break;
+        case HomePageJump_Type_BusinessAlliance:
+        {
+            NSString *shopUnionUrl = [NSString stringWithFormat:@"%@wx_union/index.php/Public/alliance_merchant",WXTBaseUrl];
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:shopUnionUrl title:@"商家联盟" animated:YES];
+        }
+            break;
+        case HomePageJump_Type_Web:
+        {
+            [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"网站" animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)toSysPushMsgView{
+    [[CoordinateController sharedCoordinateController] toJPushCenterVC:self animated:YES];
+}
 
 #pragma mark ---- model deleagete
 -(void)viteualGoodsModelFailed:(NSString *)errorMsg{
     [self unShowWaitView];
     
+    [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [UtilTool showAlertView:errorMsg];
 }
@@ -226,8 +323,20 @@
 -(void)viteualGoodsModelSucceed{
     [self unShowWaitView];
     
+    [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [_tableView reloadData];
+}
+
+-(void)viteualTopImgFailed:(NSString *)errorMsg{
+    [self unShowWaitView];
+    
+    [UtilTool showAlertView:errorMsg];
+}
+
+-(void)viteualTopImgSucceed{
+     [self unShowWaitView];
+     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:SubSections_TopImg] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

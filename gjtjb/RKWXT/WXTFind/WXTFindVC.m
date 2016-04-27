@@ -7,7 +7,8 @@
 
 
 #import "WXTFindVC.h"
-#import "WXHomeTopGoodCell.h"
+//#import "WXHomeTopGoodCell.h"
+#import "VietualTopImgCell.h"
 #import "WXTFindCommonCell.h"
 #import "WXTFindModel.h"
 #import "FindEntity.h"
@@ -18,7 +19,7 @@
 
 #define Size self.bounds.size
 
-@interface WXTFindVC()<UITableViewDataSource,UITableViewDelegate,WXHomeTopGoodCellDelegate,WXTFindCommonCellCellDelegate,wxtFindModelDelegate,FindTopImgModelDelegate>{
+@interface WXTFindVC()<UITableViewDataSource,UITableViewDelegate,WXHomeTopGoodCellDelegate,WXTFindCommonCellCellDelegate,wxtFindModelDelegate,FindTopImgModelDelegate,VietualTopImgCellDelegate>{
     UITableView *_tableView;
     WXTFindModel *_comModel;
     NSArray *commonImgArr;
@@ -82,7 +83,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0;
     if(indexPath.section == 0){
-        height = IPHONE_SCREEN_WIDTH/2;
+        height = [VietualTopImgCell cellHeightOfInfo:nil];
     }else{
         height = ([commonImgArr count]/3+([commonImgArr count]%3>0?1:0))*IPHONE_SCREEN_WIDTH/3;
     }
@@ -92,9 +93,9 @@
 ///顶部导航
 -(WXUITableViewCell*)headImgCell{
     static NSString *identifier = @"headImg";
-    WXHomeTopGoodCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    VietualTopImgCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell){
-        cell = [[WXHomeTopGoodCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[VietualTopImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setDelegate:self];
     [cell setCellInfo:_model.imgArr];

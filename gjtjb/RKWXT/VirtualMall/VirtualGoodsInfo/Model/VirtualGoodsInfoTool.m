@@ -35,12 +35,7 @@
         }
     }
     
-    if ([model.stockArr count] > 0) {
-        for(VirtualGoodsInfoEntity *entity in model.goodsInfoArr){
-            goodsInfoEntity = entity;
-            self.postage = goodsInfoEntity.postage;
-        }
-    }
+  
     if ((self.red != 0) || (self.cut != 0) || (self.postage != 0)) {
         return YES;
     }else{
@@ -50,35 +45,27 @@
 
 // 可以兑换
 + (NSString*)canUseVirtual:(VirtualGoodsInfoModel*)model{
-    CGFloat can = 0.0;
+    int can = 0.0;
     if ([model.stockArr count] == 0) return nil;
     
     for (VirtualGoodsInfoEntity *entity in model.stockArr) {
         can += entity.canVirtual;
     }
-    return [NSString stringWithFormat:@"%.2f",can];
+    return [NSString stringWithFormat:@"%.d",can];
 }
 
 // 已经兑换
 + (NSString*)pastVirtual:(VirtualGoodsInfoModel*)model{
     if ([model.goodsInfoArr count] == 0) return nil;
     VirtualGoodsInfoEntity *entity = model.goodsInfoArr[0];
-    return [NSString stringWithFormat:@"%.2f",entity.pastVirtual];
+    return [NSString stringWithFormat:@"%.d",entity.pastVirtual];
 }
 
 
 + (VirtualOrderInfoEntity*)buyGoodsInfo:(VirtualStockGoodsView*)view{
-    VirtualOrderInfoEntity *entity = [[VirtualOrderInfoEntity alloc] init];
-    entity.buyNumber = view.buyNum;
-    entity.goodsPrice = view.stockPrice;
-    entity.postage = view.postage;
-    entity.backMoney = view.backMoney;
-    entity.stockID = view.stockID;
-    entity.xnbPrice = view.xnbPrice;
-    entity.goodsImg = view.goodsImg;
-    entity.stockName = view.stockName;
-    return entity;
+    return view.virtualOrder;
 }
+
 
 + (CGFloat)backMoney:(VirtualGoodsInfoModel*)model{
     if ([model.stockArr count] == 0) return 0.0;
@@ -86,6 +73,27 @@
     for (VirtualGoodsInfoEntity *entity in model.stockArr) {
         if (entity.isDefault) {
             money =  entity.backMoney;
+        }
+    }
+    return money;
+}
+
++ (int)xnb:(VirtualGoodsInfoModel*)model{
+    if ([model.stockArr count] == 0) return 0.0;
+    int money = 0.0;
+    for (VirtualGoodsInfoEntity *entity in model.stockArr) {
+        if (entity.isDefault) {
+            money =  entity.xnb;
+        }
+    }
+    return money;
+}
++ (CGFloat)goodsPrice:(VirtualGoodsInfoModel*)model{
+    if ([model.stockArr count] == 0) return 0.0;
+    CGFloat money = 0.0;
+    for (VirtualGoodsInfoEntity *entity in model.stockArr) {
+        if (entity.isDefault) {
+            money =  entity.goodsPrice;
         }
     }
     return money;

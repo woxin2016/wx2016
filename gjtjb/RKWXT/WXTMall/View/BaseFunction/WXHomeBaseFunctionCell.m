@@ -22,8 +22,8 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        NSArray *textArr = @[@"免费抽奖",@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟"];
-        NSArray *imgArr = @[@"HomePageSharkImg.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
+        NSArray *textArr = @[@"云票返现",@"签到有奖",@"商家红包",@"邀请有奖",@"我的奖励",@"商家联盟"];
+        NSArray *imgArr = @[@"HomevirtualXNB.png",@"HomePageSignImg.png",@"HomePageWallet.png",@"HomePageShareImg.png",@"HomePageCutImg.png",@"HomePageUnion.png"];
         NSInteger rowCount = 3;
         CGFloat width = self.frame.size.width  / rowCount;
         CGFloat baseHeight = ImgBtnHeight/2;

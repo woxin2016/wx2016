@@ -7,8 +7,10 @@
 //
 
 #import "VirtualForDateCell.h"
+#import "VirtualOrderInfoEntity.h"
 
 @interface VirtualForDateCell(){
+    UILabel *_uptextLabel;
     UILabel *_money;
     UILabel *_dateLabel;
 }
@@ -31,14 +33,14 @@
         CGFloat yOffset = 12;
         CGFloat upHeight = 20;
         CGFloat labelWidth = 55;
-        UILabel *uptextLabel = [[UILabel alloc] init];
-        uptextLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xGap, yOffset, labelWidth, upHeight);
-        [uptextLabel setBackgroundColor:[UIColor clearColor]];
-        [uptextLabel setTextAlignment:NSTextAlignmentLeft];
-        [uptextLabel setText:@"实付款:"];
-        [uptextLabel setTextColor:WXColorWithInteger(0x000000)];
-        [uptextLabel setFont:WXFont(15.0)];
-        [self.contentView addSubview:uptextLabel];
+        _uptextLabel = [[UILabel alloc] init];
+        _uptextLabel.frame = CGRectMake(IPHONE_SCREEN_WIDTH-xGap, yOffset, labelWidth, upHeight);
+        [_uptextLabel setBackgroundColor:[UIColor clearColor]];
+        [_uptextLabel setTextAlignment:NSTextAlignmentLeft];
+        [_uptextLabel setText:@"实付款:"];
+        [_uptextLabel setTextColor:WXColorWithInteger(0x000000)];
+        [_uptextLabel setFont:WXFont(15.0)];
+        [self.contentView addSubview:_uptextLabel];
         
         xGap -= labelWidth;
         _money = [[UILabel alloc] init];
@@ -75,12 +77,25 @@
 }
 
 - (void)load{
-    NSString *money = self.cellInfo;
-    NSString *moneyStr = [NSString stringWithFormat:@"￥%.2f",[money floatValue]];
-    [_money setText:moneyStr];
-    
     NSInteger time = [UtilTool timeChange];
     [_dateLabel setText:[UtilTool getDateTimeFor:time type:1]];
+    
+    VirtualOrderInfoEntity *entity = self.cellInfo;
+    NSString *moneyStr = [NSString stringWithFormat:@"￥%.2f",(entity.postage + entity.goodsPrice)];
+    [_money setText:moneyStr];
+    [self labelWidthMonery:moneyStr];
+}
+
+
+- (void)labelWidthMonery:(NSString*)monery{
+    CGFloat margin = 10;
+    CGFloat labelW = [NSString sizeWithString:monery font:_money.font].width;
+    _money.X = self.width - margin - labelW;
+    _uptextLabel.X = self.width - 2 * margin - labelW - 55;
+}
+
++ (CGFloat)cellHeightOfInfo:(id)cellInfo{
+    return 60;
 }
 
 @end

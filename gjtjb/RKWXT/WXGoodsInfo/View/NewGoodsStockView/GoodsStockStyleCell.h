@@ -13,4 +13,5 @@
 @interface GoodsStockStyleCell : WXUITableViewCell
 + (instancetype)GoodsStockStyleCellWithTableView:(UITableView*)tableView;
 - (void)setLabelHid:(BOOL)hid;
+- (void)setLabelBackGroundColor:(BOOL)hid;
 @end

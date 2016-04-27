@@ -216,7 +216,11 @@
 + (void)showTipView:(NSString*)tip{
     WXPopAlertView *popAlertView = [[WXPopAlertView alloc] initWithTip:tip];
     [popAlertView show];
-
+}
++ (void)showRoundView:(NSString*)tip{
+    WXPopAlertView *popAlertView = [[WXPopAlertView alloc] initRoundWithTip:tip];
+    popAlertView.tipColor = [UIColor whiteColor];
+    [popAlertView show];
 }
 
 + (void)feedDataInbackground:(NSString*)feedUrlString complete:(void(^)(NSData*))handle error:(void(^)(NSError**))error{

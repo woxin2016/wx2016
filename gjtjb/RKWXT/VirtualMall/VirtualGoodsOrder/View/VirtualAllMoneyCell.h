@@ -9,5 +9,7 @@
 #import "WXUITableViewCell.h"
 
 @interface VirtualAllMoneyCell : WXUITableViewCell
+- (void)hidePrice;
+- (void)hidePriceAddPostage;
 + (instancetype)VirtualAllMoneyCellWithTabelView:(UITableView*)tableView;
 @end

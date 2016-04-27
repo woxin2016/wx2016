@@ -11,4 +11,6 @@
 @interface GoodsInfoStockCell : WXUITableViewCell
 @property (nonatomic,strong)NSString *imgUrl;
 + (instancetype)GoodsInfoStockCellWithTableView:(UITableView*)tableView;
+- (void)setPrice;
+- (void)setPriceAddXnb;
 @end

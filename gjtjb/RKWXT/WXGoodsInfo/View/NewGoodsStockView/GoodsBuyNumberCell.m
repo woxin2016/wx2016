@@ -57,7 +57,7 @@
         numberL.text = @"1";
         numberL.font = WXFont(13.0);
         numberL.textAlignment = NSTextAlignmentCenter;
-        [numberL setBorderRadian:0.1 width:1 color:[UIColor colorWithHexString:@"969696"]];
+        [numberL setBorderRadian:0.1 width:0.5 color:[UIColor colorWithHexString:@"969696"]];
         [self.contentView addSubview:numberL];
         
         offsetX =  165;

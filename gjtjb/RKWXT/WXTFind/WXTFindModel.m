@@ -30,6 +30,8 @@
     if(![dataArr count]){
         return;
     }
+    [_findDataArr removeAllObjects];
+    
     for(NSDictionary *dic in dataArr){
         FindEntity *entity = [FindEntity initFindEntityWith:dic];
         entity.icon_url = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.icon_url];

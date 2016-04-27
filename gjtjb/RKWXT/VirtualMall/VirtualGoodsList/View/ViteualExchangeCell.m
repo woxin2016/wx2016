@@ -35,31 +35,32 @@
         self.width = IPHONE_SCREEN_WIDTH;
         
         CGFloat xOffset = 10;
-        CGFloat yOffset = 12;
-        CGFloat imageH = 90;
+        CGFloat yOffset = 7;
+        CGFloat imageH = 100;
         CGFloat imageW = imageH;
         _imgView = [[WXRemotionImgBtn alloc]initWithFrame:CGRectMake(xOffset, yOffset, imageW, imageH)];
         [self.contentView addSubview:_imgView];
         
-        xOffset += imageW + 10;
-        yOffset += 5;
-        CGFloat nameLH = 25;
+        xOffset += imageW + 5;
+        yOffset += 2;
+        CGFloat nameLH = 35;
         CGFloat nameLW = (self.width - 30) - imageW;
         nameL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, nameLH)];
         nameL.font = WXFont(14.0);
         nameL.textAlignment = NSTextAlignmentLeft;
+        nameL.numberOfLines = 2;
         nameL.textColor = [UIColor blackColor];
         [self.contentView addSubview:nameL];
         
         yOffset += nameLH + 5;
-        CGFloat pricelH = 12;
+        CGFloat pricelH = 15;
         priceL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, pricelH)];
         priceL.font = WXFont(14.0);
         priceL.textAlignment = NSTextAlignmentLeft;
         priceL.textColor = [UIColor redColor];
         [self.contentView addSubview:priceL];
         
-        yOffset += pricelH + 10;
+        yOffset += pricelH + 8;
         CGFloat virlH = 12;
         virPrice = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, virlH)];
         virPrice.font = WXFont(14.0);
@@ -86,6 +87,9 @@
         moneyL.textColor = [UIColor grayColor];
         [self.contentView addSubview:moneyL];
         
+        UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(xOffset, [ViteualExchangeCell cellHeightOfInfo:nil] - 0.5 , self.width - xOffset, 0.5)];
+        didView.backgroundColor = WXColorWithInteger(0xd6d6d6);
+        [self.contentView addSubview:didView];
     }
     return self;
 }
@@ -98,8 +102,8 @@
     [_imgView load];
     
     nameL.text = entity.goodsName;
-    priceL.text = [NSString stringWithFormat:@"价格:￥%.2f + %.2f云票",entity.marPrice,entity.currency];
-    virPrice.text = [NSString stringWithFormat:@"官方价格:￥%.2f",entity.goodsPrice];
+    priceL.text = [NSString stringWithFormat:@"价格:￥%.2f + %d云票",entity.goodsPrice,entity.xnb];
+    virPrice.text = [NSString stringWithFormat:@"官方价格:￥%.2f",entity.marPrice];
     
     NSString *backStr = [NSString stringWithFormat:@"返现金额:￥%.2f",entity.backMoney];
     moneyL.text = backStr;

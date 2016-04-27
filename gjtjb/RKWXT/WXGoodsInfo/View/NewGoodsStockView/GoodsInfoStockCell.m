@@ -9,6 +9,7 @@
 #import "GoodsInfoStockCell.h"
 #import "WXRemotionImgBtn.h"
 #import "GoodsInfoEntity.h"
+#import "VirtualGoodsInfoEntity.h"
 
 #define Size self.frame.szie
 
@@ -83,6 +84,18 @@
     [imgView setCpxViewInfo:self.imgUrl];
     [imgView load];
 }
+
+- (void)setPrice{
+    VirtualGoodsInfoEntity *entity = self.cellInfo;
+    priceLabel.text = [NSString stringWithFormat:@"所需云票:%.d",entity.xnb];
+}
+
+- (void)setPriceAddXnb{
+    VirtualGoodsInfoEntity *entity = self.cellInfo;
+    priceLabel.text = [NSString stringWithFormat:@"￥%.2f + %.d云票",entity.stockPrice,entity.xnb];
+}
+
+
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     

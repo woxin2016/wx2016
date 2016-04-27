@@ -9,23 +9,81 @@
 #import "ViteualGoodsModel.h"
 #import "WXTURLFeedOBJ+NewData.h"
 #import "ViteualGoodsEntity.h"
+#import "HomePageTopEntity.h"
 
 @interface ViteualGoodsModel ()
 {
     NSMutableArray *_goodsArray;
     ModelType  notType;
+    BOOL isRemoAll;
+    
+    // 顶部大图
+    NSMutableArray *_downImgArr;
 }
 @end
 
 @implementation ViteualGoodsModel
 @synthesize goodsArray = _goodsArray;
+
+@synthesize downImgArr = _downImgArr;
+
+
 -(instancetype)init{
     if (self = [super init]) {
         _goodsArray = [NSMutableArray array];
         notType = ModelType_Store;
+        
+        _downImgArr = [[NSMutableArray alloc] init];
     }
     return self;
 }
+
+-(void)fillDataWithJsonData:(NSDictionary *)jsonDicData{
+    if(!jsonDicData){
+        return;
+    }
+    
+    [_downImgArr removeAllObjects];
+    NSArray *datalist = [jsonDicData objectForKey:@"data"];
+    for(NSDictionary *dic in datalist){
+        HomePageTopEntity *entity = [HomePageTopEntity homePageTopEntityWithDictionary:dic];
+        entity.topImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.topImg];
+        if(entity.position == 4){
+            [_downImgArr addObject:entity];
+        }
+    }
+}
+
+
+-(void)virtualLoadDataFromWeb{
+    
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:userObj.user, @"phone", @"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userObj.shopID, @"shop_id", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:userObj.user, @"phone", @"ios", @"pid", [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts", userObj.wxtID, @"woxin_id", userObj.shopID, @"shop_id", [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign", nil];
+    
+    __block ViteualGoodsModel *blockSelf = self;
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_NewMall_TopImg httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
+        if (retData.code != 0){
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(viteualTopImgFailed:)]){
+                [_delegate viteualTopImgFailed:retData.errorDesc];
+            }
+            
+        }else{
+            
+            [blockSelf fillDataWithJsonData:retData.data];
+            if (_delegate && [_delegate respondsToSelector:@selector(viteualTopImgSucceed)]){
+                [_delegate viteualTopImgSucceed];
+            }
+            
+        }
+    }];
+}
+
+
+
+
+
 
 /*
  接口名称：获取所有的云票兑换的商品
@@ -48,6 +106,8 @@
  */
 - (void)viteualGoodsModelRequeatNetWork:(ModelType)type start:(NSInteger)start length:(NSInteger)length{
    
+    isRemoAll = start == 0;
+    
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
     baseDic[@"pid"]= @"ios";
@@ -89,10 +149,10 @@
 }
 
 - (void)handleReturnData:(NSArray*)data type:(ModelType)type{
-    
+   
     if ([data count] <= 0) return;
     
-    if (notType != type) {
+    if (notType != type  || isRemoAll) {
         notType = type;
        [_goodsArray removeAllObjects];
     }

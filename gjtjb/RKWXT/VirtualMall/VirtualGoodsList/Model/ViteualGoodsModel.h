@@ -20,9 +20,15 @@ typedef enum{
 @property (nonatomic,weak)id<viteualGoodsModelDelegate> delegate;
 @property (nonatomic,strong)NSArray *goodsArray;
 - (void)viteualGoodsModelRequeatNetWork:(ModelType)type start:(NSInteger)start length:(NSInteger)length;
+- (void)virtualLoadDataFromWeb;
+
+// 顶部大图
+@property (nonatomic,strong) NSArray *downImgArr;
 @end
 
 @protocol viteualGoodsModelDelegate <NSObject>
 -(void)viteualGoodsModelSucceed;
 -(void)viteualGoodsModelFailed:(NSString*)errorMsg;
+-(void)viteualTopImgSucceed;
+-(void)viteualTopImgFailed:(NSString*)errorMsg;
 @end

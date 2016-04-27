@@ -8,6 +8,7 @@
 
 #import "VirtualStockGoodsView.h"
 #import "VirtualGoodsInfoEntity.h"
+#import "VirtualOrderInfoEntity.h"
 
 #import "GoodsInfoStockCell.h"
 #import "GoodsStockStyleCell.h"
@@ -18,9 +19,10 @@
 #define kAnimateDefaultDuration (0.3)
 #define kMaskShellDefaultAlpha (0.6)
 
-#define DownViewHeight (200)
+#define DownViewHeight (160)
 #define Size [UIScreen mainScreen].bounds.size
 #define buyBtnH (44)
+
 
 
 @interface VirtualStockGoodsView ()<UITableViewDataSource,UITableViewDelegate,GoodsBuyNumberCellDelegate>
@@ -80,7 +82,7 @@
 #pragma mark --------- tableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return GoodsInfoSection_Invalid;
+    return VirtualGoodsInfoSection_Invalid;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -97,14 +99,11 @@
     NSInteger section = indexPath.section;
     CGFloat height = 0.0;
     switch (section) {
-        case GoodsInfoSection_Entity:
+        case VirtualGoodsInfoSection_Entity:
             height = 80;
             break;
-        case GoodsInfoSectionStock_Number:
+        case VirtualGoodsInfoSectionStock_Number:
             height = 30;
-            break;
-        case GoodsInfoSectionBuy_Number:
-            height = 44;
             break;
     }
     return height;
@@ -114,21 +113,30 @@
 - (WXUITableViewCell*)tableViewGoodsInfoWithRow:(NSInteger)row{
     GoodsInfoStockCell *cell = [GoodsInfoStockCell GoodsInfoStockCellWithTableView:tableViews];
     [cell setCellInfo:goodsStockArr[row]];
-    cell.imgUrl = [goodsArr[0] goodsImg];
+    cell.imgUrl = [goodsArr[0] homeImg];
     [cell load];
+    
+    if (self.type == VirtualStockView_Type_BuyStore) {
+        [cell setPrice];
+    }else{
+        [cell setPriceAddXnb];
+    }
     return cell;
 }
 
 // 商品样式
 - (WXUITableViewCell*)tableViewGoodsStyleWithRow:(NSInteger)row{
     GoodsStockStyleCell *cell = [GoodsStockStyleCell GoodsStockStyleCellWithTableView:tableViews];
-    [cell setCellInfo:goodsStockArr[row]];
+   VirtualGoodsInfoEntity *goodsEntity = goodsStockArr[row];
+    [cell setCellInfo:goodsEntity];
     [cell load];
     if (row == 0) {
         [cell setLabelHid:NO];
     }else{
         [cell setLabelHid:YES];
     }
+  
+    [cell setLabelBackGroundColor:goodsEntity.selected];
     return cell;
 }
 
@@ -146,8 +154,6 @@
         cell = [self tableViewGoodsInfoWithRow:indexPath.row];
     }else if (section == GoodsInfoSectionStock_Number){
         cell = [self tableViewGoodsStyleWithRow:indexPath.row];
-    }else if (section == GoodsInfoSectionBuy_Number){
-        cell = [self tableViewGoodsBuyNumber];
     }
     return cell;
 }
@@ -158,13 +164,25 @@
     NSUInteger row = indexPath.row;
     if (section == GoodsInfoSectionStock_Number) {  //刷新数据
         entity = goodsStockArr[row];
+        
+        
+        for (VirtualGoodsInfoEntity *stock in goodsStockArr) {
+            stock.selected = NO;
+        }
+        entity.selected = YES;
+        
         buyNumber = 1;
         NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
         GoodsInfoStockCell *cell = (GoodsInfoStockCell*)[tableView cellForRowAtIndexPath:path];
         [cell setCellInfo:entity];
-        cell.imgUrl = [goodsArr[0] goodsImg];
+        cell.imgUrl = [goodsArr[0] homeImg];
         [cell load];
         
+        if (self.type == VirtualStockView_Type_BuyStore) {
+            [cell setPrice];
+        }else{
+            [cell setPriceAddXnb];
+        }
         
         [self buyGoodsInfoWithEntity:entity Number:buyNumber];
     }
@@ -172,6 +190,9 @@
     NSIndexPath *cellPath = [NSIndexPath indexPathForRow:0 inSection:GoodsInfoSectionBuy_Number];
     GoodsBuyNumberCell *buyCell = (GoodsBuyNumberCell*)[tableView cellForRowAtIndexPath:cellPath];
     [buyCell lookGoodsStockNumber:buyNumber];
+    
+    [tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfoSectionStock_Number] withRowAnimation:UITableViewRowAnimationNone];
+  
 }
 
 
@@ -179,6 +200,13 @@
 - (void)VirtualGoodsStockInfo:(NSArray *)stockArr GoodsInfoArr:(NSArray *)goodsInfoArr{
     goodsArr = goodsInfoArr;
     goodsStockArr = stockArr;
+    
+    for (VirtualGoodsInfoEntity *stock in goodsStockArr) {
+        if (stock.isDefault) {
+            stock.selected = YES;
+        }
+    }
+
     
     CGFloat IPHONE_Width = [UIScreen mainScreen].bounds.size.width;
     CGFloat IPHONE_HEIGHT = [UIScreen mainScreen].bounds.size.height;
@@ -199,6 +227,8 @@
     entity = [stockArr objectAtIndex:0];
     
     [self buyGoodsInfo];
+    
+    self.virtualOrder = [VirtualOrderInfoEntity shareVirtualOrderAlloc];
 }
 
 #pragma mark  -- cellDelegate
@@ -234,14 +264,16 @@
 }
 
 - (void)buyGoodsInfoWithEntity:(VirtualGoodsInfoEntity*)GoodsEntity Number:(NSInteger)Number{
-    self.stockID = GoodsEntity.stockID;   // 库存
-    self.stockName = GoodsEntity.stockName;
-    self.stockPrice = GoodsEntity.stockPrice;
-    self.buyNum = Number;
-    self.postage = GoodsEntity.postageVirtual;
-    self.backMoney = GoodsEntity.backMoney;
-    self.xnbPrice = GoodsEntity.canVirtual;
-    self.goodsImg = entity.virtualImg;
+    VirtualGoodsInfoEntity *infoEntity = goodsArr[0];
+    self.virtualOrder.buyNumber = Number;
+    self.virtualOrder.postage = infoEntity.postageVirtual;;
+    self.virtualOrder.backMoney = GoodsEntity.backMoney;;
+    self.virtualOrder.xnbPrice = GoodsEntity.xnb;
+    self.virtualOrder.stockID = GoodsEntity.stockID;
+    self.virtualOrder.goodsImg = infoEntity.homeImg;
+    self.virtualOrder.stockName = GoodsEntity.stockName;
+    self.virtualOrder.goodsName = infoEntity.goodsName;
+    self.virtualOrder.goodsPrice = GoodsEntity.stockPrice;
 }
 
 
@@ -286,13 +318,16 @@
 -(void)buyBtnClicked{
     [self buyGoodsInfo];
     
-    if(_type == NewGoodsStockView_Type_ShoppingCart){
-        [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserAddShoppingCart object:nil];
+    if(_type == VirtualStockView_Type_BuyStore){
+       [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_VirtualStoreBuyGoods object:nil];
     }else{
-        [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserBuyGoods object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_VirtualEXchangeBuyGoods object:nil];
     }
+    
+     entity.selected = NO;
+     [self isClicked];
+    
 }
-
 
 
 @end

@@ -262,6 +262,12 @@
         case WXT_UrlFeed_Type_VirtualGoods:
             url = @"/list_exchange_goods.php";
             break;
+        case WXT_UrlFeed_Type_VirtualOrder:
+            url = @"/insert_exchange_order.php";
+            break;
+        case WXT_UrlFeed_Type_VirtualConfirmOrder:
+            url = @"//order_success.php";
+            break;
         case WXT_UrlFeed_Type_New_MoreMoneyInfo:
             url = @"/balance.php";
             break;
@@ -276,6 +282,12 @@
             break;
         case WXT_UrlFeed_Type_New_UserMoneyInfo:
             url = @"/cash_log.php";
+            break;
+        case WXT_UrlFeed_Type_VirtualOrderList:
+            url = @"/exchange_order_list.php";
+            break;
+        case WXT_UrlFeed_Type_VirtualCanCelOrder:
+            url = @"/exchange_order_cancel.php";
             break;
         default:
             break;
