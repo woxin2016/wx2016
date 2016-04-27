@@ -82,7 +82,7 @@
     
     
     WXUIButton *leftBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame = CGRectMake(15, 18, 45, 40);
+    leftBtn.frame = CGRectMake(20, 18, 45, 40);
     [leftBtn setImage:[UIImage imageNamed:@"HomePageLeftBtn.png"] forState:UIControlStateNormal];
     [leftBtn setTitle:@"分类" forState:UIControlStateNormal];
     [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
