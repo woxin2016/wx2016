@@ -68,7 +68,7 @@ enum{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setCSTTitle:@"云票返现"];
+    [self setCSTTitle:@"免费兑换"];
     
     [self.view addSubview:[self rightBtn]];
     

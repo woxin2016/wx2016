@@ -52,6 +52,11 @@ enum{
 
 @implementation EditUserAreaVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+     [self addNotification];
+}
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     if (self.address_type == UserArea_Type_Insert) {
@@ -62,7 +67,7 @@ enum{
     }
     
     self.backgroundColor = WXColorWithInteger(0xefeff4);
-    [self addNotification];
+   
     
     _tableView = [[UITableView alloc] init];
     _tableView.frame = CGRectMake(0, 0, Size.width, Size.height);
@@ -385,6 +390,8 @@ enum{
 
 #pragma mark btn
 -(void)newAddressAreaBtnClicked{
+    [self.view endEditing:YES];
+    
     showPicker = !showPicker;
     if(showPicker){
         [self showPickerView];

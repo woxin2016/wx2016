@@ -52,6 +52,7 @@ enum{
     [_tableView setDelegate:self];
     [self addSubview:_tableView];
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
     [self addnotification];
     [self createRightView];
     
@@ -185,6 +186,21 @@ enum{
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    AreaEntity *entity = _addListArr[indexPath.section];
+    if(entity.normalID == 1){
+        return;
+    }
+    NSInteger oldID = 0;
+    for(AreaEntity *entity in _addListArr){
+        if(entity.normalID == 1){
+            oldID = entity.address_id;
+        }
+    }
+    [NewUserAddressModel shareUserAddress].address_type = UserAddress_Type_Normal;
+    [[NewUserAddressModel shareUserAddress] setNormalAddressWithOldAddID:oldID withNewAddID:entity.address_id];
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+
 }
 
 -(void)createNewAddress{

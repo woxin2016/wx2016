@@ -94,8 +94,7 @@ enum{
     
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)dealloc{
     [self removeaddOBS];
 }
 

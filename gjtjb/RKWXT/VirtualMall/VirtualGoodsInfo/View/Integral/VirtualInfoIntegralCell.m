@@ -65,6 +65,9 @@
 
 - (void)canuseInterral:(NSString*)canUse cantBe:(NSString*)cantBe{
     canL.text = canUse;
+    if (cantBe.length == 0) {
+        cantBe = @"0";
+    }
     cantL.text = cantBe;
     CGSize size = [cantBe stringSize:cantL.font];
     cantL.frame = CGRectMake(self.width - size.width - 10, 0, size.width, self.height);

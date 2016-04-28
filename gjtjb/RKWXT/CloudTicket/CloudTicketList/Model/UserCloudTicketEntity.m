@@ -27,7 +27,11 @@
         [self setAddTime:addtime];
         
         NSString *title = [dic objectForKey:@"number"];
-        [self setCloudTicket:title];
+        NSMutableString *str = [NSMutableString stringWithFormat:@"%@",title];
+        if (str.length > 0) {
+           [str insertString:@"￥" atIndex:1];
+        }
+        [self setCloudTicket:str];
     }
     return self;
 }
