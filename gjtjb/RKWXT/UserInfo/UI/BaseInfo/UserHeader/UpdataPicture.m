@@ -12,7 +12,7 @@
 #import "UserHeaderModel.h"
 #import "UserHeaderImgModel.h"
 
-#define FtpUrl @"ftp://wx3.67call.com"
+#define FtpUrl @"ftp://seller.woxinyun.com"
 #define UserName @"picuser"
 #define UserPwd @"KoYYooop7728###"
 
@@ -87,7 +87,7 @@ enum {
     }
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     [[UserHeaderModel shareUserHeaderModel] updateUserHeaderSucceed:[NSString stringWithFormat:@"%@userIcon.png",userObj.wxtID]];
-    [UtilTool showAlertView:@"上传头像成功"];
+    [UtilTool showTipView:@"上传头像成功"];
 }
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode{

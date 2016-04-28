@@ -32,7 +32,7 @@
     
     [[ShareInfoModel shareInfoModel] loadUserShareInfo];
     [[ShareInfoModel shareInfoModel] loadUserShareCutInfo];
-//    [[UserHeaderModel shareUserHeaderModel] loadUserHeaderImageWith];
+    [[UserHeaderModel shareUserHeaderModel] loadUserHeaderImageWith];
 }
 
 @end

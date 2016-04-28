@@ -100,7 +100,7 @@
 - (void)startBaiduMobStat {
     BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
     statTracker.shortAppVersion  = [UtilTool currentVersion];
-    [statTracker startWithAppId:@"931d157a8a"]; // 设置您在mtj网站上添加的app的appkey,此处AppId即为应用的appKey
+    [statTracker startWithAppId:@"f572f3b3d8"]; // 设置您在mtj网站上添加的app的appkey,此处AppId即为应用的appKey
 }
 
 -(BOOL)checkUserInfo{

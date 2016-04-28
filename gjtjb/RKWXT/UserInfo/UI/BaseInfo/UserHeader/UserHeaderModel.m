@@ -22,35 +22,45 @@
 
 -(void)loadUserHeaderImageWith{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                             @"iOS", @"pid",
+                             [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts",
+                             userObj.wxtID, @"woxin_id",
+                             nil];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"iOS", @"pid",
                          [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts",
                          userObj.wxtID, @"woxin_id",
-                         userObj.sellerID, @"seller_user_id",
+                         [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign",
                          nil];
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_LoadUserHeader httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
         }else{
-            [self setUserHeaderImg:[NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,[retData.data objectForKey:@"data"]]];
+            NSString *pic = [[retData.data objectForKey:@"data"] objectForKey:@"pic"];
+            [self setUserHeaderImg:[NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,pic]];
         }
     }];
 }
 
 -(void)updateUserHeaderSucceed:(NSString *)headerPath{
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSString *pwdStr = [UtilTool md5:userObj.pwd];
+    NSDictionary *baseDic = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"iOS", @"pid",
-                         [UtilTool currentVersion], @"ver",
                          [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts",
                          headerPath, @"pic_name",
                          userObj.wxtID, @"woxin_id",
-                         userObj.sellerID, @"seller_user_id",
-                         [UtilTool newStringWithAddSomeStr:5 withOldStr:userObj.pwd], @"pwd",
+                         pwdStr, @"pwd",
+                         nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         @"iOS", @"pid",
+                         [NSNumber numberWithInt:(int)[UtilTool timeChange]], @"ts",
+                         headerPath, @"pic_name",
+                         userObj.wxtID, @"woxin_id",
+                         pwdStr, @"pwd",
+                         [UtilTool md5:[UtilTool allPostStringMd5:baseDic]], @"sign",
                          nil];
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_New_UpdateUserHeader httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
-        if (retData.code != 0){
-        }else{
-        }
     }];
 }
 
