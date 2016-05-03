@@ -44,7 +44,7 @@ enum{
 #define heardViewH (44)
 
 
-@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate,VietualTopImgCellDelegate,VietualFootViewDelegate>
+@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate,VietualTopImgCellDelegate,VietualFootViewDelegate,UIScrollViewDelegate>
 {
     ViteualGoodsModel *_model;
     UITableView *_tableView;
@@ -52,7 +52,6 @@ enum{
     VietualHeardView *_heardView;
     VietualFootView *_footView;
     UIButton *_backTop;
-    
 }
 @end
 
@@ -146,6 +145,17 @@ enum{
         [_backTop setHidden:NO];
         CGFloat alpha = offset / 640;
         _backTop.backgroundColor = [color colorWithAlphaComponent:alpha];
+    }
+
+    if (scrollView.frame.size.height + scrollView.contentOffset.y > scrollView.contentSize.height + 40) {
+        [_footView footbtnWithTitle:@"正在加载中" andIsStart:YES];
+    }
+}
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (scrollView.frame.size.height + scrollView.contentOffset.y > scrollView.contentSize.height + 30) {
+        [self vietualFootViewClickFootBtn];
     }
 }
 
@@ -288,7 +298,7 @@ enum{
             break;
     }
     
-    [_footView footbtnWithTitle:@"加载更多" andIsStart:NO];
+    [_footView footbtnWithTitle:@"点击加载更多" andIsStart:NO];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -374,7 +384,7 @@ enum{
 
 -(void)viteualGoodsModelSucceed{
     [self unShowWaitView];
-    [_footView footbtnWithTitle:@"加载更多" andIsStart:NO];
+    [_footView footbtnWithTitle:@"点击加载更多" andIsStart:NO];
     
     
     [_tableView headerEndRefreshing];
@@ -410,5 +420,7 @@ enum{
 - (void)backTopBtn{
     [_tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
+
+
 
 @end

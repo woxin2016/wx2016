@@ -42,7 +42,7 @@
 }
 
 - (void)clickFootBtn:(UIButton*)btn{
-    if ([btn.titleLabel.text isEqualToString:@"无更多"]) return;
+     if ([btn.titleLabel.text isEqualToString:@"无更多"]) return;
     if (_delegate &&[_delegate respondsToSelector:@selector(vietualFootViewClickFootBtn)]) {
         [_delegate vietualFootViewClickFootBtn];
     }
@@ -50,7 +50,7 @@
 
 -(void)footbtnWithTitle:(NSString *)title andIsStart:(BOOL)start{
     [_footBtn setTitle:title forState:UIControlStateNormal];
-   
+    
     if (start) {
         [_actiView startAnimating];
     }else{
