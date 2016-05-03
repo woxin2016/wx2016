@@ -151,16 +151,14 @@
      [notificationCenter addObserver:self selector:@selector(userBuyExchangeBtnClicked) name:K_Notification_Name_VirtualEXchangeBuyGoods object:nil];
 }
 
-
-- (void)dealloc{
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self removeOBS];
 }
-
 
 - (void)removeOBS{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 #pragma mark -- tableView
 //改变cell分割线置顶

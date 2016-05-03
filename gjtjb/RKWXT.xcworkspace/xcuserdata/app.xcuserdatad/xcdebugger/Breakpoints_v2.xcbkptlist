@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RKWXT/UserInfo/UserInfoVC.m"
-            timestampString = "483351550.842209"
+            filePath = "RKWXT/UserInfo/UI/BaseInfo/UserAddress/Model/NewModel/NewUserAddressModel.m"
+            timestampString = "483616071.049467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "-uploadUserMoreMoneyInfo"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-setNormalAddressWithOldAddID:withNewAddID:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

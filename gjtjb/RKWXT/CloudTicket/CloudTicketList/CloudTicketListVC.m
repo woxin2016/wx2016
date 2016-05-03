@@ -62,12 +62,12 @@ enum{
 }
 
 -(WXUIButton*)rightBtn{
-    CGFloat btnWidth = 55;
+    CGFloat btnWidth = 60;
     CGFloat btnHeight = 16;
     WXUIButton *rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth, 40, btnWidth, btnHeight);
+    rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth - 10, 40, btnWidth, btnHeight);
     [rightBtn setBackgroundColor:[UIColor clearColor]];
-    [rightBtn setTitle:@"充值" forState:UIControlStateNormal];
+    [rightBtn setTitle:@"云票充值" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightBtn.titleLabel setFont:WXFont(13.0)];
     [rightBtn addTarget:self action:@selector(gotoRechargeCTVC) forControlEvents:UIControlEventTouchUpInside];

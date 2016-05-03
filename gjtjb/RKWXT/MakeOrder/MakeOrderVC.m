@@ -21,7 +21,7 @@
 #define Size self.bounds.size
 #define DownViewHeight (59)
 
-@interface MakeOrderVC()<UITableViewDataSource,UITableViewDelegate,MakeOrderUserMsgTextFieldCellDelegate,WXUITableViewCellDelegate,MakeOrderSwitchCellDelegate,MakeOrderDelegate,SearchCarriageMoneyDelegate/*,MakeOrderBananceSwitchCellDelegate*/>{
+@interface MakeOrderVC()<UITableViewDataSource,UITableViewDelegate,MakeOrderUserMsgTextFieldCellDelegate,WXUITableViewCellDelegate,MakeOrderSwitchCellDelegate,MakeOrderDelegate,SearchCarriageMoneyDelegate,UIAlertViewDelegate/*,MakeOrderBananceSwitchCellDelegate*/>{
     UITableView *_tableView;
     MakeOrderModel *_model;
     
@@ -41,9 +41,11 @@
     [super viewWillAppear:animated];
     [self setCSTNavigationViewHidden:NO animated:NO];
     if(_tableView){
-        [self loadCarriageMoney];
-        [_tableView reloadSections:[NSIndexSet indexSetWithIndex:Order_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
-    }
+            if([[NewUserAddressModel shareUserAddress].userAddressArr count] != 0){
+            [self loadCarriageMoney];
+            [_tableView reloadSections:[NSIndexSet indexSetWithIndex:Order_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
+      }
+  }
 }
 
 -(id)init{
@@ -64,6 +66,8 @@
     [self setBackgroundColor:[UIColor whiteColor]];
     userBonus = NO;
     
+    [self  lookUserInfoSite];
+    
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Size.width, Size.height-DownViewHeight)];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
@@ -73,6 +77,14 @@
     
     [self addNotification];
     [self censusBonusValue];
+    
+}
+
+- (void)lookUserInfoSite{
+    if ([[NewUserAddressModel shareUserAddress].userAddressArr count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"请添加默认地址" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 -(void)loadCarriageMoney{
@@ -623,6 +635,12 @@
     }
     [UtilTool showAlertView:errorMsg];
     return;
+}
+
+#pragma mark   --- alert
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
+    [self.wxNavigationController pushViewController:addressVC];
 }
 
 @end

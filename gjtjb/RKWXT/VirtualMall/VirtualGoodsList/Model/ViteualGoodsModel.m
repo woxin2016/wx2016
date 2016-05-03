@@ -148,18 +148,18 @@
             if (_delegate && [_delegate respondsToSelector:@selector(viteualGoodsModelSucceed)]) {
                 [_delegate viteualGoodsModelSucceed];
             }
+            if ([retData.data[@"data"] count] <= 0) {
+                if (_delegate && [_delegate respondsToSelector:@selector(vieualNoGoodsData)]) {
+                    [_delegate vieualNoGoodsData];
+                }
+            };
         }
     }];
 }
 
 - (void)handleReturnData:(NSArray*)data type:(ModelType)type{
    
-    if ([data count] <= 0) {
-        if (_delegate && [_delegate respondsToSelector:@selector(vieualNoGoodsData)]) {
-            [_delegate vieualNoGoodsData];
-        }
-        return;
-    };
+    if ([data count] <= 0) return;
     
     if (isRemoAll && type == ModelType_Store) {
         [_storeArray removeAllObjects];

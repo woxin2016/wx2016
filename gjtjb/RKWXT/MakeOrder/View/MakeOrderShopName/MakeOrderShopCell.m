@@ -28,11 +28,11 @@
         UIFont *font = WXFont(14.0);
         CGFloat nameHeight = 20;
         WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
-        CGFloat nameWidth = [NSString widthForString:userObj.sellerName fontSize:14 andHeight:nameHeight];
+        CGFloat nameWidth = [NSString widthForString:userObj.sellerName fontSize:14 andHeight:nameHeight] + 40;
         UILabel *nameLabel = [[UILabel alloc] init];
         nameLabel.frame = CGRectMake(xOffset, (Order_Section_Height_ShopName-nameHeight)/2, nameWidth, nameHeight);
         [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setTextAlignment:NSTextAlignmentCenter];
+        [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setTextColor:WXColorWithInteger(0x202020)];
         [nameLabel setFont:font];
         [nameLabel setText:kMerchantName];

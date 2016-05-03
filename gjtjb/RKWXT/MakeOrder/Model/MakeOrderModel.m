@@ -45,10 +45,7 @@
     AreaEntity *entity = [self addressEntity];
     
     if(!entity){
-        if (_delegate && [_delegate respondsToSelector:@selector(makeOrderFailed:)]){
-            [_delegate makeOrderFailed:@"请设置收货信息"];
-        }
-        return;
+        [UtilTool showRoundView:@"请设置收货信息"];
     }
     
     NSString *address = [NSString stringWithFormat:@"%@%@%@%@",entity.proName,entity.cityName,entity.disName,entity.address];
@@ -132,10 +129,7 @@
     AreaEntity *entity = [self addressEntity];
     
     if(!entity){
-        if (_delegate && [_delegate respondsToSelector:@selector(makeOrderFailed:)]){
-            [_delegate makeOrderFailed:@"请设置收货信息"];
-        }
-        return;
+        [UtilTool showRoundView:@"请设置收货信息"];
     }
     
     NSString *address = [NSString stringWithFormat:@"%@%@%@%@",entity.proName,entity.cityName,entity.disName,entity.address];

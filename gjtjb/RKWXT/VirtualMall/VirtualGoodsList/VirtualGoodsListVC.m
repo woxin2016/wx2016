@@ -12,6 +12,7 @@
 
 
 #import "VietualHeardView.h"
+#import "VietualFootView.h"
 #import "ViteualExchangeCell.h"
 #import "ViteualStoreCell.h"
 #import "VietualTopImgCell.h"
@@ -20,6 +21,7 @@
 #import "ViteualGoodsEntity.h"
 #import "HomePageTopEntity.h"
 #import "MJRefresh.h"
+
  enum{
     SubSections_TopImg = 0,
     SubSections_List,
@@ -42,13 +44,15 @@ enum{
 #define heardViewH (44)
 
 
-@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate,VietualTopImgCellDelegate>
+@interface VirtualGoodsListVC ()<UITableViewDelegate,UITableViewDataSource,VietualHeardViewDelegate,viteualGoodsModelDelegate,VietualTopImgCellDelegate,VietualFootViewDelegate>
 {
     ViteualGoodsModel *_model;
     UITableView *_tableView;
     BOOL _isExchange;  // YES 为兑换商城  NO为品牌兑换
     VietualHeardView *_heardView;
+    VietualFootView *_footView;
     UIButton *_backTop;
+    
 }
 @end
 
@@ -60,7 +64,6 @@ enum{
         _model.delegate = self;
         _isExchange = NO;
         _heardView = [[VietualHeardView alloc]initWithFrame:CGRectMake(0, 0,IPHONE_SCREEN_WIDTH, heardViewH)];
-        _heardView.backgroundColor = [UIColor whiteColor];
         _heardView.delegate  =self;
     }
     return self;
@@ -80,12 +83,12 @@ enum{
 }
 
 -(WXUIButton*)rightBtn{
-    CGFloat btnWidth = 55;
+    CGFloat btnWidth = 60;
     CGFloat btnHeight = 20;
     WXUIButton *rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth, 32, btnWidth, btnHeight);
+    rightBtn.frame = CGRectMake(self.bounds.size.width-btnWidth - 10, 32, btnWidth, btnHeight);
     [rightBtn setBackgroundColor:[UIColor clearColor]];
-    [rightBtn setTitle:@"充值" forState:UIControlStateNormal];
+    [rightBtn setTitle:@"云票充值" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightBtn.titleLabel setFont:WXFont(14.0)];
     [rightBtn addTarget:self action:@selector(gotoRechargeCTVC) forControlEvents:UIControlEventTouchUpInside];
@@ -99,6 +102,7 @@ enum{
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.tableFooterView = [self tableViewFootView];
     [self addSubview:_tableView];
     
     UIImage *btnImg = [UIImage imageNamed:@"backTopImg.png"];
@@ -109,6 +113,12 @@ enum{
     [self.view addSubview:_backTop];
 }
 
+- (UIView*)tableViewFootView{
+    _footView = [[VietualFootView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, heardViewH)];
+    _footView.delegate = self;
+    return _footView;
+}
+
 - (void)requestNetWork{
     [_model virtualLoadDataFromWeb];
     [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:0 length:10];
@@ -117,17 +127,12 @@ enum{
 
 - (void)setupRefresh{
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    [_tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
     [_tableView addHeaderWithTarget:self action:@selector(requestNetWork)];
     
     //设置文字
     _tableView.headerPullToRefreshText = @"下拉刷新";
     _tableView.headerReleaseToRefreshText = @"松开刷新";
     _tableView.headerRefreshingText = @"刷新中";
-    
-    _tableView.footerPullToRefreshText = @"上拉加载";
-    _tableView.footerReleaseToRefreshText = @"松开加载";
-    _tableView.footerRefreshingText = @"加载中";
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -139,10 +144,11 @@ enum{
  
     if(offset > 0){
         [_backTop setHidden:NO];
-        CGFloat alpha = offset / 200;
+        CGFloat alpha = offset / 640;
         _backTop.backgroundColor = [color colorWithAlphaComponent:alpha];
     }
 }
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return SubSections_Invalid;
@@ -282,11 +288,14 @@ enum{
             break;
     }
     
+    [_footView footbtnWithTitle:@"加载更多" andIsStart:NO];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 #pragma mark -- footerRefreshing
-- (void)footerRefreshing{
+- (void)vietualFootViewClickFootBtn{
+    [_footView footbtnWithTitle:@"正在加载中" andIsStart:YES];
+    
     if (_isExchange) {
         [_model viteualGoodsModelRequeatNetWork:ModelType_Exchange start:[_model.exchangeArray count] length:10];
     }else{
@@ -365,11 +374,13 @@ enum{
 
 -(void)viteualGoodsModelSucceed{
     [self unShowWaitView];
+    [_footView footbtnWithTitle:@"加载更多" andIsStart:NO];
     
     
     [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [_tableView reloadData];
+    
 }
 
 -(void)viteualTopImgFailed:(NSString *)errorMsg{
@@ -380,7 +391,7 @@ enum{
 
 - (void)vieualNoGoodsData{
     [self unShowWaitView];
-    [UtilTool showRoundView:@"无更多"];
+     [_footView footbtnWithTitle:@"无更多" andIsStart:NO];
 }
 
 -(void)viteualTopImgSucceed{

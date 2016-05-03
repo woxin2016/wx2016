@@ -21,14 +21,14 @@
 
 - (NSArray*)titArray{
     if (!_titArray) {
-        _titArray = @[@"兑换商城",@"品牌兑换"];
+        _titArray = @[@"免费兑换",@"品牌兑换"];
     }
     return _titArray;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-      
+        self.backgroundColor = [UIColor whiteColor];
         
         CGFloat width = (frame.size.width / 2) - 0.5;
         CGFloat height = frame.size.height;

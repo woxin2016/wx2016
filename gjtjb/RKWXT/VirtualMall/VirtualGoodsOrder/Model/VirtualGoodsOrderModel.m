@@ -54,10 +54,7 @@
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     AreaEntity *entity = [self addressEntity];
     if(!entity){
-        if (_delegate && [_delegate respondsToSelector:@selector(virtualGoodsOrderFailed:)]){
-            [_delegate virtualGoodsOrderFailed:@"请设置收货信息"];
-        }
-        return;
+        [UtilTool showRoundView:@"请设置收货信息"];
     }
     NSString *address = [NSString stringWithFormat:@"%@%@%@%@",entity.proName,entity.cityName,entity.disName,entity.address];
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
