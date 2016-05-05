@@ -197,7 +197,7 @@ enum{
             newStr = @"N";
             break;
         case OrderPay_Type_Recharge:
-            newStr = @"";
+            newStr = @"R";
             break;
         case OrderPay_Type_Lucky:
             newStr = @"P";
@@ -322,7 +322,7 @@ enum{
             newStr = [NSString stringWithFormat:@"N%@",_orderID];
             break;
         case OrderPay_Type_Recharge:
-            newStr = [NSString stringWithFormat:@"R%@",_orderID];
+            newStr = [NSString stringWithFormat:@"%@",_orderID];
             break;
         case OrderPay_Type_Lucky:
             newStr = [NSString stringWithFormat:@"P%@",_orderID];

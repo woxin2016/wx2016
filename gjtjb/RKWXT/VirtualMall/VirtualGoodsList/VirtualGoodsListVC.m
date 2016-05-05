@@ -37,6 +37,7 @@ enum{
     HomePageJump_Type_BusinessAlliance, //商家联盟
     HomePageJump_Type_Web,              //跳转网页
     HomePageJump_Type_None,             //不跳转
+    HomePageJump_Type_XNBRechange,      //云票充值中心
     
     HomePageJump_Type_Invalid
 };
@@ -362,6 +363,11 @@ enum{
         case HomePageJump_Type_Web:
         {
             [[CoordinateController sharedCoordinateController] toWebVC:self url:webUrl title:@"使用说明" animated:YES];
+        }
+            break;
+        case HomePageJump_Type_XNBRechange:
+        {
+            [[CoordinateController sharedCoordinateController] toXNBRechargeVC:self animated:YES];
         }
             break;
         default:

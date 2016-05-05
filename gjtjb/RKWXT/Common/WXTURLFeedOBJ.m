@@ -292,6 +292,12 @@
         case WXT_UrlFeed_Type_VirtualCanCelOrder:
             url = @"/exchange_order_cancel.php";
             break;
+        case WXT_UrlFeed_Type_New_XNBBalance:
+            url = @"/combo.php";
+            break;
+        case WXT_UrlFeed_Type_New_XNBOrderID:
+            url = @"/insert_recharge_order.php";
+            break;
         default:
             break;
     }

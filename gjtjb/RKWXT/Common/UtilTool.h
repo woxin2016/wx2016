@@ -119,4 +119,6 @@ typedef enum{
 
 +(NSString*)allPostStringMd5:(NSDictionary *)dic;
 
+// 判断是不是手机号
++(BOOL)isValidateMobile:(NSString *)mobile;
 @end

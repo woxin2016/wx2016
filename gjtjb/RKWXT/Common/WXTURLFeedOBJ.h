@@ -30,6 +30,8 @@ typedef enum {
     WXT_UrlFeed_Type_New_AboutShop,
     WXT_UrlFeed_Type_New_Version,
     WXT_UrlFeed_Type_New_Balance,
+    WXT_UrlFeed_Type_New_XNBBalance,
+    WXT_UrlFeed_Type_New_XNBOrderID,
     WXT_UrlFeed_Type_New_JPushMessageInfo,
     WXT_UrlFeed_Type_New_Call,
     WXT_UrlFeed_Type_New_Sign,

@@ -17,6 +17,11 @@ typedef enum {
     E_CellDefaultAccessoryViewType_None,
 }E_CellDefaultAccessoryViewType;
 
+typedef enum{
+    C_CellIsIdentifier_None,
+    C_CellIsIdentifier_CreateCell,
+}C_CellIsIdentifier;
+
 #define kDefaultCellTxtSize (12.0)
 @protocol WXUITableViewCellMark <NSObject>
 @optional
@@ -30,6 +35,7 @@ typedef enum {
 @property (nonatomic,retain)id cellInfo;
 @property (nonatomic,assign)id<WXUITableViewCellDelegate>baseDelegate;
 
++ (instancetype)tableViewCellInitializeWithTableView:(UITableView*)tableView andType:(C_CellIsIdentifier)type andIsIdtifier:(NSString*)idtifier;
 - (void)setDefaultAccessoryView:(E_CellDefaultAccessoryViewType)type;
 - (void)disableTouchDelay;
 

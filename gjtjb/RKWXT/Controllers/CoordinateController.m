@@ -21,6 +21,7 @@
 #import "GoodsClassifyVC.h"
 #import "LuckyGoodsOrderList.h"
 #import "UserBonusVC.h"
+#import "XNBRechangeVC.h"
 
 @implementation CoordinateController
 
@@ -53,6 +54,11 @@
     WXUIViewController *vc = sender;
     RechargeVC *rechargeVC = [[RechargeVC alloc] init];
     [vc.wxNavigationController pushViewController:rechargeVC];
+}
+-(void)toXNBRechargeVC:(id)sender animated:(BOOL)animated{
+    WXUIViewController *vc = sender;
+    XNBRechangeVC *xnbVC = [[XNBRechangeVC alloc]init];
+    [vc.wxNavigationController pushViewController:xnbVC];
 }
 
 -(void)toOrderList:(id)sender selectedShow:(NSInteger)number animated:(BOOL)animated{
