@@ -32,6 +32,7 @@
         [nameLabel setTextColor:[UIColor colorWithHexString:@"#373737"]];
         [nameLabel setFont:WXFont(15.0)];
         [self.contentView addSubview:nameLabel];
+
         
         xOffset += nameWidth + 10;
         CGFloat textHeight = 17;

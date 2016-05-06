@@ -14,6 +14,7 @@
 #import "XNBOrderEntity.h"
 
 #import "OrderPayVC.h"
+#import "MoreMoneyInfoModel.h"
 
 #define Size self.view.bounds.size
 #define FootHeight (150)
@@ -31,7 +32,7 @@ typedef enum{
     XNBBalanceModel *_model;
     UIButton *_btn;
     NSInteger _key;
-    BOOL _isPay;
+    int _xnb;
 }
 @end
 
@@ -46,6 +47,12 @@ typedef enum{
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [_model requestLoadCartInfo];
+    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -57,9 +64,6 @@ typedef enum{
     _tableView.backgroundColor = [UIColor colorWithHexString:@"f6f6f6"];
     [self addSubview:_tableView];
     [_tableView setTableFooterView:[self tabaleViewFootView]];
-    
-    [_model requestLoadCartInfo];
-    [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
 - (UIView*)tabaleViewFootView{
@@ -80,11 +84,18 @@ typedef enum{
     
     CGFloat labelX = 40;
     btnY += btnH + 25;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(labelX, btnY, Size.width - labelX *2,60)];
-    label.numberOfLines = 2;
-    label.text = @"温馨提示: 充值卡以及云票充值话费只限充值\n到“我信云商”话费余额";
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(labelX, btnY,58,60)];
+    label.text = @"温馨提示:\n   ";
     label.font = [UIFont systemFontOfSize:12];
+    label.numberOfLines = 2;
     [footView  addSubview:label];
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(label.right, btnY, Size.width - labelX * 2 - 58, 60)];
+    label1.numberOfLines = 2;
+    label1.text =@"充值卡以及云票充值话费只限充值\n到“我信云商”话费余额";
+    label1.textAlignment = NSTextAlignmentLeft;
+    label1.font = [UIFont systemFontOfSize:12];
+    [footView  addSubview:label1];
     
     return footView;
 }
@@ -133,6 +144,9 @@ typedef enum{
 - (WXUITableViewCell*)tableViewUserPhoneBalanceCell{
     XNBBalancePhoneCell *cell = [XNBBalancePhoneCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_CreateCell andIsIdtifier:@"XNBBalancePhoneCell"];
     cell.delegate = self;
+    cell.imageView.image = [UIImage imageNamed:@"balanceAccount.png"];
+    cell.textLabel.text = @"充值号码:";
+    cell.textLabel.font = WXFont(15.0);
     return cell;
 }
 
@@ -178,8 +192,8 @@ typedef enum{
 - (void)clickBtnCartInfoWithIndex:(NSInteger)index{
     [self.view  endEditing:YES];
     _key = index;
-    _isPay = YES;
     XNBBalanceEntity *entity = _model.cartArray[index];
+    _xnb = entity.xnb;
     [_btn setTitle:[NSString stringWithFormat:@"去支付（￥%d.00）",entity.rmb] forState:UIControlStateNormal];
 }
 
@@ -191,15 +205,11 @@ typedef enum{
 
 - (void)loadXNBUserBalanceSucceed{
     [self unShowWaitView];
+    
     [_tableView reloadData];
 }
 
 - (void)gotoParOrder{
-    if (!_isPay) {
-        [UtilTool showAlertView:@"请选择套餐"];
-        return;
-    }
-    
     WXTUserOBJ *userDefault = [WXTUserOBJ sharedUserOBJ];
     NSString *phone = [_changePhone isEqualToString:@""] ? userDefault.user : _changePhone;
     if ([UtilTool isValidateMobile:phone]) {
@@ -212,6 +222,11 @@ typedef enum{
 
 - (void)balanceSubmitOrderSucceed{
     [self unShowWaitView];
+    
+    //发出通知
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance -= _xnb;
+    [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = YES;
     
     // 跳转支付页面
     OrderPayVC *payVC = [[OrderPayVC alloc]init];

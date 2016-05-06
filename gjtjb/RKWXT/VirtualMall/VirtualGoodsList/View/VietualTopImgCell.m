@@ -11,6 +11,7 @@
 #import "WXRemotionImgBtn.h"
 #import "HomePageTopEntity.h"
 
+#define kTimerInterval (3.0)
 @interface VietualTopImgCell ()<UIScrollViewDelegate,WXRemotionImgBtnDelegate,VietualTopImgCellDelegate>
 {
     CSTScrollBrowser *_browser;
@@ -49,7 +50,7 @@
         [self.contentView addSubview:_pageControl];
         
         _merchantImgViewArray = [[NSMutableArray alloc] init];
-        [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:kTimerInterval target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
     }
     return self;
 }

@@ -58,9 +58,11 @@
 }
 
 - (void)parseXNBClassifyData:(NSDictionary*)data{
+    [self.cartArray removeAllObjects];
     if (!data)return;
     NSArray *array = data[@"combo"];
     if (array.count == 0) return;
+    
     for (NSDictionary *dic in array) {
         XNBBalanceEntity *entity = [XNBBalanceEntity xnbBalanceEntityWithDict:dic];
         entity.xnbBalnce = [data[@"xnb_1"] intValue];

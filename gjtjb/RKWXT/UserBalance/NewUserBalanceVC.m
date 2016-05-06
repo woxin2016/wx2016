@@ -104,7 +104,7 @@ typedef enum{
     }
     if (row == 0) {
         cell = [WXUITableViewCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_None andIsIdtifier:@"accountCell"];
-        cell.textLabel.text = @"账户";
+        cell.textLabel.text = @"账号";
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.imageView.image = [UIImage imageNamed:@"balanceAccount.png"];
         cell.detailTextLabel.text = userDefault.user;
@@ -126,7 +126,7 @@ typedef enum{
     switch (row) {
         case UserBalance_Card:
             cell = [WXUITableViewCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_None andIsIdtifier:@"Card"];
-            cell.textLabel.text = @"充值卡充值";
+            cell.textLabel.text = @"话费卡充值";
             cell.textLabel.font = [UIFont systemFontOfSize:15];
              [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
             cell.imageView.image = [UIImage imageNamed:@"balanceCart.png"];
@@ -134,7 +134,7 @@ typedef enum{
         case UserBalance_XNB:
             cell = [WXUITableViewCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_None andIsIdtifier:@"XNB"];
              [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
-            cell.textLabel.text = @"云票充值";
+            cell.textLabel.text = @"云票兑换话费";
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.detailTextLabel.text = @"Hot";
             cell.detailTextLabel.textColor = [UIColor colorWithHexString:@"f74f35"];

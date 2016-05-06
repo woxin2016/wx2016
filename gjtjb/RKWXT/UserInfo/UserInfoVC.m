@@ -51,9 +51,8 @@
         [iconImageView setImage:[self userIconImage]];
     }
     
-    if(![MoreMoneyInfoModel shareUserMoreMoneyInfo].isLoaded){
-        [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
-    }
+  
+     [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
     
     if([MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged){
         [self uploadUserMoreMoneyInfo];

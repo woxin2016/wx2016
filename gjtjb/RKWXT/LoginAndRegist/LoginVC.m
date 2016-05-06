@@ -19,6 +19,7 @@
 #import "NewForgetPwdVC.h"
 #import "APService.h"
 #import "AllAreaDataModel.h"
+#import "ShoppingCartView.h"
 
 #define Size self.bounds.size
 #define kLoginBigImgViewheight (190)
@@ -327,6 +328,9 @@
     //第一次登陆直接调用发送消息
     LoginModel *_model = [[LoginModel alloc]init];
     [_model sendUserMessage];
+    
+    //登陆成功之后查看购物车数量
+    [[[ShoppingCartView alloc]initWithFrame:CGRectZero] searchShoppingCartNumber];
 }
 
 -(void)checkAreaVersion{

@@ -60,9 +60,9 @@ enum{
 
 - (instancetype)init{
     if (self = [super init]) {
+         _isExchange = NO;
         _model = [[ViteualGoodsModel alloc]init];
         _model.delegate = self;
-        _isExchange = NO;
         _heardView = [[VietualHeardView alloc]initWithFrame:CGRectMake(0, 0,IPHONE_SCREEN_WIDTH, heardViewH)];
         _heardView.delegate  =self;
     }
@@ -71,6 +71,8 @@ enum{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+   
     [self setCSTTitle:@"免费兑换"];
     
     [self.view addSubview:[self rightBtn]];
@@ -121,7 +123,12 @@ enum{
 
 - (void)requestNetWork{
     [_model virtualLoadDataFromWeb];
-    [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:0 length:10];
+    
+    if (_isExchange) {
+        [_model viteualGoodsModelRequeatNetWork:ModelType_Exchange start:0 length:10];
+    }else{
+        [_model viteualGoodsModelRequeatNetWork:ModelType_Store start:0 length:10];
+    }
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
 }
 
@@ -390,13 +397,13 @@ enum{
 
 -(void)viteualGoodsModelSucceed{
     [self unShowWaitView];
-    [_footView footbtnWithTitle:@"点击加载更多" andIsStart:NO];
+    [_footView footbtnWithTitle:@"查看更多" andIsStart:NO];
     
     
     [_tableView headerEndRefreshing];
     [_tableView footerEndRefreshing];
     [_tableView reloadData];
-    
+    _tableView.frame = self.bounds;
 }
 
 -(void)viteualTopImgFailed:(NSString *)errorMsg{

@@ -9,6 +9,8 @@
 #import "XNBCartInfoCell.h"
 #import "XNBBalanceEntity.h"
 
+#define ClickBtnH (60)
+
 @interface XNBCartInfoCell ()
 {
     UIView *_bottonView;
@@ -33,6 +35,9 @@
 
 -(void)setCellInfo:(id)cellInfo{
     
+    [_btnArray removeAllObjects];
+    [_label1array removeAllObjects];
+    [_labelArray removeAllObjects];
     
     [_bottonView removeFromSuperview];
     _bottonView = [[UIView alloc]initWithFrame:self.bounds];
@@ -46,7 +51,7 @@
     int row = 3;
     CGFloat margin = 8;
     CGFloat btnW = (self.width - margin * 4) / row;
-    CGFloat btnH = 50;
+    CGFloat btnH = ClickBtnH;
     for (int i = 0; i < array.count; i++) {
         XNBBalanceEntity *entity = array[i];
         
@@ -59,15 +64,15 @@
         [btn addTarget:self action:@selector(clickCartBtn:) forControlEvents:UIControlEventTouchDown];
         
         CGFloat labelH = 20;
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0,6, btnW, labelH)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0,10, btnW, labelH)];
         label.font = [UIFont systemFontOfSize:16];
         label.text = [NSString stringWithFormat:@"%d",entity.monery];
         label.textColor = [UIColor colorWithHexString:@"f74f35"];
         label.textAlignment = NSTextAlignmentCenter;
         [btn addSubview:label];
         
-        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, labelH + 2, btnW,20)];
-        label1.font = [UIFont systemFontOfSize:10];
+        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, label.bottom , btnW,20)];
+        label1.font = [UIFont systemFontOfSize:9];
         label1.text = [NSString stringWithFormat:@"售价:%d云票+￥%d",entity.xnb,entity.rmb];
         label1.textColor = [UIColor blackColor];
         label1.textAlignment = NSTextAlignmentCenter;
@@ -116,7 +121,7 @@
 + (CGFloat)cellHeightOfInfo:(id)cellInfo{
     NSArray *arr = cellInfo;
     int col = (arr.count / 3) + 1;
-    CGFloat Height = col * 50;
+    CGFloat Height = col * ClickBtnH;
     Height += 8 + 8;
     Height += (col -1) * 8;
     return Height;

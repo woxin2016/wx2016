@@ -19,18 +19,19 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        self.imageView.image = [UIImage imageNamed:@"balanceAccount.png"];
+       
         CGFloat xOffset = 30 + 10;
         CGFloat height = 20;
         CGFloat nameWidth = 65;
-        WXUILabel *nameLabel = [[WXUILabel alloc] init];
-        nameLabel.frame = CGRectMake(xOffset, (44-height)/2, nameWidth, 20);
-        [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setText:@"充值号码:"];
-        [nameLabel setTextAlignment:NSTextAlignmentLeft];
-        [nameLabel setTextColor:[UIColor colorWithHexString:@"#373737"]];
-        [nameLabel setFont:WXFont(15.0)];
-        [self.contentView addSubview:nameLabel];
+//        WXUILabel *nameLabel = [[WXUILabel alloc] init];
+//        nameLabel.frame = CGRectMake(xOffset, (44-height)/2, nameWidth, 20);
+//        [nameLabel setBackgroundColor:[UIColor clearColor]];
+//        [nameLabel setText:@"充值号码:"];
+//        [nameLabel setTextAlignment:NSTextAlignmentLeft];
+//        [nameLabel setTextColor:[UIColor colorWithHexString:@"#373737"]];
+//        [nameLabel setFont:WXFont(15.0)];
+//        [self.contentView addSubview:nameLabel];
+       
         
         xOffset += nameWidth + 10;
         CGFloat textHeight = 17;
