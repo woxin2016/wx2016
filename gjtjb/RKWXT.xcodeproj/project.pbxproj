@@ -68,6 +68,7 @@
 		12228A6C1AB1B1D000CF0800 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12228A6B1AB1B1D000CF0800 /* LoginModel.m */; };
 		12228A731AB1BABA00CF0800 /* RegistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12228A721AB1BABA00CF0800 /* RegistVC.m */; };
 		12228A761AB1C0F200CF0800 /* RegistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12228A751AB1C0F200CF0800 /* RegistModel.m */; };
+		1224F51B1CDB3B0100A09DDE /* ArchiveObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 1224F51A1CDB3B0100A09DDE /* ArchiveObj.m */; };
 		122841F11C48D35800D76A6B /* HomePageTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 122841F01C48D35800D76A6B /* HomePageTop.m */; };
 		122841F41C48D37200D76A6B /* HomePageTopEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 122841F31C48D37200D76A6B /* HomePageTopEntity.m */; };
 		122841F71C48D58E00D76A6B /* NewHomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 122841F61C48D58E00D76A6B /* NewHomePageModel.m */; };
@@ -1212,6 +1213,8 @@
 		12228A721AB1BABA00CF0800 /* RegistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistVC.m; sourceTree = "<group>"; };
 		12228A741AB1C0F200CF0800 /* RegistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistModel.h; sourceTree = "<group>"; };
 		12228A751AB1C0F200CF0800 /* RegistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistModel.m; sourceTree = "<group>"; };
+		1224F5191CDB3B0100A09DDE /* ArchiveObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveObj.h; sourceTree = "<group>"; };
+		1224F51A1CDB3B0100A09DDE /* ArchiveObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveObj.m; sourceTree = "<group>"; };
 		122841EF1C48D35800D76A6B /* HomePageTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageTop.h; sourceTree = "<group>"; };
 		122841F01C48D35800D76A6B /* HomePageTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageTop.m; sourceTree = "<group>"; };
 		122841F21C48D37200D76A6B /* HomePageTopEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageTopEntity.h; sourceTree = "<group>"; };
@@ -3257,6 +3260,15 @@
 				126CA4111AB2FC9400E08A0B /* GainModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1224F5181CDB3A9900A09DDE /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				1224F5191CDB3B0100A09DDE /* ArchiveObj.h */,
+				1224F51A1CDB3B0100A09DDE /* ArchiveObj.m */,
+			);
+			path = Archive;
 			sourceTree = "<group>";
 		};
 		122841EE1C48D33F00D76A6B /* TopNavImg */ = {
@@ -6279,6 +6291,7 @@
 		775841DB1AB95A300039B129 /* CustomWedget */ = {
 			isa = PBXGroup;
 			children = (
+				1224F5181CDB3A9900A09DDE /* Archive */,
 				12A0B4391B8DBB30005682EA /* Ftp */,
 				775841DC1AB95A300039B129 /* ComplexViewInCellOrNet */,
 				775841E71AB95A300039B129 /* CountryCode */,
@@ -8222,6 +8235,7 @@
 				120A2C161AB17A92006A28B1 /* SignModel.m in Sources */,
 				128B59911B53D6C5006D790B /* WXTMallViewController.m in Sources */,
 				77DB942E1AAFF0BE0021A816 /* NSDictionary+Plist.m in Sources */,
+				1224F51B1CDB3B0100A09DDE /* ArchiveObj.m in Sources */,
 				DDB58F531AD3C6A2006248E9 /* SysContacterEntityEx.m in Sources */,
 				12CE11DE1C507C0900FF85FA /* OrderInfoVC.m in Sources */,
 				122858661C4F9BDA0089A369 /* ClassiftGoodsEntity.m in Sources */,
@@ -8900,8 +8914,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bin Ding (9GVZ38434R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bin Ding (9GVZ38434R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ding Bin (S7PY53887M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ding Bin (S7PY53887M)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (

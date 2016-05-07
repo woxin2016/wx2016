@@ -732,7 +732,7 @@
 
 -(void)homeClassifyInfoBtnClicked:(id)sender{
     HomePageClassifyEntity *entity = sender;
-    [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.catID animated:YES];
+    [[CoordinateController sharedCoordinateController] toGoodsClassifyVC:self catID:entity.cat_id animated:YES];
 }
 
 #pragma mark limitbuy

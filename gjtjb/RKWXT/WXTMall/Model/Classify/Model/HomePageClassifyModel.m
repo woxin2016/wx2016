@@ -37,7 +37,7 @@
     [_dataList removeAllObjects];
     for(NSDictionary *dic in jsonDicData){
         HomePageClassifyEntity *entity = [HomePageClassifyEntity initClassifyEntityWithDic:dic];
-        entity.catImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.catImg];
+        entity.cat_img = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.cat_img];
         [_dataList addObject:entity];
     }
 }
