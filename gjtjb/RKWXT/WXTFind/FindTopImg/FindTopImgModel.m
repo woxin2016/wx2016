@@ -12,16 +12,18 @@
 
 @interface FindTopImgModel(){
     NSMutableArray *_imgArr;
+    NSMutableArray *_foundImgArr;
 }
 @end
 
 @implementation FindTopImgModel
 @synthesize imgArr = _imgArr;
-
+@synthesize foundImgArr = _foundImgArr;
 -(id)init{
     self = [super init];
     if(self){
         _imgArr = [[NSMutableArray alloc] init];
+        _foundImgArr = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -29,6 +31,7 @@
 -(void)toInit{
     [super toInit];
     [_imgArr removeAllObjects];
+    [_foundImgArr removeAllObjects];
 }
 
 -(void)fillDataWithJsonData:(NSDictionary *)jsonDicData{
@@ -36,20 +39,30 @@
         return;
     }
     [_imgArr removeAllObjects];
+    [_foundImgArr removeAllObjects];
     NSArray *datalist = [jsonDicData objectForKey:@"data"];
     for(NSDictionary *dic in datalist){
-        HomePageTopEntity *entity = [HomePageTopEntity homePageTopEntityWithDictionary:dic];
-        entity.topImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.topImg];
-        if(entity.position == 1){
+        
+        
+        if([dic[@"show_position"] intValue] == 1){ //首页轮播图
+            HomePageTopEntity *entity = [HomePageTopEntity homePageTopEntityWithDictionary:dic];
+            entity.topImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.topImg];
             [_imgArr addObject:entity];
         }
+        
+        if ([dic[@"show_position"] intValue] == 5) { // 发现轮播图
+            HomePageTopEntity *entity = [HomePageTopEntity homePageTopEntityWithDictionary:dic];
+            entity.topImg = [NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.topImg];
+            [_foundImgArr addObject:entity];
+        }
     }
-    _imgArr = [NSMutableArray arrayWithArray:[self recordDataClassifyTypeUpSort]];
+    _imgArr = [NSMutableArray arrayWithArray:[self recordDataClassifyTypeUpSort:_imgArr]];
+    _foundImgArr = [NSMutableArray arrayWithArray:[self recordDataClassifyTypeUpSort:_foundImgArr]];
 }
 
 //升序排序
--(NSArray*)recordDataClassifyTypeUpSort{
-    NSArray *sortArray = [_imgArr sortedArrayWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(id obj1, id obj2) {
+-(NSArray*)recordDataClassifyTypeUpSort:(NSArray*)array{
+    NSArray *sortArray = [array sortedArrayWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(id obj1, id obj2) {
         HomePageTopEntity *entity_0 = obj1;
         HomePageTopEntity *entity_1 = obj2;
         

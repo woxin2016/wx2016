@@ -37,7 +37,7 @@ enum{
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self setCSTTitle:@"我的红包"];
+    [self setCSTTitle:@"商家红包"];
     
     tabedSlideView = [[DLTabedSlideView alloc] init];
     tabedSlideView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
@@ -78,7 +78,7 @@ enum{
 
 -(WXUIButton*)rightBtn{
     CGFloat xgap = 8;
-    CGFloat btnWidth = 60;
+    CGFloat btnWidth = 80;
     CGFloat btnHeight = 16;
     rightBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(self.bounds.size.width - btnWidth, 35, btnWidth, btnHeight);
@@ -88,7 +88,7 @@ enum{
     [rightBtn.titleLabel setFont:WXFont(13.0)];
 //    [rightBtn addTarget:self action:@selector(toUseBonusRule) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *moneyStr = [NSString stringWithFormat:@"%ld元",(long)[UserBonusModel shareUserBonusModel].bonusMoney];
+    NSString *moneyStr = [NSString stringWithFormat:@"余额:￥%ld",(long)[UserBonusModel shareUserBonusModel].bonusMoney];
     [rightBtn setTitle:moneyStr forState:UIControlStateNormal];
     
     return rightBtn;

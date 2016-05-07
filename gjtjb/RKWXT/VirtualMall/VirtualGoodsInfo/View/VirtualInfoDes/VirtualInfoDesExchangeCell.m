@@ -17,6 +17,7 @@
     WXUILabel *backMoneyl;
     WXUILabel *lineLabel;
     WXUILabel *postgateL;
+    UIView *markDidView;
 }
 @end
 
@@ -59,13 +60,25 @@
         [self.contentView addSubview:shopPrice];
         
         yOffset += priceLabelHeight + 3;
+        CGFloat virW = 70;
+        UILabel *virLabel = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, virW, priceLabelHeight)];
+        virLabel.font = WXFont(15.0);
+        virLabel.textAlignment = NSTextAlignmentLeft;
+        virLabel.textColor = [UIColor redColor];
+        virLabel.text = @"官方价格:";
+        [self.contentView addSubview:virLabel];
+        
         marketPrice = [[WXUILabel alloc] init];
-        marketPrice.frame = CGRectMake(xOffset, yOffset, priceLabelWidth + 60, priceLabelHeight);
+        marketPrice.frame = CGRectMake(virLabel.right, yOffset, priceLabelWidth + 60 - virW, priceLabelHeight);
         [marketPrice setBackgroundColor:[UIColor clearColor]];
         [marketPrice setTextAlignment:NSTextAlignmentLeft];
         [marketPrice setTextColor:WXColorWithInteger(AllBaseColor)];
         [marketPrice setFont:WXFont(15.0)];
         [self.contentView addSubview:marketPrice];
+        
+        markDidView = [[UIView alloc]init];
+        markDidView.backgroundColor = [UIColor redColor];
+        [marketPrice addSubview:markDidView];
         
         yOffset += priceLabelHeight + 3;
         backMoneyl = [[WXUILabel alloc] init];
@@ -95,7 +108,8 @@
     VirtualGoodsInfoEntity *entity = self.cellInfo;
     [desLabel setText:entity.goodsName];
     postgateL.text = [NSString stringWithFormat:@"邮费:￥%.2f",entity.postageVirtual];
-    marketPrice.text = [NSString stringWithFormat:@"官方价格:￥%.2f",entity.marketPrice];
+    marketPrice.text = [NSString stringWithFormat:@"￥%.2f",entity.marketPrice];
+    markDidView.frame = CGRectMake(0, marketPrice.height / 2 - 0.5 , [NSString sizeWithString:marketPrice.text font:marketPrice.font].width, 0.5);
 }
 
 - (void)backMoney:(CGFloat)money xnb:(int)xnb goodsPrice:(CGFloat)goodsPrice{

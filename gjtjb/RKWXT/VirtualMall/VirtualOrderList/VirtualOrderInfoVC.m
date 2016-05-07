@@ -410,6 +410,10 @@ enum{
     [UtilTool showAlertView:@"订单取消成功"];
     [self.wxNavigationController popViewControllerAnimated:YES completion:^{
     }];
+    
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance += self.entity.xnb;
+    [MoreMoneyInfoModel shareUserMoreMoneyInfo].isChanged = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:K_Notification_Name_UserCloudTicketChanged object:nil];
 }
 
 #pragma mark -- userMessage

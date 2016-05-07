@@ -60,6 +60,8 @@
 }
 
 - (void)addOBS{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadShoppingCartCount) name:D_Notification_LoadShoppingCartList_Failed object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inComeBuyShop) name:D_Notification_AddGoodsShoppingCart_Succeed object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lookShoppingCartCount) name:D_Notification_DeleteOneGoodsInShoppingCartList_Succeed object:nil];
@@ -69,6 +71,10 @@
 
 - (void)lookShoppingCartCount{
      [self setUnreadNumber:[ShoppingCartModel shareShoppingCartModel].shoppingCartListArr.count];
+}
+
+- (void)loadShoppingCartCount{
+    [self setUnreadNumber:0];
 }
 
 - (void)inComeBuyShop{

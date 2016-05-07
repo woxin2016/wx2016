@@ -23,7 +23,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self setCSTTitle:@"充值"];
+    [self setCSTTitle:@"云票充值"];
     [self setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
     
 //    [self createUpImgView];

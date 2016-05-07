@@ -25,6 +25,21 @@
     return self;
 }
 
++ (instancetype)tableViewCellInitializeWithTableView:(UITableView*)tableView andType:(C_CellIsIdentifier)type andIsIdtifier:(NSString*)idtifier{
+    WXUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:idtifier];
+    if (type == C_CellIsIdentifier_None) {
+        if (!cell) {
+            cell = [[WXUITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:idtifier];
+        }
+        return cell;
+    }else{
+        if (!cell) {
+            cell = [[NSClassFromString(idtifier) alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:idtifier];
+        }
+    }
+    return cell;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

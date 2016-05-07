@@ -52,18 +52,17 @@
         [_nameLabel setBackgroundColor:[UIColor clearColor]];
         [_nameLabel setTextAlignment:NSTextAlignmentLeft];
         [_nameLabel setTextColor:WXColorWithInteger(0x000000)];
-        [_nameLabel setNumberOfLines:0];
+        [_nameLabel setNumberOfLines:2];
         [_nameLabel setFont:WXFont(15.0)];
         [self.contentView addSubview:_nameLabel];
         
         yOffset += nameHeight + 3;
         CGFloat stockH = 15;
         _stockName = [[UILabel alloc] init];
-        _stockName.frame = CGRectMake(xOffset, yOffset, nameWidth, stockH);
+        _stockName.frame = CGRectMake(xOffset, yOffset, nameWidth - 40, stockH);
         [_stockName setBackgroundColor:[UIColor clearColor]];
         [_stockName setTextAlignment:NSTextAlignmentLeft];
         [_stockName setTextColor:WXColorWithInteger(0x000000)];
-        [_stockName setNumberOfLines:0];
         [_stockName setFont:WXFont(13.0)];
         [self.contentView addSubview:_stockName];
         

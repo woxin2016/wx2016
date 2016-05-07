@@ -35,4 +35,44 @@
 
 }
 
+/*
+ 接口名称:首次登录推送
+ 接口地址:https://oldyun.67call.com/wx10api/V1/login_push.php
+ 请求方式:POST
+ 输入参数:
+ pid:平台类型(android,ios),
+ ts:时间戳,
+ phone:手机号码,
+ pwd:密码,
+ sign: 签名,
+ 返回数据格式:json
+ 成功返回: error :0  msg:没有推送
+ 失败返回:error :1  msg:已经推送
+ */
+- (void)sendUserMessage{
+    WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
+    NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
+    baseDic[@"pid"]= @"ios";
+    baseDic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    baseDic[@"pwd"]= [UtilTool  md5:userObj.pwd];
+    baseDic[@"phone"]= userObj.user;
+    baseDic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"pid"]= @"ios";
+    dic[@"ts"]= [NSNumber numberWithInt:(int)[UtilTool timeChange]];
+    dic[@"pwd"]= [UtilTool  md5:userObj.pwd];
+    dic[@"phone"]= userObj.user;
+    dic[@"sid"]= [NSNumber numberWithInt:(int)kMerchantID];
+    dic[@"sign"]= [UtilTool md5:[UtilTool allPostStringMd5:baseDic]];
+  
+    [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_LosinMessage httpMethod:WXT_HttpMethod_Post timeoutIntervcal:10 feed:dic completion:^(URLFeedData *retData) {
+        if (retData.code == 0){
+            
+        }else{
+            
+        }
+    }];
+}
+
 @end

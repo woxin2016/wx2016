@@ -54,10 +54,7 @@
     WXTUserOBJ *userObj = [WXTUserOBJ sharedUserOBJ];
     AreaEntity *entity = [self addressEntity];
     if(!entity){
-        if (_delegate && [_delegate respondsToSelector:@selector(virtualGoodsOrderFailed:)]){
-            [_delegate virtualGoodsOrderFailed:@"请设置收货信息"];
-        }
-        return;
+        [UtilTool showRoundView:@"请设置收货信息"];
     }
     NSString *address = [NSString stringWithFormat:@"%@%@%@%@",entity.proName,entity.cityName,entity.disName,entity.address];
     NSMutableDictionary *baseDic = [NSMutableDictionary dictionary];
@@ -97,6 +94,7 @@
     dic[@"postage"]= [NSNumber numberWithFloat:orderInfo.postage];
     dic[@"remark"] =remark;
     
+    __block typeof(self) blockSelf = self;
     [[WXTURLFeedOBJ sharedURLFeedOBJ] fetchNewDataFromFeedType:WXT_UrlFeed_Type_VirtualOrder httpMethod:WXT_HttpMethod_Post timeoutIntervcal:-1 feed:dic completion:^(URLFeedData *retData) {
         if (retData.code != 0){
             
@@ -105,7 +103,7 @@
             }
             
         }else{
-             [self analyticalProcessingData:retData.data[@"data"]];
+             [blockSelf analyticalProcessingData:retData.data[@"data"]];
             if (_delegate && [_delegate respondsToSelector:@selector(virtualGoodsOrderSuccend)]) {
                 [_delegate virtualGoodsOrderSuccend];
             }

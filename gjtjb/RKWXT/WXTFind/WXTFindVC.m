@@ -98,7 +98,7 @@
         cell = [[VietualTopImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     [cell setDelegate:self];
-    [cell setCellInfo:_model.imgArr];
+    [cell setCellInfo:_model.foundImgArr];
     [cell load];
     return cell;
 }
@@ -180,6 +180,7 @@
 }
 
 -(void)clickTopGoodAtIndex:(NSInteger)index{
+    return;
     HomePageTopEntity *entity = nil;
     if([_model.imgArr count] > 0){
         entity = [_model.imgArr objectAtIndex:index];

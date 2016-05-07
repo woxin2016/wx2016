@@ -35,6 +35,7 @@
         [_namelabel setTextColor:WXColorWithInteger(0x000000)];
         [self.contentView addSubview:_namelabel];
         
+        
         xOffset += nameWidth+15;
         _userPhone = [[UILabel alloc] init];
         _userPhone.frame = CGRectMake(xOffset, yOffset, nameWidth+20, nameHeight);
@@ -62,6 +63,9 @@
     AreaEntity *entity = self.cellInfo;
     [_namelabel setText:entity.userName];
     [_userPhone setText:entity.userPhone];
+    [_namelabel sizeToFit];
+    _userPhone.X = _namelabel.right + 10;
+    
     [_address setText:[NSString stringWithFormat:@"%@%@%@%@",entity.proName,entity.cityName,entity.disName,entity.address]];
 }
 

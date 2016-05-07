@@ -67,6 +67,7 @@
         AreaEntity *entity = [AreaEntity initAreaEntityWith:dic1];
         [_userAddressArr addObject:entity];
     }
+    
 }
 
 

@@ -17,6 +17,7 @@
     UILabel *priceL;
     UILabel *virPrice;
     UILabel *moneyL;
+    UIView *markDidView;
 }
 @end
 
@@ -36,7 +37,7 @@
         
         CGFloat xOffset = 10;
         CGFloat yOffset = 7;
-        CGFloat imageH = 100;
+        CGFloat imageH = 120;
         CGFloat imageW = imageH;
         _imgView = [[WXRemotionImgBtn alloc]initWithFrame:CGRectMake(xOffset, yOffset, imageW, imageH)];
         [self.contentView addSubview:_imgView];
@@ -52,7 +53,7 @@
         nameL.textColor = [UIColor blackColor];
         [self.contentView addSubview:nameL];
         
-        yOffset += nameLH + 5;
+        yOffset += nameLH + 8;
         CGFloat pricelH = 15;
         priceL = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, pricelH)];
         priceL.font = WXFont(14.0);
@@ -60,20 +61,31 @@
         priceL.textColor = [UIColor redColor];
         [self.contentView addSubview:priceL];
         
-        yOffset += pricelH + 8;
-        CGFloat virlH = 12;
-        virPrice = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, nameLW, virlH)];
+        yOffset += pricelH + 10;
+        CGFloat virlH = 15;
+        CGFloat virW = 65;
+        UILabel *virLabel = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, virW, virlH)];
+        virLabel.font = WXFont(14.0);
+        virLabel.textAlignment = NSTextAlignmentLeft;
+        virLabel.textColor = [UIColor redColor];
+        virLabel.text = @"官方价格:";
+        [self.contentView addSubview:virLabel];
+        
+        virPrice = [[UILabel alloc]initWithFrame:CGRectMake(virLabel.right, yOffset, nameLW - virW, virlH)];
         virPrice.font = WXFont(14.0);
         virPrice.textAlignment = NSTextAlignmentLeft;
         virPrice.textColor = [UIColor redColor];
         [self.contentView addSubview:virPrice];
         
+        markDidView = [[UIView alloc]init];
+        markDidView.backgroundColor = [UIColor redColor];
+        [virPrice addSubview:markDidView];
         
-        yOffset += virlH + 8;
+        yOffset += virlH + 10;
         CGFloat labelH = 12;
         CGFloat labelW = 80;
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, labelW, labelH)];
-        label.font = WXFont(13.0);
+        label.font = WXFont(12.0);
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor grayColor];
         label.text = @"平台邮寄兑换";
@@ -82,7 +94,7 @@
         CGFloat moneyLX = label.right;
         CGFloat moneyLW = self.width - label.right - 10;
         moneyL = [[UILabel alloc]initWithFrame:CGRectMake(moneyLX, yOffset, moneyLW, labelH)];
-        moneyL.font = WXFont(13.0);
+        moneyL.font = WXFont(12.0);
         moneyL.textAlignment = NSTextAlignmentLeft;
         moneyL.textColor = [UIColor grayColor];
         [self.contentView addSubview:moneyL];
@@ -99,11 +111,13 @@
     ViteualGoodsEntity *entity = self.cellInfo;
     
     [_imgView setCpxViewInfo:[NSString stringWithFormat:@"%@%@",AllImgPrefixUrlString,entity.goodsIcon]];
+    [_imgView setButtonEnable:NO];
     [_imgView load];
     
     nameL.text = entity.goodsName;
     priceL.text = [NSString stringWithFormat:@"价格:￥%.2f + %d云票",entity.goodsPrice,entity.xnb];
-    virPrice.text = [NSString stringWithFormat:@"官方价格:￥%.2f",entity.marPrice];
+    virPrice.text = [NSString stringWithFormat:@"￥%.2f",entity.marPrice];
+    markDidView.frame = CGRectMake(0, virPrice.height / 2 - 0.5 , [NSString sizeWithString:virPrice.text font:virPrice.font].width, 0.5);
     
     NSString *backStr = [NSString stringWithFormat:@"返现金额:￥%.2f",entity.backMoney];
     moneyL.text = backStr;
@@ -112,7 +126,7 @@
 }
 
 + (CGFloat)cellHeightOfInfo:(id)cellInfo{
-    return 114;
+    return 140;
 }
 
 

@@ -10,6 +10,7 @@
 #import "VirtualGoodsOrderModel.h"
 #import "VirtualOrderInfoEntity.h"
 #import "MoreMoneyInfoModel.h"
+#import "NewUserAddressModel.h"
 
 #import "VirtualOrderNumberCell.h"
 #import "VirtualUserInfoCell.h"
@@ -25,6 +26,7 @@
 
 #import "ManagerAddressVC.h"
 #import "OrderPayVC.h"
+
 
 enum{
     VirtualOrder_Section_Number = 0,
@@ -43,7 +45,7 @@ enum{
 #define Size self.bounds.size
 #define DownViewHeight 55
 
-@interface VirtualGoodsOrderVC () <UITableViewDataSource,UITableViewDelegate,VirtualGoodsOrderModelDelegate,VirtualUserMessageCellDelegate>
+@interface VirtualGoodsOrderVC () <UITableViewDataSource,UITableViewDelegate,VirtualGoodsOrderModelDelegate,VirtualUserMessageCellDelegate,UIAlertViewDelegate>
 {
     UITableView *_tableView;
     VirtualGoodsOrderModel *_model;
@@ -69,7 +71,9 @@ enum{
     [super viewWillAppear:animated];
     
     if (_tableView) {
-        [_tableView reloadSections:[NSIndexSet indexSetWithIndex:VirtualOrder_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
+        if ([[NewUserAddressModel shareUserAddress].userAddressArr count] != 0) {
+             [_tableView reloadSections:[NSIndexSet indexSetWithIndex:VirtualOrder_Section_UserInfo] withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
     
     [self addOBS];
@@ -83,7 +87,7 @@ enum{
     [super viewDidLoad];
     
     [self setCSTTitle:@"确认订单"];
-     
+    
     [self initTableView];
     
     if (self.orderType == VirtualOrderType_LookOrderStatus) {
@@ -92,10 +96,18 @@ enum{
         [self addSubview:[self payTableViewForFootView]];
     }
     
+    [self lookUserInfoSite];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)lookUserInfoSite{
+    if ([[NewUserAddressModel shareUserAddress].userAddressArr count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"请添加地址" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self removeaddOBS];
 }
 
@@ -119,7 +131,7 @@ enum{
     WXUIButton *payBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     payBtn.frame = CGRectMake(Size.width-xOffset-btnWidth, (DownViewHeight-btnHeight)/2, btnWidth, btnHeight);
     [payBtn setBackgroundColor:WXColorWithInteger(0xdd2726)];
-    [payBtn setTitle:@"去支付" forState:UIControlStateNormal];
+    [payBtn setTitle:@"立即下单" forState:UIControlStateNormal];
     [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payBtn addTarget:self action:@selector(gotoPayVC) forControlEvents:UIControlEventTouchUpInside];
      payBtn.titleLabel.font = WXFont(14.0);
@@ -478,6 +490,9 @@ enum{
     self.userMessage = message;
 }
 
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    ManagerAddressVC *addressVC = [[ManagerAddressVC alloc] init];
+    [self.wxNavigationController pushViewController:addressVC];
+}
 
 @end

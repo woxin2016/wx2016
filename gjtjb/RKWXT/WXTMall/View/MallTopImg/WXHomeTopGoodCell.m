@@ -12,7 +12,7 @@
 #import "NewHomePageCommonDef.h"
 #import "HomePageTopEntity.h"
 
-#define kTimerInterval (5.0)
+#define kTimerInterval (3.0)
 @interface WXHomeTopGoodCell()<UIScrollViewDelegate,WXRemotionImgBtnDelegate>{
     CSTScrollBrowser *_browser;
     UIPageControl *_pageControl;
@@ -51,6 +51,11 @@
         
         _merchantImgViewArray = [[NSMutableArray alloc] init];
         [NSTimer scheduledTimerWithTimeInterval:kTimerInterval target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
+        
+        UIView *didView = [[UIView alloc]initWithFrame:CGRectMake(0, T_HomePageTopImgHeight - 0.5, self.width, 0.5)];
+        didView.backgroundColor = WXColorWithInteger(0xcacaca);
+        didView.alpha = 0.5;
+        [self.contentView addSubview:didView];
     }
     return self;
 }

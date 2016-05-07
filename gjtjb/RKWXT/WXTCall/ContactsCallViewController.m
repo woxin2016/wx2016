@@ -16,6 +16,7 @@
 #import "UIImage+Render.h"
 #import "RFSegmentView.h"
 #import "UserBalanceVC.h"
+#import "NewUserBalanceVC.h"
 
 #define Size self.view.bounds.size
 
@@ -165,8 +166,10 @@
 }
 
 -(void)gotoRechargeVC{
-    UserBalanceVC *balanceVC = [[UserBalanceVC alloc] init];
-    [self.wxNavigationController pushViewController:balanceVC];
+//    UserBalanceVC *balanceVC = [[UserBalanceVC alloc] init];
+//    [self.wxNavigationController pushViewController:balanceVC];
+        NewUserBalanceVC *balanceVC = [[NewUserBalanceVC alloc] init];
+        [self.wxNavigationController pushViewController:balanceVC];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

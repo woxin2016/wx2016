@@ -83,9 +83,9 @@
     [_userTextField setLeftViewMode:UITextFieldViewModeAlways];
     [_userTextField setFont:WXTFont(fontSize)];
     [self addSubview:_userTextField];
-    if(_aliAcount){
-        [_userTextField setText:_aliAcount];
-    }
+//    if(_aliAcount){
+//        [_userTextField setText:_aliAcount];
+//    }
     
     CGFloat yOffset = yGap+filedHeight+yGap;
     WXUILabel *lineLabel1 = [[WXUILabel alloc] init];
@@ -112,9 +112,9 @@
     [_nameField setPlaceholder:@"请输入支付宝账号绑定的姓名"];
     [_nameField setFont:WXTFont(fontSize)];
     [self addSubview:_nameField];
-    if(_userName){
-        [_nameField setText:_userName];
-    }
+//    if(_userName){
+//        [_nameField setText:_userName];
+//    }
     
     yOffset += yGap+filedHeight;
     WXUILabel *lineLabel2 = [[WXUILabel alloc] init];
