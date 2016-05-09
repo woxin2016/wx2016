@@ -116,6 +116,7 @@
     [_jpushMsgArr removeAllObjects];
     JPushMsgEntity *entity = [JPushMsgEntity initWithJPushCloseMessageWithDic:dic];
     entity.content = [dic objectForKey:@"title"];
+    entity.abstract = dic[@"content"];
 //     entity.content = [dic objectForKey:@"content"];
     [_jpushMsgArr addObject:entity];
     

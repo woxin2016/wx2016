@@ -23,8 +23,8 @@
 //        NSString *content = [dic objectForKey:@"content"];
 //        [self setContent:content];
         
-        NSString *ads = [dic objectForKey:@"abstract"];
-        [self setAbstract:ads];
+//        NSString *ads = [dic objectForKey:@"abstract"];
+//        [self setAbstract:ads];
         
         NSString *urlImg = [dic objectForKey:@"message_home_img"];
         [self setMsgURL:urlImg];
@@ -46,8 +46,8 @@
 -(id)initWithCloseDic:(NSDictionary*)dic{
     self = [super init];
     if(self){
-        NSString *ads = [[dic objectForKey:@"extras"] objectForKey:@"abstract"];
-        [self setAbstract:ads];
+//        NSString *ads = [[dic objectForKey:@"extras"] objectForKey:@"abstract"];
+//        [self setAbstract:ads];
         
         NSString *urlImg = [[dic objectForKey:@"extras"] objectForKey:@"message_home_img"];
         [self setMsgURL:urlImg];

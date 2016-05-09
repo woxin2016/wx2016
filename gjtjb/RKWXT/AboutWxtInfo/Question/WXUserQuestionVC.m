@@ -99,7 +99,7 @@
     
     WXUIButton *lineBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
     lineBtn.frame = CGRectMake(xOffset+textLabelWidth, yOffset, btnWidth, btnHeight);
-    [lineBtn setTitle:@"0755-82599860" forState:UIControlStateNormal];
+//    [lineBtn setTitle:@"0755-82599860" forState:UIControlStateNormal];
     [lineBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
     lineBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [lineBtn.titleLabel setFont:WXFont(12.0)];
