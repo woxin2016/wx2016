@@ -17,6 +17,8 @@
     NSMutableDictionary *_contactNameDic;
     NSMutableArray *_chineceHeadArr;
     
+    BOOL hasSaved;
+    
     dispatch_queue_t _loadRecordImageQueue;
 }
 @end
@@ -101,6 +103,7 @@ void MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook, CFDictio
 
 - (void)loadContact{
 	//先删除所有的联系人~
+    hasSaved = NO;
 	[_contactList removeAllObjects];
     __block NSMutableArray *contactList = _contactList;
     __block AddressBook *selfAddressBook = self;
@@ -123,6 +126,10 @@ void MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook, CFDictio
 					[tempArray addObject:entity];
                     [nameArr addObject:entity.fullName];
 				}
+                
+                if([entity.fullName isEqualToString:@"我信专线"]){
+                    hasSaved = YES;
+                }
 			}
 			[contactList removeAllObjects];
 			[contactList addObjectsFromArray:tempArray];
@@ -133,6 +140,36 @@ void MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook, CFDictio
 //                [self PYArarray:chinese];
 //            }
 		}
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self addPhonesToContact];
+        });
+    });
+}
+
+#pragma mark 将部分号码写入通讯录
+-(void)addPhonesToContact{
+    if(hasSaved){
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken,^{
+            ABAddressBookRef iPhoneAddressBook = ABAddressBookCreate();
+            ABRecordRef newPerson = ABPersonCreate();
+            CFErrorRef error = NULL;
+            ABRecordSetValue(newPerson, kABPersonLastNameProperty, @"我信专线", &error);
+            
+            ABMutableMultiValueRef multiPhone = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(multiPhone, @"0755-61665888", kABPersonPhoneMobileLabel, NULL);
+            ABMultiValueAddValueAndLabel(multiPhone, @"0755-12345678", kABPersonPhoneMobileLabel, NULL);
+            ABMultiValueAddValueAndLabel(multiPhone, @"13538236522", kABPersonPhoneMobileLabel, NULL);
+            ABMultiValueAddValueAndLabel(multiPhone, @"0755-5151518", kABPersonPhoneMobileLabel, NULL);
+            ABRecordSetValue(newPerson, kABPersonPhoneProperty, multiPhone, &error);
+            CFRelease(multiPhone);
+            
+            ABAddressBookAddRecord(iPhoneAddressBook, newPerson, &error);
+            ABAddressBookSave(iPhoneAddressBook, &error);
+        });
     });
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "HomePageClassifyEntity.h"
+#import <objc/runtime.h>
 
 @implementation HomePageClassifyEntity
 
@@ -20,17 +21,16 @@
 -(id)initWithDic:(NSDictionary*)dic{
     self = [super init];
     if(self){
-        NSInteger cat_id = [[dic objectForKey:@"cat_id"] integerValue];
-        [self setCatID:cat_id];
-        
-        NSString *catImg = [dic objectForKey:@"cat_img"];
-        [self setCatImg:catImg];
-        
-        NSString *catName = [dic objectForKey:@"cat_name"];
-        [self setCatName:catName];
-        
-        NSInteger flag = [[dic objectForKey:@"flag"] integerValue];
-        [self setFlag:flag];
+        unsigned int count;
+        objc_property_t *property_t_array = class_copyPropertyList([HomePageClassifyEntity class], &count);
+        for(int i = 0;i < count; i++){
+            objc_property_t pro_t = property_t_array[i];
+            const char *pro_name = property_getName(pro_t);
+            NSString *key = [NSString stringWithUTF8String:pro_name];
+            id value = [dic valueForKey:key];
+            [self setValue:value forKey:key];
+        }
+        free(property_t_array);
     }
     return self;
 }

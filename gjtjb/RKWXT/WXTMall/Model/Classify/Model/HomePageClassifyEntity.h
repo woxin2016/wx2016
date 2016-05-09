@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface HomePageClassifyEntity : NSObject
-@property (nonatomic,assign) NSInteger catID;
-@property (nonatomic,strong) NSString *catImg;
-@property (nonatomic,strong) NSString *catName;
+@property (nonatomic,assign) NSInteger cat_id;
+@property (nonatomic,strong) NSString *cat_img;
+@property (nonatomic,strong) NSString *cat_name;
 @property (nonatomic,assign) NSInteger flag;
 
 +(HomePageClassifyEntity*)initClassifyEntityWithDic:(NSDictionary*)dic;

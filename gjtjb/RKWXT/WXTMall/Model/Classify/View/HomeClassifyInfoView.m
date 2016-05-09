@@ -71,9 +71,9 @@
 
 -(void)load{
     HomePageClassifyEntity *entity = self.cpxViewInfo;
-    [_imgView setCpxViewInfo:entity.catImg];
+    [_imgView setCpxViewInfo:entity.cat_img];
     [_imgView load];
-    [_nameLabel setText:entity.catName];
+    [_nameLabel setText:entity.cat_name];
 }
 
 @end
