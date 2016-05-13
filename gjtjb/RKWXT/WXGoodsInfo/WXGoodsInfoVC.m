@@ -875,7 +875,7 @@
     
     NSString *strB = [[self sharedGoodsInfoTitle] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     WXTUserOBJ *userDefault = [WXTUserOBJ sharedUserOBJ];
-    NSString *urlString = [NSString stringWithFormat:@"%@wx_union/index.php/Shop/index?go=good_detail&title=%@&goods_id=%ld&woxin_id=%@",WXTShareBaseUrl, strB, (long)_goodsId, userDefault.wxtID];
+    NSString *urlString = [NSString stringWithFormat:@"%@wx_union/index.php/Shop/index?go=good_detail&title=%@&goods_id=%ld&woxin_id=%@shop_id=%@sld=%@",WXTShareBaseUrl, strB, (long)_goodsId, userDefault.wxtID,userDefault.shopID,userDefault.sellerID];
 
     return urlString;
 }

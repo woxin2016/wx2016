@@ -145,7 +145,7 @@ typedef enum{
     XNBBalancePhoneCell *cell = [XNBBalancePhoneCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_CreateCell andIsIdtifier:@"XNBBalancePhoneCell"];
     cell.delegate = self;
     cell.imageView.image = [UIImage imageNamed:@"balanceAccount.png"];
-    cell.textLabel.text = @"充值号码:";
+    cell.textLabel.text = @"充值账号:";
     cell.textLabel.font = WXFont(15.0);
     return cell;
 }

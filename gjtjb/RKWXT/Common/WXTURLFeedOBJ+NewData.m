@@ -36,7 +36,7 @@
         __block URLFeedData *retFeedData = [[URLFeedData alloc] init];
         
         NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError *  error) {
             
             NSString *str1 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"服务器返回===%@",str1);

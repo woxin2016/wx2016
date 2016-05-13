@@ -157,6 +157,7 @@ enum{
     }
     [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
     [cell setCellInfo:entity];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell load];
     return cell;
 }

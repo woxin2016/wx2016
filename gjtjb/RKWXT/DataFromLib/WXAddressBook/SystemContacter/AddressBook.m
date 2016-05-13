@@ -141,6 +141,7 @@ void MyAddressBookExternalChangeCallback (ABAddressBookRef addressBook, CFDictio
 //            }
 		}
         dispatch_async(dispatch_get_main_queue(), ^{
+            //添加我信专线号码
 //            [self addPhonesToContact];
         });
     });

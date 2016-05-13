@@ -65,14 +65,14 @@
         CGFloat virlH = 15;
         CGFloat virW = 65;
         UILabel *virLabel = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, virW, virlH)];
-        virLabel.font = WXFont(14.0);
+        virLabel.font = WXFont(13.0);
         virLabel.textAlignment = NSTextAlignmentLeft;
         virLabel.textColor = [UIColor redColor];
         virLabel.text = @"官方价格:";
         [self.contentView addSubview:virLabel];
         
         virPrice = [[UILabel alloc]initWithFrame:CGRectMake(virLabel.right, yOffset, nameLW - virW, virlH)];
-        virPrice.font = WXFont(14.0);
+        virPrice.font = WXFont(13.0);
         virPrice.textAlignment = NSTextAlignmentLeft;
         virPrice.textColor = [UIColor redColor];
         [self.contentView addSubview:virPrice];

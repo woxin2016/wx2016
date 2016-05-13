@@ -18,7 +18,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.imageView.image = [UIImage imageNamed:@"iv_card.png"];
+        self.imageView.image = [UIImage imageNamed:@"iv_pwd.png"];
         
         CGFloat xOffset = 40;
         CGFloat height = 20;

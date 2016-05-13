@@ -47,7 +47,6 @@
         entity.shopPhone = [[allDic objectForKey:@"shop"] objectForKey:@"telephone"];
         [_orderList addObject:entity];
     }
-
 }
 
 -(void)loadOrderList:(NSInteger)startItem andLength:(NSInteger)length type:(OrderList_Type)orderType{

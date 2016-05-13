@@ -15,7 +15,7 @@ typedef enum{
     Web_Goto_Type_GoodsInfo = 1, //商品详情
 }Web_Goto_Type;
 
-@interface NewGoodsInfoWebViewViewController ()<UIWebViewDelegate>{
+@interface NewGoodsInfoWebViewViewController ()<UIWebViewDelegate,UIScrollViewDelegate>{
     WXUIWebView *_webView;
 }
 @property (nonatomic,assign) WXT_UrlFeed_Type urlFeedType;
@@ -45,8 +45,12 @@ typedef enum{
     _webView = [[WXUIWebView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-110)];
     [_webView setDelegate:self];
     [self.scrollView addSubview:_webView];
+    _webView.scrollView.delegate = self;
     [self loadRootUrl:_urlFeedType paramDictionary:_paramDictionary];
+    
+   
 }
+
 
 -(void)loadRootUrl:(WXT_UrlFeed_Type)urlFeedType paramDictionary:(NSDictionary*)paramDictionary{
     WXTURLFeedOBJ *feedOBJ = [WXTURLFeedOBJ sharedURLFeedOBJ];
@@ -75,6 +79,12 @@ typedef enum{
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [self unShowWaitView];
+    
+    CGSize size = _webView.scrollView.contentSize;
+    CGFloat height = self.scrollView.width / size.width * size.height;
+    _webView.height = height;
+    _webView.scrollView.bounces = NO;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.width, height  + 50);
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -109,6 +119,10 @@ typedef enum{
     return paramDic;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+   [self.pullFreshView scrollViewDidScroll:scrollView];
+}
+
 //？&
 //goto_id   是否跳转 如果存在且等于1 则需要客户端跳转
 //goto_type   跳转的类型 1.商品详情 2.
@@ -126,5 +140,7 @@ typedef enum{
         return YES;
     }
 }
+
+
 
 @end

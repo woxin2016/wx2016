@@ -14,7 +14,7 @@ typedef enum{
     Web_Goto_Type_GoodsInfo = 1, //商品详情
 }Web_Goto_Type;
 
-@interface VirtualSubGoodsInfoWebVC ()<UIWebViewDelegate>{
+@interface VirtualSubGoodsInfoWebVC ()<UIWebViewDelegate,UIScrollViewDelegate>{
     WXUIWebView *_webView;
 }
 @property (nonatomic,assign) WXT_UrlFeed_Type urlFeedType;
@@ -44,6 +44,7 @@ typedef enum{
     _webView = [[WXUIWebView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height-110)];
     [_webView setDelegate:self];
     [self.scrollView addSubview:_webView];
+    _webView.scrollView.delegate  = self;
     [self loadRootUrl:_urlFeedType paramDictionary:_paramDictionary];
 }
 
@@ -74,6 +75,12 @@ typedef enum{
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [self unShowWaitView];
+    
+    CGSize size = _webView.scrollView.contentSize;
+    CGFloat height = self.scrollView.width / size.width * size.height;
+    _webView.height = height;
+    _webView.scrollView.bounces = NO;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.width, height  + 50);
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -124,6 +131,22 @@ typedef enum{
     }else{
         return YES;
     }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.pullFreshView scrollViewWillBeginDragging:scrollView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.pullFreshView scrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [self.pullFreshView scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

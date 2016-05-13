@@ -19,7 +19,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        self.imageView.image = [UIImage imageNamed:@"iv_pwd.png"];
+        self.imageView.image = [UIImage imageNamed:@"iv_card.png"];
         
         CGFloat xOffset = 40;
         CGFloat height = 20;
@@ -27,7 +27,7 @@
         WXUILabel *nameLabel = [[WXUILabel alloc] init];
         nameLabel.frame = CGRectMake(xOffset, (44-height)/2, nameWidth, 20);
         [nameLabel setBackgroundColor:[UIColor clearColor]];
-        [nameLabel setText:@"账号:"];
+        [nameLabel setText:@"卡号:"];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
         [nameLabel setTextColor:[UIColor colorWithHexString:@"#373737"]];
         [nameLabel setFont:WXFont(15.0)];
@@ -39,7 +39,7 @@
         [_textField setTextAlignment:NSTextAlignmentLeft];
         [_textField setReturnKeyType:UIReturnKeyDone];
         [_textField setFont:WXFont(15.0)];
-        [_textField setPlaceholder:@"请输入充值卡账号"];
+        [_textField setPlaceholder:@"请输入充值卡号"];
         [_textField setTextColor:[UIColor colorWithHexString:@"#373737"]];
         [_textField addTarget:self action:@selector(textFieldDone:)  forControlEvents:UIControlEventEditingDidEndOnExit];
         [_textField addTarget:self action:@selector(textValueDidChanged:) forControlEvents:UIControlEventEditingChanged];

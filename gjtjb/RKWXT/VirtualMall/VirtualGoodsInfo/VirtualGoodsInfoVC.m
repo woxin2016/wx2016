@@ -38,8 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self requestNetWork];
-    
     [self crateTopNavigationView];
     
     [self initWebView];
@@ -47,6 +45,10 @@
     [self initTableView];
     
     [self.view addSubview:[self baseInitDownView]];
+    
+    
+    [self requestNetWork];
+    
 }
 
 - (void)initTableView{
@@ -153,11 +155,16 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+     [_model setDelegate:nil];
     [self removeOBS];
 }
 
 - (void)removeOBS{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 #pragma mark -- tableView

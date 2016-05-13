@@ -67,14 +67,14 @@
         CGFloat markH = 15;
         CGFloat maLW = 50;
         UILabel *maLabel = [[UILabel alloc]initWithFrame:CGRectMake(xOffset, yOffset, maLW, markH)];
-        maLabel.font = WXFont(14.0);
+        maLabel.font = WXFont(13.0);
         maLabel.textAlignment = NSTextAlignmentLeft;
         maLabel.textColor = [UIColor redColor];
         maLabel.text = @"市场价:";
         [self.contentView addSubview:maLabel];
         
         markPL = [[UILabel alloc]initWithFrame:CGRectMake(maLabel.right, yOffset, nameLW - maLW, markH)];
-        markPL.font = WXFont(14.0);
+        markPL.font = WXFont(13.0);
         markPL.textAlignment = NSTextAlignmentLeft;
         markPL.textColor = [UIColor redColor];
         [self.contentView addSubview:markPL];
