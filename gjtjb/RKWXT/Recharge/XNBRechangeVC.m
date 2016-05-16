@@ -33,6 +33,9 @@ typedef enum{
     UIButton *_btn;
     NSInteger _key;
     int _xnb;
+    UILabel *_customLabel;
+    UIView *_didView;
+    NSTimer *_timer;
 }
 @end
 
@@ -239,7 +242,48 @@ typedef enum{
 - (void)balanceSubmitOrderFailed:(NSString *)errorMsg{
     [self unShowWaitView];
     
-    [UtilTool showRoundView:errorMsg];
+    [self customView:errorMsg];
+}
+
+- (void)customView:(NSString*)error{
+    CGFloat width = 12;
+    CGSize size = [NSString sizeWithString:error font:[UIFont systemFontOfSize:14]];
+    CGFloat X = (self.view.frame.size.width - size.width - 20) / 2;
+    CGFloat Y = (_btn.top - size.height - width) / 2;
+    _customLabel = [[UILabel alloc]initWithFrame:CGRectMake(X, Y, size.width + 20, size.height + width)];
+    _customLabel.text = error;
+    _customLabel.textAlignment =NSTextAlignmentCenter;
+    _customLabel.backgroundColor = [UIColor grayColor];
+    _customLabel.textColor = [UIColor whiteColor];
+    _customLabel.font = WXFont(14);
+    [_customLabel setBorderRadian:5 width:0 color:[UIColor clearColor]];
+    [_tableView.tableFooterView addSubview:_customLabel];
+    
+    
+    _didView = [[UIView alloc]initWithFrame:self.view.bounds];
+    [[UIApplication sharedApplication].keyWindow addSubview:_didView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickScreen:)];
+    [_didView addGestureRecognizer:tap];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)timer:(NSTimer*)time{
+    [_customLabel removeFromSuperview];
+    [_didView removeFromSuperview];
+    [time invalidate];
+}
+
+- (void)clickScreen:(UITapGestureRecognizer*)tap{
+    [tap.view removeFromSuperview];
+    [_timer invalidate];
+    [_customLabel removeFromSuperview];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [_timer invalidate];
 }
 
 @end

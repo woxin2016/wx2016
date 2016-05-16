@@ -101,7 +101,7 @@
     [addBtn addTarget:self action:@selector(buyBtnVirtual) forControlEvents:UIControlEventTouchUpInside];
     [downView addSubview:addBtn];
     
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat height = self.view.frame.size.height;
     downView.frame = CGRectMake(0,height-DownViewHeight, Size.width, DownViewHeight);
     return downView;
 }

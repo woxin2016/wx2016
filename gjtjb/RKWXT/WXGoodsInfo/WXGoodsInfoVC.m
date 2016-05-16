@@ -27,6 +27,9 @@
     BOOL _isOpen;
     BOOL _isGoodsAttenion;
     NSInteger _lickGoodsID;
+    
+    UILabel *_customLabel; //提示label
+    NSTimer *_timer;
 }
 @property (nonatomic,strong) NSIndexPath *selectedIndexPath;
 @end
@@ -41,6 +44,8 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [_timer invalidate];
+    
     [sideBar insertMenuButtonOnView:self.view atPosition:CGPointMake(self.bounds.size.width-35 - 40, TopNavigationViewHeight-35)];
   
     shoppingCartBtn = [[ShoppingCartView alloc]initWithFrame:CGRectMake(self.bounds.size.width-35, TopNavigationViewHeight-35, 25, 25)];
@@ -48,10 +53,10 @@
     [shoppingCartBtn searchShoppingCartNumber];
     [self.view addSubview:shoppingCartBtn];
     
-    collectionBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    collectionBtn.frame = CGRectMake(self.bounds.size.width-35-45, TopNavigationViewHeight-35, 25, 25);
-    [collectionBtn setImage:[UIImage imageNamed:@"T_Attention.png"] forState:UIControlStateNormal];
-    [collectionBtn addTarget:self action:@selector(userCollectionBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    collectionBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
+//    collectionBtn.frame = CGRectMake(self.bounds.size.width-35-45, TopNavigationViewHeight-35, 25, 25);
+//    [collectionBtn setImage:[UIImage imageNamed:@"T_Attention.png"] forState:UIControlStateNormal];
+//    [collectionBtn addTarget:self action:@selector(userCollectionBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:collectionBtn];
 }
 
@@ -174,7 +179,7 @@
     [addBtn setBackgroundColor:RGB_COLOR(245, 138, 10)];
     [downView addSubview:addBtn];
     
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat height = self.view.frame.size.height;
     downView.frame = CGRectMake(0,height-DownViewHeight, Size.width, DownViewHeight);
     return downView;
 }
@@ -224,6 +229,13 @@
 }
 
 #pragma mark tableView
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (_customLabel) {
+        [_customLabel removeFromSuperview];
+        [_timer invalidate];
+    }
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return GoodsInfo_Section_Invalid;
 }
@@ -732,7 +744,32 @@
 
 -(void)addShoppingCartSucceed:(NSNotification*)notification{
     [self unShowWaitView];
-    [UtilTool showRoundView:@"加入购物车成功"];
+//    [UtilTool showRoundView:@"加入购物车成功"];
+    [self customView:@"加入购物车成功"];
+}
+
+- (void)customView:(NSString*)error{
+    CGFloat width = 12;
+    CGSize size = [NSString sizeWithString:error font:[UIFont systemFontOfSize:14]];
+    CGFloat X = (self.view.frame.size.width - size.width - 20) / 2;
+    CGFloat Y = (self.view.frame.size.height - size.height - width) / 2;
+    _customLabel = [[UILabel alloc]initWithFrame:CGRectMake(X, Y, size.width + 20, size.height + width)];
+    _customLabel.text = error;
+    _customLabel.textAlignment =NSTextAlignmentCenter;
+    _customLabel.backgroundColor = [UIColor colorWithHexString:@"f74f35"];
+    _customLabel.textColor = [UIColor whiteColor];
+    _customLabel.font = WXFont(14);
+    [_customLabel setBorderRadian:5 width:0 color:[UIColor clearColor]];
+    [_tableView addSubview:_customLabel];
+    
+    
+   _timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)timer:(NSTimer*)time{
+    [_customLabel removeFromSuperview];
+    [time invalidate];
 }
 
 -(void)addShoppingCartFailed:(NSNotification*)notification{

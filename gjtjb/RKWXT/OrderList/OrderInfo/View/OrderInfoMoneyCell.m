@@ -86,7 +86,11 @@
     AllOrderListEntity *entity = self.cellInfo;
     [carriageLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.carriageMoney]];
     [activityLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.redpacket]];
-    [moneyLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.payMoney]];
+//    [moneyLabel setText:[NSString stringWithFormat:@"￥%.2f",entity.payMoney]];
+    
+    
+    NSString *priceText = [NSString stringWithFormat:@"￥%.2f",entity.orderMoney+entity.carriageMoney-entity.redpacket];
+    [moneyLabel setText:priceText];
 }
 
 @end

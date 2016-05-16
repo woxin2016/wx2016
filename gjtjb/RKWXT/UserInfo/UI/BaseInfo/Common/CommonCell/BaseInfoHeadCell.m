@@ -35,6 +35,22 @@
 
 -(void)load{
     NSString *iconName = self.cellInfo;
+    if (iconName.length == 0) {
+        if (_img) {
+            [headImg setImage:_img];
+        }
+    }else{
+            if([self userIconImage]){
+                [headImg setImage:[self userIconImage]];
+            }else if (iconName.length > 5){
+                [headImg setCpxViewInfo:iconName];
+                [headImg load];
+            }
+    }
+}
+
+- (void)oldLoad{  // 这是以前的代码，猜想重新上传图片之后后台没有进行替换
+    NSString *iconName = self.cellInfo;
     if(_img){
         [headImg setImage:_img];
     }else{

@@ -223,6 +223,7 @@
     [popAlertView show];
 }
 
+
 + (void)feedDataInbackground:(NSString*)feedUrlString complete:(void(^)(NSData*))handle error:(void(^)(NSError**))error{
     NSURL *url = [NSURL URLWithString:feedUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

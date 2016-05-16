@@ -167,7 +167,7 @@
     [limitBuyBtn setBackgroundColor:[UIColor colorWithHexString:@"f74f35"]];
     [downView addSubview:limitBuyBtn];
     
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat height = self.view.frame.size.height;
     downView.frame = CGRectMake(0,height-DownViewHeight, Size.width, DownViewHeight);
     
     return downView;

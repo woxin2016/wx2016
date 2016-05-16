@@ -90,6 +90,8 @@
     return self;
 }
 
+
+
 + (NSMutableArray*)sharedTipViewArray{
     static dispatch_once_t onceToken;
     static NSMutableArray *tipViewArray = nil;
@@ -141,6 +143,8 @@
             break;
         case WXPopAlertDirection_Center:
             rect.origin.y = (self.bounds.size.height - baseViewSize.height)*0.5;
+            break;
+        case WXPopAlertDirection_Custom:
             break;
         default:
             break;

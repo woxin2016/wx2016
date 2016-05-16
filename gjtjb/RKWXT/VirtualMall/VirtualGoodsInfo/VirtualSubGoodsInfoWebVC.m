@@ -45,6 +45,8 @@ typedef enum{
     [_webView setDelegate:self];
     [self.scrollView addSubview:_webView];
     _webView.scrollView.delegate  = self;
+    _webView.backgroundColor = [UIColor whiteColor];
+    _webView.scrollView.backgroundColor = [UIColor whiteColor];
     [self loadRootUrl:_urlFeedType paramDictionary:_paramDictionary];
 }
 
@@ -79,8 +81,7 @@ typedef enum{
     CGSize size = _webView.scrollView.contentSize;
     CGFloat height = self.scrollView.width / size.width * size.height;
     _webView.height = height;
-    _webView.scrollView.bounces = NO;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.width, height  + 50);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.width, height  + 70);
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
