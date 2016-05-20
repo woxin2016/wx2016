@@ -642,7 +642,6 @@
 		12F46A381B20012000B8EC98 /* T_ArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A2E1B20012000B8EC98 /* T_ArrowRight@2x.png */; };
 		12F46A391B20012000B8EC98 /* T_Attention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A2F1B20012000B8EC98 /* T_Attention@2x.png */; };
 		12F46A3A1B20012000B8EC98 /* T_AttentionSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A301B20012000B8EC98 /* T_AttentionSel@2x.png */; };
-		12F46A3B1B20012000B8EC98 /* T_Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A311B20012000B8EC98 /* T_Back@2x.png */; };
 		12F46A3D1B20012000B8EC98 /* T_GoodsIInfoDetail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A331B20012000B8EC98 /* T_GoodsIInfoDetail@2x.png */; };
 		12F46A3E1B20012000B8EC98 /* T_GoodsInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A341B20012000B8EC98 /* T_GoodsInfo@2x.png */; };
 		12F46A3F1B20012000B8EC98 /* T_GoodsInfoShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12F46A351B20012000B8EC98 /* T_GoodsInfoShare@2x.png */; };
@@ -977,7 +976,6 @@
 		DD30AA0E1CBD0668001875F4 /* virtualWarning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */; };
 		DD351C581AD8B85000DF0C7E /* libPods-CocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */; };
 		DD35B5A41CB398BE00B1C867 /* VirtualGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */; };
-		DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D85D1C841A7900422F5B /* T_Back@2x.png */; };
 		DD35D8601C841AF700422F5B /* T_BackWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D85F1C841AF700422F5B /* T_BackWhite@2x.png */; };
 		DD35D86F1C84258400422F5B /* ClassifySearchBtnImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D8671C84258400422F5B /* ClassifySearchBtnImg@2x.png */; };
 		DD35D8701C84258400422F5B /* ClassifySearchGoodsImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D8681C84258400422F5B /* ClassifySearchGoodsImg@2x.png */; };
@@ -2170,7 +2168,6 @@
 		12F46A2E1B20012000B8EC98 /* T_ArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_ArrowRight@2x.png"; sourceTree = "<group>"; };
 		12F46A2F1B20012000B8EC98 /* T_Attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_Attention@2x.png"; sourceTree = "<group>"; };
 		12F46A301B20012000B8EC98 /* T_AttentionSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_AttentionSel@2x.png"; sourceTree = "<group>"; };
-		12F46A311B20012000B8EC98 /* T_Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_Back@2x.png"; sourceTree = "<group>"; };
 		12F46A331B20012000B8EC98 /* T_GoodsIInfoDetail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_GoodsIInfoDetail@2x.png"; sourceTree = "<group>"; };
 		12F46A341B20012000B8EC98 /* T_GoodsInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_GoodsInfo@2x.png"; sourceTree = "<group>"; };
 		12F46A351B20012000B8EC98 /* T_GoodsInfoShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_GoodsInfoShare@2x.png"; sourceTree = "<group>"; };
@@ -2815,7 +2812,6 @@
 		DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CocoaLumberjack.a"; path = "Pods/../build/Release-iphoneos/libPods-CocoaLumberjack.a"; sourceTree = "<group>"; };
 		DD35B5A21CB398BE00B1C867 /* VirtualGoodsListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsListVC.h; sourceTree = "<group>"; };
 		DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsListVC.m; sourceTree = "<group>"; };
-		DD35D85D1C841A7900422F5B /* T_Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_Back@2x.png"; sourceTree = "<group>"; };
 		DD35D85F1C841AF700422F5B /* T_BackWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T_BackWhite@2x.png"; sourceTree = "<group>"; };
 		DD35D8671C84258400422F5B /* ClassifySearchBtnImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ClassifySearchBtnImg@2x.png"; sourceTree = "<group>"; };
 		DD35D8681C84258400422F5B /* ClassifySearchGoodsImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ClassifySearchGoodsImg@2x.png"; sourceTree = "<group>"; };
@@ -5805,7 +5801,6 @@
 				DD89B55A1C89794E0059F097 /* LMCarriageImg@2x.png */,
 				DD89B55B1C89794E0059F097 /* LMUserCutImg@2x.png */,
 				DD35D85F1C841AF700422F5B /* T_BackWhite@2x.png */,
-				DD35D85D1C841A7900422F5B /* T_Back@2x.png */,
 				12CE121C1C50C58500FF85FA /* GoodsInfoCartImg@2x.png */,
 				12CE121D1C50C58500FF85FA /* GoodsInfoShopImg@2x.png */,
 				124C10621C4CD69B00740561 /* SharedImg@2x.png */,
@@ -5815,7 +5810,6 @@
 				12F46A2E1B20012000B8EC98 /* T_ArrowRight@2x.png */,
 				12F46A2F1B20012000B8EC98 /* T_Attention@2x.png */,
 				12F46A301B20012000B8EC98 /* T_AttentionSel@2x.png */,
-				12F46A311B20012000B8EC98 /* T_Back@2x.png */,
 				12F46A331B20012000B8EC98 /* T_GoodsIInfoDetail@2x.png */,
 				12F46A341B20012000B8EC98 /* T_GoodsInfo@2x.png */,
 				12F46A351B20012000B8EC98 /* T_GoodsInfoShare@2x.png */,
@@ -7812,7 +7806,6 @@
 				TargetAttributes = {
 					2563B3E31AAAD74000C04227 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 93P8KM28NT;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -7997,7 +7990,6 @@
 				128BB73D1B6879E4004FCE66 /* CommonArrowLeft@2x.png in Resources */,
 				1272490E1B2574C9001BDC15 /* RegistUserImg@2x.png in Resources */,
 				129D23441B4F984400008DA0 /* OrderInfoState@2x.png in Resources */,
-				12F46A3B1B20012000B8EC98 /* T_Back@2x.png in Resources */,
 				1263EFE51ACD35820014C347 /* Icon-Small.png in Resources */,
 				12F422801B1D5A2900643DD7 /* AddressEdit@2x.png in Resources */,
 				1245350F1AE9D0BC004198C9 /* FindSelected@2x.png in Resources */,
@@ -8069,7 +8061,6 @@
 				1285850C1B3AA7E5005E240E /* MakeOrderLinImg@2x.png in Resources */,
 				12D52BBC1AC2EF4400C5CE71 /* dtmf-6.aif in Resources */,
 				12C875631CACC5FC00DF0B5C /* UserLikeImg@2x.png in Resources */,
-				DD35D85E1C841A7900422F5B /* T_Back@2x.png in Resources */,
 				127321261C7ABDE100C8D1D7 /* UserThirdClientImg@2x.png in Resources */,
 				DD30AA0E1CBD0668001875F4 /* virtualWarning@2x.png in Resources */,
 				12DDE7391CB5E908006BBB1E /* UserMoneyImg@2x.png in Resources */,
@@ -9024,8 +9015,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ding Bin (S7PY53887M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ding Bin (S7PY53887M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -9074,9 +9065,9 @@
 					"$(PROJECT_DIR)/RKWXT/UMeng",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wx.companyExplicit.wxmall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ecbe3675-2996-4447-9d48-7cc4805dbe4e";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
@@ -9087,7 +9078,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ding Bin (S7PY53887M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen WoXin Network Technology Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -9137,7 +9128,7 @@
 					"$(PROJECT_DIR)/RKWXT/UMeng",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wx.company.pushdemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wx.companyExplicit.wxmall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c845310b-ef28-4fe0-8fbf-482fdeaf2a15";
 				VALID_ARCHS = "armv7 armv7s";
