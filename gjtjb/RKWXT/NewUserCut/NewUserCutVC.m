@@ -31,7 +31,7 @@
 enum{
     NewCut_Section_Money = 0,
     NewCut_Section_team,
-    NewCut_Section_RankingList,
+//    NewCut_Section_RankingList,
     NewCut_Section_Referee,
     
     NewCut_Section_invalid,
@@ -213,7 +213,7 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
     NSInteger row = 0;
     switch (section) {
         case NewCut_Section_team:
-        case NewCut_Section_RankingList:
+//        case NewCut_Section_RankingList:
         case NewCut_Section_Money:
             row = 1;
             break;
@@ -249,7 +249,7 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
             break;
         case NewCut_Section_Money:
         case NewCut_Section_Referee:
-        case NewCut_Section_RankingList:
+//        case NewCut_Section_RankingList:
             height = 0;
             break;
         default:
@@ -266,7 +266,7 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
             height = UserCutMoneyCellHeight;
             break;
         case NewCut_Section_team:
-        case NewCut_Section_RankingList:
+//        case NewCut_Section_RankingList:
             height = 44;
             break;
         case NewCut_Section_Referee:{
@@ -352,19 +352,19 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
 }
 
 //排行榜
--(WXUITableViewCell*)userCutRankingListCell{
-    static NSString *identifier = @"rankingListCell";
-    WXUITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
-    if(!cell){
-        cell = [[WXUITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];;
-    }
-    [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
-    [cell.imageView setImage:[UIImage imageNamed:@"UserCutRankingList.png"]];
-    [cell.textLabel setText:@"排行榜"];
-    [cell.textLabel setFont:WXFont(16.0)];
-    [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
-    return cell;
-}
+//-(WXUITableViewCell*)userCutRankingListCell{
+//    static NSString *identifier = @"rankingListCell";
+//    WXUITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+//    if(!cell){
+//        cell = [[WXUITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];;
+//    }
+//    [cell setDefaultAccessoryView:E_CellDefaultAccessoryViewType_HasNext];
+//    [cell.imageView setImage:[UIImage imageNamed:@"UserCutRankingList.png"]];
+//    [cell.textLabel setText:@"排行榜"];
+//    [cell.textLabel setFont:WXFont(16.0)];
+//    [cell.textLabel setTextColor:WXColorWithInteger(0x000000)];
+//    return cell;
+//}
 
 //我的上级
 -(WXUITableViewCell*)tableViewForBaseDataCell:(NSIndexPath*)indexpath{
@@ -422,9 +422,9 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
             case NewCut_Section_team:
                 cell = [self tableViewForUserCutCell];
                 break;
-            case NewCut_Section_RankingList:
-                cell = [self userCutRankingListCell];
-                break;
+//            case NewCut_Section_RankingList:
+//                cell = [self userCutRankingListCell];
+//                break;
             case NewCut_Section_Referee:
                 cell = [self tableViewForBaseDataCell:indexPath];
                 break;
@@ -447,10 +447,10 @@ static NSString* g_dropItemList[DropList_Section_Invalid] ={
         clientVC.entity = entity;
         [self.wxNavigationController pushViewController:clientVC];
     }
-    if(section == NewCut_Section_RankingList){
-        WXJuniorListVC *juniorListVC = [[WXJuniorListVC alloc] init];
-        [self.wxNavigationController pushViewController:juniorListVC];
-    }
+//    if(section == NewCut_Section_RankingList){
+//        WXJuniorListVC *juniorListVC = [[WXJuniorListVC alloc] init];
+//        [self.wxNavigationController pushViewController:juniorListVC];
+//    }
     if(section == NewCut_Section_Money){
         UserCutSourceListVC *listVC = [[UserCutSourceListVC alloc] init];
         if([myCutArr count] > 0){
