@@ -974,6 +974,8 @@
 		DD30AA091CBCD963001875F4 /* VirtualOrderAllMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30AA081CBCD963001875F4 /* VirtualOrderAllMoneyCell.m */; };
 		DD30AA0C1CBCE0B6001875F4 /* VirtualOrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30AA0B1CBCE0B6001875F4 /* VirtualOrderDateCell.m */; };
 		DD30AA0E1CBD0668001875F4 /* virtualWarning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */; };
+		DD3336C21CF2A06200C5015D /* XNBAccoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3336C11CF2A06200C5015D /* XNBAccoutCell.m */; };
+		DD3336C51CF2A08000C5015D /* XNBPassWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3336C41CF2A08000C5015D /* XNBPassWordCell.m */; };
 		DD351C581AD8B85000DF0C7E /* libPods-CocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */; };
 		DD35B5A41CB398BE00B1C867 /* VirtualGoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */; };
 		DD35D8601C841AF700422F5B /* T_BackWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD35D85F1C841AF700422F5B /* T_BackWhite@2x.png */; };
@@ -2809,6 +2811,10 @@
 		DD30AA0A1CBCE0B6001875F4 /* VirtualOrderDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualOrderDateCell.h; sourceTree = "<group>"; };
 		DD30AA0B1CBCE0B6001875F4 /* VirtualOrderDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualOrderDateCell.m; sourceTree = "<group>"; };
 		DD30AA0D1CBD0668001875F4 /* virtualWarning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "virtualWarning@2x.png"; sourceTree = "<group>"; };
+		DD3336C01CF2A06200C5015D /* XNBAccoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNBAccoutCell.h; sourceTree = "<group>"; };
+		DD3336C11CF2A06200C5015D /* XNBAccoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNBAccoutCell.m; sourceTree = "<group>"; };
+		DD3336C31CF2A08000C5015D /* XNBPassWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNBPassWordCell.h; sourceTree = "<group>"; };
+		DD3336C41CF2A08000C5015D /* XNBPassWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNBPassWordCell.m; sourceTree = "<group>"; };
 		DD351C571AD8B85000DF0C7E /* libPods-CocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CocoaLumberjack.a"; path = "Pods/../build/Release-iphoneos/libPods-CocoaLumberjack.a"; sourceTree = "<group>"; };
 		DD35B5A21CB398BE00B1C867 /* VirtualGoodsListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualGoodsListVC.h; sourceTree = "<group>"; };
 		DD35B5A31CB398BE00B1C867 /* VirtualGoodsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualGoodsListVC.m; sourceTree = "<group>"; };
@@ -7142,6 +7148,10 @@
 			children = (
 				DD146AE31CB8F27E00BB438E /* RechargeCloudTicketVC.h */,
 				DD146AE41CB8F27E00BB438E /* RechargeCloudTicketVC.m */,
+				DD3336C01CF2A06200C5015D /* XNBAccoutCell.h */,
+				DD3336C11CF2A06200C5015D /* XNBAccoutCell.m */,
+				DD3336C31CF2A08000C5015D /* XNBPassWordCell.h */,
+				DD3336C41CF2A08000C5015D /* XNBPassWordCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8665,6 +8675,7 @@
 				122AB8BE1C3E6D5500AC9DF5 /* MKAnnotationView+WebCache.m in Sources */,
 				77DB94201AAFED400021A816 /* UIViewController+Helper.m in Sources */,
 				DD207CC81C9B991400A2F342 /* WXLimitGoodsInfoVC.m in Sources */,
+				DD3336C51CF2A08000C5015D /* XNBPassWordCell.m in Sources */,
 				128221C31B184C3B004613BB /* ASIAuthenticationDialog.m in Sources */,
 				122EFBE21C41072600CE0EA0 /* AllOrderListMoneyCell.m in Sources */,
 				12FD74DD1CCF6887006D56B8 /* MailShareView.m in Sources */,
@@ -8883,6 +8894,7 @@
 				775AB9E21ABFFD81003A339D /* WXTWebViewController.m in Sources */,
 				12CE12091C50B01F00FF85FA /* WaitReceiveOrderGoodsCell.m in Sources */,
 				122AB86F1C3E6B4200AC9DF5 /* GoodsSellerCell.m in Sources */,
+				DD3336C21CF2A06200C5015D /* XNBAccoutCell.m in Sources */,
 				7758431E1AB95A300039B129 /* WXUIActivityIndicatorView.m in Sources */,
 				128221C51B184C3B004613BB /* ASIDataDecompressor.m in Sources */,
 				DD2CA86A1CBB3C9D008D0AE6 /* VirtualPayMoneryCell.m in Sources */,

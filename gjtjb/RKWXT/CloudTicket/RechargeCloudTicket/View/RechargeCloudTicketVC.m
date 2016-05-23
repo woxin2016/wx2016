@@ -8,114 +8,150 @@
 
 #import "RechargeCloudTicketVC.h"
 #import "RechargeCTModel.h"
+#import "XNBAccoutCell.h"
+#import "XNBPassWordCell.h"
+#import "MoreMoneyInfoModel.h"
 
 #define EveryCellHeight (40)
 #define Size self.bounds.size
 
-@interface RechargeCloudTicketVC(){
-    UITextField *_numTextfield;
-    UITextField *_pwdTextfield;
+enum{
+    TableSection_XNBResidue = 0,
+    TableSection_XNBRecharge,
+    TableSection_Invalid,
+}TableSection;
+
+@interface RechargeCloudTicketVC()<UITableViewDataSource,UITableViewDelegate,XNBAccoutCellDelegate,XNBPassWordCellDelegate>
+{
+    UITableView *_tableView;
+    NSString *_numberStr;
+    NSString*_pwdStr;
 }
 
 @end
 
 @implementation RechargeCloudTicketVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if([MoreMoneyInfoModel shareUserMoreMoneyInfo].isLoaded){
+        [self uploadUserMoreMoneyInfo];
+    }else{
+        [[MoreMoneyInfoModel shareUserMoreMoneyInfo] loadUserMoreMoneyInfo];
+    }
+}
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setCSTTitle:@"云票充值"];
     [self setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
     
-//    [self createUpImgView];
-    [self createBaseView];
+    _tableView = [[UITableView alloc] init];
+    _tableView.frame = CGRectMake(0, 0, Size.width, Size.height);
+    [_tableView setBackgroundColor:WXColorWithInteger(0xf6f6f6)];
+    [_tableView setDataSource:self];
+    [_tableView setDelegate:self];
+    _tableView.rowHeight = 44;
+    [self addSubview:_tableView];
+    [_tableView setTableFooterView:[self tableViewFootView]];
 }
 
--(void)createUpImgView{
-    CGFloat xOffset = 12;
-    CGFloat imgWidth = 45;
-    CGFloat imgHeight = 26;
-    WXUIImageView *imgView = [[WXUIImageView alloc] init];
-    [imgView setFrame:CGRectMake(xOffset, (60-imgHeight)/2, imgWidth, imgHeight)];
-    [imgView setImage:[UIImage imageNamed:@"wxtRecharge.png"]];
-    [self addSubview:imgView];
+- (UIView*)tableViewFootView{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_SCREEN_WIDTH, 120)];
     
-    xOffset += imgWidth+5;
-    WXUILabel *nameLabel = [[WXUILabel alloc] init];
-    nameLabel.frame = CGRectMake(xOffset, (60-imgHeight)/2, 150, imgHeight);
-    [nameLabel setBackgroundColor:[UIColor clearColor]];
-    [nameLabel setTextAlignment:NSTextAlignmentLeft];
-    [nameLabel setTextColor:WXColorWithInteger(0x000000)];
-    [nameLabel setFont:WXFont(14.0)];
-    [nameLabel setText:@"我信充值卡"];
-    [self addSubview:nameLabel];
-}
-
--(void)createBaseView{
-    CGFloat xOffset = 19;
-    CGFloat yOffset = 7;
-    CGFloat numWidth = 36;
-    CGFloat numHeight = 17;
-    WXUIView *backLabel = [[WXUIView alloc] init];
-    backLabel.frame = CGRectMake(0, yOffset, IPHONE_SCREEN_WIDTH, 2*EveryCellHeight);
-    [backLabel setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:backLabel];
-    
-    UILabel *cartLabel = [[UILabel alloc] init];
-    cartLabel.frame = CGRectMake(xOffset, (EveryCellHeight-numHeight)/2+0.6, numWidth, numHeight);
-    [cartLabel setBackgroundColor:[UIColor clearColor]];
-    [cartLabel setTextAlignment:NSTextAlignmentCenter];
-    [cartLabel setFont:WXTFont(15.0)];
-    [cartLabel setText:@"卡号"];
-    [cartLabel setTextColor:WXColorWithInteger(0x000000)];
-    [backLabel addSubview:cartLabel];
-    
-    xOffset += numWidth+10;
-    CGFloat textfieldWidth = 200;
-    CGFloat textfieldHeight = numHeight;
-    _numTextfield = [[UITextField alloc] init];
-    _numTextfield.frame = CGRectMake(xOffset, (EveryCellHeight-numHeight)/2, textfieldWidth, textfieldHeight);
-    [_numTextfield setKeyboardType:UIKeyboardTypePhonePad];
-    [_numTextfield setPlaceholder:@"请输入卡号"];
-    [_numTextfield setTextColor:WXColorWithInteger(0x9c9c9c)];
-    [_numTextfield setFont:WXTFont(15.0)];
-    [_numTextfield addTarget:self action:@selector(textfieldReturn:) forControlEvents:UIControlEventTouchDragExit];
-    [backLabel addSubview:_numTextfield];
-    
-    xOffset -= numWidth;
-    yOffset = EveryCellHeight;
-    UILabel *downLine = [[UILabel alloc] init];
-    downLine.frame = CGRectMake(0, yOffset, Size.width, 0.5);
-    [downLine setBackgroundColor:WXColorWithInteger(0x9c9c9c)];
-    [backLabel addSubview:downLine];
-    
-    yOffset += (EveryCellHeight-numHeight)/2;
-    UILabel *pwdLabel = [[UILabel alloc] init];
-    pwdLabel.frame = CGRectMake(xOffset-10, yOffset, numWidth, numHeight);
-    [pwdLabel setBackgroundColor:[UIColor clearColor]];
-    [pwdLabel setTextAlignment:NSTextAlignmentCenter];
-    [pwdLabel setFont:WXTFont(15.0)];
-    [pwdLabel setText:@"密码"];
-    [cartLabel setTextColor:WXColorWithInteger(0x000000)];
-    [backLabel addSubview:pwdLabel];
-    
-    xOffset += numWidth;
-    _pwdTextfield = [[UITextField alloc] init];
-    _pwdTextfield.frame = CGRectMake(xOffset, yOffset, textfieldWidth, textfieldHeight);
-    [_pwdTextfield setKeyboardType:UIKeyboardTypePhonePad];
-    [_pwdTextfield setPlaceholder:@"请输入密码"];
-    [_pwdTextfield setTextColor:WXColorWithInteger(0x9c9c9c)];
-    [_pwdTextfield setFont:WXTFont(15.0)];
-    [_pwdTextfield addTarget:self action:@selector(textfieldReturn:) forControlEvents:UIControlEventTouchDragExit];
-    [backLabel addSubview:_pwdTextfield];
-    
-    yOffset = backLabel.frame.origin.y+2*EveryCellHeight+50;
     UIButton *okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    okBtn.frame = CGRectMake(13, yOffset, Size.width-2*13, EveryCellHeight);
+    okBtn.frame = CGRectMake(13, 12, Size.width-2*13, EveryCellHeight);
     [okBtn setBackgroundColor:WXColorWithInteger(AllBaseColor)];
     [okBtn setTitle:@"确定" forState:UIControlStateNormal];
     [okBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
     [okBtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:okBtn];
+    [view addSubview:okBtn];
+    
+    return view;
+}
+
+//改变cell分割线置顶
+-(void)viewDidLayoutSubviews{
+    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+     
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return TableSection_Invalid;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSInteger row = 0;
+    if (section == TableSection_XNBResidue) {
+        row = 1;
+    }else{
+        row = 2;
+    }
+    return row;
+}
+
+- (WXUITableViewCell*)tableViewCellFormResidue{
+    WXUITableViewCell *cell = [WXUITableViewCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_None andIsIdtifier:@"FormResidue"];
+    NSString *text = [NSString stringWithFormat:@"云票余额: %d 云票",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance];
+    [cell.textLabel setTextColor:WXColorWithInteger(0x484848)];
+    cell.textLabel.attributedText = [self changeFontAddColor:text sonStr:[NSString stringWithFormat:@"%d",[MoreMoneyInfoModel shareUserMoreMoneyInfo].userCloudBalance] fontColor:[UIColor redColor] font:[UIFont systemFontOfSize:14.0]];
+    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
+     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 5;
+}
+
+- (WXUITableViewCell*)tableViewCellFormRecharge:(NSInteger)row{
+   
+    if (row == 0) {
+     XNBAccoutCell *cell = [XNBAccoutCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_CreateCell andIsIdtifier:@"XNBAccoutCell"];
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else{
+      XNBPassWordCell* Posscell = [XNBPassWordCell tableViewCellInitializeWithTableView:_tableView andType:C_CellIsIdentifier_CreateCell andIsIdtifier:@"XNBPassWordCell"];
+        Posscell.delegate = self;
+        Posscell.selectionStyle = UITableViewCellSelectionStyleNone;
+         return Posscell;
+    }
+    
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WXUITableViewCell *cell = nil;
+    if (indexPath.section == TableSection_XNBResidue) {
+        cell = [self tableViewCellFormResidue];
+    }else{
+        cell = [self tableViewCellFormRecharge:indexPath.row];
+    }
+    return cell;
+}
+
+-(void)textFiledPassWordValueDidChanged:(NSString *)text{
+    _pwdStr = text;
+}
+
+-(void)textFiledValueDidChanged:(NSString *)text{
+    _numberStr = text;
 }
 
 -(void)textfieldReturn:(id)sender{
@@ -124,16 +160,13 @@
 }
 
 -(void)submit{
-    if(_numTextfield.text.length < 1 || _pwdTextfield.text.length < 1){
+    if(_numberStr.length < 1 || _pwdStr.length < 1){
         [UtilTool showAlertView:@"帐号或密码格式错误"];
         return;
     }
-    NSString *numberStr = _numTextfield.text;
-    NSString *pwdStr = _pwdTextfield.text;
-    
     RechargeCTModel *_model = [[RechargeCTModel alloc] init];
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
-    [_model rechargeUserCloudTicketWith:numberStr andPwd:pwdStr completion:^(NSInteger code, NSString *errorMsg) {
+    [_model rechargeUserCloudTicketWith:_numberStr andPwd:_pwdStr completion:^(NSInteger code, NSString *errorMsg) {
         [self unShowWaitView];
         if(code == 0){
             [self rechargeSucceed];
@@ -144,8 +177,7 @@
 }
 
 -(void)rechargeSucceed{
-    [_numTextfield setText:nil];
-    [_pwdTextfield setText:nil];
+    [_tableView  reloadData];
     [UtilTool showAlertView:@"充值成功"];
 }
 
@@ -155,6 +187,23 @@
         return;
     }
     [UtilTool showAlertView:errorMsg];
+}
+
+-(void)uploadUserMoreMoneyInfo{
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSection_XNBResidue] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (NSMutableAttributedString*)changeFontAddColor:(NSString*)rootStr  sonStr:(NSString*)sonStr fontColor:(UIColor*)fontColor font:(UIFont*)font {
+    //设置带属性的字体
+    NSMutableAttributedString *atter = [[NSMutableAttributedString alloc]initWithString:rootStr];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[NSFontAttributeName] = font;
+    dict[NSForegroundColorAttributeName] = fontColor;
+    
+    [atter addAttributes:dict range:[rootStr rangeOfString:sonStr]];
+    
+    return atter;
 }
 
 @end
