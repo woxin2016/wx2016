@@ -804,7 +804,8 @@
     [self unShowWaitView];
     _isGoodsAttenion = NO;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
-    [UtilTool showRoundView:@"取消收藏"];
+//    [UtilTool showRoundView:@"取消收藏"];
+    [self customView:@"取消收藏"];
 }
 
 - (void)requestSucceed:(NSNotification*)tion{
@@ -812,7 +813,8 @@
     [self lickGoodsInfo:tion];
      _isGoodsAttenion = YES;
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:GoodsInfo_Section_GoodsDesc] withRowAnimation:UITableViewRowAnimationNone];
-    [UtilTool showRoundView:@"收藏成功"];
+//    [UtilTool showRoundView:@"收藏成功"];
+     [self customView:@"收藏成功"];
 }
 
 - (void)lickGoodsInfo:(NSNotification*)tion{

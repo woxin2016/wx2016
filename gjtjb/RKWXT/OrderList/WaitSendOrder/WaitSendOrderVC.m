@@ -37,6 +37,7 @@ enum{
     AllOrderListModel *_model;
     
     BOOL isRefresh;
+    UIView *_shell;
 }
 @end
 
@@ -69,6 +70,42 @@ enum{
     [self addSubview:_tableView];
     [_tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
+
+-(void)loadEmptyOrderListView{
+    _shell = [[UIView alloc] init];
+    [_shell setBackgroundColor:[UIColor whiteColor]];
+    
+    CGFloat yOffset = 10;
+    UIImage *img = [UIImage imageNamed:@"NoOrderImg.png"];
+    UIImageView *imgView = [[UIImageView alloc] init];
+    imgView.frame = CGRectMake((self.bounds.size.width-img.size.width)/2, yOffset, img.size.width, img.size.height);
+    [imgView setImage:img];
+    [_shell addSubview:imgView];
+    
+    yOffset += img.size.height+18;
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0, yOffset, self.bounds.size.width, 20);
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setText:@"您还没有相关订单"];
+    [label setTextColor:WXColorWithInteger(0x000000)];
+    [label setFont:WXFont(15.0)];
+    [_shell addSubview:label];
+    
+    yOffset += 30;
+    [_shell setHidden:YES];
+    [_shell setFrame:CGRectMake(0, 110, IPHONE_SCREEN_WIDTH, 100)];
+    [self addSubview:_shell];
+    
+    if([orderListArr count] == 0){
+        [_tableView setHidden:YES];
+        [_shell setHidden:NO];
+    }else{
+        [_tableView setHidden:NO];
+        [_shell setHidden:YES];
+    }
+}
+
 
 -(void)addOBS{
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -281,6 +318,7 @@ enum{
         [_tableView footerEndRefreshing];
     }
     [_tableView reloadData];
+    [_shell setHidden:YES];
 }
 
 -(void)loadAllOrderlistFailed:(NSString *)errorMsg{
@@ -297,6 +335,10 @@ enum{
     }
     if(!isRefresh){
         [_tableView footerEndRefreshing];
+    }
+    
+    if ([errorMsg isEqualToString:@"没有您要查询的订单"]) {
+        [self loadEmptyOrderListView];
     }
 }
 

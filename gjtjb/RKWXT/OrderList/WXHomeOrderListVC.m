@@ -112,6 +112,7 @@
     [self.wxNavigationController pushViewController:payVC];
 }
 
+
 #pragma mark orderInfo
 -(void)jumpToOrderInfoVC:(NSNotification*)notification{
     AllOrderListEntity *entity = notification.object;

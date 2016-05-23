@@ -48,9 +48,9 @@ typedef enum{
     _webView.scrollView.delegate = self;
     _webView.backgroundColor = [UIColor whiteColor];
     _webView.scrollView.backgroundColor = [UIColor whiteColor];
+    _webView.scalesPageToFit = YES;
     [self loadRootUrl:_urlFeedType paramDictionary:_paramDictionary];
     
-   
 }
 
 
