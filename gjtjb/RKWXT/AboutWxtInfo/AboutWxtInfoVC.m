@@ -178,7 +178,9 @@ enum{
 
 -(void)checkLastestVersion{
     [self showWaitViewMode:E_WaiteView_Mode_BaseViewBlock title:@""];
-    [_model checkVersion:[UtilTool currentVersion]];
+    
+    // 版本号在appStore只能为三位数,后台检测升级必须为四位数
+    [_model checkVersion:[NSString stringWithFormat:@"%@.0",[UtilTool currentVersion]]];
 }
 
 -(void)checkVersionSucceed{
