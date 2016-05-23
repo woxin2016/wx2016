@@ -204,14 +204,14 @@ enum{
     if(entity.updateType == 0){
         if(buttonIndex == 1){
             //itms-services://?action=download-manifest&url=https://gz.67call.com/Ios/2.plist
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:entity.appUrl]];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downLoadAdd]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:entity.appUrl]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downLoadAdd]];
         }
     }
     if(entity.updateType == 1){
         if(buttonIndex == 0){
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:entity.appUrl]];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downLoadAdd]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:entity.appUrl]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downLoadAdd]];
         }
     }
 }
