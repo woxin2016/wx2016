@@ -95,16 +95,19 @@
     }
 }
 
+// itms-apps://itunes.apple.com/cn/app/wo-xin-yun-shang/id1114490727?mt=8
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *urlStr = @"itms-apps://itunes.apple.com/cn/app/wo-xin-yun-shang/id1114490727?mt=8";
     if(_versionEntity.updateType == WXT_Version_Advance){
         if(buttonIndex == 1){
             //itms-services://?action=download-manifest&url=https://gz.67call.com/Ios/2.plist
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_versionEntity.appUrl]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_versionEntity.appUrl]];
+             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
         }
     }
     if(_versionEntity.updateType == WXT_Version_Force){
         if(buttonIndex == 0){
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_versionEntity.appUrl]];
+           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
         }
     }
 }

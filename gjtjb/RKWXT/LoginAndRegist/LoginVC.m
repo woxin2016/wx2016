@@ -20,6 +20,7 @@
 #import "APService.h"
 #import "AllAreaDataModel.h"
 #import "ShoppingCartView.h"
+#import "FindCommonVC.h"
 
 #define Size self.bounds.size
 #define kLoginBigImgViewheight (190)
@@ -116,6 +117,7 @@
     
     yOffset += btnHeight1;
     CGFloat fetchPwdBtnWidth = 100;
+    
     CGFloat xGap1 = Size.width - fetchPwdBtnWidth - xgap;
     _fetchPwdBtn = [WXTUIButton buttonWithType:UIButtonTypeCustom];
     _fetchPwdBtn.frame = CGRectMake(xGap1, yOffset, fetchPwdBtnWidth, 30);
@@ -128,13 +130,13 @@
     [_optShell addSubview:_fetchPwdBtn];
     
     WXUIButton *registBtn = [WXUIButton buttonWithType:UIButtonTypeCustom];
-    registBtn.frame = CGRectMake(xgap, yOffset, fetchPwdBtnWidth, 30);
-    [registBtn.titleLabel setFont:WXFont(15.0)];
+    registBtn.frame = CGRectMake(0, yOffset, fetchPwdBtnWidth, 30);
+    [registBtn.titleLabel setFont:WXFont(14.0)];
     [registBtn setTitle:@"立即注册" forState:UIControlStateNormal];
     [registBtn setTitleColor:WXColorWithInteger(0xffffff) forState:UIControlStateNormal];
     [registBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [registBtn addTarget:self action:@selector(toRegister) forControlEvents:UIControlEventTouchUpInside];
-//    [_optShell addSubview:registBtn];
+    [_optShell addSubview:registBtn];
 }
 
 - (void)createUserAndPwdTable:(CGRect)rect{
@@ -372,8 +374,15 @@
 }
 
 - (void)toRegister{
-    RegistVC *registVC = [[RegistVC alloc] init];
-    [self.wxNavigationController pushViewController:registVC];
+    //注册页面
+//    RegistVC *registVC = [[RegistVC alloc] init];
+//    [self.wxNavigationController pushViewController:registVC];
+    
+    NSString *urlStr = @"http://api.woxinyun.com/wx_union/index.php/Register/index?sid=100000";
+    FindCommonVC *webViewVC = [[FindCommonVC alloc]init];
+    webViewVC.name = @"用户注册";
+    webViewVC.webURl = urlStr;
+    [self.wxNavigationController pushViewController:webViewVC];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

@@ -22,7 +22,7 @@
                 [_delegate gainNumFailed:retData.errorDesc];
             }
         }else{
-            NSInteger smsID = [[dic objectForKey:@"data"] integerValue];
+            NSInteger smsID = [[[dic objectForKey:@"data"] objectForKey:@"rand_id"]integerValue];
             WXTUserOBJ *userDefault = [WXTUserOBJ sharedUserOBJ];
             [userDefault setSmsID:(int)smsID];
             
